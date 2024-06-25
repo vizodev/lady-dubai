@@ -1,0 +1,138 @@
+<template>
+  <div
+    class="flex flex-col min-h-[720px] !bg-cover !bg-center !bg-no-repeat w-full h-[100vh] pt-[75px] relative"
+    :style="{
+      background: `url(${currentBackground}) `,
+      transition: 'background-image 1.5s ease-in-out',
+    }"
+  >
+    <div
+      class="absolute inset-0 w-full h-full bg-[#5E6567] mix-blend-hard-light"
+    ></div>
+    <div class="flex flex-col pl-[249px] items-start gap-[100px] relative z-1">
+      <div class="w-[250px]">
+        <img src="~/assets/imgs/logo.svg" alt="Logo" class="w-full" />
+      </div>
+
+      <div class="flex flex-col text-white gap-12 items-start">
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col">
+            <span
+              class="text-[80px] leading-[1.09] -tracking-[0.02] font-bold font-roboto-serif text-light"
+            >
+              Woman-only
+            </span>
+            <span
+              class="text-[80px] leading-[1.09] -tracking-[0.02] font-roboto-serif text-light"
+            >
+              Travel Packages <br />
+              to Dubai
+            </span>
+          </div>
+          <div class="flex flex-col">
+            <p class="font-inter text-[24px] text-light">
+              Enjoy the attractions of Dubai and the UAE in a <br />
+              <b>safe, gender-oriented, women-exclusive tour.</b>
+            </p>
+          </div>
+        </div>
+        <button
+          class="text-white text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-6 py-3 rounded-xl btnShadow"
+        >
+          Book your Trip
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col absolute bottom-[121px] right-[76px] gap-[28px]">
+      <button class="">
+        <img src="~/assets/imgs/facebook-icon.svg" alt="" />
+      </button>
+      <button class="">
+        <img src="~/assets/imgs/tiktok-icon.svg" alt="" />
+      </button>
+      <button class="">
+        <img src="~/assets/imgs/instagram-icon.svg" alt="" />
+      </button>
+    </div>
+    <span
+      class="absolute bottom-[28px] right-[82px] text-pink-100 font-inter font-medium"
+    >
+      The Dubai Experience
+    </span>
+  </div>
+</template>
+
+<script lang="ts" setup>
+const state = reactive<{
+  currentHeroIndex: number;
+  availableHeroes: { src: string }[];
+  changeBgIntervalTime: number;
+  changeBgInterval?: any;
+}>({
+  currentHeroIndex: 0,
+  availableHeroes: [
+    {
+      src: "/_nuxt/assets/imgs/hero1.png",
+    },
+    {
+      src: "/_nuxt/assets/imgs/hero2.jpg",
+    },
+    {
+      src: "/_nuxt/assets/imgs/hero3.jpg",
+    },
+    {
+      src: "/_nuxt/assets/imgs/hero4.png",
+    },
+    {
+      src: "/_nuxt/assets/imgs/hero5.jpg",
+    },
+    {
+      src: "/_nuxt/assets/imgs/hero6.jpg",
+    },
+    {
+      src: "/_nuxt/assets/imgs/hero7.png",
+    },
+    {
+      src: "/_nuxt/assets/imgs/hero8.png",
+    },
+  ],
+  changeBgIntervalTime: 3000,
+  changeBgInterval: null,
+});
+
+onBeforeMount(() => {
+  startChangeBackground();
+});
+
+// onBeforeUnmount(() => {
+//   clearInterval(state.changeBgInterval);
+// });
+
+const currentBackground = computed(() => {
+  return state.availableHeroes[state.currentHeroIndex].src;
+});
+
+const startChangeBackground = () => {
+  state.changeBgInterval = setInterval(() => {
+    changeBackground();
+  }, state.changeBgIntervalTime);
+};
+
+const changeBackground = () => {
+  if (state.currentHeroIndex + 1 === state.availableHeroes.length) {
+    state.currentHeroIndex = 0;
+  } else {
+    state.currentHeroIndex++;
+  }
+};
+</script>
+
+<style scoped>
+.text-light {
+  text-shadow: 0 4px 12px rgba(51, 0, 69, 0.5), 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btnShadow {
+  box-shadow: 0 4px 12px rgba(51, 0, 69, 0.5), 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+</style>
