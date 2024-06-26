@@ -1,13 +1,15 @@
 <template>
   <div
-    class="flex flex-col bg-pink-100 py-20 px-4 items-center justify-center overflow-hidden"
+    class="flex flex-col bg-pink-100 py-16 sm:py-20 px-4 items-center justify-center overflow-hidden"
   >
-    <div class="flex items-center gap-[100px] relative">
+    <div
+      class="flex items-center gap-12 sm:gap-16 xl:gap-[100px] relative px-4 flex-col lg:flex-row"
+    >
       <div
         class="absolute bg-[#F5F8FA] w-[110%] h-full rounded-full blur-[100px] opacity-50 z-0"
       ></div>
       <div
-        class="rounded-xl w-[600px] h-[489px] border-[14px] border-white rotate-[1.98deg] relative z-1"
+        class="rounded-xl sm:w-[420px] md:w-[500px] 2xl:w-[600px] sm:h-[360px] md:h-[420px] 2xl:h-[489px] border-[14px] border-white rotate-[1.98deg] relative z-1"
       >
         <img
           src="~/assets/imgs/cta.jpg"
@@ -15,21 +17,26 @@
           class="w-full h-full object-cover"
         />
       </div>
-      <div class="flex flex-col gap-[72px] relative z-1">
-        <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-16 sm:gap-[72px] relative z-1">
+        <div class="flex flex-col gap-8 items-center lg:items-start">
           <div class="flex flex-col">
-            <p class="text-[52px] font-medium font-roboto-serif text-pink-600">
-              Created with the <br />
-              <b>Religious Woman</b> <br />
+            <p
+              class="text-[40px] sm:text-[48px] lg:text-[52px] font-medium font-roboto-serif text-pink-600 leading-snug text-center lg:text-start"
+            >
+              Created with the <br class="hidden sm:block" />
+              <b>Religious Woman</b> <br class="hidden sm:block" />
               in mind
             </p>
           </div>
-          <span class="font-inter font-light text-brown-700">
-            With our female-only staff, and gender exclusive tours, <br />
+          <span
+            class="font-inter font-light text-brown-700 text-center lg:text-start"
+          >
+            With our female-only staff, and gender exclusive tours,
+            <br class="hidden sm:block" />
             you can feel safe and confortable to simply enjoy your trip.
           </span>
         </div>
-        <div class="flex flex-col gap-3 items-start">
+        <div class="flex flex-col gap-3 items-center lg:items-start">
           <button
             class="bg-pink-600 text-white font-bold font-inter text-sm px-3 py-2 rounded-xl"
           >
@@ -37,7 +44,9 @@
           </button>
           <div class="flex items-center gap-3">
             <img src="~/assets/imgs/ytbIcon.svg" alt="" class="w-[25px]" />
-            <span class="text-pink-600 font-medium font-inter">
+            <span
+              class="text-pink-600 font-medium font-inter text-center lg:text-start"
+            >
               Or check our <b>youtube playlist</b> for real-life experiences
               with <span class="font-extralight">Lady Dubai</span>
             </span>
