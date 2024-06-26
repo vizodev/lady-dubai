@@ -1,5 +1,5 @@
 <template>
-  <button class="flex items-center gap-3" @click="handleChange()">
+  <button class="flex items-center gap-2 sm:gap-3" @click="handleChange()">
     <div
       class="w-[24px] h-[24px] border border-pink-600 rounded-md flex items-center justify-center"
     >
@@ -9,13 +9,14 @@
       ></div>
     </div>
     <span
-      class="font-medium font-inter"
+      class="font-medium font-inter text-sm sm:text-base"
       :class="{
         'text-brown-700': !state.checked,
         'text-pink-600': state.checked,
       }"
-      >{{ label }}</span
     >
+      {{ label }}
+    </span>
   </button>
 </template>
 

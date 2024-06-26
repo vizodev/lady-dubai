@@ -23,6 +23,9 @@ export default {
         "roboto-serif": ["Roboto Serif", "sans-serif"],
         inter: ["Inter", "sans-serif"],
       },
+      screens: {
+        "3xl": "1920px",
+      },
     },
   },
   plugins: [],
