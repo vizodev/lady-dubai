@@ -1,12 +1,28 @@
 <template>
   <div class="flex flex-col bg-white rounded-xl overflow-hidden customShadow">
-    <div class="w-full h-[249px] overflow-scroll hide-scrollbar">
-      <img
-        v-for="image in tripPackage.banners"
-        :src="image"
-        alt="Package Image"
-        class="w-full h-full object-cover"
-      />
+    <div class="relative w-full flex flex-col items-center justify-center">
+      <div
+        ref="bannerScrollList"
+        class="w-full h-[249px] overflow-scroll hide-scrollbar snap-mandatory snap-x flex items-center"
+        @scroll="calcCurrentBanner()"
+      >
+        <div
+          class="h-full snap-center snap-always w-full bg-cover bg-center bg-no-repeat min-w-full"
+          v-for="image in tripPackage.gallery"
+          :style="`background-image: url(${image});`"
+        ></div>
+      </div>
+      <div class="absolute bottom-3.5 flex items-center gap-3">
+        <button
+          class="w-2 h-2 rounded-full bg-white"
+          v-for="(image, index) in tripPackage.gallery"
+          :class="{
+            'bg-white': index === activeBanner,
+            'bg-gray-300': index !== activeBanner,
+          }"
+          @click="scrollToBanner(index)"
+        ></button>
+      </div>
     </div>
     <div class="flex flex-col p-8 gap-6">
       <div class="flex flex-col gap-0.5">
@@ -68,6 +84,39 @@ import type { TripPackage } from "~/models";
 const props = defineProps<{
   tripPackage: TripPackage;
 }>();
+
+const bannerScrollList = ref<HTMLElement | null>(null);
+const activeBanner = ref(0);
+
+const scrollToBanner = (index: number) => {
+  if (bannerScrollList.value) {
+    bannerScrollList.value.scrollTo({
+      left: index * bannerScrollList.value.clientWidth,
+      behavior: "smooth",
+    });
+  }
+};
+
+const autoScroll = () => {
+  if (activeBanner.value < props.tripPackage.gallery.length - 1) {
+    activeBanner.value++;
+  } else {
+    activeBanner.value = 0;
+  }
+  scrollToBanner(activeBanner.value);
+};
+
+const calcCurrentBanner = () => {
+  if (bannerScrollList.value) {
+    const scrollLeft = bannerScrollList.value.scrollLeft;
+    const bannerWidth = bannerScrollList.value.clientWidth;
+    activeBanner.value = Math.round(scrollLeft / bannerWidth);
+  }
+};
+
+onMounted(() => {
+  // setInterval(autoScroll, 5000);
+});
 </script>
 
 <style scoped>
