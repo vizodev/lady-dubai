@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-y-auto w-full">
+  <div class="overflow-y-auto w-full" id="scrollArea">
     <Header />
     <Hero />
     <TripPackages />

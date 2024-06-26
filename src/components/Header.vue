@@ -1,6 +1,11 @@
 <template>
   <header
-    class="flex w-full justify-between md:justify-end items-center absolute top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px] bg-[#FFC1D3] shadow-md md:shadow-none md:bg-inherit"
+    class="flex w-full justify-between md:justify-end items-center absolute top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px]"
+    :class="{
+      'bg-[#FFC1D3] shadow-md md:!bg-transparent md:shadow-none':
+        !paintHeaderBg,
+      'bg-[#FFC1D3] !shadow-md': paintHeaderBg,
+    }"
   >
     <img src="~/assets/imgs/logo-white.svg" alt="" class="h-[40px] md:hidden" />
     <button class="md:hidden" @click="showMenu = true">
@@ -53,11 +58,24 @@
 
 <script lang="ts" setup>
 const showMenu = ref(false);
+const paintHeaderBg = ref(false);
+const scrollArea = ref<HTMLElement | null>(null);
 
 onMounted(() => {
   window.addEventListener("resize", () => {
     if (window.innerWidth > 767) {
       showMenu.value = false;
+    }
+  });
+
+  scrollArea.value = document.getElementById("scrollArea");
+
+  scrollArea.value?.addEventListener("scroll", () => {
+    console.log(scrollArea.value?.scrollTop);
+    if ((scrollArea.value?.scrollTop ?? 0) > 200) {
+      paintHeaderBg.value = true;
+    } else {
+      paintHeaderBg.value = false;
     }
   });
 });
