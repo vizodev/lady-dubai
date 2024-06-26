@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-auto">
+  <div class="overflow-y-auto w-full">
     <Header />
     <Hero />
     <TripPackages />

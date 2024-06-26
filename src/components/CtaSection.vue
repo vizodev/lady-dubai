@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col bg-pink-100 py-20 px-4 items-center justify-center">
+  <div
+    class="flex flex-col bg-pink-100 py-20 px-4 items-center justify-center overflow-hidden"
+  >
     <div class="flex items-center gap-[100px] relative">
       <div
         class="absolute bg-[#F5F8FA] w-[110%] h-full rounded-full blur-[100px] opacity-50 z-0"
