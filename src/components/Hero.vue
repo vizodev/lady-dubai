@@ -42,7 +42,7 @@
           </div>
         </div>
         <button
-          class="text-white sm:text-[18px] xl:text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-5 xl:px-6 py-2.5 xl:py-3 rounded-xl btnShadow"
+          class="text-white sm:text-[18px] xl:text-[20px] 2xl:text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-5 xl:px-6 py-2.5 xl:py-3 rounded-xl btnShadow"
         >
           Book your Trip
         </button>

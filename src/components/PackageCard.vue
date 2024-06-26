@@ -3,7 +3,7 @@
     <div class="relative w-full flex flex-col items-center justify-center">
       <div
         ref="bannerScrollList"
-        class="w-full h-[249px] overflow-scroll hide-scrollbar snap-mandatory snap-x flex items-center"
+        class="w-full h-[164px] sm:h-[150px] md:h-[180px] lg:h-[249px] overflow-scroll hide-scrollbar snap-mandatory snap-x flex items-center"
         @scroll="calcCurrentBanner()"
       >
         <div
@@ -14,7 +14,7 @@
       </div>
       <div class="absolute bottom-3.5 flex items-center gap-3">
         <button
-          class="w-2 h-2 rounded-full bg-white"
+          class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white"
           v-for="(image, index) in tripPackage.gallery"
           :class="{
             'bg-white': index === activeBanner,
@@ -24,9 +24,11 @@
         ></button>
       </div>
     </div>
-    <div class="flex flex-col p-8 gap-6">
-      <div class="flex flex-col gap-0.5">
-        <span class="text-brown-700 text-[36px] font-roboto-serif font-medium">
+    <div class="flex flex-col p-5 lg:p-8 gap-6 md:gap-4 lg:gap-6">
+      <div class="flex flex-col gap-1 md:gap-0.5">
+        <span
+          class="text-brown-700 text-[28px] sm:text-[32px] md:text-[36px] font-roboto-serif font-medium leading-tight"
+        >
           {{ tripPackage.title }}
         </span>
         <span class="text-brown-700 text-[14px] font-inter font-medium">
@@ -41,8 +43,10 @@
           {{ language }}
         </span>
       </div>
-      <div class="flex items-end justify-between">
-        <div class="flex flex-col gap-1.5">
+      <div
+        class="flex 2xl:items-end justify-between flex-col 2xl:flex-row gap-4 2xl:gap-0"
+      >
+        <div class="flex flex-col lg:gap-1.5">
           <div class="relative w-fit">
             <span class="text-brown-700 font-semibold font-roboto-serif">
               {{ `$ ${tripPackage.downSalePrice.usd}` }}
@@ -52,7 +56,9 @@
             ></div>
           </div>
           <div class="flex items-center gap-3">
-            <span class="text-blue-200 font-bold font-roboto-serif text-[36px]">
+            <span
+              class="text-blue-200 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] whitespace-nowrap"
+            >
               {{ `$ ${tripPackage.price.usd}` }}
             </span>
             <div class="flex flex-col font-inter">
@@ -63,13 +69,13 @@
             </div>
           </div>
           <span
-            class="text-white bg-blue-200 text-[10px] font-bold font-inter w-full rounded-md text-center px-1.5 py-[3.5px] uppercase"
+            class="text-white bg-blue-200 text-[10px] font-bold font-inter w-full rounded-md text-center px-1.5 py-[3.5px] uppercase mt-1.5 lg:mt-0"
           >
             Limited Time Promotional Price
           </span>
         </div>
         <button
-          class="text-white text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-6 py-3 rounded-xl btnShadow"
+          class="text-white sm:text-[18px] lg:text-[20px] 2xl:text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-5 py-2.5 2xl:px-6 2xl:py-3 rounded-xl btnShadow"
         >
           See More
         </button>
