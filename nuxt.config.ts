@@ -3,12 +3,21 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: "src",
   css: ["~/assets/css/global.css"],
+  nitro: {
+    preset: "firebase",
+    firebase: {
+      gen: 2,
+      nodeVersion: "18",
+      serverFunctionName: "server",
+    },
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+  ssr: true,
   app: {
     head: {
       title: "Lady Dubai",
