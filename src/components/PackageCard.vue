@@ -62,7 +62,9 @@
               {{ `$ ${tripPackage.price.usd}` }}
             </span>
             <div class="flex flex-col font-inter">
-              <span class="text-[12px] font-bold text-blue-200"> DIRHAM </span>
+              <span class="text-[12px] font-bold text-blue-200 leading-none">
+                DIRHAM
+              </span>
               <span class="text-[10px] font-medium text-blue-200">
                 per person
               </span>

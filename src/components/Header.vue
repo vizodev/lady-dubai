@@ -1,13 +1,21 @@
 <template>
   <header
-    class="flex w-full justify-between md:justify-end items-center absolute top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px]"
+    class="flex w-full justify-between items-center absolute top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px]"
     :class="{
       'bg-[#FFC1D3] shadow-md md:!bg-transparent md:shadow-none':
         !paintHeaderBg,
       'bg-[#FFC1D3] !shadow-md': paintHeaderBg,
+      'md:justify-end': !props.withLogo && !paintHeaderBg,
     }"
   >
-    <img src="/logo-white.svg" alt="" class="h-[40px] md:hidden" />
+    <img
+      src="/logo-white.svg"
+      alt=""
+      class="h-[40px]"
+      :class="{
+        'md:hidden': !paintHeaderBg,
+      }"
+    />
     <button class="md:hidden" @click="showMenu = true">
       <img src="/menu.svg" alt="" />
     </button>
@@ -57,6 +65,10 @@
 </template>
 
 <script lang="ts" setup>
+const props = defineProps<{
+  withLogo?: boolean;
+}>();
+
 const showMenu = ref(false);
 const paintHeaderBg = ref(false);
 const scrollArea = ref<HTMLElement | null>(null);

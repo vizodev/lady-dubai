@@ -4,6 +4,7 @@ export type TripPackage = {
   tag: string;
   title: string;
   subtitle: string;
+  description: string;
   services: PackagesServices[];
   guideLanguages: string[];
   price: {
@@ -54,10 +55,18 @@ export enum GuideLanguages {
 
 export const defaultTripPackage: TripPackage = {
   id: handleRandomId(),
-  gallery: ["/banner1.jpg", "/banner2.jpg", "/banner3.jpg"],
+  gallery: [
+    "/banner1.jpg",
+    "/banner2.jpg",
+    "/banner3.jpg",
+    "/banner3.jpg",
+    "/banner3.jpg",
+  ],
   title: "The Dubai Experience",
   subtitle: "5 Day All Inclusive Tour",
   headline: "Explore the main turistic attractions of the city.",
+  description:
+    "Experience the wonders of Dubai in our woman only tour. Visit the landmarks, learn the culture, enjoy nature and pamper yourself with a luxurious spa treament. Visit the best shopping spots, delight yourself with delicious meals, relax and enjoy while we take care of every little detail!",
   guideLanguages: [
     GuideLanguages.ENGLISH,
     GuideLanguages.ARABIC,

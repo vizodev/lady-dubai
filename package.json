@@ -13,6 +13,7 @@
     "docker:push": "docker push us-central1-docker.pkg.dev/lady-dubai/lady-dubai-website/client"
   },
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.3.1",
     "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.12.2",
     "pinia": "^2.1.7",
@@ -23,8 +24,5 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4"
-  },
-  "overrides": {
-    "vue": "latest"
   }
 }
