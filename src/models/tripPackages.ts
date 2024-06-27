@@ -128,3 +128,69 @@ export const defaultTripPackage: TripPackage = {
     "Extreme Sports insurance is mandatory.",
   ],
 };
+
+export const packagesServicesList: {
+  value: PackagesServices;
+  icon: string;
+  label: {
+    en: string;
+    he: string;
+  };
+}[] = [
+  {
+    value: PackagesServices.FLIGHT_TICKETS,
+    icon: "/planeIcon.svg",
+    label: {
+      en: "Plane tickets",
+      he: "כרטיסי טיסה",
+    },
+  },
+  {
+    value: PackagesServices.ACCOMMODATION,
+    icon: "/accommodationIcon.svg",
+    label: {
+      en: "Accommodation",
+      he: "אירוח",
+    },
+  },
+  {
+    value: PackagesServices.ATTRACTION_TICKETS,
+    icon: "/attractionIcon.svg",
+    label: {
+      en: "Attractions",
+      he: "אטרקציות",
+    },
+  },
+  {
+    value: PackagesServices.MEALS,
+    icon: "/mealsIcon.svg",
+    label: {
+      en: "All Meals",
+      he: "כל הארוחות",
+    },
+  },
+  {
+    value: PackagesServices.TRANSFER,
+    icon: "/transportationIcon.svg",
+    label: {
+      en: "Transportation to all venues and activities",
+      he: "הסעות לכל האטרקציות והפעילויות",
+    },
+  },
+  {
+    value: PackagesServices.LAUNDRY,
+    icon: "/laundryIcon.svg",
+    label: {
+      en: "Laudry services",
+      he: "שירותי כביסה",
+    },
+  },
+  {
+    value: PackagesServices.TOWELS,
+    icon: "/towelIcon.svg",
+    label: {
+      en: "Towels and bed sheets",
+      he: "מגבות ומצעים",
+    },
+  },
+];
