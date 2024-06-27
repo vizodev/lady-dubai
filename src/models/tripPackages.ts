@@ -1,4 +1,5 @@
 export type TripPackage = {
+  id: string;
   gallery: string[];
   tag: string;
   title: string;
@@ -52,6 +53,7 @@ export enum GuideLanguages {
 }
 
 export const defaultTripPackage: TripPackage = {
+  id: handleRandomId(),
   gallery: ["/banner1.jpg", "/banner2.jpg", "/banner3.jpg"],
   title: "The Dubai Experience",
   subtitle: "5 Day All Inclusive Tour",

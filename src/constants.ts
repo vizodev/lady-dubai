@@ -1,0 +1,1 @@
+export const TRIP_PACKAGE_STORE = "TRIP_PACKAGE_STORE";

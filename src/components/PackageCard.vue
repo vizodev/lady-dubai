@@ -75,6 +75,7 @@
           </span>
         </div>
         <button
+          @click="openTripPackage"
           class="text-white sm:text-[18px] lg:text-[20px] 2xl:text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-5 py-2.5 2xl:px-6 2xl:py-3 rounded-xl btnShadow"
         >
           See More
@@ -123,6 +124,10 @@ const calcCurrentBanner = () => {
 onMounted(() => {
   // setInterval(autoScroll, 5000);
 });
+
+const openTripPackage = () => {
+  navigateTo(`/trip-package/${props.tripPackage.id}`);
+};
 </script>
 
 <style scoped>

@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defaultTripPackage, type TripPackage } from "~/models";
+import { type TripPackage } from "~/models";
 
 const state = reactive<{
   baseTripPackages: TripPackage[];
@@ -31,12 +31,12 @@ const state = reactive<{
   tripPackages: [],
 });
 
-onMounted(() => {
-  Array.from({ length: 6 }).forEach(() => {
-    state.tripPackages.push(defaultTripPackage);
-  });
+const tripPackagesStore = useTripPackagesStore();
+const { loadingTripPackages, errorOnLoadTripPackages } =
+  storeToRefs(tripPackagesStore);
 
-  state.baseTripPackages = state.tripPackages;
+onMounted(async () => {
+  await loadTripPackages();
 
   handleTripPackagesAccordingToScreenSize();
 
@@ -45,6 +45,11 @@ onMounted(() => {
     handleTripPackagesAccordingToScreenSize();
   });
 });
+
+const loadTripPackages = async () => {
+  const tripPackages = await tripPackagesStore.loadTripPackages();
+  state.baseTripPackages = tripPackages;
+};
 
 const handleTripPackagesAccordingToScreenSize = () => {
   if (window.innerWidth < 640) {
