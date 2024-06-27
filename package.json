@@ -7,7 +7,10 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "docker:build": "docker build -t us-central1-docker.pkg.dev/lady-dubai-99cca/ladydubai/ladydubai-client .",
+    "docker:run": "docker run --rm -p 3000:3000 us-central1-docker.pkg.dev/lady-dubai-99cca/ladydubai/ladydubai-client",
+    "docker:push": "docker push us-central1-docker.pkg.dev/lady-dubai-99cca/ladydubai/ladydubai-client"
   },
   "dependencies": {
     "nuxt": "^3.12.2",
