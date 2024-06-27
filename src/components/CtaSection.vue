@@ -11,11 +11,7 @@
       <div
         class="rounded-xl sm:w-[420px] md:w-[500px] 2xl:w-[600px] sm:h-[360px] md:h-[420px] 2xl:h-[489px] border-[14px] border-white rotate-[1.98deg] relative z-1"
       >
-        <img
-          src="~/assets/imgs/cta.jpg"
-          alt=""
-          class="w-full h-full object-cover"
-        />
+        <img src="/cta.jpg" alt="" class="w-full h-full object-cover" />
       </div>
       <div class="flex flex-col gap-16 sm:gap-[72px] relative z-1">
         <div class="flex flex-col gap-8 items-center lg:items-start">
@@ -43,7 +39,7 @@
             See Testemonials
           </button>
           <div class="flex items-center gap-3">
-            <img src="~/assets/imgs/ytbIcon.svg" alt="" class="w-[25px]" />
+            <img src="/ytbIcon.svg" alt="" class="w-[25px]" />
             <span
               class="text-pink-600 font-medium font-inter text-center lg:text-start"
             >

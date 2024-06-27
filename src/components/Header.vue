@@ -7,9 +7,9 @@
       'bg-[#FFC1D3] !shadow-md': paintHeaderBg,
     }"
   >
-    <img src="~/assets/imgs/logo-white.svg" alt="" class="h-[40px] md:hidden" />
+    <img src="/logo-white.svg" alt="" class="h-[40px] md:hidden" />
     <button class="md:hidden" @click="showMenu = true">
-      <img src="~/assets/imgs/menu.svg" alt="" />
+      <img src="/menu.svg" alt="" />
     </button>
     <div class="md:flex items-center gap-[72px] text-white hidden">
       <a class="font-medium font-inter uppercase" href="">Why Us</a>
@@ -36,20 +36,20 @@
         </div>
         <div class="flex items-center gap-6 justify-center">
           <button class="">
-            <img src="~/assets/imgs/facebook-icon.svg" alt="" />
+            <img src="/facebook-icon.svg" alt="" />
           </button>
           <button class="">
-            <img src="~/assets/imgs/tiktok-icon.svg" alt="" />
+            <img src="/tiktok-icon.svg" alt="" />
           </button>
           <button class="">
-            <img src="~/assets/imgs/instagram-icon.svg" alt="" />
+            <img src="/instagram-icon.svg" alt="" />
           </button>
         </div>
         <button
           class="w-8 h-8 bg-white rounded-full flex items-center justify-center"
           @click="showMenu = false"
         >
-          <img src="~/assets/imgs/cross.svg" alt="" class="w-4" />
+          <img src="/cross.svg" alt="" class="w-4" />
         </button>
       </div>
     </div>

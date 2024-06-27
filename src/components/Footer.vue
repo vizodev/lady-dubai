@@ -13,7 +13,7 @@
           >
         </div>
         <div class="flex items-center gap-3">
-          <img src="~/assets/imgs/whatsapp-icon.svg" alt="" class="w-6" />
+          <img src="/whatsapp-icon.svg" alt="" class="w-6" />
           <span class="font-inter font-medium text-[18px] xl:text-[24px]">
             +55 813-369-5388
           </span>
@@ -24,17 +24,17 @@
       >
         <div class="flex items-center gap-[28px]">
           <button class="socialShadow">
-            <img src="~/assets/imgs/facebook-icon.svg" alt="" />
+            <img src="/facebook-icon.svg" alt="" />
           </button>
           <button class="socialShadow">
-            <img src="~/assets/imgs/tiktok-icon.svg" alt="" />
+            <img src="/tiktok-icon.svg" alt="" />
           </button>
           <button class="socialShadow">
-            <img src="~/assets/imgs/instagram-icon.svg" alt="" />
+            <img src="/instagram-icon.svg" alt="" />
           </button>
         </div>
         <div class="w-[250px]">
-          <img src="~/assets/imgs/logo-footer.svg" alt="Logo" class="w-full" />
+          <img src="/logo-footer.svg" alt="Logo" class="w-full" />
         </div>
       </div>
     </div>

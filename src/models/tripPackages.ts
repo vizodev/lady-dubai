@@ -52,11 +52,7 @@ export enum GuideLanguages {
 }
 
 export const defaultTripPackage: TripPackage = {
-  gallery: [
-    "https://picsum.photos/1920/1080",
-    "https://picsum.photos/768/640",
-    "https://picsum.photos/540/320",
-  ],
+  gallery: ["/banner1.jpg", "/banner2.jpg", "/banner3.jpg"],
   title: "The Dubai Experience",
   subtitle: "5 Day All Inclusive Tour",
   headline: "Explore the main turistic attractions of the city.",

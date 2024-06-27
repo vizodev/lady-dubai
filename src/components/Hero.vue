@@ -13,7 +13,7 @@
       class="flex flex-col pl-[6%] 2xl:pl-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-1"
     >
       <div class="w-[250px] hidden md:block">
-        <img src="~/assets/imgs/logo.svg" alt="Logo" class="w-full" />
+        <img src="/logo.svg" alt="Logo" class="w-full" />
       </div>
 
       <div
@@ -52,13 +52,13 @@
       class="flex flex-col absolute bottom-[121px] right-[40px] xl:right-[76px] gap-[28px]"
     >
       <button class="">
-        <img src="~/assets/imgs/facebook-icon.svg" alt="" />
+        <img src="/facebook-icon.svg" alt="" />
       </button>
       <button class="">
-        <img src="~/assets/imgs/tiktok-icon.svg" alt="" />
+        <img src="/tiktok-icon.svg" alt="" />
       </button>
       <button class="">
-        <img src="~/assets/imgs/instagram-icon.svg" alt="" />
+        <img src="/instagram-icon.svg" alt="" />
       </button>
     </div>
     <span
@@ -79,28 +79,28 @@ const state = reactive<{
   currentHeroIndex: 0,
   availableHeroes: [
     {
-      src: "/_nuxt/assets/imgs/hero1.png",
+      src: "/hero1.png",
     },
     {
-      src: "/_nuxt/assets/imgs/hero2.jpg",
+      src: "/hero2.jpg",
     },
     {
-      src: "/_nuxt/assets/imgs/hero3.jpg",
+      src: "/hero3.jpg",
     },
     {
-      src: "/_nuxt/assets/imgs/hero4.png",
+      src: "/hero4.png",
     },
     {
-      src: "/_nuxt/assets/imgs/hero5.jpg",
+      src: "/hero5.jpg",
     },
     {
-      src: "/_nuxt/assets/imgs/hero6.jpg",
+      src: "/hero6.jpg",
     },
     {
-      src: "/_nuxt/assets/imgs/hero7.png",
+      src: "/hero7.png",
     },
     {
-      src: "/_nuxt/assets/imgs/hero8.png",
+      src: "/hero8.png",
     },
   ],
   changeBgIntervalTime: 3000,

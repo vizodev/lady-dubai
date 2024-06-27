@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col items-center relative py-12 sm:py-16 lg:py-[159px]">
     <img
-      src="~/assets/imgs/contact1.png"
+      src="/contact1.png"
       alt=""
       class="z-0 absolute w-[136px] sm:w-[250px] xl:w-[290px] 2xl:w-auto right-4 sm:right-10 2xl:right-[80px] 3xl:right-[110px] top-0 sm:top-2 lg:top-[30px]"
     />
     <img
-      src="~/assets/imgs/contact2.png"
+      src="/contact2.png"
       alt=""
       class="absolute left-0 xl:left-4 bottom-[57px] w-[400px] xl:w-auto hidden lg:block"
     />
@@ -24,12 +24,12 @@
           class="flex w-full justify-between gap-2 sm:flex-row flex-col items-center sm:items-start"
         >
           <img
-            src="~/assets/imgs/contact2.png"
+            src="/contact2.png"
             alt=""
             class="w-[300px] md:w-[360px] lg:hidden"
           />
           <div class="flex items-center gap-3">
-            <img src="~/assets/imgs/whatsapp-icon.svg" alt="" class="w-6" />
+            <img src="/whatsapp-icon.svg" alt="" class="w-6" />
             <span class="font-inter font-medium text-[24px]"
               >+55 813-369-5388</span
             >
