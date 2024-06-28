@@ -141,7 +141,7 @@
         </button>
       </div>
     </div>
-    <Contact />
+    <ContactV2 />
     <Footer />
   </div>
 </template>

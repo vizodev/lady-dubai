@@ -4,7 +4,7 @@
     <Hero />
     <TripPackages />
     <CtaSection />
-    <Contact />
+    <ContactV2 />
     <Footer />
   </div>
 </template>
