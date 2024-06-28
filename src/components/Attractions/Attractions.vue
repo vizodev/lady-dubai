@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-stretch flex-wrap gap-1.5">
     <div
-      class="w-full max-w-[calc((100%-12px)/3)]"
+      class="w-full sm:max-w-[calc((100%-6px)/2)] lg:max-w-[calc((100%-12px)/3)]"
       v-for="attraction in attractions"
     >
       <AttractionsCard />

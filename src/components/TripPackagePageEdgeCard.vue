@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col w-full max-w-[528px] bg-white shadow-md pt-8 pb-[52px] px-6 rounded-[16px] -mt-[calc(47px+35px)] items-center gap-[52px]"
+    class="flex flex-col w-full md:min-w-[528px] lg:max-w-[528px] bg-white shadow-md pt-8 pb-[52px] px-4 sm:px-6 rounded-[16px] lg:-mt-[calc(47px+35px)] items-center gap-[52px]"
   >
     <div class="flex flex-col gap-8 items-center w-full">
       <div class="flex flex-col gap-6 items-center">
@@ -12,7 +12,7 @@
           </span>
           <div class="relative w-fit">
             <span
-              class="text-brown-700 font-semibold font-roboto-serif text-[24px]"
+              class="text-brown-700 font-semibold font-roboto-serif text-[20px] sm:text-[24px]"
             >
               {{ `$ ${tripPackage?.downSalePrice?.usd}` }}
             </span>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <button
-        class="bg-pink-500 rounded-xl px-4 py-3 textShadow text-white font-bold text-[24px] leading-tight w-full font-inter"
+        class="bg-pink-500 rounded-xl px-4 py-3 textShadow text-white font-bold text-[20px] sm:text-[24px] leading-tight w-full font-inter"
       >
         Get Package
       </button>
@@ -68,7 +68,8 @@
       <div class="flex flex-col">
         <span
           class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
-          >Cancelation policy:
+        >
+          Cancelation policy:
         </span>
         <ul class="m-0 pl-4 w-full list-disc">
           <li v-for="text in tripPackage.cancelationPolicy" class="">
@@ -81,7 +82,8 @@
       <div class="flex flex-col">
         <span
           class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
-          >Discalimer:
+        >
+          Discalimer:
         </span>
         <ul class="m-0 pl-4 w-full list-disc">
           <li v-for="text in tripPackage.disclaimer" class="">
