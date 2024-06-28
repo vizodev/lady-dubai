@@ -3,7 +3,7 @@
     <div class="w-full h-[286px]">
       <img src="/banner3.jpg" alt="" class="w-full h-full object-cover" />
     </div>
-    <div class="flex flex-col p-6 gap-3.5">
+    <div class="flex flex-col py-6 px-4 sm:p-6 gap-3.5">
       <span class="text-[20px] font-medium leading-tight font-inter">
         Dubai Fountain Lights Show
       </span>

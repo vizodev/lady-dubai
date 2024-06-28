@@ -1,24 +1,28 @@
 <template>
-  <div class="flex items-start gap-8 py-[52px]">
-    <div class="flex flex-col gap-2 min-w-[700px]">
-      <div class="w-full h-[359px]">
+  <div class="flex items-start gap-6 sm:gap-8 flex-col lg:flex-row">
+    <div class="flex flex-col gap-2 sm:min-w-[600px] 2xl:min-w-[700px] w-full">
+      <div class="w-full h-[200px] sm:h-[300px] 2xl:h-[359px]">
         <img src="/banner1.jpg" alt="" class="w-full h-full object-cover" />
       </div>
       <div class="flex items-stretch gap-2">
-        <div class="w-full h-[171px]">
+        <div class="w-full h-[120px] sm:h-[171px]">
           <img src="/banner1.jpg" alt="" class="w-full h-full object-cover" />
         </div>
-        <div class="w-full h-[171px]">
+        <div class="w-full h-[120px] sm:h-[171px]">
           <img src="/banner1.jpg" alt="" class="w-full h-full object-cover" />
         </div>
       </div>
     </div>
-    <div class="flex flex-col p-6 gap-12">
+    <div class="flex flex-col xl:p-6 gap-8 lg:gap-12">
       <div class="flex flex-col">
-        <span class="font-roboto-serif font-medium text-[36px] leading-tight">
+        <span
+          class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
+        >
           Accomodation
         </span>
-        <span class="font-inter font-light leading-tight text-[24px]">
+        <span
+          class="font-inter font-light leading-none sm:leading-tight text-[20px] sm:text-[24px]"
+        >
           Standard Room
         </span>
       </div>

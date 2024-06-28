@@ -2,11 +2,11 @@
   <div class="flex flex-col overflow-y-auto w-full">
     <TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
     <section
-      class="flex items-stretch w-full justify-between px-[245px] pt-[47px] relative z-10 pb-16"
+      class="flex flex-col lg:flex-row items-center lg:items-stretch w-full justify-between px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16 gap-10"
     >
-      <div class="flex flex-col max-w-[600px] gap-[52px]">
-        <div class="flex flex-col gap-8">
-          <div class="flex gap-3">
+      <div class="flex flex-col lg:max-w-[600px] gap-10 sm:gap-[52px]">
+        <div class="flex flex-col gap-6 sm:gap-8">
+          <div class="flex gap-3 flex-wrap">
             <button
               class="flex gap-3 items-center"
               v-for="(path, index) in relativePath"
@@ -18,7 +18,7 @@
               @click="path.path?.length ? navigateTo(path.path) : null"
             >
               <span
-                class="text-[12px] leading-tight font-medium font-inter uppercase hover:underline font-medium font-inter uppercase"
+                class="text-[12px] leading-tight font-medium font-inter uppercase hover:underline"
               >
                 {{ path.label.en }}
               </span>
@@ -32,11 +32,13 @@
           </div>
           <div class="flex flex-col gap-0.5">
             <span
-              class="font-medium text-[52px] text-[#272223] leading-tight font-roboto-serif"
+              class="font-medium text-[32px] sm:text-[36px] md:text-[42px] lg:text-[52px] text-[#272223] leading-tight font-roboto-serif"
             >
               {{ currentTripPackage?.title }}
             </span>
-            <span class="font-inter font-light text-[24px] leading-none">
+            <span
+              class="font-inter font-light text-[20px] sm:text-[24px] leading-none"
+            >
               {{ currentTripPackage?.subtitle }}
             </span>
           </div>
@@ -49,7 +51,7 @@
             <span class="uppercase font-bold font-inter leading-tight">
               What’s included
             </span>
-            <div class="flex gap-6 flex-wrap">
+            <div class="flex gap-y-4 gap-x-6 sm:gap-6 flex-wrap">
               <div
                 class="flex items-center gap-1.5"
                 v-for="serv in packagesServicesList"
@@ -70,7 +72,7 @@
               v-if="currentTripPackage"
             >
               <span
-                class="border border-[#272223] text-[#272223] font-medium font-inter px-1.5 py-1 rounded-md"
+                class="border border-[#272223] text-[#272223] font-medium font-inter px-1.5 py-1 rounded-md text-sm sm:text-base"
                 v-for="language in currentTripPackage.guideLanguages"
               >
                 {{ language }}
@@ -84,22 +86,32 @@
         :trip-package="currentTripPackage"
       />
     </section>
-    <div class="flex flex-col w-full px-[245px] py-[52px] gap-8">
-      <span class="font-roboto-serif font-medium text-[36px] leading-tight">
+    <div
+      class="flex flex-col w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] py-8 sm:py-10 md:py-[52px] gap-4 sm:gap-6 md:gap-8"
+    >
+      <span
+        class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
+      >
         Attractions
       </span>
       <Attractions />
+    </div>
+    <div
+      class="flex flex-col w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 sm:pt-10 py-8 sm:py-10 md:py-[52px] gap-8"
+    >
       <Accommodations />
     </div>
     <div
-      class="flex flex-col gap-3 w-full bg-pink-100 items-center py-[26px] my-[52px]"
+      class="flex flex-col gap-6 sm:gap-3 w-full bg-pink-100 py-[26px] my-[52px] items-center"
     >
       <span
-        class="text-[52px] font-roboto-serif font-medium leading-tight text-[#272223]"
+        class="text-[32px] sm:text-[36px] md:text-[42px] xl:text-[52px] font-roboto-serif font-medium leading-tight text-[#272223] text-center"
       >
         Check Other Packages
       </span>
-      <div class="flex items-center gap-[82px] text-pink-600">
+      <div
+        class="flex items-center gap-6 sm:gap-10 md:gap-16 lg:gap-[82px] text-pink-600 flex-col sm:flex-row"
+      >
         <button
           class="flex items-center gap-1.5"
           v-if="previousPackage"
@@ -108,7 +120,9 @@
           <div class="flex items-center justify-center w-9 h-9">
             <i class="fi fi-sr-angle-left text-[12px]"></i>
           </div>
-          <span class="text-[24px] font-medium font-roboto-serif leading-tight">
+          <span
+            class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
+          >
             {{ previousPackage.title }}
           </span>
         </button>
@@ -118,7 +132,7 @@
           @click="navigateTo(`/trip-package/${nextPackage.id}`)"
         >
           <span
-            class="text-[24px] font-medium font-roboto-serif leading-tight"
+            class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
             >{{ nextPackage.title }}</span
           >
           <div class="flex items-center justify-center w-9 h-9">
@@ -127,7 +141,7 @@
         </button>
       </div>
     </div>
-    <Contact />
+    <ContactV2 />
     <Footer />
   </div>
 </template>
