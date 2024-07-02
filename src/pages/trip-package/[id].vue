@@ -212,9 +212,6 @@ const handleRelativePath = () => {
 };
 
 const loadTripPackage = async () => {
-  if (loadingTripPackages.value) return;
-  if (errorOnLoadTripPackages.value) return;
-
   const tripPackage = tripPackages.value.find(
     (tripPackage) => tripPackage.id === packId.value
   );

@@ -15,6 +15,7 @@
           libero possimus ullam.
         </span>
         <button
+          @click="goToAttraction"
           class="uppercase text-pink-600 text-[12px] leading-tight font-semibold font-inter"
         >
           learn more
@@ -24,4 +25,8 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const goToAttraction = () => {
+  navigateTo(`/attraction/${handleRandomId()}`);
+};
+</script>

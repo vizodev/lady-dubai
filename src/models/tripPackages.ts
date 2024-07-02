@@ -203,7 +203,8 @@ export const packagesServicesList: {
 export const defaultAttraction: Attraction = {
   id: handleRandomId(),
   banner: "/banner1.jpg",
-  videoUrl: "https://www.youtube.com/embed/XyfYoU1ta3w",
+  videoUrl:
+    "https://www.youtube.com/embed/XyfYoU1ta3w?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&captions=0",
   title: "The Dubai Experience",
   subtitle: "5 Day All Inclusive Tour",
   description:

@@ -33,7 +33,7 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
         return this.attractions ?? [];
       }
     },
-    async loadAttractionById(id: string) {
+    async loadAttractionById() {
       return defaultAttraction;
     },
   },
