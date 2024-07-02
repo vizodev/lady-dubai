@@ -33,6 +33,9 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
         return this.tripPackages ?? [];
       }
     },
+    async loadTripPackageById() {
+      return defaultTripPackage;
+    },
   },
 });
 

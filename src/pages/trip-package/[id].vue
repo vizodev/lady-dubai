@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col overflow-y-auto w-full">
+  <div class="flex flex-col overflow-y-auto w-full" v-show="currentTripPackage">
     <TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
     <section
       class="flex flex-col lg:flex-row items-center lg:items-stretch w-full justify-between px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16 gap-10"
@@ -147,10 +147,12 @@
 </template>
 
 <script lang="ts" setup>
-import { packagesServicesList } from "~/models";
+import { packagesServicesList, type TripPackage } from "~/models";
 const tripPackagesStore = useTripPackagesStore();
 const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
   storeToRefs(tripPackagesStore);
+
+const currentTripPackage = ref<TripPackage>();
 
 const previousPackage = computed(() => {
   const index = tripPackages.value.findIndex(
@@ -181,6 +183,10 @@ const relativePath = ref<
 >([]);
 
 onMounted(() => {
+  loadTripPackage();
+});
+
+const handleRelativePath = () => {
   relativePath.value = [
     {
       label: {
@@ -203,11 +209,25 @@ onMounted(() => {
       },
     },
   ];
-});
+};
 
-const currentTripPackage = computed(() => {
-  return tripPackages.value.find(
+const loadTripPackage = async () => {
+  if (loadingTripPackages.value) return;
+  if (errorOnLoadTripPackages.value) return;
+
+  const tripPackage = tripPackages.value.find(
     (tripPackage) => tripPackage.id === packId.value
   );
-});
+
+  if (!tripPackage) {
+    currentTripPackage.value = await tripPackagesStore.loadTripPackageById();
+    return;
+  }
+
+  currentTripPackage.value = tripPackages.value.find(
+    (tripPackage) => tripPackage.id === packId.value
+  );
+
+  handleRelativePath();
+};
 </script>
