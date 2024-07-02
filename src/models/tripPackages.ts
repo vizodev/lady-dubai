@@ -38,10 +38,15 @@ export enum PackagesServices {
 }
 
 export type Attraction = {
+  id: string;
   banner: string;
+  videoUrl: string;
   title: string;
+  subtitle: string;
   description: string;
-  link?: string;
+  asideImg: string;
+  gallery: string[];
+  link: string;
 };
 
 export enum GuideLanguages {
@@ -194,3 +199,22 @@ export const packagesServicesList: {
     },
   },
 ];
+
+export const defaultAttraction: Attraction = {
+  id: handleRandomId(),
+  banner: "/banner1.jpg",
+  videoUrl: "https://www.youtube.com/embed/XyfYoU1ta3w",
+  title: "The Dubai Experience",
+  subtitle: "5 Day All Inclusive Tour",
+  description:
+    "The Museum of the Future welcomes people of all ages to see, touch, and shape our shared future. Go on a journey through possible futures and bring hope and knowledge back to the present. The Museum of the Future is a unique initiative and a global destination for inventors and creative professionals, as well as a place of inspiration for the leaders of tomorrow.",
+  asideImg: "/banner2.jpg",
+  gallery: [
+    "/banner1.jpg",
+    "/banner2.jpg",
+    "/banner3.jpg",
+    "/banner3.jpg",
+    "/banner3.jpg",
+  ],
+  link: "https://www.museumofthefuture.ae/",
+};
