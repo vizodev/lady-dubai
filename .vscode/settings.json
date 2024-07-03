@@ -13,5 +13,6 @@
   "scss.lint.unknownAtRules": "ignore",
   "[sql]": {
     "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
-  }
+  },
+  "cSpell.words": ["Supabase", "supabase"]
 }
