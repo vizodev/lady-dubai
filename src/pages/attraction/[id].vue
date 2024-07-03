@@ -5,6 +5,16 @@
       frameborder="0"
       class="w-full h-[782px]"
     ></iframe>
+    <div class="flex justify-center gap-8">
+      <div class="w-full flex flex-col items-end"></div>
+      <div class="w-full flex flex-col items-center justify-center">
+        <img
+          :src="currentAttraction?.asideImg"
+          alt=""
+          class="w-full max-w-[800px] h-full max-h-[557px] rounded object-cover"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
