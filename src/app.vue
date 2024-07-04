@@ -6,15 +6,4 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useSupabaseStore } from "./stores/supabase";
-
-const supabaseStore = useSupabaseStore();
-const { supabase } = storeToRefs(supabaseStore);
-
-onMounted(async () => {
-  await supabaseStore.initSupabase();
-  const { data } = await supabase.value.from("languages");
-  console.log(data);
-});
-</script>
+<script lang="ts" setup></script>

@@ -14,7 +14,7 @@
             <span
               class="text-brown-700 font-semibold font-roboto-serif text-[20px] sm:text-[24px]"
             >
-              {{ `$ ${tripPackage?.downSalePrice?.usd}` }}
+              {{ `$ ${tripPackage?.downsale_price?.usd}` }}
             </span>
             <div
               class="w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 z-[1] top-[50%] translate-y-[-50%]"

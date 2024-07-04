@@ -12,7 +12,7 @@ export type TripPackage = {
     ils: number;
     aed: number;
   };
-  downSalePrice: {
+  downsale_price: {
     usd: number;
     ils: number;
     aed: number;
@@ -89,7 +89,7 @@ export const defaultTripPackage: TripPackage = {
     ils: 6499,
     aed: 6499,
   },
-  downSalePrice: {
+  downsale_price: {
     usd: 10399,
     ils: 10399,
     aed: 10399,

@@ -16,15 +16,14 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
   getters: {},
   actions: {
     async loadTripPackages() {
+      const client = useSupabaseClient();
       this.errorOnLoadTripPackages = false;
       this.loadingTripPackages = true;
       try {
-        this.tripPackages = Array.from({ length: 6 }).map(() => {
-          return {
-            ...defaultTripPackage,
-            id: Math.random().toString(36).substring(7),
-          };
-        });
+        const { data: tripPackages } = await client
+          .from("trip_packages")
+          .select("*");
+        this.tripPackages = tripPackages as TripPackage[];
       } catch (error) {
         this.errorOnLoadTripPackages = true;
         console.error("Error loading trip packages", error);

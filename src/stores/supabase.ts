@@ -11,11 +11,7 @@ export const useSupabaseStore = defineStore(SUPABASE_STORE, {
   getters: {},
   actions: {
     async initSupabase() {
-      const { createClient } = await import("@supabase/supabase-js");
-      this.supabase = createClient(
-        `${useRuntimeConfig().public.supabaseUrl}`,
-        `${useRuntimeConfig().public.supabaseAnonKey}`
-      );
+      // this.supabase = useSupabaseClient();
     },
   },
 });
