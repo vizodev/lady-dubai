@@ -17,8 +17,8 @@
           class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white"
           v-for="(image, index) in tripPackage.gallery"
           :class="{
-            'bg-white': index === activeBanner,
-            'bg-gray-300': index !== activeBanner,
+            '!bg-white': index === activeBanner,
+            '!bg-gray-300': index !== activeBanner,
           }"
           @click="scrollToBanner(index)"
         ></button>
@@ -40,8 +40,23 @@
           class="border border-pink-600 text-pink-600 text-[12px] font-medium font-inter px-1.5 py-1 rounded-md"
           v-for="language in tripPackage.guideLanguages"
         >
-          {{ language }}
+          {{ language.label.en }}
         </span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <span
+          class="font-bold text-brown-700 text-xs leading-tight uppercase font-inter"
+        >
+          Included:
+        </span>
+        <div class="flex flex-wrap items-center gap-4">
+          <div
+            class="flex items-center justify-center"
+            v-for="serv in tripPackage.services"
+          >
+            <img :src="serv.icon" alt="" class="w-6 h-6 object-cover" />
+          </div>
+        </div>
       </div>
       <div
         class="flex 2xl:items-end justify-between flex-col 2xl:flex-row gap-4 2xl:gap-0"
@@ -88,10 +103,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { TripPackage } from "~/models";
+import type { TripPackage2 } from "~/models";
 
 const props = defineProps<{
-  tripPackage: TripPackage;
+  tripPackage: TripPackage2;
 }>();
 
 const bannerScrollList = ref<HTMLElement | null>(null);
@@ -103,6 +118,7 @@ const scrollToBanner = (index: number) => {
       left: index * bannerScrollList.value.clientWidth,
       behavior: "smooth",
     });
+    activeBanner.value = index;
   }
 };
 

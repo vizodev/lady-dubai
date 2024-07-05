@@ -1,12 +1,20 @@
 <template>
-  <div class="overflow-y-auto w-full" id="scrollArea">
-    <Header />
-    <Hero />
+  <Header />
+  <Hero />
+  <div class="dynamic-section" v-if="!loadingTripPackages">
     <TripPackages />
     <CtaSection />
     <ContactV2 />
-    <Footer />
   </div>
+  <Footer />
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const tripPackagesStore = useTripPackagesStore();
+const { loadingTripPackages, errorOnLoadTripPackages } =
+  storeToRefs(tripPackagesStore);
+
+onMounted(async () => {
+  await tripPackagesStore.loadTripPackages();
+});
+</script>

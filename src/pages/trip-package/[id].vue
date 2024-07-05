@@ -147,12 +147,12 @@
 </template>
 
 <script lang="ts" setup>
-import { packagesServicesList, type TripPackage } from "~/models";
+import { packagesServicesList, type TripPackage2 } from "~/models";
 const tripPackagesStore = useTripPackagesStore();
 const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
   storeToRefs(tripPackagesStore);
 
-const currentTripPackage = ref<TripPackage>();
+const currentTripPackage = ref<TripPackage2>();
 
 const previousPackage = computed(() => {
   const index = tripPackages.value.findIndex(
@@ -217,7 +217,8 @@ const loadTripPackage = async () => {
   );
 
   if (!tripPackage) {
-    currentTripPackage.value = await tripPackagesStore.loadTripPackageById();
+    currentTripPackage.value =
+      (await tripPackagesStore.loadTripPackageById()) as unknown as TripPackage2;
     return;
   }
 

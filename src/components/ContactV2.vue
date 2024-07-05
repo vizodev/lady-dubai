@@ -3,6 +3,9 @@
     class="flex items-center lg:items-stretch gap-16 lg:gap-[52px] justify-center py-16 sm:py-20 md:py-[100px] px-6 flex-col lg:flex-row"
   >
     <div
+      data-aos="fade-right"
+      data-aos-offset="-300"
+      data-aos-duration="800"
       class="flex flex-col bg-white w-full max-w-[768px] lg:max-w-[529px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] gap-8 sm:gap-[52px]"
     >
       <span
@@ -54,6 +57,9 @@
       </button>
     </div>
     <div
+      data-aos="fade-left"
+      data-aos-offset="-300"
+      data-aos-duration="800"
       class="flex flex-col gap-8 sm:gap-12 md:gap-16 items-start md:py-[52px] px-0 xl:px-[52px] w-full max-w-[768px] lg:max-w-max"
     >
       <div class="flex flex-col gap-3 items-start">

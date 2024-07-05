@@ -11,12 +11,21 @@
       <div
         class="rounded-xl sm:w-[420px] md:w-[500px] 2xl:w-[600px] sm:h-[360px] md:h-[420px] 2xl:h-[489px] border-[14px] border-white rotate-[1.98deg] relative z-1"
       >
-        <img src="/cta.jpg" alt="" class="w-full h-full object-cover" />
+        <img
+          src="/cta.jpg"
+          alt=""
+          class="w-full h-full object-cover"
+          data-aos="flip-right"
+          data-aos-offset="-300"
+          data-aos-duration="1200"
+        />
       </div>
       <div class="flex flex-col gap-16 sm:gap-[72px] relative z-1">
         <div class="flex flex-col gap-8 items-center lg:items-start">
           <div class="flex flex-col">
             <p
+              data-aos="fade-left"
+              data-aos-offset="-300"
               class="text-[40px] sm:text-[48px] lg:text-[52px] font-medium font-roboto-serif text-pink-600 leading-snug text-center lg:text-start"
             >
               Created with the <br class="hidden sm:block" />

@@ -98,10 +98,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { TripPackage } from "~/models";
+import type { TripPackage2 } from "~/models";
 
 const props = defineProps<{
-  tripPackage: TripPackage;
+  tripPackage: TripPackage2;
 }>();
 
 const selectedAvailableDate = ref<{
