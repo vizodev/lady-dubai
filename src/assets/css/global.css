@@ -3,6 +3,7 @@
 
 body {
   background: #f5f8fa;
+  overflow-x: hidden;
 }
 
 .hide-scrollbar {

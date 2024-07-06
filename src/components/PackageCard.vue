@@ -38,7 +38,7 @@
       <div class="flex flex-wrap gap-5 items-center">
         <span
           class="border border-pink-600 text-pink-600 text-[12px] font-medium font-inter px-1.5 py-1 rounded-md"
-          v-for="language in tripPackage.guideLanguages"
+          v-for="language in tripPackage.guidelanguages"
         >
           {{ language.label.en }}
         </span>

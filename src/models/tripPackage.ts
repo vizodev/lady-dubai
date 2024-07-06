@@ -17,13 +17,23 @@ export type TripPackage2 = {
   };
   gallery: string[];
   services: SingleService[];
-  guideLanguages: Language[];
+  guidelanguages: Language[];
   nextAvailableDates: {
     from: Date;
     to: Date;
   }[];
-  cancelationPolicy: string[];
-  disclaimer: string[];
+  cancelationPolicy: {
+    label: {
+      en: string[];
+      he: string[];
+    };
+  };
+  disclaimer: {
+    label: {
+      en: string[];
+      he: string[];
+    };
+  };
 };
 
 export type Language = {

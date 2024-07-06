@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col overflow-y-auto w-full" v-show="currentTripPackage">
+  <div class="flex flex-col overflow-y-auto w-full" v-if="currentTripPackage">
     <TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
     <section
       class="flex flex-col lg:flex-row items-center lg:items-stretch w-full justify-between px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16 gap-10"
@@ -54,7 +54,7 @@
             <div class="flex gap-y-4 gap-x-6 sm:gap-6 flex-wrap">
               <div
                 class="flex items-center gap-1.5"
-                v-for="serv in packagesServicesList"
+                v-for="serv in currentTripPackage.services"
               >
                 <img :src="serv.icon" alt="" class="w-6" />
                 <span class="font-medium font-inter leading-tight">
@@ -73,9 +73,9 @@
             >
               <span
                 class="border border-[#272223] text-[#272223] font-medium font-inter px-1.5 py-1 rounded-md text-sm sm:text-base"
-                v-for="language in currentTripPackage.guideLanguages"
+                v-for="language in currentTripPackage.guidelanguages"
               >
-                {{ language }}
+                {{ language.label.en }}
               </span>
             </div>
           </div>
@@ -147,7 +147,7 @@
 </template>
 
 <script lang="ts" setup>
-import { packagesServicesList, type TripPackage2 } from "~/models";
+import { type TripPackage2 } from "~/models";
 const tripPackagesStore = useTripPackagesStore();
 const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
   storeToRefs(tripPackagesStore);
@@ -217,14 +217,13 @@ const loadTripPackage = async () => {
   );
 
   if (!tripPackage) {
-    currentTripPackage.value =
-      (await tripPackagesStore.loadTripPackageById()) as unknown as TripPackage2;
+    currentTripPackage.value = (await tripPackagesStore.loadTripPackageById(
+      (packId.value as string) ?? ""
+    )) as unknown as TripPackage2;
     return;
   }
 
-  currentTripPackage.value = tripPackages.value.find(
-    (tripPackage) => tripPackage.id === packId.value
-  );
+  currentTripPackage.value = tripPackage;
 
   handleRelativePath();
 };

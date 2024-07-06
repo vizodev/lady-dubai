@@ -72,7 +72,7 @@
           Cancelation policy:
         </span>
         <ul class="m-0 pl-4 w-full list-disc">
-          <li v-for="text in tripPackage.cancelationPolicy" class="">
+          <li v-for="text in tripPackage.cancelationPolicy.label.en" class="">
             <span class="font-inter font-medium text-[12px] leading-tight">
               {{ text }}
             </span>
@@ -86,7 +86,7 @@
           Discalimer:
         </span>
         <ul class="m-0 pl-4 w-full list-disc">
-          <li v-for="text in tripPackage.disclaimer" class="">
+          <li v-for="text in tripPackage.disclaimer.label.en" class="">
             <span class="font-inter font-medium text-[12px] leading-tight">
               {{ text }}
             </span>

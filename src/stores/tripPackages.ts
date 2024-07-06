@@ -1,17 +1,21 @@
 import { TRIP_PACKAGE_STORE } from "~/constants";
-import { defaultTripPackage, type TripPackage2 } from "~/models";
+import { type TripPackage2 } from "~/models";
 
 interface IState {
   tripPackages: TripPackage2[];
   loadingTripPackages: boolean;
+  loadingTripPackage: boolean;
   errorOnLoadTripPackages: boolean;
+  errorOnLoadTripPackage: boolean;
 }
 
 export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
   state: (): IState => ({
     tripPackages: [],
     loadingTripPackages: false,
+    loadingTripPackage: false,
     errorOnLoadTripPackages: false,
+    errorOnLoadTripPackage: false,
   }),
   getters: {},
   actions: {
@@ -21,19 +25,9 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
       this.loadingTripPackages = true;
       try {
         const { data: tripPackages } = await client
-          .from("trip_packages")
-          .select(
-            "*, services:trip_package_services(*, service:services_pool(icon)), guideLanguages:trip_package_languages(*, language:languages(*))"
-          );
-        this.tripPackages = tripPackages?.map((pack: any) => {
-          return {
-            ...pack,
-            guideLanguages: pack.guideLanguages.map(
-              (lang: any) => lang.language
-            ),
-            services: pack.services.map((serv: any) => serv.service),
-          };
-        }) as TripPackage2[];
+          .from("trippackages")
+          .select("*");
+        this.tripPackages = tripPackages as TripPackage2[];
         console.log("Trip packages loaded", this.tripPackages);
       } catch (error) {
         this.errorOnLoadTripPackages = true;
@@ -43,8 +37,28 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
         return this.tripPackages ?? [];
       }
     },
-    async loadTripPackageById() {
-      return defaultTripPackage;
+    async loadTripPackageById(id: string) {
+      try {
+        this.errorOnLoadTripPackage = false;
+        this.loadingTripPackage = true;
+        const client = useSupabaseClient();
+        const { data: tripPackage } = await client
+          .from("trippackages")
+          .select("*")
+          .eq("id", id);
+        return tripPackage?.map((pck: any) => {
+          return {
+            ...pck,
+            cancelationPolicy: pck.cancelationpolicy[0],
+            disclaimer: pck.disclaimer[0],
+          };
+        })[0] as TripPackage2;
+      } catch (error) {
+        this.errorOnLoadTripPackage = true;
+        console.error("Error loading trip package", error);
+      } finally {
+        this.loadingTripPackage = false;
+      }
     },
   },
 });
