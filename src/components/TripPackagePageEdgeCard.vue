@@ -53,7 +53,7 @@
       </span>
       <div class="flex items-center gap-3 flex-wrap w-full">
         <button
-          v-for="dt in tripPackage.nextAvailableDates"
+          v-for="dt in tripPackage.nextavailabledates"
           class="border border-pink-600 px-3 py-2 text-pink-600 font-bold text-[14px] leading-tight font-inter rounded-xl"
           :class="{
             'bg-pink-600 text-white': selectedAvailableDate === dt,
@@ -110,7 +110,7 @@ const selectedAvailableDate = ref<{
 }>();
 
 onMounted(() => {
-  selectedAvailableDate.value = props.tripPackage.nextAvailableDates[0];
+  selectedAvailableDate.value = props.tripPackage.nextavailabledates[0];
 });
 
 const handleAvailableDateLabel = (date: { from: Date; to: Date }) => {

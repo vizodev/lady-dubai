@@ -18,7 +18,7 @@ export type TripPackage2 = {
   gallery: string[];
   services: SingleService[];
   guidelanguages: Language[];
-  nextAvailableDates: {
+  nextavailabledates: {
     from: Date;
     to: Date;
   }[];

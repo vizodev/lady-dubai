@@ -6,30 +6,7 @@
     >
       <div class="flex flex-col lg:max-w-[600px] gap-10 sm:gap-[52px]">
         <div class="flex flex-col gap-6 sm:gap-8">
-          <div class="flex gap-3 flex-wrap">
-            <button
-              class="flex gap-3 items-center"
-              v-for="(path, index) in relativePath"
-              :class="{
-                'text-pink-600': index < relativePath.length - 1,
-                'text-[#272223]': index === relativePath.length - 1,
-              }"
-              :disabled="index === relativePath.length - 1"
-              @click="path.path?.length ? navigateTo(path.path) : null"
-            >
-              <span
-                class="text-[12px] leading-tight font-medium font-inter uppercase hover:underline"
-              >
-                {{ path.label.en }}
-              </span>
-              <div
-                class="flex items-center justify-center h-full"
-                v-if="index < relativePath.length - 1"
-              >
-                <i class="fi fi-sr-angle-right text-[12px]"></i>
-              </div>
-            </button>
-          </div>
+          <RelativePath :relativePath="relativePath" />
           <div class="flex flex-col gap-0.5">
             <span
               class="font-medium text-[32px] sm:text-[36px] md:text-[42px] lg:text-[52px] text-[#272223] leading-tight font-roboto-serif"
@@ -52,15 +29,11 @@
               What’s included
             </span>
             <div class="flex gap-y-4 gap-x-6 sm:gap-6 flex-wrap">
-              <div
-                class="flex items-center gap-1.5"
+              <TripServiceBadge
                 v-for="serv in currentTripPackage.services"
-              >
-                <img :src="serv.icon" alt="" class="w-6" />
-                <span class="font-medium font-inter leading-tight">
-                  {{ serv.label.en }}
-                </span>
-              </div>
+                :key="serv.id"
+                :tripService="serv"
+              />
             </div>
           </div>
           <div class="flex flex-col gap-3">
@@ -71,12 +44,11 @@
               class="flex flex-wrap gap-5 items-center w-full"
               v-if="currentTripPackage"
             >
-              <span
-                class="border border-[#272223] text-[#272223] font-medium font-inter px-1.5 py-1 rounded-md text-sm sm:text-base"
+              <GuideLanguageBadge
                 v-for="language in currentTripPackage.guidelanguages"
-              >
-                {{ language.label.en }}
-              </span>
+                :key="language.id"
+                :language="language"
+              />
             </div>
           </div>
         </div>
@@ -133,8 +105,9 @@
         >
           <span
             class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
-            >{{ nextPackage.title }}</span
           >
+            {{ nextPackage.title }}
+          </span>
           <div class="flex items-center justify-center w-9 h-9">
             <i class="fi fi-sr-angle-right text-[12px]"></i>
           </div>
@@ -147,7 +120,7 @@
 </template>
 
 <script lang="ts" setup>
-import { type TripPackage2 } from "~/models";
+import { type RelativePathComponent, type TripPackage2 } from "~/models";
 const tripPackagesStore = useTripPackagesStore();
 const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
   storeToRefs(tripPackagesStore);
@@ -172,15 +145,7 @@ const packId = computed(() => {
   return useRoute().params.id;
 });
 
-const relativePath = ref<
-  {
-    label: {
-      en: string;
-      he: string;
-    };
-    path?: string;
-  }[]
->([]);
+const relativePath = ref<RelativePathComponent[]>([]);
 
 onMounted(() => {
   loadTripPackage();
@@ -220,6 +185,7 @@ const loadTripPackage = async () => {
     currentTripPackage.value = (await tripPackagesStore.loadTripPackageById(
       (packId.value as string) ?? ""
     )) as unknown as TripPackage2;
+    handleRelativePath();
     return;
   }
 
