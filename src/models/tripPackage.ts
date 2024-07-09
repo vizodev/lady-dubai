@@ -1,6 +1,6 @@
 export type TripPackage2 = {
   id: string;
-  created_at?: Date;
+  created_at: Date;
   title: string;
   subtitle: string;
   headline: string;

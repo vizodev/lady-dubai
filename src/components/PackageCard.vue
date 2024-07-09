@@ -1,5 +1,17 @@
 <template>
-  <div class="flex flex-col bg-white rounded-xl overflow-hidden customShadow">
+  <div
+    class="flex flex-col bg-white rounded-xl overflow-hidden customShadow relative"
+  >
+    <div
+      class="absolute bg-pink-100 z-10 w-[135px] py-2 flex justify-center -rotate-45 left-[-33px] top-[15px]"
+      v-if="isNew"
+    >
+      <span
+        class="text-[24px] text-white font-bold font-inter textShadow leading-none"
+      >
+        New
+      </span>
+    </div>
     <div class="relative w-full flex flex-col items-center justify-center">
       <div
         ref="bannerScrollList"
@@ -111,6 +123,7 @@ const props = defineProps<{
 
 const bannerScrollList = ref<HTMLElement | null>(null);
 const activeBanner = ref(0);
+const isNew = ref(false);
 
 const scrollToBanner = (index: number) => {
   if (bannerScrollList.value) {
@@ -141,7 +154,19 @@ const calcCurrentBanner = () => {
 
 onMounted(() => {
   // setInterval(autoScroll, 5000);
+  //verify is created less than 7 days
+  checkIsNew();
 });
+
+const checkIsNew = () => {
+  const createdDate = new Date(props.tripPackage.created_at);
+  const currentDate = new Date();
+  const diffTime = Math.abs(currentDate.getTime() - createdDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  if (diffDays <= 7) {
+    isNew.value = true;
+  }
+};
 
 const openTripPackage = () => {
   navigateTo(`/trip-package/${props.tripPackage.id}`);
@@ -152,5 +177,9 @@ const openTripPackage = () => {
 .customShadow {
   box-shadow: 0 4px 32px rgb(119, 51, 67, 0.05),
     0 2px 2px rgba(118, 32, 78, 0.15);
+}
+
+.textShadow {
+  text-shadow: 0 2px 0px rgba(0, 0, 0, 0.15);
 }
 </style>
