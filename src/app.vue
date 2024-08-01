@@ -1,7 +1,20 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+	<div class="fixed inset-0 flex flex-col w-full">
+		<NuxtLayout>
+			<NuxtPage />
+		</NuxtLayout>
+	</div>
 </template>
 
-<script lang="ts" setup></script>
+<style>
+/* Default <Transition /> */
+.v-enter-active,
+.v-leave-active {
+	transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+	opacity: 0;
+}
+</style>
