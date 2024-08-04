@@ -1,6 +1,7 @@
 <template>
 	<div class="flex flex-col overflow-y-auto w-full" v-if="currentTripPackage">
 		<TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
+
 		<section
 			class="flex flex-col lg:flex-row items-center lg:items-stretch w-full justify-between px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16 gap-10"
 		>
@@ -53,11 +54,13 @@
 					</div>
 				</div>
 			</div>
+
 			<TripPackagePageEdgeCard
 				v-if="currentTripPackage"
 				:trip-package="currentTripPackage"
 			/>
 		</section>
+
 		<div
 			class="flex flex-col w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] py-8 sm:py-10 md:py-[52px] gap-4 sm:gap-6 md:gap-8"
 		>
@@ -68,11 +71,13 @@
 			</span>
 			<Attractions />
 		</div>
+
 		<div
 			class="flex flex-col w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 sm:pt-10 py-8 sm:py-10 md:py-[52px] gap-8"
 		>
 			<Accommodations />
 		</div>
+
 		<div
 			class="flex flex-col gap-6 sm:gap-3 w-full bg-pink-100 py-[26px] my-[52px] items-center"
 		>
