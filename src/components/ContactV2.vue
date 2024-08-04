@@ -5,6 +5,9 @@
 		<BaseForm
 			:validation-schema="contactSchema"
 			@submit="onSubmit"
+			data-aos="fade-right"
+			data-aos-offset="-300"
+			data-aos-duration="800"
 			class="flex flex-col bg-white w-full max-w-[768px] lg:max-w-[529px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] gap-8 sm:gap-[52px]"
 		>
 			<span
@@ -45,6 +48,9 @@
 		</BaseForm>
 
 		<div
+			data-aos="fade-left"
+			data-aos-offset="-300"
+			data-aos-duration="800"
 			class="flex flex-col gap-8 sm:gap-12 md:gap-16 items-start md:py-[52px] px-0 xl:px-[52px] w-full max-w-[768px] lg:max-w-max"
 		>
 			<div class="flex flex-col gap-3 items-start">
