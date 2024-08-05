@@ -1,37 +1,53 @@
 <template>
-	<div class="flex flex-col">
+	<div>
 		<label
 			class="flex flex-row items-center gap-3 mb-2 text-regular-14-bold-grey cursor-pointer"
 		>
 			<Field
-				type="checkbox"
 				:name="name"
 				:value="value"
+				type="radio"
+				@change="onChange"
 				class="cursor-pointer"
 			/>
+
 			<slot />
 		</label>
 
 		<transition>
-			<ErrorMessage
-				:name="name"
-				class="mt-3 italic text-xs text-red-600 font-bold"
-			/>
+			<p v-if="errorMessage" class="mt-3 italic text-xs text-red-600 font-bold">
+				{{ errorMessage }}
+			</p>
 		</transition>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { ErrorMessage, Field } from "vee-validate"
+import { useField, Field } from "vee-validate"
 
-defineProps<{
+const { name } = defineProps<{
 	name: string
-	value: any
+	value: string
 }>()
+
+const emit = defineEmits<{
+	(e: "onChange", data: string): void
+}>()
+
+// Form
+const { errorMessage } = useField(name)
+const onChange = (e: InputEvent) => {
+	const target = e.target as any
+
+	const value = target.value as string
+	const checked = target.checked as boolean
+
+	if (checked) emit("onChange", value)
+}
 </script>
 
 <style scoped>
-input[type="checkbox"] {
+input[type="radio"] {
 	appearance: none;
 	background-color: #fff;
 	margin: 0;
@@ -47,7 +63,7 @@ input[type="checkbox"] {
 	place-content: center;
 }
 
-input[type="checkbox"]::before {
+input[type="radio"]::before {
 	content: "";
 	width: 0.75em;
 	height: 0.75em;
@@ -56,11 +72,11 @@ input[type="checkbox"]::before {
 	box-shadow: inset 1em 1em #db2778;
 }
 
-input[type="checkbox"]:checked::before {
+input[type="radio"]:checked::before {
 	transform: scale(1);
 }
 
-label:has(input[type="checkbox"]:checked) {
+label:has(input[type="radio"]:checked) {
 	color: #db2778;
 }
 </style>

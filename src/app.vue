@@ -5,6 +5,12 @@
 </template>
 
 <style>
+* {
+	transition: all 0.2s ease-in-out;
+	transition: background-color 0.1s ease-in-out;
+	transition: box-shadow 0.1s ease-in-out;
+}
+
 /* Default <Transition /> */
 .v-enter-active,
 .v-leave-active {
