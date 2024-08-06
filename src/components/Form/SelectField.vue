@@ -2,11 +2,15 @@
 	<div>
 		<p v-if="label" class="text-sm font-bold ml-3">{{ label }}</p>
 
-		<Field
-			:name="name"
-			:placeholder="placeholder"
-			class="w-full font-inter outline-0 placeholder:font-light placeholder:italic focus:border-pink-600 focus:text-pink-600 focus:font-medium text-brown-700 border border-black px-4 py-3 rounded-md bg-transparent"
-		/>
+		<div class="focus:border-pink-600 border border-black px-4 py-3 rounded-md">
+			<Field
+				:name="name"
+				as="select"
+				class="w-full font-inter outline-0 placeholder:font-light placeholder:italic focus:text-pink-600 focus:font-medium text-brown-700 bg-transparent"
+			>
+				<slot />
+			</Field>
+		</div>
 
 		<transition>
 			<ErrorMessage
@@ -23,6 +27,5 @@ import { Field, ErrorMessage } from "vee-validate"
 defineProps<{
 	name: string
 	label?: string
-	placeholder?: string
 }>()
 </script>

@@ -1,6 +1,8 @@
 import * as yup from "yup"
 import {
 	booleanFieldRequired,
+	dateFieldMaxTodayRequired,
+	dateFieldMinTodayRequired,
 	emailFieldRequired,
 	numberFieldOptional,
 	numberFieldRequired,
@@ -17,16 +19,16 @@ export type CheckoutSchemaSubmit = {
 	paymentMethod: string
 	cardNumber?: number
 	cardName?: string
-	cardExpiration?: number
+	cardExpiration?: Date
 	cardCvv?: number
 	users: {
 		name: string
 		lastName: string
-		birthday: string
+		birthday: Date
 		gender: string
 		nationality: string
-		passportNumber: number
-		passportExpiration: number
+		passportId: string
+		passportExpiration: Date
 		passportIssuedFrom: string
 	}[]
 }
@@ -49,11 +51,11 @@ export const checkoutSchema = yup.object({
 		yup.object({
 			name: textFieldRequired,
 			lastName: textFieldRequired,
-			birthday: textFieldRequired,
+			birthday: dateFieldMaxTodayRequired,
 			gender: textFieldRequired,
 			nationality: textFieldRequired,
-			passportNumber: numberFieldRequired,
-			passportExpiration: numberFieldRequired,
+			passportId: textFieldRequired,
+			passportExpiration: dateFieldMinTodayRequired,
 			passportIssuedFrom: textFieldRequired,
 		})
 	),

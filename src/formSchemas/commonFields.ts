@@ -27,6 +27,19 @@ export const booleanFieldRequired = yup
 	.boolean()
 	.required(validationMessages.emptyField)
 
+// Date fields
+export const dateFieldRequired = yup
+	.date()
+	.required(validationMessages.emptyField)
+export const dateFieldMaxTodayRequired = dateFieldRequired.max(
+	new Date(),
+	validationMessages.maxTodayDate
+)
+export const dateFieldMinTodayRequired = dateFieldRequired.min(
+	new Date(),
+	validationMessages.minTodayDate
+)
+
 // Miscellaneous
 export const emailFieldRequired = textFieldRequired.email(
 	validationMessages.validEmail

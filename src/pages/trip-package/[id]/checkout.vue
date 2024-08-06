@@ -52,27 +52,35 @@
 													label="LAST NAME"
 													placeholder="Doe"
 												/>
-												<TextField
+												<DateField
 													:name="`users[${traveller}].birthday`"
 													label="DATE OF BIRTH"
 													placeholder="DD/MM/YYYY"
 												/>
-												<TextField
+
+												<SelectField
 													:name="`users[${traveller}].gender`"
 													label="GENDER"
-													placeholder="Male / Female"
-												/>
+												>
+													<option
+														v-for="gender of genders"
+														:value="gender.value"
+													>
+														{{ gender.title }}
+													</option>
+												</SelectField>
+
 												<TextField
 													:name="`users[${traveller}].nationality`"
 													label="NATIONALITY"
 													placeholder="Country Born in"
 												/>
 												<TextField
-													:name="`users[${traveller}].passportNumber`"
-													label="PASSPORT NUMBER"
+													:name="`users[${traveller}].passportId`"
+													label="PASSPORT ID"
 													placeholder="GH12345"
 												/>
-												<TextField
+												<DateField
 													:name="`users[${traveller}].passportExpiration`"
 													label="PASSPORT EXPIRY DATE"
 													placeholder="DD/MM/YYYY"
@@ -150,11 +158,7 @@
 										/>
 
 										<div class="flex gap-6">
-											<TextField
-												name="cardExpiration"
-												label="VALID."
-												placeholder="MM/YY"
-											/>
+											<DateField name="cardExpiration" label="VALID." />
 											<TextField name="cardCvv" label="CVV" placeholder="000" />
 										</div>
 									</div>
@@ -294,6 +298,10 @@ const paymentMethods = [
 	{ title: "Skrill", value: "skrill" },
 	{ title: "Bank Transfer", value: "bankTransfer" },
 	{ title: "PayPal", value: "paypal" },
+]
+const genders = [
+	{ title: "Male", value: "male" },
+	{ title: "Female", value: "female" },
 ]
 
 const onChangeCurrentPaymentMethod = (data: string) => {
