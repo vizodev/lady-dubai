@@ -164,13 +164,23 @@
 					</div>
 
 					<div class="bg-white rounded-2xl w-1/3 p-8 h-min">
-						<div class="flex flex-col gap-8 mb-12">
+						<div class="flex flex-col gap-8 mb-8">
 							<img src="/package.svg" alt="package icon" class="w-min" />
 
 							<p class="text-3xl font-roboto-serif">
 								{{ currentTripPackage?.title }}
 							</p>
 						</div>
+
+						<TripPackageAvailableDates
+							v-if="currentTripPackage"
+							:available-dates="currentTripPackage.nextavailabledates"
+							:initial-value="
+								currentTripPackage.nextavailabledates[Number(props.date)]
+							"
+							@on-change="onAvailableDateChange"
+							class="mb-12"
+						/>
 
 						<div class="flex flex-col gap-6">
 							<CheckoutAgeBox
@@ -221,7 +231,7 @@
 </template>
 
 <script setup lang="ts">
-import { type TripPackage2 } from "~/models"
+import { type AvailableDate, type TripPackage2 } from "~/models"
 import {
 	checkoutSchema,
 	creditCardValue,
@@ -231,9 +241,13 @@ import {
 // General
 const props = computed(() => {
 	const params = useRoute().params
+	const queryParams = useRoute().query
+
+	console.log(queryParams)
 
 	return {
 		id: params.id as string,
+		date: queryParams.date as string,
 	}
 })
 
@@ -261,10 +275,17 @@ const loadTripPackage = async () => {
 }
 
 // Travellers
-const travellersCount = ref(0)
+const travellersCount = ref(1)
 
 const addTraveller = () => travellersCount.value++
 const onTravellersChange = (data: number) => (travellersCount.value = data)
+
+// Date
+const currentAvailableDate = ref<AvailableDate>()
+
+const onAvailableDateChange = (data: AvailableDate) => {
+	currentAvailableDate.value = data
+}
 
 // Form
 const currentPaymentMethod = ref<string>()

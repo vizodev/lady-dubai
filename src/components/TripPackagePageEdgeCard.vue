@@ -52,18 +52,12 @@
 			<span class="uppercase font-bold font-inter leading-tight">
 				next Available dates
 			</span>
-			<div class="flex items-center gap-3 flex-wrap w-full">
-				<button
-					v-for="dt in tripPackage.nextavailabledates"
-					class="border border-pink-600 px-3 py-2 text-pink-600 font-bold text-[14px] leading-tight font-inter rounded-xl"
-					:class="{
-						'bg-pink-600 text-white': selectedAvailableDate === dt,
-					}"
-					@click="selectedAvailableDate = dt"
-				>
-					{{ handleAvailableDateLabel(dt) }}
-				</button>
-			</div>
+
+			<TripPackageAvailableDates
+				:available-dates="tripPackage.nextavailabledates"
+				:initial-value="props.tripPackage.nextavailabledates[0]"
+				@on-change="onAvailableDateChange"
+			/>
 		</div>
 		<div class="flex flex-col gap-6 items-start w-full">
 			<div class="flex flex-col">
@@ -99,45 +93,31 @@
 </template>
 
 <script lang="ts" setup>
-import type { TripPackage2 } from "~/models"
+import type { AvailableDate, TripPackage2 } from "~/models"
 
 const props = defineProps<{
 	tripPackage: TripPackage2
 }>()
 
-const selectedAvailableDate = ref<{
-	from: Date
-	to: Date
-}>()
+// Date
+const selectedAvailableDate = ref<AvailableDate>(
+	props.tripPackage.nextavailabledates[0]
+)
 
-onMounted(() => {
-	selectedAvailableDate.value = props.tripPackage.nextavailabledates[0]
-})
-
-const handleAvailableDateLabel = (date: { from: Date; to: Date }) => {
-	// 18 - 24 Jan 2024 | Same month
-	// 29 May - 3 June 2024 | Different month
-	const from = new Date(date.from)
-	const to = new Date(date.to)
-	const fromMonth = from.toLocaleString("en-us", {
-		month: "short",
-	})
-	const toMonth = to.toLocaleString("en-us", { month: "short" })
-	const fromDay = from.getDate()
-	const toDay = to.getDate()
-	const fromYear = from.getFullYear()
-	const toYear = to.getFullYear()
-	const fromMonthYear = `${fromMonth} ${fromYear}`
-
-	if (fromMonth === toMonth) {
-		return `${fromDay} - ${toDay} ${fromMonthYear}`
-	} else {
-		return `${fromDay} ${fromMonth} - ${toDay} ${toMonth} ${toYear}`
-	}
+const onAvailableDateChange = (data: AvailableDate) => {
+	selectedAvailableDate.value = data
 }
 
+// Routes
 const openCheckout = () => {
-	navigateTo(`/trip-package/${props.tripPackage.id}/checkout`)
+	navigateTo({
+		path: `/trip-package/${props.tripPackage.id}/checkout`,
+		query: {
+			date: props.tripPackage.nextavailabledates.indexOf(
+				selectedAvailableDate.value
+			),
+		},
+	})
 }
 </script>
 

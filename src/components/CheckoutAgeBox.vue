@@ -5,7 +5,7 @@
 				@click="removePeople"
 				class="fi fi-ts-minus-circle"
 				:class="{
-					'opacity-30': people === 0,
+					'opacity-30': people === 1,
 				}"
 			></i>
 
@@ -44,11 +44,11 @@ watch(currentValue, (newValue, _) => {
 })
 
 // People
-const people = ref(0)
+const people = ref(1)
 
 const addPeople = () => people.value++
 const removePeople = () => {
-	if (people.value == 0) return
+	if (people.value == 1) return
 	people.value--
 }
 
