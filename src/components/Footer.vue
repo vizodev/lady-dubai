@@ -62,7 +62,7 @@
 				</div>
 				<div class="flex items-center gap-6 flex-wrap">
 					<LanguageFlag :language="'English'" />
-					<LanguageFlag :language="'Hebraic'" />
+					<LanguageFlag :language="'Hebraico'" />
 					<LanguageFlag :language="'Arabic'" />
 					<LanguageFlag :language="'Russian'" />
 				</div>

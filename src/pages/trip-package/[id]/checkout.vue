@@ -1,19 +1,21 @@
 <template>
 	<div>
-		<header class="flex justify-between items-center px-20 py-6 mb-10">
-			<img src="/logo-footer.svg" alt="Logo" class="h-10" />
+		<header
+			class="flex justify-between items-center py-6 mb-10 px-6 md:px-10 lg:px-16 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
+		>
+			<img src="/logo-footer.svg" alt="Logo" class="h-8 md:h-10" />
 
-			<p class="text-3xl">Checkout</p>
+			<p class="text-2xl md:text-3xl">Checkout</p>
 
 			<i class="fi fi-rr-info flex gap-3 items-center">
-				<p class="text-lg not-italic">SUPPORT</p>
+				<p class="text-base md:text-lg not-italic">SUPPORT</p>
 			</i>
 		</header>
 
 		<BaseForm
 			:validation-schema="checkoutSchema"
 			@submit="onSubmit"
-			class="px-20 mb-64"
+			class="mb-32 lg:mb-64 px-10 md:px-14 lg:px-20 xl:px-[140px] 2xl:px-[200px] 3xl:px-[245px]"
 		>
 			<div class="mb-16">
 				<div
@@ -25,8 +27,8 @@
 					<p>RETURN</p>
 				</div>
 
-				<div class="flex gap-6">
-					<div class="w-2/3">
+				<div class="flex flex-col gap-16 xl:flex-row xl:gap-6">
+					<div class="flex-[3] flex-grow-[2]">
 						<div class="flex flex-col gap-8">
 							<CheckoutSession title="Traveller information">
 								<div class="flex flex-col gap-14">
@@ -106,7 +108,7 @@
 							</CheckoutSession>
 
 							<CheckoutSession title="Contact">
-								<div class="flex gap-6">
+								<div class="flex gap-6 flex-col md:flex-row">
 									<TextField
 										name="email"
 										label="EMAIL"
@@ -129,7 +131,7 @@
 							</CheckoutSession>
 
 							<CheckoutSession title="Payment Method">
-								<div class="flex flex-wrap justify-between pr-8">
+								<div class="flex justify-between pr-8 flex-col sm:flex-row">
 									<RadioButtonField
 										v-for="method of paymentMethods"
 										name="paymentMethod"
@@ -167,7 +169,7 @@
 						</div>
 					</div>
 
-					<div class="bg-white rounded-2xl w-1/3 p-8 h-min">
+					<div class="bg-white rounded-2xl flex-1 p-8 h-min shadow">
 						<div class="flex flex-col gap-8 mb-8">
 							<img src="/package.svg" alt="package icon" class="w-min" />
 
