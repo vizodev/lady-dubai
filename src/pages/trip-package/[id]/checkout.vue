@@ -181,9 +181,7 @@
 						<TripPackageAvailableDates
 							v-if="currentTripPackage"
 							:available-dates="currentTripPackage.nextavailabledates"
-							:initial-value="
-								currentTripPackage.nextavailabledates[Number(props.date)]
-							"
+							:initial-value="initialDate"
 							@on-change="onAvailableDateChange"
 							class="mb-12"
 						/>
@@ -202,8 +200,11 @@
 						<div class="flex justify-between font-bold">
 							<p class="text-lg font-inter">TOTAL</p>
 
-							<p class="font-roboto-serif text-3xl whitespace-nowrap">
-								{{ `$ ${currentTripPackage?.price?.usd}` }}
+							<p
+								v-if="currentTripPackage"
+								class="font-roboto-serif text-3xl whitespace-nowrap"
+							>
+								{{ `$ ${currentTripPackage.price.usd}` }}
 								<span class="font-inter text-lg">Dirham</span>
 							</p>
 						</div>
@@ -288,6 +289,13 @@ const onTravellersChange = (data: number) => (travellersCount.value = data)
 
 // Date
 const currentAvailableDate = ref<AvailableDate>()
+const initialDate = computed(() => {
+	return (
+		currentTripPackage.value?.nextavailabledates[
+			Number(props.value?.date ?? 0)
+		] ?? currentTripPackage.value?.nextavailabledates[0]
+	)
+})
 
 const onAvailableDateChange = (data: AvailableDate) => {
 	currentAvailableDate.value = data

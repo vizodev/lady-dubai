@@ -11,6 +11,18 @@
 	transition: box-shadow 0.1s ease-in-out;
 }
 
+ol {
+	list-style-type: decimal;
+}
+ul {
+	list-style-type: disc;
+}
+ol,
+ul {
+	padding-left: 30px;
+	line-height: 2;
+}
+
 /* Default <Transition /> */
 .v-enter-active,
 .v-leave-active {
