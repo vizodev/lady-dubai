@@ -244,7 +244,7 @@ import {
 	creditCardValue,
 	type CheckoutSchemaSubmit,
 } from "~/formSchemas"
-import { LOGO_FOOTER_SVG, PACKAGE_SVG } from "~/constants"
+import { LOGO_FOOTER_SVG, PACKAGE_SVG, TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
 const props = computed(() => {
@@ -324,7 +324,7 @@ const onSubmit = (data: CheckoutSchemaSubmit) => {
 }
 
 // Routes
-const openTripPackage = () => navigateTo(`/trip-package/${props.value.id}`)
+const openTripPackage = () => navigateTo(TRIP_PACKAGE_ROUTE(props.value.id))
 
 // Life cycle
 onMounted(() => loadTripPackage())

@@ -94,6 +94,7 @@
 
 <script lang="ts" setup>
 import type { AvailableDate, TripPackage2 } from "~/models"
+import { TRIP_PACKAGE_CHECKOUT_ROUTE } from "~/constants"
 
 const props = defineProps<{
 	tripPackage: TripPackage2
@@ -110,14 +111,12 @@ const onAvailableDateChange = (data: AvailableDate) => {
 
 // Routes
 const openCheckout = () => {
-	navigateTo({
-		path: `/trip-package/${props.tripPackage.id}/checkout`,
-		query: {
-			date: props.tripPackage.nextavailabledates.indexOf(
-				selectedAvailableDate.value
-			),
-		},
-	})
+	navigateTo(
+		TRIP_PACKAGE_CHECKOUT_ROUTE(
+			props.tripPackage.id,
+			props.tripPackage.nextavailabledates.indexOf(selectedAvailableDate.value)
+		)
+	)
 }
 </script>
 

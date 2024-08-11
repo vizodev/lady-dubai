@@ -92,7 +92,7 @@
 				<button
 					class="flex items-center gap-1.5"
 					v-if="previousPackage"
-					@click="navigateTo(`/trip-package/${previousPackage.id}`)"
+					@click="navigateTo(TRIP_PACKAGE_ROUTE(previousPackage.id))"
 				>
 					<div class="flex items-center justify-center w-9 h-9">
 						<i class="fi fi-sr-angle-left text-[12px]"></i>
@@ -106,7 +106,7 @@
 				<button
 					class="flex items-center gap-1.5"
 					v-if="nextPackage"
-					@click="navigateTo(`/trip-package/${nextPackage.id}`)"
+					@click="navigateTo(TRIP_PACKAGE_ROUTE(nextPackage.id))"
 				>
 					<span
 						class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
@@ -126,6 +126,8 @@
 
 <script lang="ts" setup>
 import { type RelativePathComponent, type TripPackage2 } from "~/models"
+import { TRIP_PACKAGE_ROUTE } from "~/constants"
+
 const tripPackagesStore = useTripPackagesStore()
 const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
 	storeToRefs(tripPackagesStore)
