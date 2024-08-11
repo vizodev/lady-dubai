@@ -8,7 +8,7 @@
 
 		<div
 			v-if="currentAttraction"
-			class="w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16"
+			class="w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 mb-16"
 		>
 			<RelativePath :relativePath="relativePath" class="mb-8" />
 
@@ -19,7 +19,7 @@
 				</p>
 
 				<div class="mb-36">
-					<div v-html="currentAttraction?.longDescription" class="html mb-24"></div>
+					<div v-html="currentAttraction?.longDescription" class="mb-24 font-inter w-full lg:w-4/5"></div>
 
 					<div >
 						<p class="mb-6 text-base font-bold">
@@ -41,7 +41,7 @@
 					</div>
 				</div>
 
-				<div v-html="currentAttraction?.firstText" class="html mb-20"></div>
+				<div v-html="currentAttraction?.firstText" class="mb-20 font-inter w-full lg:w-4/5"></div>
 
 				<WhatsappBox
 					data-aos="fade-right"
@@ -53,13 +53,13 @@
 
 		<TripPackageGallery
 			:gallery="currentAttraction?.gallery ?? []"
-			class="mb-40"
+			class="mb-24 lg:mb-40"
 		/>
 
 		<div
 			class="flex flex-col gap-20 mb-20 w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
 		>
-			<div v-html="currentAttraction?.secondText" class="html"></div>
+			<div v-html="currentAttraction?.secondText" class="font-inter w-full lg:w-4/5"></div>
 		</div>
 
 		<iframe
@@ -138,9 +138,3 @@ const loadAttraction = async () => {
 onMounted(() => loadAttraction())
 </script>
 
-<style scoped>
-.html {
-	font-family: Inter, sans-serif;
-	width: 80%;
-}
-</style>
