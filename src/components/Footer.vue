@@ -13,7 +13,7 @@
 					>
 				</div>
 				<div class="flex items-center gap-3">
-					<img src="/whatsapp-icon.svg" alt="" class="w-6" />
+					<img :src="WHATSAPP_ICON_SVG" alt="" class="w-6" />
 					<span class="font-inter font-medium text-[18px] xl:text-[24px]">
 						+55 813-369-5388
 					</span>
@@ -24,17 +24,17 @@
 			>
 				<div class="flex items-center gap-[28px]">
 					<button class="socialShadow">
-						<img src="/facebook-icon.svg" alt="" />
+						<img :src="FACEBOOK_ICON_SVG" alt="" />
 					</button>
 					<button class="socialShadow">
-						<img src="/tiktok-icon.svg" alt="" />
+						<img :src="TIKTOK_ICON_SVG" alt="" />
 					</button>
 					<button class="socialShadow">
-						<img src="/instagram-icon.svg" alt="" />
+						<img :src="INSTAGRAM_ICON_SVG" alt="" />
 					</button>
 				</div>
 				<div class="w-[250px]">
-					<img src="/logo-footer.svg" alt="Logo" class="w-full" />
+					<img :src="LOGO_FOOTER_SVG" alt="Logo" class="w-full" />
 				</div>
 			</div>
 		</div>
@@ -71,7 +71,15 @@
 	</footer>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import {
+	FACEBOOK_ICON_SVG,
+	INSTAGRAM_ICON_SVG,
+	TIKTOK_ICON_SVG,
+	LOGO_FOOTER_SVG,
+	WHATSAPP_ICON_SVG,
+} from "~/constants"
+</script>
 
 <style scoped>
 .socialShadow {

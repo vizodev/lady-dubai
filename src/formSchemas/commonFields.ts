@@ -1,5 +1,5 @@
 import * as yup from "yup"
-import { validationMessages } from "../validationMessages"
+import { validationMessages } from "../constants/validationMessages"
 
 // Text fields
 export const textFieldOptional = yup.string()

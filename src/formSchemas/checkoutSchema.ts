@@ -10,7 +10,7 @@ import {
 	textFieldOptional,
 	textFieldRequired,
 } from "./commonFields"
-import { validationMessages } from "~/validationMessages"
+import { validationMessages } from "~/constants/validationMessages"
 
 export type CheckoutSchemaSubmit = {
 	email: string

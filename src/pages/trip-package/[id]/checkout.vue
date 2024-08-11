@@ -3,7 +3,7 @@
 		<header
 			class="flex justify-between items-center py-6 mb-10 px-6 md:px-10 lg:px-16 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
 		>
-			<img src="/logo-footer.svg" alt="Logo" class="h-8 md:h-10" />
+			<img :src="LOGO_FOOTER_SVG" alt="Logo" class="h-8 md:h-10" />
 
 			<p class="text-2xl md:text-3xl">Checkout</p>
 
@@ -171,7 +171,7 @@
 
 					<div class="bg-white rounded-2xl flex-1 p-8 h-min shadow">
 						<div class="flex flex-col gap-8 mb-8">
-							<img src="/package.svg" alt="package icon" class="w-min" />
+							<img :src="PACKAGE_SVG" alt="package icon" class="w-min" />
 
 							<p class="text-3xl font-roboto-serif">
 								{{ currentTripPackage?.title }}
@@ -244,6 +244,7 @@ import {
 	creditCardValue,
 	type CheckoutSchemaSubmit,
 } from "~/formSchemas"
+import { LOGO_FOOTER_SVG, PACKAGE_SVG } from "~/constants"
 
 // General
 const props = computed(() => {
