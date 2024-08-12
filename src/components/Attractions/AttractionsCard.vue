@@ -29,6 +29,6 @@
 import { ATTRACTION_ROUTE, BANNER3_IMAGE } from "~/constants"
 
 const goToAttraction = () => {
-	navigateTo(ATTRACTION_ROUTE(handleRandomId()))
+	navigateTo(ATTRACTION_ROUTE(Math.random().toString(36).substring(7)))
 }
 </script>

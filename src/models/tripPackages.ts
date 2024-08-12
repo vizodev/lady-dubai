@@ -64,7 +64,7 @@ export enum GuideLanguages {
 }
 
 export const defaultTripPackage: TripPackage = {
-	id: handleRandomId(),
+	id: Math.random().toString(36).substring(7),
 	gallery: [
 		"/banner1.jpg",
 		"/banner2.jpg",
@@ -206,7 +206,7 @@ export const packagesServicesList: {
 ]
 
 export const defaultAttraction: Attraction = {
-	id: handleRandomId(),
+	id: Math.random().toString(36).substring(7),
 	banner: "/banner1.jpg",
 	videoUrl:
 		"https://www.youtube.com/embed/XyfYoU1ta3w?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&captions=0",

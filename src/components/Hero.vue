@@ -22,30 +22,28 @@
 				<div class="flex flex-col gap-4">
 					<div class="flex flex-col">
 						<span
-							class="text-[40px] sm:text-[60px] xl:text-[80px] leading-[1.09] -tracking-[0.02] font-bold font-roboto-serif text-light"
+							class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-bold font-roboto-serif text-light"
 						>
 							Woman-only
 						</span>
 						<span
-							class="text-[40px] sm:text-[60px] xl:text-[80px] leading-[1.09] -tracking-[0.02] font-roboto-serif text-light"
+							class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-roboto-serif text-light"
 						>
 							Travel Packages <br />
 							to Dubai
 						</span>
 					</div>
 					<div class="flex flex-col">
-						<p class="font-inter sm:text-[20px] xl:text-[24px] text-light">
+						<p
+							class="font-inter sm:text-[20px] xl:text-[24px] text-light !leading-9"
+						>
 							Enjoy the attractions of Dubai and the UAE in a
-							<br class="hidden sm:block" />
+							<br />
 							<b>safe, gender-oriented, women-exclusive tour.</b>
 						</p>
 					</div>
 				</div>
-				<button
-					class="text-white sm:text-[18px] xl:text-[20px] 2xl:text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-5 xl:px-6 py-2.5 xl:py-3 rounded-xl btnShadow"
-				>
-					Book your Trip
-				</button>
+				<button class="btn-primary">Book your Trip</button>
 			</div>
 		</div>
 		<div
@@ -75,6 +73,14 @@ import {
 	INSTAGRAM_ICON_SVG,
 	TIKTOK_ICON_SVG,
 	LOGO_SVG,
+	HERO1_IMAGE,
+	HERO2_IMAGE,
+	HERO3_IMAGE,
+	HERO4_IMAGE,
+	HERO5_IMAGE,
+	HERO6_IMAGE,
+	HERO7_IMAGE,
+	HERO8_IMAGE,
 } from "~/constants"
 
 const state = reactive<{
@@ -86,28 +92,28 @@ const state = reactive<{
 	currentHeroIndex: 0,
 	availableHeroes: [
 		{
-			src: "/hero1.png",
+			src: HERO1_IMAGE,
 		},
 		{
-			src: "/hero2.jpg",
+			src: HERO2_IMAGE,
 		},
 		{
-			src: "/hero3.jpg",
+			src: HERO3_IMAGE,
 		},
 		{
-			src: "/hero4.png",
+			src: HERO4_IMAGE,
 		},
 		{
-			src: "/hero5.jpg",
+			src: HERO5_IMAGE,
 		},
 		{
-			src: "/hero6.jpg",
+			src: HERO6_IMAGE,
 		},
 		{
-			src: "/hero7.png",
+			src: HERO7_IMAGE,
 		},
 		{
-			src: "/hero8.png",
+			src: HERO8_IMAGE,
 		},
 	],
 	changeBgIntervalTime: 3000,

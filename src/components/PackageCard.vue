@@ -39,7 +39,7 @@
 		<div class="flex flex-col p-5 lg:p-8 gap-6 md:gap-4 lg:gap-6">
 			<div class="flex flex-col gap-1 md:gap-0.5">
 				<span
-					class="text-brown-700 text-[28px] sm:text-[32px] md:text-[36px] font-roboto-serif font-medium leading-tight"
+					class="text-brown-700 text-[28px] sm:text-[32px] md:text-[36px] font-roboto-serif font-medium !leading-tight"
 				>
 					{{ tripPackage.title }}
 				</span>
@@ -74,15 +74,16 @@
 				class="flex 2xl:items-end justify-between flex-col 2xl:flex-row gap-4 2xl:gap-0"
 			>
 				<div class="flex flex-col lg:gap-1.5">
-					<div class="relative w-fit">
+					<div class="relative w-max">
 						<span class="text-brown-700 font-semibold font-roboto-serif">
 							{{ `$ ${tripPackage.downsale_price.usd}` }}
 						</span>
 						<div
-							class="w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 z-[1] top-[50%] translate-y-[-50%]"
+							class="transform w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 top-[50%] translate-y-[-50%]"
 						></div>
 					</div>
-					<div class="flex items-center gap-3">
+
+					<div class="flex items-center gap-3 mb-1">
 						<span
 							class="text-blue-200 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] whitespace-nowrap"
 						>
@@ -97,18 +98,14 @@
 							</span>
 						</div>
 					</div>
+
 					<span
-						class="text-white bg-blue-200 text-[10px] font-bold font-inter w-full rounded-md text-center px-1.5 py-[3.5px] uppercase mt-1.5 lg:mt-0"
+						class="text-white bg-blue-200 text-[10px] font-bold font-inter w-full rounded-md text-center px-1.5 py-2 uppercase mt-1.5 lg:mt-0"
 					>
 						Limited Time Promotional Price
 					</span>
 				</div>
-				<button
-					@click="openTripPackage"
-					class="text-white sm:text-[18px] lg:text-[20px] 2xl:text-[24px] font-inter font-bold tracking-[0.02] bg-pink-500 px-5 py-2.5 2xl:px-6 2xl:py-3 rounded-xl btnShadow"
-				>
-					See More
-				</button>
+				<button @click="openTripPackage" class="btn-primary">See More</button>
 			</div>
 		</div>
 	</div>

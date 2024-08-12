@@ -1,16 +1,51 @@
-@import "./tailwind.css";
 @import "@flaticon/flaticon-uicons/css/all/all";
 
-body {
-  background: #f5f8fa;
-  overflow-x: hidden;
+* {
+	transition: all 0.2s ease-in-out;
+	transition: background-color 0.1s ease-in-out;
+	transition: box-shadow 0.1s ease-in-out;
 }
 
+body {
+	background: #f5f8fa;
+	overflow-x: hidden;
+}
+
+ol {
+	list-style-type: decimal;
+}
+ul {
+	list-style-type: disc;
+}
+ol,
+ul {
+	padding-left: 30px;
+	line-height: 2;
+}
+
+/* .font-roboto-serif {
+	font-family: "Roboto Serif" sans-serif;
+}
+.font-inter {
+	font-family: "Inter" sans-serif;
+} */
+
 .hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;
+	display: none;
+}
+
+/* Default <Transition /> */
+.v-enter-active,
+.v-leave-active {
+	transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+	opacity: 0;
 }

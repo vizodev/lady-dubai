@@ -6,10 +6,10 @@
 			class="flex items-center gap-12 sm:gap-16 xl:gap-[100px] relative px-4 flex-col lg:flex-row"
 		>
 			<div
-				class="absolute bg-[#F5F8FA] w-[110%] h-full rounded-full blur-[100px] opacity-50 z-0"
+				class="absolute bg-[#F5F8FA] w-[110%] h-full rounded-full filter blur-[100px] opacity-50 z-0"
 			></div>
 			<div
-				class="rounded-xl sm:w-[420px] md:w-[500px] 2xl:w-[600px] sm:h-[360px] md:h-[420px] 2xl:h-[489px] border-[14px] border-white rotate-[1.98deg] relative z-1"
+				class="rounded-xl sm:w-[420px] md:w-[500px] 2xl:w-[600px] sm:h-[360px] md:h-[420px] 2xl:h-[489px] border-[14px] border-white transform rotate-[1.98deg] relative z-1"
 			>
 				<img
 					:src="CTA_IMAGE"
@@ -26,7 +26,7 @@
 						<p
 							data-aos="fade-left"
 							data-aos-offset="-300"
-							class="text-[40px] sm:text-[48px] lg:text-[52px] font-medium font-roboto-serif text-pink-600 leading-snug text-center lg:text-start"
+							class="text-[40px] font-medium font-roboto-serif text-pink-600 !leading-snug text-center sm:(text-[48px]) lg:(text-left text-[52px])"
 						>
 							Created with the <br class="hidden sm:block" />
 							<b>Religious Woman</b> <br class="hidden sm:block" />
@@ -34,7 +34,7 @@
 						</p>
 					</div>
 					<span
-						class="font-inter font-light text-brown-700 text-center lg:text-start"
+						class="font-inter font-light text-brown-700 text-center lg:(text-left)"
 					>
 						With our female-only staff, and gender exclusive tours,
 						<br class="hidden sm:block" />

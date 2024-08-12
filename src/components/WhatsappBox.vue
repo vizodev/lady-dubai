@@ -12,13 +12,12 @@
 				Ir you have any doubts or special requests
 			</span>
 		</div>
-		<button
-			class="flex items-center text-white bg-pink-500 rounded-xl px-5 xl:px-6 py-2.5 xl:py-3 font-inter font-bold sm:text-[18px] lg:text-[20px] 2xl:text-[24px] textShadow tracking-[0.02] gap-4"
-		>
-			<div class="h-6 max-h-[24px]">
-				<i class="fi fi-brands-whatsapp"></i>
+		<button class="btn-primary">
+			<div class="w-max flex gap-3">
+				<i class="fi fi-brands-whatsapp"> </i>
+
+				<p class="text-center">Chat on WhatsApp</p>
 			</div>
-			Chat on WhatsApp
 		</button>
 	</div>
 </template>

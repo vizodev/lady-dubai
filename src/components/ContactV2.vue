@@ -39,12 +39,7 @@
 				<TextAreaField name="message" placeholder="Message" />
 			</div>
 
-			<button
-				type="submit"
-				class="text-white bg-pink-500 rounded-xl px-5 xl:px-6 py-2.5 xl:py-3 font-inter font-bold sm:text-[18px] lg:text-[20px] 2xl:text-[24px] textShadow self-end tracking-[0.02]"
-			>
-				Send
-			</button>
+			<button type="submit" class="btn-primary">Send</button>
 		</BaseForm>
 
 		<WhatsappBox

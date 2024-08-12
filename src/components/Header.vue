@@ -2,8 +2,7 @@
 	<header
 		class="flex w-full justify-between items-center fixed top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px]"
 		:class="{
-			'bg-[#FFC1D3] shadow-md md:!bg-transparent md:shadow-none':
-				!paintHeaderBg,
+			'bg-[#FFC1D3] shadow-md md:(bg-transparent shadow-none)': !paintHeaderBg,
 			'bg-[#FFC1D3] !shadow-md': paintHeaderBg,
 			'md:justify-end': !props.withLogo && !paintHeaderBg,
 		}"

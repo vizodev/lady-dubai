@@ -3,43 +3,7 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	srcDir: "src",
 	css: ["~/assets/css/global.css"],
-	components: [
-		{
-			path: "~/components", // will get any components nested in let's say /components/test too
-			pathPrefix: false,
-		},
-	],
-	postcss: {
-		plugins: {
-			tailwindcss: {},
-			autoprefixer: {},
-		},
-	},
-	app: {
-		head: {
-			title: "Lady Dubai",
-			link: [
-				{
-					rel: "preconnect",
-					href: "https://fonts.googleapis.com",
-				},
-				{
-					rel: "preconnect",
-					href: "https://fonts.gstatic.com",
-					crossorigin: "",
-				},
-				{
-					href: "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap",
-					rel: "stylesheet",
-				},
-			],
-		},
-	},
-	devServer: {
-		port: 3001,
-	},
-	alias: {},
-	modules: ["@pinia/nuxt", "@nuxtjs/supabase", "nuxt-aos"],
+	modules: ["@pinia/nuxt", "@nuxtjs/supabase", "nuxt-aos", "nuxt-windicss"],
 	supabase: {
 		key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqcXB1cHJxd25wanFwZ2FwZHl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk5Mjg5NzIsImV4cCI6MjAzNTUwNDk3Mn0.Sj_M_vvrLBzsqTfKx3g3IWaV0ZW474S9YhZgiO5OsLc",
 		url: "https://vjqpuprqwnpjqpgapdyt.supabase.co",
@@ -66,5 +30,34 @@ export default defineNuxtConfig({
 		once: false, // whether animation should happen only once - while scrolling down
 		mirror: false, // whether elements should animate out while scrolling past them
 		anchorPlacement: "top-center", // defines which position of the element regarding to window should trigger the animation
+	},
+	components: [
+		{
+			path: "~/components", // will get any components nested in let's say /components/test too
+			pathPrefix: false,
+		},
+	],
+	app: {
+		head: {
+			title: "Lady Dubai",
+			link: [
+				{
+					rel: "preconnect",
+					href: "https://fonts.googleapis.com",
+				},
+				{
+					rel: "preconnect",
+					href: "https://fonts.gstatic.com",
+					crossorigin: "",
+				},
+				{
+					href: "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap",
+					rel: "stylesheet",
+				},
+			],
+		},
+	},
+	devServer: {
+		port: 3001,
 	},
 })
