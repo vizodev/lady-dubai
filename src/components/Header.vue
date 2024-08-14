@@ -80,27 +80,30 @@ const props = defineProps<{
 const showMenu = ref(false)
 const paintHeaderBg = ref(false)
 
-onMounted(() => {
-	window.addEventListener("resize", () => {
-		if (window.innerWidth > 767) {
-			showMenu.value = false
-		}
-	})
+// Listeners
+const resizeEventName = "resize"
+const scrollEventName = "scroll"
 
-	window?.addEventListener("scroll", () => {
-		if ((window?.scrollY ?? 0) > 200) {
-			paintHeaderBg.value = true
-		} else {
-			paintHeaderBg.value = false
-		}
-	})
+const handleResize = () => {
+	if (window.innerWidth > 767) {
+		showMenu.value = false
+	}
+}
+const handleScroll = () => {
+	if ((window?.scrollY ?? 0) > 200) {
+		paintHeaderBg.value = true
+	} else {
+		paintHeaderBg.value = false
+	}
+}
+
+onMounted(() => {
+	window.addEventListener(resizeEventName, handleResize)
+	window.addEventListener(scrollEventName, handleScroll)
 })
 
 onUnmounted(() => {
-	window.removeEventListener("resize", () => {
-		if (window.innerWidth > 767) {
-			showMenu.value = false
-		}
-	})
+	window.removeEventListener(resizeEventName, handleResize)
+	window.removeEventListener(scrollEventName, handleScroll)
 })
 </script>

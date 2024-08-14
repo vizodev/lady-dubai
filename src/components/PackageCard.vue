@@ -132,16 +132,6 @@ const scrollToBanner = (index: number) => {
 		activeBanner.value = index
 	}
 }
-
-const autoScroll = () => {
-	if (activeBanner.value < props.tripPackage.gallery.length - 1) {
-		activeBanner.value++
-	} else {
-		activeBanner.value = 0
-	}
-	scrollToBanner(activeBanner.value)
-}
-
 const calcCurrentBanner = () => {
 	if (bannerScrollList.value) {
 		const scrollLeft = bannerScrollList.value.scrollLeft
@@ -149,13 +139,6 @@ const calcCurrentBanner = () => {
 		activeBanner.value = Math.round(scrollLeft / bannerWidth)
 	}
 }
-
-onMounted(() => {
-	// setInterval(autoScroll, 5000);
-	//verify is created less than 7 days
-	checkIsNew()
-})
-
 const checkIsNew = () => {
 	const createdDate = new Date(props.tripPackage.created_at)
 	const currentDate = new Date()
@@ -166,9 +149,17 @@ const checkIsNew = () => {
 	}
 }
 
+// Routes
 const openTripPackage = () => {
 	navigateTo(TRIP_PACKAGE_ROUTE(props.tripPackage.id))
 }
+
+// Life cycle
+onMounted(() => {
+	// setInterval(autoScroll, 5000);
+	//verify is created less than 7 days
+	checkIsNew()
+})
 </script>
 
 <style scoped>

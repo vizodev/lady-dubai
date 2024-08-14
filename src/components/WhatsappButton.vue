@@ -14,13 +14,22 @@
 <script setup lang="ts">
 const showContact = ref(false)
 
-onMounted(async () => {
-	window.addEventListener("scroll", () => {
-		if (window.scrollY > 150) {
-			showContact.value = true
-		} else {
-			showContact.value = false
-		}
-	})
+// Listeners
+const scrollEventName = "scroll"
+const handleScroll = () => {
+	if (window.scrollY > 150) {
+		showContact.value = true
+	} else {
+		showContact.value = false
+	}
+}
+
+// Life cycle
+onMounted(() => {
+	window.addEventListener(scrollEventName, () => scrollEventName)
+})
+
+onUnmounted(() => {
+	window.removeEventListener(scrollEventName, () => scrollEventName)
 })
 </script>

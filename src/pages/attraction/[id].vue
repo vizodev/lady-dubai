@@ -86,7 +86,7 @@ import type { Attraction, RelativePathComponent } from "~/models"
 
 // General
 const attractionStore = useAttractionsStore()
-const { loadingAttractions, errorOnLoadAttractions, attractions } =
+const { attractions } =
 	storeToRefs(attractionStore)
 
 // Relative path

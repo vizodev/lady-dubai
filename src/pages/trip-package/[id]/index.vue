@@ -128,10 +128,11 @@
 import { type RelativePathComponent, type TripPackage } from "~/models"
 import { TRIP_PACKAGE_ROUTE } from "~/constants"
 
+// General
 const tripPackagesStore = useTripPackagesStore()
-const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
-	storeToRefs(tripPackagesStore)
+const { tripPackages } = storeToRefs(tripPackagesStore)
 
+// Package
 const currentTripPackage = ref<TripPackage>()
 
 const previousPackage = computed(() => {
@@ -140,23 +141,36 @@ const previousPackage = computed(() => {
 	)
 	return tripPackages.value[index - 1]
 })
-
 const nextPackage = computed(() => {
 	const index = tripPackages.value.findIndex(
 		(tripPackage) => tripPackage.id === packId.value
 	)
 	return tripPackages.value[index + 1]
 })
-
 const packId = computed(() => {
 	return useRoute().params.id
 })
 
-const relativePath = ref<RelativePathComponent[]>([])
+const loadTripPackage = async () => {
+	const tripPackage = tripPackages.value.find(
+		(tripPackage) => tripPackage.id === packId.value
+	)
 
-onMounted(() => {
-	loadTripPackage()
-})
+	if (!tripPackage) {
+		currentTripPackage.value = (await tripPackagesStore.loadTripPackageById(
+			(packId.value as string) ?? ""
+		)) as unknown as TripPackage
+		handleRelativePath()
+		return
+	}
+
+	currentTripPackage.value = tripPackage
+
+	handleRelativePath()
+}
+
+// Relative path
+const relativePath = ref<RelativePathComponent[]>([])
 
 const handleRelativePath = () => {
 	relativePath.value = [
@@ -183,21 +197,8 @@ const handleRelativePath = () => {
 	]
 }
 
-const loadTripPackage = async () => {
-	const tripPackage = tripPackages.value.find(
-		(tripPackage) => tripPackage.id === packId.value
-	)
-
-	if (!tripPackage) {
-		currentTripPackage.value = (await tripPackagesStore.loadTripPackageById(
-			(packId.value as string) ?? ""
-		)) as unknown as TripPackage
-		handleRelativePath()
-		return
-	}
-
-	currentTripPackage.value = tripPackage
-
-	handleRelativePath()
-}
+// Life cycle
+onMounted(() => {
+	loadTripPackage()
+})
 </script>

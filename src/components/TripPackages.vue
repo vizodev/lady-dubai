@@ -8,7 +8,7 @@
 		>
 			<div
 				class="col-span flex justify-center w-full"
-				v-for="tripPackage in state.tripPackages"
+				v-for="tripPackage in packages.tripPackages"
 			>
 				<div class="w-full">
 					<PackageCard :tripPackage="tripPackage" />
@@ -23,40 +23,47 @@
 <script lang="ts" setup>
 import { type TripPackage } from "~/models"
 
-const state = reactive<{
-	baseTripPackages: TripPackage[]
-	tripPackages: TripPackage[]
-}>({
-	baseTripPackages: [],
-	tripPackages: [],
+const packages = reactive({
+	baseTripPackages: [] as TripPackage[],
+	tripPackages: [] as TripPackage[],
 })
 
 const tripPackagesStore = useTripPackagesStore()
-const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
-	storeToRefs(tripPackagesStore)
+const { tripPackages } = storeToRefs(tripPackagesStore)
 
+const loadTripPackages = async () => {
+	packages.baseTripPackages = tripPackages.value
+}
+
+// Listeners
+const resizeEventName = "resize"
+const handleTripPackagesAccordingToScreenSize = () => {
+	if (window.innerWidth < 640) {
+		packages.tripPackages = packages.baseTripPackages.slice(0, 3)
+	} else if (window.innerWidth < 1024 && window.innerWidth > 639) {
+		packages.tripPackages = packages.baseTripPackages.slice(0, 4)
+	} else {
+		packages.tripPackages = packages.baseTripPackages.slice(0, 6)
+	}
+}
+
+// Life cylce
 onMounted(async () => {
 	await loadTripPackages()
 
 	handleTripPackagesAccordingToScreenSize()
 
 	// Limit the number of trip packages to 3 when the screen is sm or smaller
-	window.addEventListener("resize", () => {
-		handleTripPackagesAccordingToScreenSize()
-	})
+	window.addEventListener(
+		resizeEventName,
+		handleTripPackagesAccordingToScreenSize
+	)
 })
 
-const loadTripPackages = async () => {
-	state.baseTripPackages = tripPackages.value
-}
-
-const handleTripPackagesAccordingToScreenSize = () => {
-	if (window.innerWidth < 640) {
-		state.tripPackages = state.baseTripPackages.slice(0, 3)
-	} else if (window.innerWidth < 1024 && window.innerWidth > 639) {
-		state.tripPackages = state.baseTripPackages.slice(0, 4)
-	} else {
-		state.tripPackages = state.baseTripPackages.slice(0, 6)
-	}
-}
+onUnmounted(() => {
+	window.removeEventListener(
+		resizeEventName,
+		handleTripPackagesAccordingToScreenSize
+	)
+})
 </script>

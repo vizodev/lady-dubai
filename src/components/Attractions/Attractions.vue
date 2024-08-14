@@ -7,10 +7,5 @@
 </template>
 
 <script lang="ts" setup>
-const attractions = ref<number[]>([])
-
-// Life cycle
-onMounted(() => {
-	attractions.value = [...Array.from({ length: 5 }).keys()]
-})
+const attractions = ref<number[]>([...Array.from({ length: 5 }).keys()])
 </script>

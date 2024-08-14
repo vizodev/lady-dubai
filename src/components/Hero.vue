@@ -83,7 +83,8 @@ import {
 	HERO8_IMAGE,
 } from "~/constants"
 
-const state = reactive<{
+// Background
+const backgrounds = reactive<{
 	currentHeroIndex: number
 	availableHeroes: { src: string }[]
 	changeBgIntervalTime: number
@@ -119,32 +120,25 @@ const state = reactive<{
 	changeBgIntervalTime: 3000,
 	changeBgInterval: null,
 })
-
-onBeforeMount(() => {
-	startChangeBackground()
-})
-
-// onBeforeUnmount(() => {
-//   clearInterval(state.changeBgInterval);
-// });
-
 const currentBackground = computed(() => {
-	return state.availableHeroes[state.currentHeroIndex].src
+	return backgrounds.availableHeroes[backgrounds.currentHeroIndex].src
 })
 
 const startChangeBackground = () => {
-	state.changeBgInterval = setInterval(() => {
+	backgrounds.changeBgInterval = setInterval(() => {
 		changeBackground()
-	}, state.changeBgIntervalTime)
+	}, backgrounds.changeBgIntervalTime)
 }
-
 const changeBackground = () => {
-	if (state.currentHeroIndex + 1 === state.availableHeroes.length) {
-		state.currentHeroIndex = 0
+	if (backgrounds.currentHeroIndex + 1 === backgrounds.availableHeroes.length) {
+		backgrounds.currentHeroIndex = 0
 	} else {
-		state.currentHeroIndex++
+		backgrounds.currentHeroIndex++
 	}
 }
+
+// Life cycle
+onBeforeMount(() => startChangeBackground())
 </script>
 
 <style scoped>

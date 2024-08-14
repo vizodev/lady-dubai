@@ -14,10 +14,11 @@
 </template>
 
 <script lang="ts" setup>
+// General
 const tripPackagesStore = useTripPackagesStore()
-const { loadingTripPackages, errorOnLoadTripPackages } =
-	storeToRefs(tripPackagesStore)
+const { loadingTripPackages } = storeToRefs(tripPackagesStore)
 
+// Life cycle
 onMounted(async () => {
 	await tripPackagesStore.loadTripPackages()
 })
