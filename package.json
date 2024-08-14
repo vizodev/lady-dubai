@@ -15,7 +15,7 @@
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
     "@pinia/nuxt": "^0.5.1",
-    "nuxt": "^3.12.2",
+    "nuxt": "^3.12.4",
     "pinia": "^2.1.7",
     "vee-validate": "^4.13.2",
     "vue": "^3.4.29",
