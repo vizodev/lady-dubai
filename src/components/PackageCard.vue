@@ -112,11 +112,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { TripPackage2 } from "~/models"
+import type { TripPackage } from "~/models"
 import { TRIP_PACKAGE_ROUTE } from "~/constants"
 
 const props = defineProps<{
-	tripPackage: TripPackage2
+	tripPackage: TripPackage
 }>()
 
 const bannerScrollList = ref<HTMLElement | null>(null)

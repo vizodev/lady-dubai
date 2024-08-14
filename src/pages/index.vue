@@ -5,7 +5,7 @@
 	<div class="dynamic-section" v-if="!loadingTripPackages">
 		<TripPackages />
 		<CtaSection />
-		<ContactV2 />
+		<Contact />
 	</div>
 
 	<Footer />

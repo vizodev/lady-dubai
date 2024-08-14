@@ -1,3 +1,2 @@
-export * from "./path";
-export * from "./tripPackage";
-export * from "./tripPackages";
+export * from "./path"
+export * from "./tripPackage"

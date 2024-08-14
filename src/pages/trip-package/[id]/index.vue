@@ -119,20 +119,20 @@
 				</button>
 			</div>
 		</div>
-		<ContactV2 />
+		<Contact />
 		<Footer />
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { type RelativePathComponent, type TripPackage2 } from "~/models"
+import { type RelativePathComponent, type TripPackage } from "~/models"
 import { TRIP_PACKAGE_ROUTE } from "~/constants"
 
 const tripPackagesStore = useTripPackagesStore()
 const { loadingTripPackages, errorOnLoadTripPackages, tripPackages } =
 	storeToRefs(tripPackagesStore)
 
-const currentTripPackage = ref<TripPackage2>()
+const currentTripPackage = ref<TripPackage>()
 
 const previousPackage = computed(() => {
 	const index = tripPackages.value.findIndex(
@@ -191,7 +191,7 @@ const loadTripPackage = async () => {
 	if (!tripPackage) {
 		currentTripPackage.value = (await tripPackagesStore.loadTripPackageById(
 			(packId.value as string) ?? ""
-		)) as unknown as TripPackage2
+		)) as unknown as TripPackage
 		handleRelativePath()
 		return
 	}

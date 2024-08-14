@@ -214,8 +214,8 @@
 						<span class="text-pink-600 font-bold">purchase conditions</span>,
 						<span class="text-pink-600 font-bold">privacy policy</span> and
 						<span class="text-pink-600 font-bold"
-							>changes and cancellations policy</span
-						>.
+							>changes and cancellations policy.</span
+						>
 					</p>
 				</CheckboxField>
 
@@ -228,13 +228,14 @@
 </template>
 
 <script setup lang="ts">
-import { type AvailableDate, type TripPackage2 } from "~/models"
+import { type AvailableDate, type TripPackage } from "~/models"
 import {
 	checkoutSchema,
 	creditCardValue,
 	type CheckoutSchemaSubmit,
 } from "~/formSchemas"
 import { LOGO_FOOTER_SVG, PACKAGE_SVG, TRIP_PACKAGE_ROUTE } from "~/constants"
+import { genders, paymentMethods } from "~/data"
 
 // General
 const props = computed(() => {
@@ -254,7 +255,7 @@ const tripPackagesStore = useTripPackagesStore()
 
 // Trip package
 const { tripPackages } = storeToRefs(tripPackagesStore)
-const currentTripPackage = ref<TripPackage2>()
+const currentTripPackage = ref<TripPackage>()
 
 const loadTripPackage = async () => {
 	const tripPackage = tripPackages.value.find(
@@ -294,16 +295,6 @@ const onAvailableDateChange = (data: AvailableDate) => {
 
 // Form
 const currentPaymentMethod = ref<string>()
-const paymentMethods = [
-	{ title: "Credit Card", value: creditCardValue },
-	{ title: "Skrill", value: "skrill" },
-	{ title: "Bank Transfer", value: "bankTransfer" },
-	{ title: "PayPal", value: "paypal" },
-]
-const genders = [
-	{ title: "Male", value: "male" },
-	{ title: "Female", value: "female" },
-]
 
 const onChangeCurrentPaymentMethod = (data: string) => {
 	currentPaymentMethod.value = data

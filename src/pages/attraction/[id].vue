@@ -71,7 +71,7 @@
 			class="w-full"
 		></iframe>
 
-		<ContactV2
+		<Contact
 			class="w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
 		/>
 	</div>

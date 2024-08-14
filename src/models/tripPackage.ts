@@ -1,4 +1,4 @@
-export type TripPackage2 = {
+export type TripPackage = {
 	id: string
 	created_at: Date
 	title: string
@@ -33,10 +33,28 @@ export type TripPackage2 = {
 	}
 }
 
+export type Attraction = {
+	id: string
+	banner: string
+	videoUrl: string
+	title: string
+	arabicTitle: string
+	subtitle: string
+	description: string
+	longDescription: string
+	asideImg: string
+	gallery: string[]
+	link: string
+	mapSrc: string
+	firstText: string
+	secondText: string
+}
+
 export type AvailableDate = {
 	from: Date
 	to: Date
 }
+
 export type Language = {
 	id: number
 	created_at: Date
@@ -60,4 +78,23 @@ export type SingleService = {
 		he: string
 	}
 	icon: string
+}
+
+export enum GuideLanguages {
+	ENGLISH = "ENGLISH",
+	ARABIC = "ARABIC",
+	FRENCH = "FRENCH",
+	SPANISH = "SPANISH",
+	RUSSIAN = "RUSSIAN",
+	GERMAN = "GERMAN",
+}
+
+export enum PackagesServices {
+	FLIGHT_TICKETS = "FLIGHT_TICKETS",
+	ACCOMMODATION = "ACCOMMODATION",
+	ATTRACTION_TICKETS = "ATTRACTION_TICKETS",
+	MEALS = "MEALS",
+	TRANSFER = "TRANSFER",
+	LAUNDRY = "LAUNDRY",
+	TOWELS = "TOWELS",
 }
