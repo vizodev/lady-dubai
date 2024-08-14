@@ -2,9 +2,10 @@
 	<div class="flex items-center gap-3 flex-wrap w-full">
 		<button
 			v-for="dt in availableDates"
-			class="border border-pink-600 px-3 py-2 text-pink-600 font-bold text-[14px] leading-tight font-inter rounded-xl"
+			class="btn-rounded"
 			:class="{
-				'bg-pink-600 text-white': selectedAvailableDate === dt,
+				'bg-pink-600 text-white hover:(bg-pink-700)':
+					selectedAvailableDate === dt,
 			}"
 			@click="() => onChange(dt)"
 		>

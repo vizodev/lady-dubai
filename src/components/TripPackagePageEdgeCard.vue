@@ -17,7 +17,7 @@
 							{{ `$ ${tripPackage?.downsale_price?.usd}` }}
 						</span>
 						<div
-							class="w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 z-[1] top-[50%] translate-y-[-50%]"
+							class="transform w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 z-[1] top-[50%] translate-y-[-50%]"
 						></div>
 					</div>
 					<div
@@ -41,10 +41,7 @@
 					</div>
 				</div>
 			</div>
-			<button
-				@click="openCheckout"
-				class="bg-pink-500 rounded-xl px-4 py-3 textShadow text-white font-bold text-[20px] sm:text-[24px] leading-tight w-full font-inter"
-			>
+			<button @click="openCheckout" class="btn-primary w-full">
 				Get Package
 			</button>
 		</div>

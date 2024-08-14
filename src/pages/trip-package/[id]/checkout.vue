@@ -96,14 +96,9 @@
 										</div>
 									</transition-group>
 
-									<div
-										@click="addTraveller"
-										class="px-3 py-2 rounded-2xl border border-pink-600 w-max cursor-pointer"
-									>
-										<p class="font-inter text-sm font-bold text-pink-600">
-											Add Traveller
-										</p>
-									</div>
+									<button @click="addTraveller" class="btn-rounded">
+										Add Traveller
+									</button>
 								</div>
 							</CheckoutSession>
 
@@ -224,12 +219,7 @@
 					</p>
 				</CheckboxField>
 
-				<button
-					type="submit"
-					class="text-white bg-pink-500 rounded-xl px-5 xl:px-6 py-2.5 xl:py-3 font-inter font-bold sm:text-[18px] lg:text-[20px] 2xl:text-[24px] textShadow self-end tracking-[0.02]"
-				>
-					PURCHASE
-				</button>
+				<button type="submit" class="btn-primary">PURCHASE</button>
 			</div>
 		</BaseForm>
 
