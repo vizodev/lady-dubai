@@ -1,3 +1,13 @@
+import {
+	PLANE_ICON_SVG,
+	ACCOMMODATION_ICON_SVG,
+	ATTRACTION_ICON_SVG,
+	MEALS_ICON_SVG,
+	TRANSPORTATION_ICON_SVG,
+	LAUNDRY_ICON_SVG,
+	TOWEL_ICON_SVG,
+} from "~/constants"
+
 export type TripPackage = {
 	id: string
 	created_at: Date
