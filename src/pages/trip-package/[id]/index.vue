@@ -73,9 +73,12 @@
 		</div>
 
 		<div
-			class="flex flex-col w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 sm:pt-10 py-8 sm:py-10 md:py-[52px] gap-8"
+			class="flex flex-col w-full px-6 sm:(pt-10 py-10) md:(px-16 py-[52px]) lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 py-8 gap-8"
 		>
-			<Accommodations />
+			<Accommodations
+				v-if="currentTripPackage"
+				:data="currentTripPackage.accommodation"
+			/>
 		</div>
 
 		<div

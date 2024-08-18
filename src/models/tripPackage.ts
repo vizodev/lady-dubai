@@ -1,13 +1,3 @@
-import {
-	PLANE_ICON_SVG,
-	ACCOMMODATION_ICON_SVG,
-	ATTRACTION_ICON_SVG,
-	MEALS_ICON_SVG,
-	TRANSPORTATION_ICON_SVG,
-	LAUNDRY_ICON_SVG,
-	TOWEL_ICON_SVG,
-} from "~/constants"
-
 export type TripPackage = {
 	id: string
 	created_at: Date
@@ -41,6 +31,15 @@ export type TripPackage = {
 			he: string[]
 		}
 	}
+	accommodation: Accommodation
+}
+
+export type Accommodation = {
+	images: string[]
+	title: string
+	subtitle: string
+	description: string
+	features: string[]
 }
 
 export type Attraction = {

@@ -24,9 +24,25 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 			this.errorOnLoadTripPackages = false
 			this.loadingTripPackages = true
 			try {
-				const { data: tripPackages } = await client
-					.from("trippackages")
-					.select("*")
+				const { data } = await client.from("trippackages").select("*")
+
+				const tripPackages = data as TripPackage[]
+
+				for (const trip of tripPackages) {
+					let { data: accommodation } = await client
+						.from("trip_package_accommodations")
+						.select(
+							`
+						accommodations_pool (*)
+						`
+						)
+						.eq("trip_package_id", trip.id)
+
+					console.log(accommodation)
+
+					trip.accommodation = accommodation![0].accommodations_pool
+				}
+
 				this.tripPackages = tripPackages as TripPackage[]
 				console.log("Trip packages loaded", this.tripPackages)
 			} catch (error) {
@@ -42,17 +58,27 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 				this.errorOnLoadTripPackage = false
 				this.loadingTripPackage = true
 				const client = useSupabaseClient()
-				const { data: tripPackage } = await client
+				const { data } = await client
 					.from("trippackages")
 					.select("*")
 					.eq("id", id)
-				return tripPackage?.map((pck: any) => {
-					return {
-						...pck,
-						cancelationPolicy: pck.cancelationpolicy[0],
-						disclaimer: pck.disclaimer[0],
-					}
-				})[0] as TripPackage
+
+				const tripPackage = data![0] as any
+				let { data: accommodation } = await client
+					.from("trip_package_accommodations")
+					.select(
+						`
+				accommodations_pool (*)
+				`
+					)
+					.eq("trip_package_id", tripPackage.id)
+
+				return {
+					...tripPackage,
+					accommodation: accommodation![0].accommodations_pool,
+					cancelationPolicy: tripPackage.cancelationpolicy[0],
+					disclaimer: tripPackage.disclaimer[0],
+				} as TripPackage
 			} catch (error) {
 				this.errorOnLoadTripPackage = true
 				console.error("Error loading trip package", error)
