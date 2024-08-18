@@ -10,6 +10,9 @@
 			@click="() => onChange(dt)"
 		>
 			{{ handleAvailableDateLabel(dt) }}
+			<span class="text-xs font-light">{{
+				handleAvailableDateYearLabel(dt)
+			}}</span>
 		</button>
 	</div>
 </template>
@@ -45,14 +48,17 @@ const handleAvailableDateLabel = (date: { from: Date; to: Date }) => {
 	const fromDay = from.getDate()
 	const toDay = to.getDate()
 	const fromYear = from.getFullYear()
-	const toYear = to.getFullYear()
-	const fromMonthYear = `${fromMonth} ${fromYear}`
 
 	if (fromMonth === toMonth) {
-		return `${fromDay} - ${toDay} ${fromMonthYear}`
+		return `${fromDay} - ${toDay} ${toMonth}`
 	} else {
-		return `${fromDay} ${fromMonth} - ${toDay} ${toMonth} ${toYear}`
+		return `${fromDay} ${fromMonth} - ${toDay} ${toMonth}`
 	}
+}
+const handleAvailableDateYearLabel = (date: { from: Date; to: Date }) => {
+	const to = new Date(date.to)
+
+	return to.getFullYear()
 }
 
 // Life cycle

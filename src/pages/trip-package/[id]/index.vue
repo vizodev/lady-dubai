@@ -67,8 +67,9 @@
 			<span
 				class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
 			>
-				Attractions
+				Main Included Attractions
 			</span>
+
 			<Attractions />
 		</div>
 
@@ -79,6 +80,35 @@
 				v-if="currentTripPackage"
 				:data="currentTripPackage.accommodation"
 			/>
+		</div>
+
+		<div
+			class="flex flex-col w-full px-6 sm:(pt-10 py-10) md:(px-16 py-[52px]) lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 py-8"
+		>
+			<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
+				<p class="text-4xl font-medium font-roboto-serif">
+					Flights from Rio de Janeiro (GIG)
+				</p>
+				<p class="text-base font-light font-inter">
+					<span class="font-bold">Arriving from a different destination?</span>
+					Contact Lady Dubai for custom plane tickets from your departure
+					location or purchase package excluding plane tickets.
+				</p>
+			</div>
+
+			<div class="flex flex-col gap-3 mb-16">
+				<p class="text-base font-bold font-inter">SELECTED DATE</p>
+
+				<TripPackageAvailableDates
+					:availableDates="currentTripPackage.nextavailabledates"
+					:initial-value="currentTripPackage.nextavailabledates[0]"
+				/>
+			</div>
+
+			<div class="flex flex-col gap-16">
+				<FlightBox />
+				<FlightBox />
+			</div>
 		</div>
 
 		<div

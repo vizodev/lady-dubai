@@ -11,6 +11,7 @@ export const MEALS_ICON_SVG = "/svg/meals-icon.svg"
 export const TRANSPORTATION_ICON_SVG = "/svg/transportation-icon.svg"
 export const WHATSAPP_ICON_SVG = "/svg/whatsapp-icon.svg"
 export const YOUTUBE_ICON_SVG = "/svg/youtube-icon.svg"
+export const FLIGHT_ICON_SVG = "/svg/flight-icon.svg"
 
 export const LOGO_FOOTER_SVG = "/svg/logo-footer.svg"
 export const LOGO_WHITE_SVG = "/svg/logo-white.svg"
@@ -24,6 +25,7 @@ export const MENU_SVG = "/svg/menu.svg"
 export const PACKAGE_SVG = "/svg/package.svg"
 export const PLANE1_SVG = "/svg/plane1.svg"
 export const PLANE2_SVG = "/svg/plane2.svg"
+export const FLIGHT1_SVG = "/svg/flight1.svg"
 
 // IMAGES
 export const CTA_IMAGE = "/images/cta.jpg"
