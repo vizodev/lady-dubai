@@ -19,7 +19,6 @@ export const defaultAttraction: Attraction = {
 		BANNER3_IMAGE,
 		BANNER3_IMAGE,
 	],
-	link: "https://www.museumofthefuture.ae/",
 	longDescription: `<p style="font-size: 24px; font-weight: 400;">The Museum of the Future is a landmark devoted to innovative and futuristic ideologies. Located in the Financial District of Dubai, UAE.</p>
 <br />
 <br />
@@ -48,7 +47,6 @@ export const defaultAttraction: Attraction = {
 <p><span style="font-size: 24px;"><em>A place of tolerance, inviting varied cultural, philosophical, social and spiritual outlooks. It&rsquo;s also a place of learning, where we explore the challenges and opportunities shaping our times, finding solutions for a better future.</em></span></p>
 <p><br></p>
 <p><span style="font-size: 16px;">What&apos;s more, all age groups are welcome here. Children aged three to 10 can enjoy an open-world experience at the Future Heroes environment, a dedicated area designed to encourage little ones to tap into their potential. Guests also ought to make a stop at the viewing deck on level two &ndash; nestled within the museum&apos;s &apos;void&apos;, it provides an up-close experience of the facade&apos;s smooth inner shell, alongside panoramic vistas of Dubai&apos;s fast-paced urban centre.</span></p>`,
-
 	secondText: `<p><span style="font-size: 36px;">Museum of the Future architecture and design</span></p>
 <p><br></p>
 <p><span style="font-size: 16px;">Designed as an asymmetric torus clad in steel and glass, the Museum of the Future has been recognised by National Geographic as one of 14 most beautiful museums in the world. It&apos;s a credit to architect Shaun Killa, who wanted the structure to represent Dubai&rsquo;s vision of the future.&nbsp;<br><br>The museum&apos;s striking exterior also stands out thanks to its artistic use of Arabic calligraphy, which functions as glass windows too. Designed by Emirati artist Mattar bin Lahej, they reflect lines of inspirational poetry by HH Sheikh Mohammed bin Rashid Al Maktoum, Vice President and Prime Minister of the UAE and Ruler of Dubai. Of the three quotes enveloping the facade, one translates to: &ldquo;The future belongs to those who can imagine it, design it and execute it. It isn&apos;t something you await, but rather create.&rdquo;&nbsp;</span></p>

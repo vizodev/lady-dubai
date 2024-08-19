@@ -1,5 +1,10 @@
-import { TRIP_PACKAGE_STORE } from "~/constants"
-import { type TripPackage } from "~/models"
+import {
+	SUPABASE_ID_FIELD,
+	SUPABASE_TRIP_PACKAGE_ID_FIELD,
+	SUPABASE_TRIP_PACKAGES_TABLE,
+	TRIP_PACKAGE_STORE,
+} from "~/constants"
+import { type AvailableDate, type TripPackage } from "~/models"
 
 interface IState {
 	tripPackages: TripPackage[]
@@ -19,26 +24,29 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 	}),
 	getters: {},
 	actions: {
-		async loadTripPackages() {
+		async loadTripPackages(): Promise<void> {
 			const client = useSupabaseClient()
+
 			this.errorOnLoadTripPackages = false
 			this.loadingTripPackages = true
+
 			try {
-				const { data } = await client.from("trippackages").select("*")
+				const { data } = await client
+					.from(SUPABASE_TRIP_PACKAGES_TABLE)
+					.select("*")
+
+				data?.map((i: any) => {
+					i.cancelationPolicy = i.cancelationpolicy[0]
+					i.disclaimer = i.disclaimer[0]
+				})
 
 				const tripPackages = data as TripPackage[]
 
 				for (const trip of tripPackages) {
 					let { data: accommodation } = await client
 						.from("trip_package_accommodations")
-						.select(
-							`
-						accommodations_pool (*)
-						`
-						)
+						.select("accommodations_pool (*)")
 						.eq("trip_package_id", trip.id)
-
-					console.log(accommodation)
 
 					trip.accommodation = accommodation![0].accommodations_pool
 				}
@@ -48,30 +56,29 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 			} catch (error) {
 				this.errorOnLoadTripPackages = true
 				console.error("Error loading trip packages", error)
-			} finally {
-				this.loadingTripPackages = false
-				return this.tripPackages ?? []
 			}
+
+			this.loadingTripPackages = false
 		},
-		async loadTripPackageById(id: string) {
+		async getTripPackageById(id: number): Promise<TripPackage | undefined> {
+			const client = useSupabaseClient()
+
+			this.errorOnLoadTripPackage = false
+			this.loadingTripPackage = true
+
 			try {
-				this.errorOnLoadTripPackage = false
-				this.loadingTripPackage = true
-				const client = useSupabaseClient()
+				await new Promise((r) => setTimeout(r, 5000))
+
 				const { data } = await client
-					.from("trippackages")
+					.from(SUPABASE_TRIP_PACKAGES_TABLE)
 					.select("*")
-					.eq("id", id)
+					.eq(SUPABASE_ID_FIELD, id)
 
 				const tripPackage = data![0] as any
 				let { data: accommodation } = await client
 					.from("trip_package_accommodations")
-					.select(
-						`
-				accommodations_pool (*)
-				`
-					)
-					.eq("trip_package_id", tripPackage.id)
+					.select("accommodations_pool (*)")
+					.eq(SUPABASE_TRIP_PACKAGE_ID_FIELD, tripPackage.id)
 
 				return {
 					...tripPackage,
@@ -82,9 +89,9 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 			} catch (error) {
 				this.errorOnLoadTripPackage = true
 				console.error("Error loading trip package", error)
-			} finally {
-				this.loadingTripPackage = false
 			}
+
+			this.loadingTripPackage = false
 		},
 	},
 })

@@ -1,5 +1,5 @@
 export type TripPackage = {
-	id: string
+	id: number
 	created_at: Date
 	title: string
 	subtitle: string
@@ -53,7 +53,6 @@ export type Attraction = {
 	longDescription: string
 	asideImg: string
 	gallery: string[]
-	link: string
 	mapSrc: string
 	firstText: string
 	secondText: string

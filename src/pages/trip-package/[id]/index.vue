@@ -61,7 +61,7 @@
 			/>
 		</section>
 
-		<div
+		<section
 			class="flex flex-col w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] py-8 sm:py-10 md:py-[52px] gap-4 sm:gap-6 md:gap-8"
 		>
 			<span
@@ -71,18 +71,18 @@
 			</span>
 
 			<Attractions />
-		</div>
+		</section>
 
-		<div
+		<section
 			class="flex flex-col w-full px-6 sm:(pt-10 py-10) md:(px-16 py-[52px]) lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 py-8 gap-8"
 		>
 			<Accommodations
 				v-if="currentTripPackage"
 				:data="currentTripPackage.accommodation"
 			/>
-		</div>
+		</section>
 
-		<div
+		<section
 			class="flex flex-col w-full px-6 sm:(pt-10 py-10) md:(px-16 py-[52px]) lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 py-8"
 		>
 			<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
@@ -102,14 +102,21 @@
 				<TripPackageAvailableDates
 					:availableDates="currentTripPackage.nextavailabledates"
 					:initial-value="currentTripPackage.nextavailabledates[0]"
+					@on-change="onFlightDateChange"
 				/>
 			</div>
 
-			<div class="flex flex-col gap-16">
+			<div class="flex flex-col gap-16 mb-12">
 				<FlightBox />
 				<FlightBox />
 			</div>
-		</div>
+
+			<button class="btn-rounded self-end">
+				<i class="fi fi-rs-circle-xmark not-italic flex items-center gap-2">
+					Exclude Plane Ticket
+				</i>
+			</button>
+		</section>
 
 		<div
 			class="flex flex-col gap-6 sm:gap-3 w-full bg-pink-100 py-[26px] my-[52px] items-center"
@@ -158,48 +165,56 @@
 </template>
 
 <script lang="ts" setup>
-import { type RelativePathComponent, type TripPackage } from "~/models"
+import {
+	type AvailableDate,
+	type RelativePathComponent,
+	type TripPackage,
+} from "~/models"
 import { TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
 const tripPackagesStore = useTripPackagesStore()
 const { tripPackages } = storeToRefs(tripPackagesStore)
 
+const props = computed(() => {
+	const params = useRoute().params
+	const queryParams = useRoute().query
+
+	return {
+		id: Number(params.id),
+		date: queryParams.date as string,
+	}
+})
+
 // Package
 const currentTripPackage = ref<TripPackage>()
 
 const previousPackage = computed(() => {
 	const index = tripPackages.value.findIndex(
-		(tripPackage) => tripPackage.id === packId.value
+		(tripPackage) => tripPackage.id === props.value.id
 	)
 	return tripPackages.value[index - 1]
 })
 const nextPackage = computed(() => {
 	const index = tripPackages.value.findIndex(
-		(tripPackage) => tripPackage.id === packId.value
+		(tripPackage) => tripPackage.id === props.value.id
 	)
 	return tripPackages.value[index + 1]
 })
-const packId = computed(() => {
-	return useRoute().params.id
-})
 
 const loadTripPackage = async () => {
-	const tripPackage = tripPackages.value.find(
-		(tripPackage) => tripPackage.id === packId.value
-	)
-
-	if (!tripPackage) {
-		currentTripPackage.value = (await tripPackagesStore.loadTripPackageById(
-			(packId.value as string) ?? ""
-		)) as unknown as TripPackage
-		handleRelativePath()
-		return
-	}
-
-	currentTripPackage.value = tripPackage
+	currentTripPackage.value =
+		tripPackages.value.find((i) => i.id === props.value.id) ??
+		(await tripPackagesStore.getTripPackageById(props.value.id))
 
 	handleRelativePath()
+}
+
+// Flights
+const currentFlightDate = ref<AvailableDate>()
+
+const onFlightDateChange = (data: AvailableDate) => {
+	currentFlightDate.value = data
 }
 
 // Relative path

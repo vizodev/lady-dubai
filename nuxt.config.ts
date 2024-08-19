@@ -1,3 +1,10 @@
+import {
+	SUPABASE_KEY,
+	SUPABASE_REDIRECT,
+	SUPABASE_SERVICE_KEY,
+	SUPABASE_URL,
+} from "./src/constants"
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	devtools: { enabled: true },
@@ -5,11 +12,10 @@ export default defineNuxtConfig({
 	css: ["~/assets/css/global.css"],
 	modules: ["@pinia/nuxt", "@nuxtjs/supabase", "nuxt-aos", "nuxt-windicss"],
 	supabase: {
-		key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqcXB1cHJxd25wanFwZ2FwZHl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk5Mjg5NzIsImV4cCI6MjAzNTUwNDk3Mn0.Sj_M_vvrLBzsqTfKx3g3IWaV0ZW474S9YhZgiO5OsLc",
-		url: "https://vjqpuprqwnpjqpgapdyt.supabase.co",
-		redirect: false,
-		serviceKey:
-			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqcXB1cHJxd25wanFwZ2FwZHl0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxOTkyODk3MiwiZXhwIjoyMDM1NTA0OTcyfQ.I6PHUrlrUqF7FtVlGLpfvVsTdHvlkDNIwyPSySm7hXs",
+		key: SUPABASE_KEY,
+		url: SUPABASE_URL,
+		redirect: SUPABASE_REDIRECT,
+		serviceKey: SUPABASE_SERVICE_KEY,
 	},
 	aos: {
 		// Global settings:

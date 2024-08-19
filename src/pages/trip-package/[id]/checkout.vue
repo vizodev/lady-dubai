@@ -234,7 +234,12 @@ import {
 	creditCardValue,
 	type CheckoutSchemaSubmit,
 } from "~/formSchemas"
-import { LOGO_FOOTER_SVG, PACKAGE_SVG, TRIP_PACKAGE_ROUTE } from "~/constants"
+import {
+	HOME_ROUTE,
+	LOGO_FOOTER_SVG,
+	PACKAGE_SVG,
+	TRIP_PACKAGE_ROUTE,
+} from "~/constants"
 import { genders, paymentMethods } from "~/data"
 
 // General
@@ -242,10 +247,8 @@ const props = computed(() => {
 	const params = useRoute().params
 	const queryParams = useRoute().query
 
-	console.log(queryParams)
-
 	return {
-		id: params.id as string,
+		id: Number(params.id),
 		date: queryParams.date as string,
 	}
 })
@@ -258,19 +261,11 @@ const { tripPackages } = storeToRefs(tripPackagesStore)
 const currentTripPackage = ref<TripPackage>()
 
 const loadTripPackage = async () => {
-	const tripPackage = tripPackages.value.find(
-		(tripPackage) => tripPackage.id === props.value.id
-	)
+	currentTripPackage.value =
+		tripPackages.value.find((i) => i.id === props.value.id) ??
+		(await tripPackagesStore.getTripPackageById(props.value.id))
 
-	if (!tripPackage) {
-		currentTripPackage.value = await tripPackagesStore.loadTripPackageById(
-			props.value.id
-		)
-
-		return
-	}
-
-	currentTripPackage.value = tripPackage
+	if (!currentTripPackage.value) openHome()
 }
 
 // Travellers
@@ -306,6 +301,7 @@ const onSubmit = (data: CheckoutSchemaSubmit) => {
 
 // Routes
 const openTripPackage = () => navigateTo(TRIP_PACKAGE_ROUTE(props.value.id))
+const openHome = () => navigateTo(HOME_ROUTE)
 
 // Life cycle
 onMounted(() => loadTripPackage())
