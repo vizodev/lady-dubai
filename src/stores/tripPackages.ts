@@ -1,5 +1,7 @@
 import {
+	SUPABASE_ATTRACTION_ID_FIELD,
 	SUPABASE_ID_FIELD,
+	SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE,
 	SUPABASE_TRIP_PACKAGE_ID_FIELD,
 	SUPABASE_TRIP_PACKAGES_TABLE,
 	TRIP_PACKAGE_STORE,
@@ -67,8 +69,6 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 			this.loadingTripPackage = true
 
 			try {
-				await new Promise((r) => setTimeout(r, 5000))
-
 				const { data } = await client
 					.from(SUPABASE_TRIP_PACKAGES_TABLE)
 					.select("*")
@@ -92,6 +92,35 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 			}
 
 			this.loadingTripPackage = false
+		},
+		async getTripPackagesByAttractionId(
+			attractionId: number
+		): Promise<TripPackage[]> {
+			const client = useSupabaseClient()
+
+			try {
+				const { data } = await client
+					.from(SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE)
+					.select("*")
+					.eq(SUPABASE_ATTRACTION_ID_FIELD, attractionId)
+
+				if (!data) return []
+
+				const tripPackages = [] as TripPackage[]
+				for (const tripPackageAttraction of data) {
+					const tripPackage = await this.getTripPackageById(
+						(tripPackageAttraction as any).trip_package_id
+					)
+
+					if (tripPackage) tripPackages.push(tripPackage)
+				}
+
+				return tripPackages
+			} catch (error) {
+				console.error("Error loading trip packages by attraction id", error)
+			}
+
+			return []
 		},
 	},
 })

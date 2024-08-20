@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col overflow-y-auto w-full">
 		<iframe
-			:src="currentAttraction?.videoUrl"
+			:src="currentAttraction?.video_url"
 			frameborder="0"
 			class="w-full h-[90vh]"
 		></iframe>
@@ -15,11 +15,11 @@
 			<div>
 				<p class="font-roboto-serif text-7xl font-bold mb-16">
 					{{ currentAttraction.title }}
-					<p class="text-4xl font-light mt-2">{{ currentAttraction.arabicTitle }}</p>
+					<p class="text-4xl font-light mt-2">{{ currentAttraction.arabic_title }}</p>
 				</p>
 
 				<div class="mb-36">
-					<div v-html="currentAttraction?.longDescription" class="mb-24 font-inter w-full lg:w-4/5"></div>
+					<div v-html="currentAttraction?.long_description_html" class="mb-24 font-inter w-full lg:w-4/5"></div>
 
 					<div >
 						<p class="mb-6 text-base font-bold">
@@ -28,20 +28,17 @@
 
 						<div class="flex flex-wrap gap-3">
 							<button
-								v-for="buttonLabel of [
-									'The Dubai Experience',
-									'Relocation',
-									'Fun Lady',
-								]"
-								class="btn-primary pointer-events-none"
+								v-for="tripPackage of tripPackagesByAttraction"
+								@click="openTripPackage(tripPackage.id)"
+								class="btn-primary"
 							>
-								{{ buttonLabel }} >
+								{{ tripPackage.title }} >
 							</button>
 						</div>
 					</div>
 				</div>
 
-				<div v-html="currentAttraction?.firstText" class="mb-20 font-inter w-full lg:w-4/5"></div>
+				<div v-html="currentAttraction?.first_text_html" class="mb-20 font-inter w-full lg:w-4/5"></div>
 
 				<WhatsappBox
 					data-aos="fade-right"
@@ -59,11 +56,11 @@
 		<div
 			class="flex flex-col gap-20 mb-20 w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
 		>
-			<div v-html="currentAttraction?.secondText" class="font-inter w-full lg:w-4/5"></div>
+			<div v-html="currentAttraction?.second_text_html" class="font-inter w-full lg:w-4/5"></div>
 		</div>
 
 		<iframe
-			:src="currentAttraction?.mapSrc"
+			:src="currentAttraction?.map_src"
 			style="border: 0"
 			loading="lazy"
 			allowfullscreen
@@ -82,9 +79,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { Attraction, RelativePathComponent } from "~/models"
+import type { Attraction, RelativePathComponent, TripPackage } from "~/models"
+import {TRIP_PACKAGE_ROUTE} from "~/constants"
 
 // General
+const tripPackagesStore = useTripPackagesStore()
 const attractionStore = useAttractionsStore()
 const { attractions } =
 	storeToRefs(attractionStore)
@@ -130,11 +129,28 @@ const loadAttraction = async () => {
 	if (attraction) {
 		currentAttraction.value = attraction
 	} else {
-		currentAttraction.value = await attractionStore.loadAttractionById()
+		currentAttraction.value = await attractionStore.getAttractionById()
 	}
 }
 
+// Trip Packages by attractions
+const tripPackagesByAttraction = ref<TripPackage[]>()
+
+const loadTripPackagesByAttraction = async () => {
+	tripPackagesByAttraction.value = await tripPackagesStore.getTripPackagesByAttractionId(1)
+}
+
+// Routes
+const openTripPackage = (id: number) => {
+	navigateTo(
+		TRIP_PACKAGE_ROUTE(id)
+	)
+}
+
 // Life cycle
-onMounted(() => loadAttraction())
+onMounted(() => {
+	loadTripPackagesByAttraction()
+	loadAttraction()
+})
 </script>
 

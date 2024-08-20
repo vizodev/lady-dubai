@@ -42,22 +42,6 @@ export type Accommodation = {
 	features: string[]
 }
 
-export type Attraction = {
-	id: string
-	banner: string
-	videoUrl: string
-	title: string
-	arabicTitle: string
-	subtitle: string
-	description: string
-	longDescription: string
-	asideImg: string
-	gallery: string[]
-	mapSrc: string
-	firstText: string
-	secondText: string
-}
-
 export type AvailableDate = {
 	from: Date
 	to: Date

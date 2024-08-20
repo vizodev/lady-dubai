@@ -177,8 +177,9 @@ const tripPackagesStore = useTripPackagesStore()
 const { tripPackages } = storeToRefs(tripPackagesStore)
 
 const props = computed(() => {
-	const params = useRoute().params
-	const queryParams = useRoute().query
+	const route = useRoute()
+	const params = route.params
+	const queryParams = route.query
 
 	return {
 		id: Number(params.id),

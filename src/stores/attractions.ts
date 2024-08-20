@@ -16,9 +16,10 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 	}),
 	getters: {},
 	actions: {
-		async loadAttractions() {
+		async loadAttractions(): Promise<void> {
 			this.errorOnLoadAttractions = false
 			this.loadingAttractions = true
+
 			try {
 				this.attractions = Array.from({ length: 6 }).map(() => {
 					return {
@@ -29,12 +30,11 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 			} catch (error) {
 				this.errorOnLoadAttractions = true
 				console.error("Error loading trip packages", error)
-			} finally {
-				this.loadingAttractions = false
-				return this.attractions ?? []
 			}
+
+			this.loadingAttractions = false
 		},
-		async loadAttractionById() {
+		async getAttractionById(): Promise<Attraction> {
 			return defaultAttraction
 		},
 	},
