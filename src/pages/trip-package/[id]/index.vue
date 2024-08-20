@@ -175,7 +175,7 @@ import {
 	type RelativePathComponent,
 	type TripPackage,
 } from "~/models"
-import { TRIP_PACKAGE_ROUTE } from "~/constants"
+import { HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
 const attractionsStore = useAttractionsStore()
@@ -214,7 +214,7 @@ const loadTripPackage = async () => {
 		tripPackages.value.find((i) => i.id === props.value.id) ??
 		(await tripPackagesStore.getTripPackageById(props.value.id))
 
-	handleRelativePath()
+	if (!currentTripPackage.value) openHome()
 }
 
 // Attractions
@@ -234,10 +234,8 @@ const onFlightDateChange = (data: AvailableDate) => {
 }
 
 // Relative path
-const relativePath = ref<RelativePathComponent[]>([])
-
-const handleRelativePath = () => {
-	relativePath.value = [
+const relativePath = computed(() => {
+	return [
 		{
 			label: {
 				en: "Lady Dubai",
@@ -259,7 +257,10 @@ const handleRelativePath = () => {
 			},
 		},
 	]
-}
+})
+
+// Routes
+const openHome = () => navigateTo(HOME_ROUTE)
 
 // Life cycle
 onMounted(() => {

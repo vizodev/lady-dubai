@@ -80,7 +80,7 @@
 
 <script lang="ts" setup>
 import type { Attraction, RelativePathComponent, TripPackage } from "~/models"
-import {TRIP_PACKAGE_ROUTE} from "~/constants"
+import {HOME_ROUTE, TRIP_PACKAGE_ROUTE} from "~/constants"
 
 // General
 const tripPackagesStore = useTripPackagesStore()
@@ -125,6 +125,8 @@ const loadAttraction = async () => {
 	currentAttraction.value = attractions.value.find(
 		(attraction) => attraction.id === attractionId.value
 	) ?? await attractionStore.getAttractionById(attractionId.value)
+
+	if (!currentAttraction.value) openHome()
 }
 
 // Trip Packages by attractions
@@ -140,6 +142,7 @@ const openTripPackage = (id: number) => {
 		TRIP_PACKAGE_ROUTE(id)
 	)
 }
+const openHome = () => navigateTo(HOME_ROUTE)
 
 // Life cycle
 onMounted(() => {
