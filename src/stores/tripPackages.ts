@@ -54,7 +54,6 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 				}
 
 				this.tripPackages = tripPackages as TripPackage[]
-				console.log("Trip packages loaded", this.tripPackages)
 			} catch (error) {
 				this.errorOnLoadTripPackages = true
 				console.error("Error loading trip packages", error)

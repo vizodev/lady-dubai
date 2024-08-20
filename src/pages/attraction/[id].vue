@@ -118,26 +118,20 @@ const relativePath = computed(
 // Attraction
 const currentAttraction = ref<Attraction>()
 const attractionId = computed(() => {
-	return useRoute().params.id
+	return Number(useRoute().params.id)
 })
 
 const loadAttraction = async () => {
-	const attraction = attractions.value.find(
+	currentAttraction.value = attractions.value.find(
 		(attraction) => attraction.id === attractionId.value
-	)
-
-	if (attraction) {
-		currentAttraction.value = attraction
-	} else {
-		currentAttraction.value = await attractionStore.getAttractionById()
-	}
+	) ?? await attractionStore.getAttractionById(attractionId.value)
 }
 
 // Trip Packages by attractions
 const tripPackagesByAttraction = ref<TripPackage[]>()
 
 const loadTripPackagesByAttraction = async () => {
-	tripPackagesByAttraction.value = await tripPackagesStore.getTripPackagesByAttractionId(1)
+	tripPackagesByAttraction.value = await tripPackagesStore.getTripPackagesByAttractionId(attractionId.value)
 }
 
 // Routes

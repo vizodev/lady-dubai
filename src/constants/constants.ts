@@ -10,6 +10,7 @@ export const SUPABASE_REDIRECT = false
 export const SUPABASE_SERVICE_KEY =
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqcXB1cHJxd25wanFwZ2FwZHl0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxOTkyODk3MiwiZXhwIjoyMDM1NTA0OTcyfQ.I6PHUrlrUqF7FtVlGLpfvVsTdHvlkDNIwyPSySm7hXs"
 
+export const SUPABASE_ATTRACTIONS_POOL_TABLE = "attractions_pool"
 export const SUPABASE_TRIP_PACKAGES_TABLE = "trippackages"
 export const SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE =
 	"trip_package_attractions"

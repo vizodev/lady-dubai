@@ -1,6 +1,12 @@
-import { ATTRACTIONS_STORE } from "~/constants"
-import { defaultAttraction } from "~/data"
-import { type Attraction } from "~/models"
+import {
+	ATTRACTIONS_STORE,
+	SUPABASE_ATTRACTION_ID_FIELD,
+	SUPABASE_ATTRACTIONS_POOL_TABLE,
+	SUPABASE_ID_FIELD,
+	SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE,
+	SUPABASE_TRIP_PACKAGE_ID_FIELD,
+} from "~/constants"
+import { type Attraction, type TripPackage } from "~/models"
 
 interface IState {
 	attractions: Attraction[]
@@ -17,16 +23,17 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 	getters: {},
 	actions: {
 		async loadAttractions(): Promise<void> {
+			const client = useSupabaseClient()
+
 			this.errorOnLoadAttractions = false
 			this.loadingAttractions = true
 
 			try {
-				this.attractions = Array.from({ length: 6 }).map(() => {
-					return {
-						...defaultAttraction,
-						id: Math.random().toString(36).substring(7),
-					}
-				})
+				const { data } = await client
+					.from(SUPABASE_ATTRACTIONS_POOL_TABLE)
+					.select("*")
+
+				this.attractions = data as Attraction[]
 			} catch (error) {
 				this.errorOnLoadAttractions = true
 				console.error("Error loading trip packages", error)
@@ -34,8 +41,50 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 
 			this.loadingAttractions = false
 		},
-		async getAttractionById(): Promise<Attraction> {
-			return defaultAttraction
+		async getAttractionById(id: number): Promise<Attraction | undefined> {
+			const client = useSupabaseClient()
+
+			try {
+				const { data } = await client
+					.from(SUPABASE_ATTRACTIONS_POOL_TABLE)
+					.select("*")
+					.eq(SUPABASE_ID_FIELD, id)
+
+				if (!data) return
+
+				return data[0] as Attraction
+			} catch (error) {
+				console.error("Error getting attraction by id", error)
+			}
+		},
+		async getAttractionsByTripPackageId(
+			tripPackageId: number
+		): Promise<Attraction[]> {
+			const client = useSupabaseClient()
+
+			try {
+				const { data } = await client
+					.from(SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE)
+					.select("*")
+					.eq(SUPABASE_TRIP_PACKAGE_ID_FIELD, tripPackageId)
+
+				if (!data) return []
+
+				const attractions = [] as Attraction[]
+				for (const attractionAttraction of data) {
+					const attraction = await this.getAttractionById(
+						(attractionAttraction as any).trip_package_id
+					)
+
+					if (attraction) attractions.push(attraction)
+				}
+
+				return attractions
+			} catch (error) {
+				console.error("Error loading trip packages by attraction id", error)
+			}
+
+			return []
 		},
 	},
 })

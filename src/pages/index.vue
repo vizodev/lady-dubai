@@ -17,11 +17,6 @@
 // General
 const tripPackagesStore = useTripPackagesStore()
 const { loadingTripPackages } = storeToRefs(tripPackagesStore)
-
-// Life cycle
-onMounted(async () => {
-	await tripPackagesStore.loadTripPackages()
-})
 </script>
 
 <style scoped>

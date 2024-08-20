@@ -52,13 +52,8 @@
 
 <script lang="ts" setup>
 import type { Accommodation } from "~/models"
-import { BANNER1_IMAGE } from "~/constants"
 
-const props = defineProps<{
+defineProps<{
 	data: Accommodation
 }>()
-
-onMounted(() => {
-	console.log(props.data)
-})
 </script>

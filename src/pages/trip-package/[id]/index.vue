@@ -70,7 +70,11 @@
 				Main Included Attractions
 			</span>
 
-			<Attractions />
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
+				<div class="w-full" v-for="attraction in attractions">
+					<AttractionsCard :data="attraction" />
+				</div>
+			</div>
 		</section>
 
 		<section
@@ -166,6 +170,7 @@
 
 <script lang="ts" setup>
 import {
+	type Attraction,
 	type AvailableDate,
 	type RelativePathComponent,
 	type TripPackage,
@@ -173,6 +178,7 @@ import {
 import { TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
+const attractionsStore = useAttractionsStore()
 const tripPackagesStore = useTripPackagesStore()
 const { tripPackages } = storeToRefs(tripPackagesStore)
 
@@ -209,6 +215,15 @@ const loadTripPackage = async () => {
 		(await tripPackagesStore.getTripPackageById(props.value.id))
 
 	handleRelativePath()
+}
+
+// Attractions
+const attractions = ref<Attraction[]>()
+
+const loadAttractions = async () => {
+	attractions.value = await attractionsStore.getAttractionsByTripPackageId(
+		props.value.id
+	)
 }
 
 // Flights
@@ -248,6 +263,7 @@ const handleRelativePath = () => {
 
 // Life cycle
 onMounted(() => {
+	loadAttractions()
 	loadTripPackage()
 })
 </script>

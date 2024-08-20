@@ -1,5 +1,5 @@
 export type Attraction = {
-	id: string
+	id: number
 	banner: string
 	video_url: string
 	title: string
