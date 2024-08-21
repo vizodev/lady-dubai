@@ -175,9 +175,9 @@
 
 						<TripPackageAvailableDates
 							v-if="currentTripPackage"
-							:available-dates="currentTripPackage.nextavailabledates"
+							:flights="currentTripPackage.flights"
 							:initial-value="initialDate"
-							@on-change="onAvailableDateChange"
+							@on-change="onFlightChange"
 							class="mb-12"
 						/>
 
@@ -228,7 +228,7 @@
 </template>
 
 <script setup lang="ts">
-import { type AvailableDate, type TripPackage } from "~/models"
+import { type AvailableDate, type Flight, type TripPackage } from "~/models"
 import {
 	checkoutSchema,
 	creditCardValue,
@@ -275,17 +275,13 @@ const addTraveller = () => travellersCount.value++
 const onTravellersChange = (data: number) => (travellersCount.value = data)
 
 // Date
-const currentAvailableDate = ref<AvailableDate>()
+const currentFlight = ref<Flight>()
 const initialDate = computed(() => {
-	return (
-		currentTripPackage.value?.nextavailabledates[
-			Number(props.value?.date ?? 0)
-		] ?? currentTripPackage.value?.nextavailabledates[0]
-	)
+	return currentTripPackage.value?.flights[Number(props.value?.date ?? 0)]
 })
 
-const onAvailableDateChange = (data: AvailableDate) => {
-	currentAvailableDate.value = data
+const onFlightChange = (data: Flight) => {
+	currentFlight.value = data
 }
 
 // Form

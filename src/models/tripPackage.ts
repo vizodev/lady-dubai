@@ -18,7 +18,7 @@ export type TripPackage = {
 	gallery: string[]
 	services: SingleService[]
 	guidelanguages: Language[]
-	nextavailabledates: AvailableDate[]
+	flights: Flight[]
 	cancelationPolicy: {
 		label: {
 			en: string[]
@@ -40,6 +40,18 @@ export type Accommodation = {
 	subtitle: string
 	description: string
 	features: string[]
+}
+
+export type Flight = {
+	departing_takeoff: Date
+	departing_takeoff_airport_id: number
+	departing_landing: Date
+	departing_landing_airport_id: number
+
+	returning_takeoff: Date
+	returning_takeoff_airport_id: number
+	returning_landing: Date
+	returning_landing_airport_id: number
 }
 
 export type AvailableDate = {

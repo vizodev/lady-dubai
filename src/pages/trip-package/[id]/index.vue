@@ -104,15 +104,29 @@
 				<p class="text-base font-bold font-inter">SELECTED DATE</p>
 
 				<TripPackageAvailableDates
-					:availableDates="currentTripPackage.nextavailabledates"
-					:initial-value="currentTripPackage.nextavailabledates[0]"
+					:flights="currentTripPackage.flights"
+					:initial-value="currentTripPackage.flights[0]"
 					@on-change="onFlightDateChange"
 				/>
 			</div>
 
-			<div class="flex flex-col gap-16 mb-12">
-				<FlightBox />
-				<FlightBox />
+			<div v-if="currentFlightDate" class="flex flex-col gap-16 mb-12">
+				<FlightBox
+					:key="currentFlightDate.departing_takeoff.toString()"
+					departingFlight
+					:takeoff="currentFlightDate.departing_takeoff"
+					:takeoffAirportId="currentFlightDate.departing_takeoff_airport_id"
+					:landing="currentFlightDate.departing_landing"
+					:landingAirportId="currentFlightDate.departing_landing_airport_id"
+				/>
+
+				<FlightBox
+					:key="currentFlightDate.returning_takeoff.toString()"
+					:takeoff="currentFlightDate.returning_takeoff"
+					:takeoffAirportId="currentFlightDate.returning_takeoff_airport_id"
+					:landing="currentFlightDate.returning_landing"
+					:landingAirportId="currentFlightDate.returning_landing_airport_id"
+				/>
 			</div>
 
 			<button class="btn-rounded self-end">
@@ -169,7 +183,12 @@
 </template>
 
 <script lang="ts" setup>
-import { type Attraction, type AvailableDate, type TripPackage } from "~/models"
+import {
+	type Attraction,
+	type AvailableDate,
+	type Flight,
+	type TripPackage,
+} from "~/models"
 import { HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
@@ -222,9 +241,9 @@ const loadAttractions = async () => {
 }
 
 // Flights
-const currentFlightDate = ref<AvailableDate>()
+const currentFlightDate = ref<Flight>()
 
-const onFlightDateChange = (data: AvailableDate) => {
+const onFlightDateChange = (data: Flight) => {
 	currentFlightDate.value = data
 }
 

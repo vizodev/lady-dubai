@@ -36,7 +36,7 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 				this.attractions = data as Attraction[]
 			} catch (error) {
 				this.errorOnLoadAttractions = true
-				console.error("Error loading trip packages", error)
+				console.error("Error loading attractions", error)
 			}
 
 			this.loadingAttractions = false

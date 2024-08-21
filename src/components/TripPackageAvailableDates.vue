@@ -1,62 +1,59 @@
 <template>
 	<div class="flex items-center gap-3 flex-wrap w-full">
 		<button
-			v-for="dt in availableDates"
+			v-for="dt in flights"
 			class="btn-rounded"
 			:class="{
-				'bg-pink-600 text-white hover:(bg-pink-700)':
-					selectedAvailableDate === dt,
+				'bg-pink-600 text-white hover:(bg-pink-700)': selectedFlight === dt,
 			}"
 			@click="() => onChange(dt)"
 		>
-			{{ handleAvailableDateLabel(dt) }}
-			<span class="text-xs font-light">{{
-				handleAvailableDateYearLabel(dt)
-			}}</span>
+			{{ handleFlightLabel(dt) }}
+			<span class="text-xs font-light">{{ handleFlightYearLabel(dt) }}</span>
 		</button>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { type AvailableDate } from "~/models"
+import { type Flight } from "~/models"
 
 const { initialValue } = defineProps<{
-	availableDates: AvailableDate[]
-	initialValue?: AvailableDate
+	flights: Flight[]
+	initialValue?: Flight
 }>()
 
 const emit = defineEmits<{
-	(e: "onChange", data: AvailableDate): void
+	(e: "onChange", data: Flight): void
 }>()
 
 // Dates
-const selectedAvailableDate = ref<AvailableDate>()
+const selectedFlight = ref<Flight>()
 
-const onChange = (data: AvailableDate) => {
-	selectedAvailableDate.value = data
+const onChange = (data: Flight) => {
+	selectedFlight.value = data
+
 	emit("onChange", data)
 }
-const handleAvailableDateLabel = (date: { from: Date; to: Date }) => {
+const handleFlightLabel = (data: Flight) => {
 	// 18 - 24 Jan 2024 | Same month
 	// 29 May - 3 June 2024 | Different month
-	const from = new Date(date.from)
-	const to = new Date(date.to)
-	const fromMonth = from.toLocaleString("en-us", {
-		month: "short",
-	})
-	const toMonth = to.toLocaleString("en-us", { month: "short" })
-	const fromDay = from.getDate()
-	const toDay = to.getDate()
-	const fromYear = from.getFullYear()
+	const start = new Date(data.departing_takeoff)
+	const end = new Date(data.returning_takeoff)
 
-	if (fromMonth === toMonth) {
-		return `${fromDay} - ${toDay} ${toMonth}`
+	const startMonth = start.toLocaleString("en-us", { month: "short" })
+	const endMonth = end.toLocaleString("en-us", { month: "short" })
+
+	const startDay = start.getDate()
+	const endDay = end.getDate()
+
+	if (startMonth === endMonth) {
+		return `${startDay} - ${endDay} ${endMonth}`
 	} else {
-		return `${fromDay} ${fromMonth} - ${toDay} ${toMonth}`
+		return `${startDay} ${startMonth} - ${endDay} ${endMonth}`
 	}
 }
-const handleAvailableDateYearLabel = (date: { from: Date; to: Date }) => {
-	const to = new Date(date.to)
+const handleFlightYearLabel = (data: Flight) => {
+	const to = new Date(data.returning_landing)
 
 	return to.getFullYear()
 }

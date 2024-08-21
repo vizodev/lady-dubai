@@ -51,9 +51,9 @@
 			</span>
 
 			<TripPackageAvailableDates
-				:available-dates="tripPackage.nextavailabledates"
-				:initial-value="props.tripPackage.nextavailabledates[0]"
-				@on-change="onAvailableDateChange"
+				:flights="tripPackage.flights"
+				:initial-value="props.tripPackage.flights[0]"
+				@on-change="onFlightChange"
 			/>
 		</div>
 		<div class="flex flex-col gap-6 items-start w-full">
@@ -90,7 +90,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AvailableDate, TripPackage } from "~/models"
+import type { AvailableDate, Flight, TripPackage } from "~/models"
 import { TRIP_PACKAGE_CHECKOUT_ROUTE } from "~/constants"
 
 const props = defineProps<{
@@ -98,12 +98,10 @@ const props = defineProps<{
 }>()
 
 // Date
-const selectedAvailableDate = ref<AvailableDate>(
-	props.tripPackage.nextavailabledates[0]
-)
+const selectedFlight = ref<Flight>(props.tripPackage.flights[0])
 
-const onAvailableDateChange = (data: AvailableDate) => {
-	selectedAvailableDate.value = data
+const onFlightChange = (data: Flight) => {
+	selectedFlight.value = data
 }
 
 // Routes
@@ -111,7 +109,7 @@ const openCheckout = () => {
 	navigateTo(
 		TRIP_PACKAGE_CHECKOUT_ROUTE(
 			props.tripPackage.id,
-			props.tripPackage.nextavailabledates.indexOf(selectedAvailableDate.value)
+			props.tripPackage.flights.indexOf(selectedFlight.value)
 		)
 	)
 }
