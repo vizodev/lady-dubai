@@ -31,7 +31,7 @@ export type TripPackage = {
 			he: string[]
 		}
 	}
-	accommodation: Accommodation
+	accommodations: Accommodation[]
 }
 
 export type Accommodation = {

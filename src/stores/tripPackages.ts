@@ -42,18 +42,7 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 					i.disclaimer = i.disclaimer[0]
 				})
 
-				const tripPackages = data as TripPackage[]
-
-				for (const trip of tripPackages) {
-					let { data: accommodation } = await client
-						.from("trip_package_accommodations")
-						.select("accommodations_pool (*)")
-						.eq("trip_package_id", trip.id)
-
-					trip.accommodation = accommodation![0].accommodations_pool
-				}
-
-				this.tripPackages = tripPackages as TripPackage[]
+				this.tripPackages = data as TripPackage[]
 			} catch (error) {
 				this.errorOnLoadTripPackages = true
 				console.error("Error loading trip packages", error)
@@ -74,14 +63,9 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 					.eq(SUPABASE_ID_FIELD, id)
 
 				const tripPackage = data![0] as any
-				let { data: accommodation } = await client
-					.from("trip_package_accommodations")
-					.select("accommodations_pool (*)")
-					.eq(SUPABASE_TRIP_PACKAGE_ID_FIELD, tripPackage.id)
 
 				return {
 					...tripPackage,
-					accommodation: accommodation![0].accommodations_pool,
 					cancelationPolicy: tripPackage.cancelationpolicy[0],
 					disclaimer: tripPackage.disclaimer[0],
 				} as TripPackage

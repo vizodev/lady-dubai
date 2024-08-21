@@ -82,7 +82,7 @@
 		>
 			<Accommodations
 				v-if="currentTripPackage"
-				:data="currentTripPackage.accommodation"
+				:data="currentTripPackage.accommodations"
 			/>
 		</section>
 
@@ -169,12 +169,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	type Attraction,
-	type AvailableDate,
-	type RelativePathComponent,
-	type TripPackage,
-} from "~/models"
+import { type Attraction, type AvailableDate, type TripPackage } from "~/models"
 import { HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
