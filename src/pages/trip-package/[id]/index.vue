@@ -93,7 +93,7 @@
 		>
 			<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
 				<p class="text-4xl font-medium font-roboto-serif">
-					Flights from Rio de Janeiro (GIG)
+					Flights from {{ currentDepartingTakeoffAirport?.title[locale] }}
 				</p>
 				<p class="text-base font-light font-inter">
 					<span class="font-bold">Arriving from a different destination?</span>
@@ -187,6 +187,7 @@
 
 <script lang="ts" setup>
 import {
+	type Airport,
 	type Attraction,
 	type Flight,
 	type RelativePathComponent,
@@ -195,9 +196,11 @@ import {
 import { HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
+const airportsStore = useAirportsStore()
 const attractionsStore = useAttractionsStore()
 const tripPackagesStore = useTripPackagesStore()
 const { tripPackages } = storeToRefs(tripPackagesStore)
+const { airports } = storeToRefs(airportsStore)
 
 const props = computed(() => {
 	const route = useRoute()
@@ -245,9 +248,23 @@ const loadAttractions = async () => {
 
 // Flights
 const currentFlightDate = ref<Flight>()
+const currentDepartingTakeoffAirport = computed(() => {
+	if (!currentFlightDate.value) return
+
+	return airports.value.find(
+		(i) => i.id === currentFlightDate.value!.departing_takeoff_airport_id
+	)
+})
 
 const onFlightDateChange = (data: Flight) => {
-	currentFlightDate.value = data
+	currentFlightDate.value = {
+		...data,
+		departing_takeoff: new Date(data.departing_takeoff),
+		departing_landing: new Date(data.departing_landing),
+
+		returning_takeoff: new Date(data.returning_takeoff),
+		returning_landing: new Date(data.returning_landing),
+	}
 }
 
 // Relative path

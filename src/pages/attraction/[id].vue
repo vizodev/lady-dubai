@@ -1,4 +1,6 @@
 <template>
+	<Header with-logo class="z-50"/>
+
 	<div class="flex flex-col overflow-y-auto w-full">
 		<iframe
 			:src="currentAttraction?.video_url"
