@@ -6,7 +6,7 @@ import {
 	SUPABASE_TRIP_PACKAGES_TABLE,
 	TRIP_PACKAGE_STORE,
 } from "~/constants"
-import { type AvailableDate, type TripPackage } from "~/models"
+import { type TripPackage } from "~/models"
 
 interface IState {
 	tripPackages: TripPackage[]

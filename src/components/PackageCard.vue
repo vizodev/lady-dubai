@@ -41,10 +41,10 @@
 				<span
 					class="text-brown-700 text-[28px] sm:text-[32px] md:text-[36px] font-roboto-serif font-medium !leading-tight"
 				>
-					{{ tripPackage.title }}
+					{{ tripPackage.title[locale] }}
 				</span>
 				<span class="text-brown-700 text-[14px] font-inter font-medium">
-					{{ tripPackage.headline }}
+					{{ tripPackage.headline[locale] }}
 				</span>
 			</div>
 			<div class="flex flex-wrap gap-5 items-center">
@@ -149,9 +149,13 @@ const checkIsNew = () => {
 	}
 }
 
+// Locales
+const { locale } = useI18n()
+const localePath = useLocalePath()
+
 // Routes
 const openTripPackage = () => {
-	navigateTo(TRIP_PACKAGE_ROUTE(props.tripPackage.id))
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.tripPackage.id)))
 }
 
 // Life cycle

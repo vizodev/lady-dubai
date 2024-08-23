@@ -42,6 +42,15 @@
 		<Separator />
 
 		<div
+			class="flex justify-center md:justify-start gap-6 flex-wrap px-6 xl:px-[9%]"
+		>
+			<LanguageFlag
+				v-for="language of Object.values(LanguageEnum)"
+				:language="language"
+			/>
+		</div>
+
+		<div
 			class="flex items-center justify-between px-6 xl:px-[9%] flex-col lg:flex-row gap-4 lg:gap-0"
 		>
 			<span class="font-inter font-light text-center sm:text-start">
@@ -60,12 +69,6 @@
 						>Terms of Use</a
 					>
 				</div>
-				<div class="flex items-center gap-6 flex-wrap">
-					<LanguageFlag :language="'English'" />
-					<LanguageFlag :language="'Hebraico'" />
-					<LanguageFlag :language="'Arabic'" />
-					<LanguageFlag :language="'Russian'" />
-				</div>
 			</div>
 		</div>
 	</footer>
@@ -79,6 +82,7 @@ import {
 	LOGO_FOOTER_SVG,
 	WHATSAPP_ICON_SVG,
 } from "~/constants"
+import { LanguageEnum } from "~/models"
 </script>
 
 <style scoped>

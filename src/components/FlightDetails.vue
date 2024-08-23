@@ -9,9 +9,11 @@
 			>
 		</p>
 
-		<p class="text-base font-medium mb-1">{{ currentAirport?.title }}</p>
+		<p class="text-base font-medium mb-1">
+			{{ currentAirport?.title[locale] }}
+		</p>
 		<p class="text-xs font-normal">
-			{{ currentAirport?.description }}
+			{{ currentAirport?.description[locale] }}
 		</p>
 	</div>
 </template>
@@ -41,4 +43,7 @@ const timeLabel = () => {
 		minute: "numeric",
 	})
 }
+
+// Locales
+const { locale } = useI18n()
 </script>

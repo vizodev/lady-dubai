@@ -31,23 +31,23 @@
 				<span
 					class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
 				>
-					{{ accommodation.title }}
+					{{ accommodation.title[locale] }}
 				</span>
 				<span
 					class="font-inter font-light leading-none text-[20px] sm:(leading-tight text-[24px])"
 				>
-					{{ accommodation.subtitle }}
+					{{ accommodation.subtitle[locale] }}
 				</span>
 			</div>
 			<span class="font-light font-inter leading-tight">
-				{{ accommodation.description }}
+				{{ accommodation.description[locale] }}
 			</span>
 			<ul class="m-0 pl-4 w-full list-disc flex flex-col gap-2">
 				<li
 					v-for="feature of accommodation.features"
 					class="font-inter font-medium leading-tight"
 				>
-					{{ feature }}
+					{{ feature[locale] }}
 				</li>
 			</ul>
 		</div>
@@ -55,11 +55,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { Accommodation } from "~/models"
+import type { Accommodation, TextType } from "~/models"
 
 const { data } = defineProps<{
 	data: Accommodation[]
 }>()
 
 const accommodation = data[0]
+
+// Locales
+const { locale } = useI18n()
 </script>

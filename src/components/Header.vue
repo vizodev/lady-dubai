@@ -8,24 +8,29 @@
 		}"
 	>
 		<img
-			:src="LOGO_WHITE_SVG"
+			:src="showLogo && !paintHeaderBg ? LOGO_SVG : LOGO_WHITE_SVG"
 			alt=""
 			class="h-[40px]"
 			:class="{
-				'md:hidden': !paintHeaderBg,
+				'md:hidden': !showLogo,
 			}"
 		/>
+
 		<button class="md:hidden" @click="showMenu = true">
 			<img :src="MENU_SVG" alt="" />
 		</button>
+
 		<div class="md:flex items-center gap-[72px] text-white hidden">
 			<a class="font-medium font-inter uppercase" href="">Why Us</a>
+
 			<a class="font-medium font-inter uppercase" href="">Travel Blog</a>
-			<div class="flex items-center gap-3">
-				<div class="w-[27px] h-4 rounded-sm bg-white"></div>
-				<span class="uppercase text-xs font-inter font-medium">English</span>
-			</div>
+
+			<LanguageFlag
+				class="text-white"
+				:language="localeToLanguage[locale as keyof typeof localeToLanguage]"
+			/>
 		</div>
+
 		<div
 			class="flex flex-col w-full h-full fixed z-[9999] bg-[#FFC1D3] text-white px-4 inset-0 justify-center py-10"
 			v-if="showMenu"
@@ -69,18 +74,24 @@ import {
 	INSTAGRAM_ICON_SVG,
 	TIKTOK_ICON_SVG,
 	LOGO_WHITE_SVG,
+	LOGO_SVG,
 	MENU_SVG,
 	CROSS_SVG,
 } from "~/constants"
+import { localeToLanguage } from "~/data"
 
 const props = defineProps<{
 	withLogo?: boolean
 }>()
 
-const showMenu = ref(false)
-const paintHeaderBg = ref(false)
+// Locales
+const { locale } = useI18n()
 
 // Listeners
+const showMenu = ref(false)
+const paintHeaderBg = ref(false)
+const showLogo = ref(false)
+
 const resizeEventName = "resize"
 const scrollEventName = "scroll"
 
@@ -92,14 +103,21 @@ const handleResize = () => {
 const handleScroll = () => {
 	if ((window?.scrollY ?? 0) > 200) {
 		paintHeaderBg.value = true
+
+		if (!props.withLogo) showLogo.value = true
 	} else {
 		paintHeaderBg.value = false
+
+		if (!props.withLogo) showLogo.value = false
 	}
 }
 
+// Life cycle
 onMounted(() => {
 	window.addEventListener(resizeEventName, handleResize)
 	window.addEventListener(scrollEventName, handleScroll)
+
+	if (props.withLogo) showLogo.value = true
 })
 
 onUnmounted(() => {

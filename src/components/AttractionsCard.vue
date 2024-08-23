@@ -5,13 +5,13 @@
 		</div>
 		<div class="flex flex-col py-6 px-4 sm:p-6 gap-3.5">
 			<span class="text-[20px] font-medium leading-tight font-inter">
-				{{ data.title }}
+				{{ data.title[locale] }}
 			</span>
 			<div class="flex flex-col items-start gap-3.5">
 				<span
 					class="text-[14px] text-gray-600 leading-tight font-medium font-inter"
 				>
-					{{ data.description }}
+					{{ data.description[locale] }}
 				</span>
 				<button
 					@click="goToAttraction"
@@ -32,7 +32,12 @@ const { data } = defineProps<{
 	data: Attraction
 }>()
 
+// Locales
+const { locale } = useI18n()
+const localePath = useLocalePath()
+
+// Routes
 const goToAttraction = () => {
-	navigateTo(ATTRACTION_ROUTE(data.id))
+	navigateTo(localePath(ATTRACTION_ROUTE(data.id)))
 }
 </script>

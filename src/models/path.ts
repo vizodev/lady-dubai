@@ -1,8 +1,7 @@
+import type { TextType } from "./locales"
+
 export type RelativePathComponent = {
-  label: {
-    en: string;
-    he: string;
-  };
-  path?: string;
-  active?: boolean;
-};
+	label: TextType
+	path?: string
+	active?: boolean
+}

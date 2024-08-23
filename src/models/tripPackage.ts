@@ -1,48 +1,46 @@
+import type { TextListType, TextType } from "./locales"
+
 export type TripPackage = {
 	id: number
 	created_at: Date
-	title: string
-	subtitle: string
-	headline: string
-	description: string
-	downsale_price: {
-		usd: number
-		ils: number
-		aed: number
-	}
-	price: {
-		usd: number
-		ils: number
-		aed: number
-	}
+	title: TextType
+	subtitle: TextType
+	headline: TextType
+	description: TextType
+	downsale_price: Price
+	price: Price
 	gallery: string[]
-	services: SingleService[]
+	services: PackageService[]
 	guidelanguages: Language[]
 	flights: Flight[]
+	accommodations: Accommodation[]
 	cancelationPolicy: {
-		label: {
-			en: string[]
-			he: string[]
-		}
+		label: TextListType
 	}
 	disclaimer: {
-		label: {
-			en: string[]
-			he: string[]
-		}
+		label: TextListType
 	}
-	accommodations: Accommodation[]
 }
 
 export type Accommodation = {
+	id: number
+
 	images: string[]
-	title: string
-	subtitle: string
-	description: string
-	features: string[]
+	title: TextType
+	subtitle: TextType
+	description: TextType
+	features: TextType[]
+}
+
+export type Price = {
+	usd: number
+	ils: number
+	aed: number
 }
 
 export type Flight = {
+	id: number
+
 	departing_takeoff: Date
 	departing_takeoff_airport_id: number
 	departing_landing: Date
@@ -54,14 +52,9 @@ export type Flight = {
 	returning_landing_airport_id: number
 }
 
-export type AvailableDate = {
-	from: Date
-	to: Date
-}
-
 export type Language = {
 	id: number
-	created_at: Date
+
 	acronym: {
 		en: string
 		he: string
@@ -74,31 +67,9 @@ export type Language = {
 	is_system_language: boolean
 }
 
-export type SingleService = {
+export type PackageService = {
 	id: number
-	created_at: Date
-	label: {
-		en: string
-		he: string
-	}
+
+	label: TextType
 	icon: string
-}
-
-export enum GuideLanguages {
-	ENGLISH = "ENGLISH",
-	ARABIC = "ARABIC",
-	FRENCH = "FRENCH",
-	SPANISH = "SPANISH",
-	RUSSIAN = "RUSSIAN",
-	GERMAN = "GERMAN",
-}
-
-export enum PackagesServices {
-	FLIGHT_TICKETS = "FLIGHT_TICKETS",
-	ACCOMMODATION = "ACCOMMODATION",
-	ATTRACTION_TICKETS = "ATTRACTION_TICKETS",
-	MEALS = "MEALS",
-	TRANSFER = "TRANSFER",
-	LAUNDRY = "LAUNDRY",
-	TOWELS = "TOWELS",
 }

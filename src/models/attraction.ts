@@ -1,15 +1,15 @@
+import type { TextType } from "./locales"
+
 export type Attraction = {
 	id: number
 	banner: string
 	video_url: string
-	title: string
-	arabic_title: string
-	subtitle: string
-	description: string
+	title: TextType
+	description: TextType
 	aside_img: string
 	gallery: string[]
 	map_src: string
-	long_description_html: string
-	first_text_html: string
-	second_text_html: string
+	long_description_html: TextType
+	first_text_html: TextType
+	second_text_html: TextType
 }

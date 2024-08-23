@@ -1,5 +1,7 @@
 <template>
 	<div class="flex flex-col overflow-y-auto w-full" v-if="currentTripPackage">
+		<Header with-logo class="z-50" />
+
 		<TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
 
 		<section
@@ -12,16 +14,16 @@
 						<span
 							class="font-medium text-[32px] sm:text-[36px] md:text-[42px] lg:text-[52px] text-[#272223] leading-tight font-roboto-serif"
 						>
-							{{ currentTripPackage?.title }}
+							{{ currentTripPackage.title[locale] }}
 						</span>
 						<span
 							class="font-inter font-light text-[20px] sm:text-[24px] leading-none"
 						>
-							{{ currentTripPackage?.subtitle }}
+							{{ currentTripPackage.subtitle[locale] }}
 						</span>
 					</div>
 					<span class="font-light font-inter leading-normal">
-						{{ currentTripPackage?.description }}
+						{{ currentTripPackage.description[locale] }}
 					</span>
 				</div>
 				<div class="flex flex-col gap-12">
@@ -150,7 +152,7 @@
 				<button
 					class="flex items-center gap-1.5"
 					v-if="previousPackage"
-					@click="navigateTo(TRIP_PACKAGE_ROUTE(previousPackage.id))"
+					@click="openTripPackage(previousPackage.id)"
 				>
 					<div class="flex items-center justify-center w-9 h-9">
 						<i class="fi fi-sr-angle-left text-[12px]"></i>
@@ -164,7 +166,7 @@
 				<button
 					class="flex items-center gap-1.5"
 					v-if="nextPackage"
-					@click="navigateTo(TRIP_PACKAGE_ROUTE(nextPackage.id))"
+					@click="openTripPackage(nextPackage.id)"
 				>
 					<span
 						class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
@@ -177,6 +179,7 @@
 				</button>
 			</div>
 		</div>
+
 		<Contact />
 		<Footer />
 	</div>
@@ -185,8 +188,8 @@
 <script lang="ts" setup>
 import {
 	type Attraction,
-	type AvailableDate,
 	type Flight,
+	type RelativePathComponent,
 	type TripPackage,
 } from "~/models"
 import { HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
@@ -266,15 +269,20 @@ const relativePath = computed(() => {
 		},
 		{
 			label: {
-				en: currentTripPackage.value?.title ?? "",
-				he: currentTripPackage.value?.title ?? "",
+				en: currentTripPackage.value?.title.en ?? "",
 			},
 		},
-	]
+	] as RelativePathComponent[]
 })
 
+// Locales
+const { locale } = useI18n()
+const localePath = useLocalePath()
+
 // Routes
-const openHome = () => navigateTo(HOME_ROUTE)
+const openHome = () => navigateTo(localePath(HOME_ROUTE))
+const openTripPackage = (id: number) =>
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(id)))
 
 // Life cycle
 onMounted(() => {

@@ -8,12 +8,12 @@
 				'text-[#272223]': index === relativePath.length - 1,
 			}"
 			:disabled="index === relativePath.length - 1"
-			@click="path.path?.length ? navigateTo(path.path) : null"
+			@click="path.path?.length ? openPath(path.path) : null"
 		>
 			<span
 				class="text-[12px] leading-tight font-medium font-inter uppercase hover:underline"
 			>
-				{{ path.label.en }}
+				{{ path.label[locale] }}
 			</span>
 			<div
 				class="flex items-center justify-center h-full"
@@ -31,4 +31,11 @@ import { type RelativePathComponent } from "~/models"
 defineProps<{
 	relativePath: RelativePathComponent[]
 }>()
+
+// Locales
+const { locale } = useI18n()
+const localePath = useLocalePath()
+
+// Routes
+const openPath = (path: string) => navigateTo(localePath(path))
 </script>

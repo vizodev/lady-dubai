@@ -1,14 +1,25 @@
 <template>
 	<button
-		class="flex items-center gap-3 duration-[.2s] text-brown-700 hover:!text-blue-500"
+		@click="changeLocale"
+		class="flex items-center gap-3 duration-[.2s] text-brown-700 hover:(text-blue-500)"
 	>
-		<div class="w-[27px] h-[16px] rounded-sm bg-brown-700"></div>
+		<img :src="languageToFlagSrc[language]" class="w-[27px] h-[16px] rounded-sm"></img>
 		<span class="uppercase font-inter font-medium text-xs">{{ language }}</span>
 	</button>
 </template>
 
 <script lang="ts" setup>
-defineProps<{
-	language: string
+import { LanguageEnum } from "~/models"
+import { languageToLocale, languageToFlagSrc } from "~/data"
+
+const { language } = defineProps<{
+	language: LanguageEnum
 }>()
+
+// Locales
+const { setLocale } = useI18n()
+
+const changeLocale = () => {
+	setLocale(languageToLocale[language])
+}
 </script>

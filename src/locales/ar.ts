@@ -1,3 +1,3 @@
-import type { IMessages } from "~/models/languages"
+import type { ILocaleMessages } from "~/models"
 
-export const LanguageAr: IMessages = {}
+export const LanguageAr: ILocaleMessages = {}

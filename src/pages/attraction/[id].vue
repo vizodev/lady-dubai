@@ -14,12 +14,14 @@
 
 			<div>
 				<p class="font-roboto-serif text-7xl font-bold mb-16">
-					{{ currentAttraction.title }}
-					<p class="text-4xl font-light mt-2">{{ currentAttraction.arabic_title }}</p>
+					{{ currentAttraction.title[locale] }}
+					<p
+					v-if="locale !== 'ar'"
+					class="text-4xl font-light mt-2">{{ currentAttraction.title.ar }}</p>
 				</p>
 
 				<div class="mb-36">
-					<div v-html="currentAttraction?.long_description_html" class="mb-24 font-inter w-full lg:w-4/5"></div>
+					<div v-html="currentAttraction?.long_description_html[locale]" class="mb-24 font-inter w-full lg:w-4/5"></div>
 
 					<div >
 						<p class="mb-6 text-base font-bold">
@@ -32,13 +34,13 @@
 								@click="openTripPackage(tripPackage.id)"
 								class="btn-primary"
 							>
-								{{ tripPackage.title }} >
+								{{ tripPackage.title[locale] }} >
 							</button>
 						</div>
 					</div>
 				</div>
 
-				<div v-html="currentAttraction?.first_text_html" class="mb-20 font-inter w-full lg:w-4/5"></div>
+				<div v-html="currentAttraction?.first_text_html[locale]" class="mb-20 font-inter w-full lg:w-4/5"></div>
 
 				<WhatsappBox
 					data-aos="fade-right"
@@ -56,7 +58,7 @@
 		<div
 			class="flex flex-col gap-20 mb-20 w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
 		>
-			<div v-html="currentAttraction?.second_text_html" class="font-inter w-full lg:w-4/5"></div>
+			<div v-html="currentAttraction?.second_text_html[locale]" class="font-inter w-full lg:w-4/5"></div>
 		</div>
 
 		<iframe
@@ -108,8 +110,7 @@ const relativePath = computed(
 			},
 			{
 				label: {
-					en: currentAttraction.value?.title ?? "",
-					he: currentAttraction.value?.title ?? "",
+					en: currentAttraction.value?.title.en ?? "",
 				},
 			},
 		] as RelativePathComponent[]
@@ -136,13 +137,17 @@ const loadTripPackagesByAttraction = async () => {
 	tripPackagesByAttraction.value = await tripPackagesStore.getTripPackagesByAttractionId(attractionId.value)
 }
 
+// Locales
+const {locale} = useI18n()
+const localePath = useLocalePath()
+
 // Routes
 const openTripPackage = (id: number) => {
 	navigateTo(
-		TRIP_PACKAGE_ROUTE(id)
+		localePath(TRIP_PACKAGE_ROUTE(id))
 	)
 }
-const openHome = () => navigateTo(HOME_ROUTE)
+const openHome = () => navigateTo(localePath(HOME_ROUTE))
 
 // Life cycle
 onMounted(() => {

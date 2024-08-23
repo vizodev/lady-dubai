@@ -169,7 +169,7 @@
 							<img :src="PACKAGE_SVG" alt="package icon" class="w-min" />
 
 							<p class="text-3xl font-roboto-serif">
-								{{ currentTripPackage?.title }}
+								{{ currentTripPackage?.title[locale] }}
 							</p>
 						</div>
 
@@ -228,7 +228,7 @@
 </template>
 
 <script setup lang="ts">
-import { type AvailableDate, type Flight, type TripPackage } from "~/models"
+import { type Flight, type TripPackage } from "~/models"
 import {
 	checkoutSchema,
 	creditCardValue,
@@ -295,9 +295,14 @@ const onSubmit = (data: CheckoutSchemaSubmit) => {
 	console.log(data)
 }
 
+// Locales
+const { locale } = useI18n()
+const localePath = useLocalePath()
+
 // Routes
-const openTripPackage = () => navigateTo(TRIP_PACKAGE_ROUTE(props.value.id))
-const openHome = () => navigateTo(HOME_ROUTE)
+const openHome = () => navigateTo(localePath(HOME_ROUTE))
+const openTripPackage = () =>
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.value.id)))
 
 // Life cycle
 onMounted(() => loadTripPackage())
