@@ -10,12 +10,24 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	srcDir: "src",
 	css: ["~/assets/css/global.css"],
-	modules: ["@pinia/nuxt", "@nuxtjs/supabase", "nuxt-aos", "nuxt-windicss"],
+	modules: [
+		"@pinia/nuxt",
+		"@nuxtjs/supabase",
+		"nuxt-aos",
+		"nuxt-windicss",
+		"@nuxtjs/i18n",
+	],
 	supabase: {
 		key: SUPABASE_KEY,
 		url: SUPABASE_URL,
 		redirect: SUPABASE_REDIRECT,
 		serviceKey: SUPABASE_SERVICE_KEY,
+	},
+	i18n: {
+		vueI18n: "./src/locales/i18n.config.ts",
+		locales: ["en", "he", "es", "pt-br", "de", "fr", "ar", "ru"],
+		defaultLocale: "en",
+		strategy: "prefix",
 	},
 	aos: {
 		// Global settings:
