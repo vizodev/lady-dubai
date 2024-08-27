@@ -6,18 +6,23 @@
 			<span
 				class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
 			>
-				Or Talk to Us Via WhatsApp
+				{{ t("whatsappBox.title") }}
 			</span>
 			<span class="text-[20px] sm:text-[24px] font-roboto-serif leading-tight">
-				Ir you have any doubts or special requests
+				{{ t("whatsappBox.description") }}
 			</span>
 		</div>
 		<button class="btn-primary">
 			<div class="w-max flex gap-3">
 				<i class="fi fi-brands-whatsapp"> </i>
 
-				<p class="text-center">Chat on WhatsApp</p>
+				<p class="text-center">{{ t("whatsappBox.button") }}</p>
 			</div>
 		</button>
 	</div>
 </template>
+
+<script setup lang="ts">
+// Locales
+const { t } = useI18n()
+</script>

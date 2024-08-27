@@ -24,26 +24,26 @@
 						<span
 							class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-bold font-roboto-serif text-light"
 						>
-							Woman-only
+							{{ t("hero.title1") }}
 						</span>
 						<span
 							class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-roboto-serif text-light"
 						>
-							Travel Packages <br />
-							to Dubai
+							{{ t("hero.title2") }}
 						</span>
 					</div>
 					<div class="flex flex-col">
 						<p
 							class="font-inter sm:text-[20px] xl:text-[24px] text-light !leading-9"
 						>
-							Enjoy the attractions of Dubai and the UAE in a
+							{{ t("hero.description1") }}
 							<br />
-							<b>safe, gender-oriented, women-exclusive tour.</b>
+							<b>{{ t("hero.description2") }}</b>
 						</p>
 					</div>
 				</div>
-				<button class="btn-primary">Book your Trip</button>
+
+				<button class="btn-primary">{{ t("hero.button") }}</button>
 			</div>
 		</div>
 		<div
@@ -62,7 +62,7 @@
 		<span
 			class="absolute bottom-[28px] right-[40px] xl:right-[82px] text-pink-100 font-inter font-medium"
 		>
-			The Dubai Experience
+			{{ t("hero.footer") }}
 		</span>
 	</div>
 </template>
@@ -82,6 +82,9 @@ import {
 	HERO7_IMAGE,
 	HERO8_IMAGE,
 } from "~/constants"
+
+// Locales
+const { t } = useI18n()
 
 // Background
 const backgrounds = reactive<{

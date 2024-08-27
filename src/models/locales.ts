@@ -1,4 +1,47 @@
-export interface ILocaleMessages {}
+export interface ILocaleMessages {
+	companyName: string
+	header: {
+		whyUs: string
+		travelBlog: string
+		attractions: string
+	}
+	footer: {
+		customerService: string
+		customerServiceDescription: string
+		copyright: string
+		privacyPolicy: string
+		termsOfUse: string
+	}
+	hero: {
+		title1: string
+		title2: string
+		description1: string
+		description2: string
+		button: string
+		footer: string
+	}
+	cta: {
+		title1: string
+		title2: string
+		title3: string
+		description1: string
+		description2: string
+		testemonialButton: string
+		testemonialDescription1: string
+		testemonialDescription2: string
+		testemonialDescription3: string
+	}
+	contact: {
+		title: string
+		interestedInPark: string
+		button: string
+	}
+	whatsappBox: {
+		title: string
+		description: string
+		button: string
+	}
+}
 
 export type TextType = {
 	[key: string]: string

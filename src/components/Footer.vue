@@ -7,10 +7,12 @@
 				<div
 					class="flex flex-col gap-1.5 text-brown-700 items-center md:items-start"
 				>
-					<span class="font-inter font-bold uppercase">Customer service</span>
-					<span class="font-inter font-light"
-						>Available sunday to friday, 10am CT to 16pm CT</span
-					>
+					<span class="font-inter font-bold uppercase">{{
+						t("footer.customerService")
+					}}</span>
+					<span class="font-inter font-light">{{
+						t("footer.customerServiceDescription")
+					}}</span>
 				</div>
 				<div class="flex items-center gap-3">
 					<img :src="WHATSAPP_ICON_SVG" alt="" class="w-6" />
@@ -54,19 +56,20 @@
 			class="flex items-center justify-between px-6 xl:px-[9%] flex-col lg:flex-row gap-4 lg:gap-0"
 		>
 			<span class="font-inter font-light text-center sm:text-start">
-				LADYDUBAI Copyright © 2024 Lady Dubai. All rights reserved
+				{{ t("footer.copyright") }}
 			</span>
+
 			<div class="flex flex-col gap-6 items-center lg:items-end">
 				<div class="flex items-center gap-6">
 					<a
 						href="*"
 						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s]"
-						>Privacy Policy</a
+						>{{ t("footer.privacyPolicy") }}</a
 					>
 					<a
 						href="*"
 						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s]"
-						>Terms of Use</a
+						>{{ t("footer.termsOfUse") }}</a
 					>
 				</div>
 			</div>
@@ -83,6 +86,9 @@ import {
 	WHATSAPP_ICON_SVG,
 } from "~/constants"
 import { LanguageEnum } from "~/models"
+
+// Locales
+const { t } = useI18n()
 </script>
 
 <style scoped>

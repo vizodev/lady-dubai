@@ -22,14 +22,20 @@
 
 		<!-- Desktop menu -->
 		<div class="md:flex items-center gap-[72px] text-white hidden">
-			<a class="font-medium font-inter uppercase" href="">Why Us</a>
+			<a class="font-medium font-inter uppercase" href="">{{
+				t("header.whyUs")
+			}}</a>
 
-			<a class="font-medium font-inter uppercase" href="">Travel Blog</a>
+			<a class="font-medium font-inter uppercase" href="">{{
+				t("header.travelBlog")
+			}}</a>
 
 			<!-- Attractions dropdown -->
 			<div class="dropdown-box group">
 				<div class="flex gap-3">
-					<p class="font-medium font-inter uppercase">Attractions</p>
+					<p class="font-medium font-inter uppercase">
+						{{ t("header.attractions") }}
+					</p>
 
 					<i class="fi fi-rs-angle-down"></i>
 				</div>
@@ -84,8 +90,12 @@
 				class="py-10 relative flex flex-col items-center gap-20 overflow-scroll"
 			>
 				<div class="flex flex-col gap-8 items-center">
-					<a class="font-medium font-inter uppercase" href="">Why Us</a>
-					<a class="font-medium font-inter uppercase" href="">Travel Blog</a>
+					<a class="font-medium font-inter uppercase" href="">{{
+						t("header.whyUs")
+					}}</a>
+					<a class="font-medium font-inter uppercase" href="">{{
+						t("header.travelBlog")
+					}}</a>
 
 					<!-- Attractions dropdown -->
 					<div class="flex flex-col gap-3 items-center">
@@ -93,7 +103,9 @@
 							@click="toogleShowAttractionsMobileDropdown"
 							class="flex gap-3"
 						>
-							<p class="font-medium font-inter uppercase">Attractions</p>
+							<p class="font-medium font-inter uppercase">
+								{{ t("header.attractions") }}
+							</p>
 
 							<i
 								class="fi fi-rs-angle-down"
@@ -217,7 +229,7 @@ const onAttractionHover = (data: Attraction) => {
 }
 
 // Locales
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Listeners

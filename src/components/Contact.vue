@@ -13,7 +13,7 @@
 			<span
 				class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
 			>
-				Send Us a Message
+				{{ t("contact.title") }}
 			</span>
 
 			<div class="flex flex-col gap-6 my-12">
@@ -24,7 +24,7 @@
 					<span
 						class="font-inter text-[20px] sm:text-[24px] text-brown-700 mb-2"
 					>
-						Interested in a specific Pack?
+						{{ t("contact.interestedInPark") }}
 					</span>
 
 					<div class="grid grid-cols-2 gap-4">
@@ -42,7 +42,9 @@
 				<TextAreaField name="message" placeholder="Message" />
 			</div>
 
-			<button type="submit" class="btn-primary">Send</button>
+			<button type="submit" class="btn-primary">
+				{{ t("contact.button") }}
+			</button>
 		</BaseForm>
 
 		<WhatsappBox
@@ -57,6 +59,10 @@
 import { contactSchema, type ContactSchemaSubmit } from "../formSchemas"
 import { defaultTripPackages } from "~/data"
 
+// Locales
+const { t } = useI18n()
+
+// Form
 const onSubmit = (data: ContactSchemaSubmit) => {
 	console.log(data)
 }
