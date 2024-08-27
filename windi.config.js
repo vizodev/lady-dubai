@@ -35,5 +35,9 @@ export default defineConfig({
 			"text-white font-bold font-inter text-sm px-3 py-2 rounded-xl bg-pink-600 hover:(bg-pink-700)",
 		"btn-rounded":
 			"w-max border border-pink-600 px-3 py-2 text-pink-600 font-bold text-[14px] leading-tight font-inter rounded-xl hover:(bg-pink-300)",
+
+		"dropdown-box": "relative hover:(cursor-pointer)",
+		"dropdown-content":
+			"p-6 pr-14 w-max right-0 bg-white rounded-lg hidden absolute ",
 	},
 })
