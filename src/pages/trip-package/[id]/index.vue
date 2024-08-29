@@ -58,8 +58,10 @@
 			</div>
 
 			<TripPackagePageEdgeCard
-				v-if="currentTripPackage"
+				v-if="currentTripPackage && currentFlightDate"
 				:trip-package="currentTripPackage"
+				:current-flight="currentFlightDate"
+				@on-flight-change="onFlightDateChange"
 			/>
 		</section>
 
@@ -110,8 +112,9 @@
 				</p>
 
 				<TripPackageAvailableDates
+					v-if="currentFlightDate"
 					:flights="currentTripPackage.flights"
-					:initial-value="currentTripPackage.flights[0]"
+					:current-flight="currentFlightDate"
 					@on-change="onFlightDateChange"
 				/>
 			</div>
@@ -248,7 +251,9 @@ const loadTripPackage = async () => {
 		tripPackages.value.find((i) => i.id === props.value.id) ??
 		(await tripPackagesStore.getTripPackageById(props.value.id))
 
-	if (!currentTripPackage.value) openHome()
+	if (!currentTripPackage.value) return openHome()
+
+	currentFlightDate.value = currentTripPackage.value.flights[0]
 }
 
 // Attractions
@@ -271,14 +276,7 @@ const currentDepartingTakeoffAirport = computed(() => {
 })
 
 const onFlightDateChange = (data: Flight) => {
-	currentFlightDate.value = {
-		...data,
-		departing_takeoff: new Date(data.departing_takeoff),
-		departing_landing: new Date(data.departing_landing),
-
-		returning_takeoff: new Date(data.returning_takeoff),
-		returning_landing: new Date(data.returning_landing),
-	}
+	currentFlightDate.value = data
 }
 
 // Relative path

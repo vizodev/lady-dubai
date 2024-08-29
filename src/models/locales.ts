@@ -3,6 +3,7 @@ export interface ILocaleMessages {
 	dirham: string
 	allPackages: string
 	attractions: string
+	nextAvailableDates: string
 	header: {
 		whyUs: string
 		travelBlog: string
@@ -57,9 +58,9 @@ export interface ILocaleMessages {
 		edgeCardTitle: string
 		edgeCardPerPerson: string
 		edgeCardButton: string
-		edgeCardNextAvailableDates: string
 		edgeCardCancelationPolicy: string
 		edgeCardDisclaimer: string
+		modalButton: string
 	}
 	attraction: {
 		learnMore: string
@@ -71,7 +72,10 @@ export interface ILocaleMessages {
 		return: string
 		traveller: string
 		addTraveller: string
+		alterDate: string
 		total: string
+		flightReturn: string
+		flightDeparture: string
 		privacyPolicyDescription1: string
 		privacyPolicyDescription2: string
 		privacyPolicyDescription3: string
@@ -81,6 +85,7 @@ export interface ILocaleMessages {
 		contactInfo: string
 		paymentMethodInfo: string
 		cardDetailsInfo: string
+		modalButton: string
 	}
 }
 

@@ -40,6 +40,14 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 				data?.map((i: any) => {
 					i.cancelationPolicy = i.cancelationpolicy[0]
 					i.disclaimer = i.disclaimer[0]
+					i.flights = (i.flights as any[]).map((i) => ({
+						...i,
+						departing_takeoff: new Date(i.departing_takeoff),
+						departing_landing: new Date(i.departing_landing),
+
+						returning_takeoff: new Date(i.returning_takeoff),
+						returning_landing: new Date(i.returning_landing),
+					}))
 				})
 
 				this.tripPackages = data as TripPackage[]
@@ -68,6 +76,14 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 					...tripPackage,
 					cancelationPolicy: tripPackage.cancelationpolicy[0],
 					disclaimer: tripPackage.disclaimer[0],
+					flights: tripPackage.flights.map((i: any) => ({
+						...i,
+						departing_takeoff: new Date(i.departing_takeoff),
+						departing_landing: new Date(i.departing_landing),
+
+						returning_takeoff: new Date(i.returning_takeoff),
+						returning_landing: new Date(i.returning_landing),
+					})),
 				} as TripPackage
 			} catch (error) {
 				this.errorOnLoadTripPackage = true

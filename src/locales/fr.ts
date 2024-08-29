@@ -5,6 +5,7 @@ export const languageFr: ILocaleMessages = {
 	dirham: "DIRHAM",
 	allPackages: "Tous les forfaits",
 	attractions: "Attractions",
+	nextAvailableDates: "Suivant Dates disponibles",
 	header: {
 		whyUs: "Pourquoi nous",
 		attractions: "Attractions",
@@ -64,9 +65,9 @@ export const languageFr: ILocaleMessages = {
 		edgeCardTitle: "Prix ​​promotionnel à durée limitée",
 		edgeCardPerPerson: "par personne",
 		edgeCardButton: "Obtenir le package",
-		edgeCardNextAvailableDates: "Suivant Dates disponibles",
 		edgeCardCancelationPolicy: "Politique d'annulation :",
 		edgeCardDisclaimer: "Discalimer :",
+		modalButton: "Sauvegarder",
 	},
 	attraction: {
 		learnMore: "Apprendre encore plus",
@@ -79,6 +80,10 @@ export const languageFr: ILocaleMessages = {
 		traveller: "Voyageur",
 		addTraveller: "Ajouter un voyageur",
 		total: "TOTAL",
+		alterDate: "Modifier la date",
+		flightDeparture: "Départ",
+		flightReturn: "Retour",
+		modalButton: "Sauvegarder",
 		privacyPolicyDescription1: "J'ai lu et accepté le",
 		privacyPolicyDescription2:
 			"conditions d'achat, politique de confidentialité",

@@ -4,7 +4,7 @@
 			v-for="dt in flights"
 			class="btn-rounded"
 			:class="{
-				'bg-pink-600 text-white hover:(bg-pink-700)': selectedFlight === dt,
+				'bg-pink-600 text-white hover:(bg-pink-700)': currentFlight === dt,
 			}"
 			@click="() => onChange(dt)"
 		>
@@ -17,9 +17,9 @@
 <script setup lang="ts">
 import { type Flight } from "~/models"
 
-const { initialValue } = defineProps<{
+defineProps<{
 	flights: Flight[]
-	initialValue?: Flight
+	currentFlight: Flight
 }>()
 
 const emit = defineEmits<{
@@ -27,11 +27,7 @@ const emit = defineEmits<{
 }>()
 
 // Dates
-const selectedFlight = ref<Flight>()
-
 const onChange = (data: Flight) => {
-	selectedFlight.value = data
-
 	emit("onChange", data)
 }
 const handleFlightLabel = (data: Flight) => {
@@ -57,9 +53,4 @@ const handleFlightYearLabel = (data: Flight) => {
 
 	return to.getFullYear()
 }
-
-// Life cycle
-onMounted(() => {
-	if (initialValue) onChange(initialValue)
-})
 </script>

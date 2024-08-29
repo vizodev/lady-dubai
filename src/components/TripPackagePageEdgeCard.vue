@@ -49,12 +49,12 @@
 		</div>
 		<div class="flex flex-col gap-3 items-start">
 			<span class="uppercase font-bold font-inter leading-tight">
-				{{ t("tripPackage.edgeCardNextAvailableDates") }}
+				{{ t("nextAvailableDates") }}
 			</span>
 
 			<TripPackageAvailableDates
 				:flights="tripPackage.flights"
-				:initial-value="props.tripPackage.flights[0]"
+				:current-flight="currentFlight"
 				@on-change="onFlightChange"
 			/>
 		</div>
@@ -100,13 +100,15 @@ import { TRIP_PACKAGE_CHECKOUT_ROUTE } from "~/constants"
 
 const props = defineProps<{
 	tripPackage: TripPackage
+	currentFlight: Flight
+}>()
+const emit = defineEmits<{
+	(e: "onFlightChange", data: Flight): void
 }>()
 
-// Date
-const selectedFlight = ref<Flight>(props.tripPackage.flights[0])
-
+// Flight
 const onFlightChange = (data: Flight) => {
-	selectedFlight.value = data
+	emit("onFlightChange", data)
 }
 
 // Locales
@@ -119,11 +121,16 @@ const openCheckout = () => {
 		localePath(
 			TRIP_PACKAGE_CHECKOUT_ROUTE(
 				props.tripPackage.id,
-				props.tripPackage.flights.indexOf(selectedFlight.value)
+				props.tripPackage.flights.indexOf(props.currentFlight)
 			)
 		)
 	)
 }
+
+// Life cycle
+onMounted(() => {
+	onFlightChange(props.tripPackage.flights[0])
+})
 </script>
 
 <style scoped>

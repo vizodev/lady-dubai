@@ -1,10 +1,11 @@
 import type { ILocaleMessages } from "~/models"
 
 export const languageEs: ILocaleMessages = {
-	companyName: "Dama dubai",
+	companyName: "Lady dubai",
 	dirham: "DIRHAM",
 	allPackages: "Todos los paquetes",
 	attractions: "Atracciones",
+	nextAvailableDates: "Siguiente Fechas disponibles",
 	header: {
 		whyUs: "¿Por qué nosotros?",
 		attractions: "Atracciones",
@@ -64,9 +65,9 @@ export const languageEs: ILocaleMessages = {
 		edgeCardTitle: "Precio promocional por tiempo limitado",
 		edgeCardPerPerson: "por persona",
 		edgeCardButton: "Obtener paquete",
-		edgeCardNextAvailableDates: "Siguiente Fechas disponibles",
 		edgeCardCancelationPolicy: "Política de cancelación:",
 		edgeCardDisclaimer: "Descalímero:",
+		modalButton: "Ahorrar",
 	},
 	attraction: {
 		learnMore: "Más información",
@@ -79,6 +80,10 @@ export const languageEs: ILocaleMessages = {
 		traveller: "Viajero",
 		addTraveller: "Añadir viajero",
 		total: "TOTAL",
+		alterDate: "Modificar fecha",
+		flightDeparture: "Partida",
+		flightReturn: "Devolver",
+		modalButton: "Ahorrar",
 		privacyPolicyDescription1: "He leído y acepto el",
 		privacyPolicyDescription2: "condiciones de compra, política de privacidad",
 		privacyPolicyDescription3: "y",

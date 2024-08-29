@@ -5,6 +5,7 @@ export const languagePtBr: ILocaleMessages = {
 	dirham: "DIHAM",
 	allPackages: "Todos os pacotes",
 	attractions: "Atrações",
+	nextAvailableDates: "Próximo Datas disponíveis",
 	header: {
 		whyUs: "Por que nós",
 		attractions: "Atrações",
@@ -15,7 +16,7 @@ export const languagePtBr: ILocaleMessages = {
 		customerServiceDescription:
 			"Disponível de domingo a sexta, das 10h CT às 16h CT",
 		copyright: "LADYDUBAI Copyright © 2024 Lady Dubai. ",
-		privacyPolicy: "Política de Privacidade",
+		privacyPolicy: "política de Privacidade",
 		termsOfUse: "Termos de Uso",
 	},
 	hero: {
@@ -65,9 +66,9 @@ export const languagePtBr: ILocaleMessages = {
 		edgeCardTitle: "Preço promocional por tempo limitado",
 		edgeCardPerPerson: "por pessoa",
 		edgeCardButton: "Obter pacote",
-		edgeCardNextAvailableDates: "Próximo Datas disponíveis",
 		edgeCardCancelationPolicy: "Política de cancelamento:",
 		edgeCardDisclaimer: "Discâmero:",
+		modalButton: "Salvar",
 	},
 	attraction: {
 		learnMore: "Saber mais",
@@ -80,6 +81,10 @@ export const languagePtBr: ILocaleMessages = {
 		traveller: "Viajante",
 		addTraveller: "Adicionar viajante",
 		total: "TOTAL",
+		alterDate: "Alterar data",
+		flightDeparture: "Partida",
+		flightReturn: "Retornar",
+		modalButton: "Salvar",
 		privacyPolicyDescription1: "Eu li e aceitei o",
 		privacyPolicyDescription2: "condições de compra, política de privacidade",
 		privacyPolicyDescription3: "e",
