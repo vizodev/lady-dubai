@@ -8,7 +8,7 @@
 					<span
 						class="text-[#749BFF] font-bold text-[20px] leading-tight font-inter"
 					>
-						Limited Time Promotional Price
+						{{ t("tripPackage.edgeCardTitle") }}
 					</span>
 					<div class="relative w-fit">
 						<span
@@ -34,20 +34,22 @@
 						{{ `$ ${tripPackage?.price?.usd}` }}
 					</span>
 					<div class="flex flex-col font-inter">
-						<span class="font-bold text-pink-600 leading-none"> DIRHAM </span>
+						<span class="font-bold text-pink-600 leading-none">
+							{{ t("dirham") }}
+						</span>
 						<span class="text-[14px] font-medium text-pink-500">
-							per person
+							{{ t("tripPackage.edgeCardPerPerson") }}
 						</span>
 					</div>
 				</div>
 			</div>
 			<button @click="openCheckout" class="btn-primary w-full">
-				Get Package
+				{{ t("tripPackage.edgeCardButton") }}
 			</button>
 		</div>
 		<div class="flex flex-col gap-3 items-start">
 			<span class="uppercase font-bold font-inter leading-tight">
-				next Available dates
+				{{ t("tripPackage.edgeCardNextAvailableDates") }}
 			</span>
 
 			<TripPackageAvailableDates
@@ -61,7 +63,7 @@
 				<span
 					class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
 				>
-					Cancelation policy:
+					{{ t("tripPackage.edgeCardCancelationPolicy") }}
 				</span>
 				<ul class="m-0 pl-4 w-full list-disc">
 					<li
@@ -78,7 +80,7 @@
 				<span
 					class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
 				>
-					Discalimer:
+					{{ t("tripPackage.edgeCardDisclaimer") }}
 				</span>
 				<ul class="m-0 pl-4 w-full list-disc">
 					<li v-for="text in tripPackage.disclaimer.label[locale]" class="">
@@ -108,7 +110,7 @@ const onFlightChange = (data: Flight) => {
 }
 
 // Locales
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes

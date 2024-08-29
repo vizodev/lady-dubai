@@ -17,7 +17,7 @@
 					@click="goToAttraction"
 					class="uppercase text-pink-600 text-[12px] leading-tight font-semibold font-inter"
 				>
-					learn more
+					{{ t("attraction.learnMore") }}
 				</button>
 			</div>
 		</div>
@@ -33,7 +33,7 @@ const { data } = defineProps<{
 }>()
 
 // Locales
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes

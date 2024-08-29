@@ -29,7 +29,7 @@
 				<div class="flex flex-col gap-12">
 					<div class="flex flex-col gap-3">
 						<span class="uppercase font-bold font-inter leading-tight">
-							What’s included
+							{{ t("tripPackage.whatsIncluded") }}
 						</span>
 						<div class="flex gap-y-4 gap-x-6 sm:gap-6 flex-wrap">
 							<TripServiceBadge
@@ -41,7 +41,7 @@
 					</div>
 					<div class="flex flex-col gap-3">
 						<span class="uppercase font-bold font-inter leading-tight">
-							Available guide languages
+							{{ t("tripPackage.availableGuideLanguages") }}
 						</span>
 						<div
 							class="flex flex-wrap gap-5 items-center w-full"
@@ -69,7 +69,7 @@
 			<span
 				class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
 			>
-				Main Included Attractions
+				{{ t("tripPackage.mainIncludedAttractions") }}
 			</span>
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
@@ -93,17 +93,21 @@
 		>
 			<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
 				<p class="text-4xl font-medium font-roboto-serif">
-					Flights from {{ currentDepartingTakeoffAirport?.title[locale] }}
+					{{ t("tripPackage.flightTitle") }}
+					{{ currentDepartingTakeoffAirport?.title[locale] }}
 				</p>
 				<p class="text-base font-light font-inter">
-					<span class="font-bold">Arriving from a different destination?</span>
-					Contact Lady Dubai for custom plane tickets from your departure
-					location or purchase package excluding plane tickets.
+					<span class="font-bold">{{
+						t("tripPackage.flightDescription1")
+					}}</span>
+					{{ t("tripPackage.flightDescription2") }}
 				</p>
 			</div>
 
 			<div class="flex flex-col gap-3 mb-16">
-				<p class="text-base font-bold font-inter">SELECTED DATE</p>
+				<p class="text-base font-bold font-inter">
+					{{ t("tripPackage.flightSelectedDate") }}
+				</p>
 
 				<TripPackageAvailableDates
 					:flights="currentTripPackage.flights"
@@ -133,7 +137,7 @@
 
 			<button class="btn-rounded self-end">
 				<i class="fi fi-rs-circle-xmark not-italic flex items-center gap-2">
-					Exclude Plane Ticket
+					{{ t("tripPackage.excludePlaneTicketButton") }}
 				</i>
 			</button>
 		</section>
@@ -144,7 +148,7 @@
 			<span
 				class="text-[32px] sm:text-[36px] md:text-[42px] xl:text-[52px] font-roboto-serif font-medium leading-tight text-[#272223] text-center"
 			>
-				Check Other Packages
+				{{ t("tripPackage.checkOtherPackages") }}
 			</span>
 			<div
 				class="flex items-center gap-6 sm:gap-10 md:gap-16 lg:gap-[82px] text-pink-600 flex-col sm:flex-row"
@@ -163,6 +167,7 @@
 						{{ previousPackage.title }}
 					</span>
 				</button>
+
 				<button
 					class="flex items-center gap-1.5"
 					v-if="nextPackage"
@@ -187,12 +192,21 @@
 
 <script lang="ts" setup>
 import {
-	type Airport,
 	type Attraction,
 	type Flight,
 	type RelativePathComponent,
 	type TripPackage,
 } from "~/models"
+import {
+	languageAr,
+	languageDe,
+	languageEn,
+	languageEs,
+	languageFr,
+	languageHe,
+	languagePtBr,
+	languageRu,
+} from "~/locales"
 import { HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 
 // General
@@ -272,28 +286,38 @@ const relativePath = computed(() => {
 	return [
 		{
 			label: {
-				en: "Lady Dubai",
-				he: "ליידי דובאי",
+				en: languageEn.companyName,
+				ar: languageAr.companyName,
+				de: languageDe.companyName,
+				es: languageEs.companyName,
+				ru: languageRu.companyName,
+				fr: languageFr.companyName,
+				ptBr: languagePtBr.companyName,
+				he: languageHe.companyName,
 			},
 			path: "/",
 		},
 		{
 			label: {
-				en: "All Packages",
-				he: "כל החבילות",
+				en: languageEn.allPackages,
+				ar: languageAr.allPackages,
+				de: languageDe.allPackages,
+				es: languageEs.allPackages,
+				ru: languageRu.allPackages,
+				fr: languageFr.allPackages,
+				ptBr: languagePtBr.allPackages,
+				he: languageHe.allPackages,
 			},
 			path: "/",
 		},
 		{
-			label: {
-				en: currentTripPackage.value?.title.en ?? "",
-			},
+			label: currentTripPackage.value?.title,
 		},
 	] as RelativePathComponent[]
 })
 
 // Locales
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes

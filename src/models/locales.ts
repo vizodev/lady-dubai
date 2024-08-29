@@ -1,5 +1,8 @@
 export interface ILocaleMessages {
 	companyName: string
+	dirham: string
+	allPackages: string
+	attractions: string
 	header: {
 		whyUs: string
 		travelBlog: string
@@ -40,6 +43,44 @@ export interface ILocaleMessages {
 		title: string
 		description: string
 		button: string
+	}
+	tripPackage: {
+		whatsIncluded: string
+		availableGuideLanguages: string
+		mainIncludedAttractions: string
+		flightTitle: string
+		flightDescription1: string
+		flightDescription2: string
+		flightSelectedDate: string
+		excludePlaneTicketButton: string
+		checkOtherPackages: string
+		edgeCardTitle: string
+		edgeCardPerPerson: string
+		edgeCardButton: string
+		edgeCardNextAvailableDates: string
+		edgeCardCancelationPolicy: string
+		edgeCardDisclaimer: string
+	}
+	attraction: {
+		learnMore: string
+		includedInTravelPackages: string
+	}
+	checkout: {
+		checkout: string
+		support: string
+		return: string
+		traveller: string
+		addTraveller: string
+		total: string
+		privacyPolicyDescription1: string
+		privacyPolicyDescription2: string
+		privacyPolicyDescription3: string
+		privacyPolicyDescription4: string
+		purchaseButton: string
+		travellerInfo: string
+		contactInfo: string
+		paymentMethodInfo: string
+		cardDetailsInfo: string
 	}
 }
 

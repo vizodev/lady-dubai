@@ -5,10 +5,12 @@
 		>
 			<img :src="LOGO_FOOTER_SVG" alt="Logo" class="h-8 md:h-10" />
 
-			<p class="text-2xl md:text-3xl">Checkout</p>
+			<p class="text-2xl md:text-3xl">{{ t("checkout.checkout") }}</p>
 
 			<i class="fi fi-rr-info flex gap-3 items-center">
-				<p class="text-base md:text-lg not-italic">SUPPORT</p>
+				<p class="text-base md:text-lg not-italic">
+					{{ t("checkout.support") }}
+				</p>
 			</i>
 		</header>
 
@@ -24,13 +26,13 @@
 				>
 					<i class="fi fi-ss-angle-double-left"></i>
 
-					<p>RETURN</p>
+					<p>{{ t("checkout.return") }}</p>
 				</div>
 
 				<div class="flex flex-col gap-16 xl:flex-row xl:gap-6">
 					<div class="flex-[3] flex-grow-[2]">
 						<div class="flex flex-col gap-8">
-							<CheckoutSession title="Traveller information">
+							<CheckoutSession :title="t('checkout.travellerInfo')">
 								<div class="flex flex-col gap-14">
 									<transition-group>
 										<div
@@ -40,7 +42,7 @@
 											:key="traveller"
 										>
 											<p class="font-inter text-2xl font-light mb-6">
-												Traveller {{ traveller + 1 }}
+												{{ t("checkout.traveller") }} {{ traveller + 1 }}
 											</p>
 
 											<div class="grid grid-cols-2 gap-6">
@@ -97,12 +99,12 @@
 									</transition-group>
 
 									<button @click="addTraveller" class="btn-rounded">
-										Add Traveller
+										{{ t("checkout.addTraveller") }}
 									</button>
 								</div>
 							</CheckoutSession>
 
-							<CheckoutSession title="Contact">
+							<CheckoutSession :title="t('checkout.contactInfo')">
 								<div class="flex gap-6 flex-col md:flex-row">
 									<TextField
 										name="email"
@@ -125,7 +127,7 @@
 								</div>
 							</CheckoutSession>
 
-							<CheckoutSession title="Payment Method">
+							<CheckoutSession :title="t('checkout.paymentMethodInfo')">
 								<div class="flex justify-between pr-8 flex-col sm:flex-row">
 									<RadioButtonField
 										v-for="method of paymentMethods"
@@ -140,7 +142,7 @@
 							<transition>
 								<CheckoutSession
 									v-if="currentPaymentMethod === creditCardValue"
-									title="Card Details"
+									:title="t('checkout.cardDetailsInfo')"
 								>
 									<div class="flex flex-col gap-6">
 										<TextField
@@ -193,14 +195,14 @@
 						<Separator class="my-12" />
 
 						<div class="flex justify-between font-bold">
-							<p class="text-lg font-inter">TOTAL</p>
+							<p class="text-lg font-inter">{{ t("checkout.total") }}</p>
 
 							<p
 								v-if="currentTripPackage"
 								class="font-roboto-serif text-3xl whitespace-nowrap"
 							>
 								{{ `$ ${currentTripPackage.price.usd}` }}
-								<span class="font-inter text-lg">Dirham</span>
+								<span class="font-inter text-lg">{{ t("dirham") }}</span>
 							</p>
 						</div>
 					</div>
@@ -210,16 +212,20 @@
 			<div class="ml-12">
 				<CheckboxField name="privacyPolicy" :value="true" class="mb-8">
 					<p class="text-base font-inter font-light text-brown-700">
-						I have read and accepted the
-						<span class="text-pink-600 font-bold">purchase conditions</span>,
-						<span class="text-pink-600 font-bold">privacy policy</span> and
-						<span class="text-pink-600 font-bold"
-							>changes and cancellations policy.</span
-						>
+						{{ t("checkout.privacyPolicyDescription1") }}
+						<span class="text-pink-600 font-bold">{{
+							t("checkout.privacyPolicyDescription2")
+						}}</span>
+						{{ t("checkout.privacyPolicyDescription3") }}
+						<span class="text-pink-600 font-bold">{{
+							t("checkout.privacyPolicyDescription4")
+						}}</span>
 					</p>
 				</CheckboxField>
 
-				<button type="submit" class="btn-primary">PURCHASE</button>
+				<button type="submit" class="btn-primary">
+					{{ t("checkout.purchaseButton") }}
+				</button>
 			</div>
 		</BaseForm>
 
@@ -296,7 +302,7 @@ const onSubmit = (data: CheckoutSchemaSubmit) => {
 }
 
 // Locales
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes

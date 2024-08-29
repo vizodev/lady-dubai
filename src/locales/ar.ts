@@ -1,7 +1,10 @@
 import type { ILocaleMessages } from "~/models"
 
-export const LanguageAr: ILocaleMessages = {
+export const languageAr: ILocaleMessages = {
 	companyName: "سيدة دبي",
+	dirham: "درهم",
+	allPackages: "جميع الباقات",
+	attractions: "جاذبية",
 	header: {
 		whyUs: "لماذا نحن",
 		attractions: "جاذبية",
@@ -43,5 +46,44 @@ export const LanguageAr: ILocaleMessages = {
 		title: "أو تحدث معنا عبر الواتساب",
 		description: "إذا كان لديك أي شكوك أو طلبات خاصة",
 		button: "الدردشة على الواتساب",
+	},
+	tripPackage: {
+		whatsIncluded: "ما هو مدرج",
+		availableGuideLanguages: "لغات الدليل المتاحة",
+		mainIncludedAttractions: "مناطق الجذب الرئيسية المدرجة",
+		flightTitle: "رحلات جوية من",
+		flightDescription1: "هل ستصل من وجهة مختلفة؟",
+		flightDescription2:
+			"اتصل بـ Lady Dubai للحصول على تذاكر طائرة مخصصة من موقع المغادرة أو قم بشراء الحزمة باستثناء تذاكر الطائرة.",
+		flightSelectedDate: "التاريخ المحدد",
+		excludePlaneTicketButton: "استبعاد تذكرة الطائرة",
+		checkOtherPackages: "تحقق من الحزم الأخرى",
+		edgeCardTitle: "سعر ترويجي لفترة محدودة",
+		edgeCardPerPerson: "لكل شخص",
+		edgeCardButton: "احصل على الحزمة",
+		edgeCardNextAvailableDates: "التالي التواريخ المتاحة",
+		edgeCardCancelationPolicy: "سياسة الإلغاء:",
+		edgeCardDisclaimer: "مخفف:",
+	},
+	attraction: {
+		learnMore: "يتعلم أكثر",
+		includedInTravelPackages: "متضمنة في باقات السفر الخاصة بنا:",
+	},
+	checkout: {
+		checkout: "الدفع",
+		support: "يدعم",
+		return: "يعود",
+		traveller: "مسافر",
+		addTraveller: "أضف مسافر",
+		total: "المجموع",
+		privacyPolicyDescription1: "لقد قرأت وقبلت",
+		privacyPolicyDescription2: "شروط الشراء، سياسة الخصوصية",
+		privacyPolicyDescription3: "و",
+		privacyPolicyDescription4: "سياسة التغييرات والإلغاءات.",
+		purchaseButton: "شراء",
+		travellerInfo: "معلومات المسافر",
+		contactInfo: "اتصال",
+		paymentMethodInfo: "طريقة الدفع",
+		cardDetailsInfo: "تفاصيل البطاقة",
 	},
 }

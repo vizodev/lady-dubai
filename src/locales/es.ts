@@ -1,7 +1,10 @@
 import type { ILocaleMessages } from "~/models"
 
-export const LanguageEs: ILocaleMessages = {
-	companyName: "Lady Dubai",
+export const languageEs: ILocaleMessages = {
+	companyName: "Dama dubai",
+	dirham: "DIRHAM",
+	allPackages: "Todos los paquetes",
+	attractions: "Atracciones",
 	header: {
 		whyUs: "¿Por qué nosotros?",
 		attractions: "Atracciones",
@@ -46,5 +49,44 @@ export const LanguageEs: ILocaleMessages = {
 		title: "O habla con nosotros vía WhatsApp",
 		description: "Si tienes alguna duda o petición especial.",
 		button: "Chatear en whatsapp",
+	},
+	tripPackage: {
+		whatsIncluded: "¿Qué está incluido?",
+		availableGuideLanguages: "Idiomas de guía disponibles",
+		mainIncludedAttractions: "Principales atracciones incluidas",
+		flightTitle: "Vuelos desde",
+		flightDescription1: "¿Llegas desde un destino diferente?",
+		flightDescription2:
+			"Comuníquese con Lady Dubai para obtener boletos de avión personalizados desde su lugar de salida o compre un paquete que no incluya boletos de avión.",
+		flightSelectedDate: "FECHA SELECCIONADA",
+		excludePlaneTicketButton: "Excluir billete de avión",
+		checkOtherPackages: "Consultar otros paquetes",
+		edgeCardTitle: "Precio promocional por tiempo limitado",
+		edgeCardPerPerson: "por persona",
+		edgeCardButton: "Obtener paquete",
+		edgeCardNextAvailableDates: "Siguiente Fechas disponibles",
+		edgeCardCancelationPolicy: "Política de cancelación:",
+		edgeCardDisclaimer: "Descalímero:",
+	},
+	attraction: {
+		learnMore: "Más información",
+		includedInTravelPackages: "INCLUIDO EN NUESTROS PAQUETES DE VIAJE:",
+	},
+	checkout: {
+		checkout: "Verificar",
+		support: "APOYO",
+		return: "DEVOLVER",
+		traveller: "Viajero",
+		addTraveller: "Añadir viajero",
+		total: "TOTAL",
+		privacyPolicyDescription1: "He leído y acepto el",
+		privacyPolicyDescription2: "condiciones de compra, política de privacidad",
+		privacyPolicyDescription3: "y",
+		privacyPolicyDescription4: "Política de cambios y cancelaciones.",
+		purchaseButton: "COMPRA",
+		travellerInfo: "Información al viajero",
+		contactInfo: "Contacto",
+		paymentMethodInfo: "Método de pago",
+		cardDetailsInfo: "Detalles de la tarjeta",
 	},
 }

@@ -1,22 +1,22 @@
-import { LanguageAr } from "./ar"
-import { LanguageDe } from "./de"
-import { LanguageEn } from "./en"
-import { LanguageEs } from "./es"
-import { LanguageFr } from "./fr"
-import { LanguageHe } from "./he"
-import { LanguagePtBr } from "./pt-br"
-import { LanguageRu } from "./ru"
+import { languageAr } from "./ar"
+import { languageDe } from "./de"
+import { languageEn } from "./en"
+import { languageEs } from "./es"
+import { languageFr } from "./fr"
+import { languageHe } from "./he"
+import { languagePtBr } from "./pt-br"
+import { languageRu } from "./ru"
 
 export default {
 	legacy: false,
 	messages: {
-		en: LanguageEn,
-		ar: LanguageAr,
-		es: LanguageEs,
-		fr: LanguageFr,
-		he: LanguageHe,
-		ru: LanguageRu,
-		de: LanguageDe,
-		"pt-br": LanguagePtBr,
+		en: languageEn,
+		ar: languageAr,
+		es: languageEs,
+		fr: languageFr,
+		he: languageHe,
+		ru: languageRu,
+		de: languageDe,
+		"pt-br": languagePtBr,
 	},
 }

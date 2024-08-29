@@ -1,7 +1,10 @@
 import type { ILocaleMessages } from "~/models"
 
-export const LanguageHe: ILocaleMessages = {
+export const languageHe: ILocaleMessages = {
 	companyName: "ליידי דובאי",
+	dirham: "DIRHAM",
+	allPackages: "כל החבילות",
+	attractions: "אטרקציות",
 	header: {
 		whyUs: "למה אנחנו",
 		attractions: "אטרקציות",
@@ -32,7 +35,7 @@ export const LanguageHe: ILocaleMessages = {
 		testemonialButton: "ראה המלצות",
 		testemonialDescription1: "או בדוק שלנו",
 		testemonialDescription2: "רשימת השמעה של יוטיוב",
-		testemonialDescription3: "להתנסויות מהחיים האמיתיים עם",
+		testemonialDescription3: "לחוויות מהחיים האמיתיים עם",
 	},
 	contact: {
 		title: "שלח לנו הודעה",
@@ -43,5 +46,44 @@ export const LanguageHe: ILocaleMessages = {
 		title: "או דברו איתנו דרך WhatsApp",
 		description: "אם יש לך ספקות או בקשות מיוחדות",
 		button: "צ'אט בוואטסאפ",
+	},
+	tripPackage: {
+		whatsIncluded: "מה כלול",
+		availableGuideLanguages: "שפות מדריך זמינות",
+		mainIncludedAttractions: "אטרקציות עיקריות כלולות",
+		flightTitle: "טיסות מ",
+		flightDescription1: "מגיעים מיעד אחר?",
+		flightDescription2:
+			"צור קשר עם ליידי דובאי לקבלת כרטיסי טיסה מותאמים אישית ממקום היציאה שלך או חבילת רכישה לא כולל כרטיסי טיסה.",
+		flightSelectedDate: "תאריך נבחר",
+		excludePlaneTicketButton: "אל תכלול כרטיס טיסה",
+		checkOtherPackages: "בדוק חבילות אחרות",
+		edgeCardTitle: "מחיר מבצע לזמן מוגבל",
+		edgeCardPerPerson: "לאדם",
+		edgeCardButton: "קבל חבילה",
+		edgeCardNextAvailableDates: "הבא תאריכים פנויים",
+		edgeCardCancelationPolicy: "מדיניות ביטולים:",
+		edgeCardDisclaimer: "דיסקלימר:",
+	},
+	attraction: {
+		learnMore: "למידע נוסף",
+		includedInTravelPackages: "כלול בחבילות הנסיעות שלנו:",
+	},
+	checkout: {
+		checkout: "קופה",
+		support: "תְמִיכָה",
+		return: "לַחֲזוֹר",
+		traveller: "נוֹסֵעַ",
+		addTraveller: "הוסף מטייל",
+		total: "סַך הַכֹּל",
+		privacyPolicyDescription1: "קראתי וקיבלתי את",
+		privacyPolicyDescription2: "תנאי רכישה, מדיניות פרטיות",
+		privacyPolicyDescription3: "ו",
+		privacyPolicyDescription4: "מדיניות שינויים וביטולים.",
+		purchaseButton: "לִרְכּוֹשׁ",
+		travellerInfo: "מידע למטייל",
+		contactInfo: "מַגָע",
+		paymentMethodInfo: "שיטת תשלום",
+		cardDetailsInfo: "פרטי כרטיס",
 	},
 }

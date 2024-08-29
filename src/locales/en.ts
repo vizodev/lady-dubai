@@ -1,7 +1,10 @@
 import type { ILocaleMessages } from "~/models"
 
-export const LanguageEn: ILocaleMessages = {
+export const languageEn: ILocaleMessages = {
 	companyName: "Lady Dubai",
+	dirham: "DIRHAM",
+	allPackages: "All Packages",
+	attractions: "Attractions",
 	header: {
 		whyUs: "Why us",
 		attractions: "Attractions",
@@ -44,5 +47,44 @@ export const LanguageEn: ILocaleMessages = {
 		title: "Or Talk to Us Via WhatsApp",
 		description: "Ir you have any doubts or special requests",
 		button: "Chat On WhatsApp",
+	},
+	tripPackage: {
+		whatsIncluded: "What’s included",
+		availableGuideLanguages: "Available guide languages",
+		mainIncludedAttractions: "Main Included Attractions",
+		flightTitle: "Flights from",
+		flightDescription1: "Arriving from a different destination?",
+		flightDescription2:
+			"Contact Lady Dubai for custom plane tickets from your departure location or purchase package excluding plane tickets.",
+		flightSelectedDate: "SELECTED DATE",
+		excludePlaneTicketButton: "Exclude Plane Ticket",
+		checkOtherPackages: "Check Other Packages",
+		edgeCardTitle: "Limited Time Promotional Price",
+		edgeCardPerPerson: "per person",
+		edgeCardButton: "Get Package",
+		edgeCardNextAvailableDates: "Next Available dates",
+		edgeCardCancelationPolicy: "Cancelation policy:",
+		edgeCardDisclaimer: "Discalimer:",
+	},
+	attraction: {
+		learnMore: "Learn more",
+		includedInTravelPackages: "INCLUDED IN OUR TRAVEL PACKAGES:",
+	},
+	checkout: {
+		checkout: "Checkout",
+		support: "SUPPORT",
+		return: "RETURN",
+		traveller: "Traveller",
+		addTraveller: "Add Traveller",
+		total: "TOTAL",
+		privacyPolicyDescription1: "I have read and accepted the",
+		privacyPolicyDescription2: "purchase conditions, privacy policy",
+		privacyPolicyDescription3: "and",
+		privacyPolicyDescription4: "changes and cancellations policy.",
+		purchaseButton: "PURCHASE",
+		travellerInfo: "Traveller information",
+		contactInfo: "Contact",
+		paymentMethodInfo: "Payment Method",
+		cardDetailsInfo: "Card Details",
 	},
 }

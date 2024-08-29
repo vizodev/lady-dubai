@@ -18,7 +18,7 @@
 				<p class="font-roboto-serif text-7xl font-bold mb-16">
 					{{ currentAttraction.title[locale] }}
 					<p
-					v-if="locale !== 'ar'"
+					v-if="locale !== languageToLocale[LanguageEnum.ARABIC]"
 					class="text-4xl font-light mt-2">{{ currentAttraction.title.ar }}</p>
 				</p>
 
@@ -27,7 +27,7 @@
 
 					<div >
 						<p class="mb-6 text-base font-bold">
-							INCLUDED IN OUR TRAVEL PACKAGES:
+							{{t("attraction.includedInTravelPackages")}}
 						</p>
 
 						<div class="flex flex-wrap gap-3">
@@ -83,8 +83,19 @@
 </template>
 
 <script lang="ts" setup>
-import type { Attraction, RelativePathComponent, TripPackage } from "~/models"
+import { type Attraction, type RelativePathComponent, type TripPackage, LanguageEnum } from "~/models"
 import {HOME_ROUTE, TRIP_PACKAGE_ROUTE} from "~/constants"
+import {languageToLocale} from "~/data"
+import {
+	languageAr,
+	languageDe,
+	languageEn,
+	languageEs,
+	languageFr,
+	languageHe,
+	languagePtBr,
+	languageRu,
+} from "~/locales"
 
 // General
 const tripPackagesStore = useTripPackagesStore()
@@ -98,22 +109,32 @@ const relativePath = computed(
 		[
 			{
 				label: {
-					en: "Lady Dubai",
-					he: "ליידי דובאי",
+					en: languageEn.companyName,
+				ar: languageAr.companyName,
+				de: languageDe.companyName,
+				es: languageEs.companyName,
+				ru: languageRu.companyName,
+				fr: languageFr.companyName,
+				ptBr: languagePtBr.companyName,
+				he: languageHe.companyName,
 				},
 				path: "/",
 			},
 			{
 				label: {
-					en: "Attractions",
-					he: "אטרקציות",
+					en: languageEn.attractions,
+				ar: languageAr.attractions,
+				de: languageDe.attractions,
+				es: languageEs.attractions,
+				ru: languageRu.attractions,
+				fr: languageFr.attractions,
+				ptBr: languagePtBr.attractions,
+				he: languageHe.attractions,
 				},
 				path: "/",
 			},
 			{
-				label: {
-					en: currentAttraction.value?.title.en ?? "",
-				},
+				label: currentAttraction.value?.title
 			},
 		] as RelativePathComponent[]
 )
@@ -140,7 +161,7 @@ const loadTripPackagesByAttraction = async () => {
 }
 
 // Locales
-const {locale} = useI18n()
+const {locale, t} = useI18n()
 const localePath = useLocalePath()
 
 // Routes
