@@ -34,12 +34,7 @@
 						<CheckoutSession :title="t('checkout.travellerInfo')">
 							<div class="flex flex-col gap-14">
 								<transition-group>
-									<div
-										v-for="traveller of Array.from(
-											Array(travellersCount).keys()
-										)"
-										:key="traveller"
-									>
+									<div v-for="traveller in travellersCount" :key="traveller">
 										<p class="font-inter text-2xl font-light mb-6">
 											{{ t("checkout.traveller") }} {{ traveller + 1 }}
 										</p>
@@ -70,11 +65,18 @@
 												</option>
 											</SelectField>
 
-											<TextField
+											<SelectField
 												:name="`users[${traveller}].nationality`"
 												label="NATIONALITY"
-												placeholder="Country Born in"
-											/>
+											>
+												<option
+													v-for="country of countries"
+													:value="country.name"
+												>
+													{{ country.name }}
+												</option>
+											</SelectField>
+
 											<TextField
 												:name="`users[${traveller}].passportId`"
 												label="PASSPORT ID"
@@ -85,11 +87,18 @@
 												label="PASSPORT EXPIRY DATE"
 												placeholder="DD/MM/YYYY"
 											/>
-											<TextField
+
+											<SelectField
 												:name="`users[${traveller}].passportIssuedFrom`"
 												label="PASSPORT ISSUING COUNTRY"
-												placeholder="Country"
-											/>
+											>
+												<option
+													v-for="country of countries"
+													:value="country.name"
+												>
+													{{ country.name }}
+												</option>
+											</SelectField>
 										</div>
 									</div>
 								</transition-group>
@@ -122,43 +131,6 @@
 								/>
 							</div>
 						</CheckoutSession>
-
-						<CheckoutSession :title="t('checkout.paymentMethodInfo')">
-							<div class="flex justify-between pr-8 flex-col sm:flex-row">
-								<RadioButtonField
-									v-for="method of paymentMethods"
-									name="paymentMethod"
-									:value="method.value"
-									@on-change="onChangeCurrentPaymentMethod"
-									>{{ method.title }}</RadioButtonField
-								>
-							</div>
-						</CheckoutSession>
-
-						<transition>
-							<CheckoutSession
-								v-if="currentPaymentMethod === creditCardValue"
-								:title="t('checkout.cardDetailsInfo')"
-							>
-								<div class="flex flex-col gap-6">
-									<TextField
-										name="cardNumber"
-										label="NUMBER"
-										placeholder="0000 0000 0000 0000"
-									/>
-									<TextField
-										name="cardName"
-										label="NAME ON THE CARD"
-										placeholder="Doe"
-									/>
-
-									<div class="flex gap-6">
-										<DateField name="cardExpiration" label="VALID." />
-										<TextField name="cardCvv" label="CVV" placeholder="000" />
-									</div>
-								</div>
-							</CheckoutSession>
-						</transition>
 					</div>
 				</div>
 
@@ -279,18 +251,15 @@
 
 <script setup lang="ts">
 import { type Flight, type TripPackage } from "~/models"
+import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
 import {
-	checkoutSchema,
-	creditCardValue,
-	type CheckoutSchemaSubmit,
-} from "~/formSchemas"
-import {
+	API_PAYMENTS,
 	HOME_ROUTE,
 	LOGO_FOOTER_SVG,
 	PACKAGE_SVG,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
-import { genders, paymentMethods } from "~/data"
+import { genders } from "~/data"
 
 // General
 const props = computed(() => {
@@ -305,6 +274,10 @@ const props = computed(() => {
 
 // Stores
 const tripPackagesStore = useTripPackagesStore()
+const countriesStore = useCountriesStore()
+
+// Countries
+const { countries } = storeToRefs(countriesStore)
 
 // Trip package
 const { tripPackages } = storeToRefs(tripPackagesStore)
@@ -364,14 +337,26 @@ const handleFlightYearLabel = (data: Flight) => {
 }
 
 // Form
-const currentPaymentMethod = ref<string>()
+const onSubmit = async (formData: CheckoutSchemaSubmit) => {
+	try {
+		if (!currentTripPackage.value) return
 
-const onChangeCurrentPaymentMethod = (data: string) => {
-	currentPaymentMethod.value = data
-}
+		const res = await useFetch(
+			API_PAYMENTS(
+				currentTripPackage.value.payment_price_id,
+				formData.users.length
+			)
+		)
+		const data = res.data.value as any
 
-const onSubmit = (data: CheckoutSchemaSubmit) => {
-	console.log(data)
+		if (!data) return
+
+		navigateTo(data.link, {
+			external: true,
+		})
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 // Locales
@@ -402,5 +387,7 @@ watch(
 )
 
 // Life cycle
-onMounted(() => loadTripPackage())
+onMounted(async () => {
+	loadTripPackage()
+})
 </script>

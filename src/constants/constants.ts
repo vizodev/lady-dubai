@@ -2,6 +2,15 @@
 export const TRIP_PACKAGE_STORE = "TRIP_PACKAGE_STORE"
 export const ATTRACTIONS_STORE = "ATTRACTIONS_STORE"
 export const AIRPORTS_STORE = "AIRPORTS_STORE"
+export const COUNTRIES_STORE = "COUNTRIES_STORE"
+
+// Countries
+export const COUNTRIES_ENDPOINT =
+	"https://restcountries.com/v3.1/all?fields=name"
+
+// API
+export const API_PAYMENTS = (priceId: string, quant: number) =>
+	`/api/payments?priceId=${priceId}&quant=${quant}`
 
 // Supabase
 export const SUPABASE_KEY =

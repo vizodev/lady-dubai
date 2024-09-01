@@ -26,14 +26,17 @@ export const LOGO_FOOTER_SVG = "/svg/logo-footer.svg"
 export const LOGO_WHITE_SVG = "/svg/logo-white.svg"
 export const LOGO_SVG = "/svg/logo.svg"
 
-export const CLOSE_SVG = "/svg/close.svg"
-export const CROSS_SVG = "/svg/cross.svg"
 export const FLOWER1_SVG = "/svg/flower1.svg"
 export const FLOWER2_SVG = "/svg/flower2.svg"
-export const MENU_SVG = "/svg/menu.svg"
-export const PACKAGE_SVG = "/svg/package.svg"
+
 export const PLANE1_SVG = "/svg/plane1.svg"
 export const PLANE2_SVG = "/svg/plane2.svg"
+
+export const LOADING_SVG = "/svg/loading.svg"
+export const CLOSE_SVG = "/svg/close.svg"
+export const CROSS_SVG = "/svg/cross.svg"
+export const MENU_SVG = "/svg/menu.svg"
+export const PACKAGE_SVG = "/svg/package.svg"
 export const FLIGHT1_SVG = "/svg/flight1.svg"
 
 // IMAGES

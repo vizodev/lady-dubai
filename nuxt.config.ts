@@ -1,4 +1,6 @@
 import {
+	STRIPE_PUBLISHABLE_KEY,
+	STRIPE_SECRET_KEY,
 	SUPABASE_KEY,
 	SUPABASE_REDIRECT,
 	SUPABASE_SERVICE_KEY,
@@ -49,6 +51,7 @@ export default defineNuxtConfig({
 		mirror: false, // whether elements should animate out while scrolling past them
 		anchorPlacement: "top-center", // defines which position of the element regarding to window should trigger the animation
 	},
+
 	components: [
 		{
 			path: "~/components", // will get any components nested in let's say /components/test too

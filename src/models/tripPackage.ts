@@ -9,6 +9,7 @@ export type TripPackage = {
 	description: TextType
 	downsale_price: Price
 	price: Price
+	payment_price_id: string
 	gallery: string[]
 	services: PackageService[]
 	guidelanguages: Language[]

@@ -6,7 +6,7 @@
 			<Field
 				:name="name"
 				as="select"
-				class="w-full font-inter outline-0 placeholder:font-light placeholder:italic focus:text-pink-600 focus:font-medium text-brown-700 bg-transparent"
+				class="text-base w-full font-inter outline-0 placeholder:font-light placeholder:italic focus:text-pink-600 focus:font-medium text-brown-700 bg-transparent"
 			>
 				<slot />
 			</Field>
