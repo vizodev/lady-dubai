@@ -34,7 +34,12 @@
 						<CheckoutSession :title="t('checkout.travellerInfo')">
 							<div class="flex flex-col gap-14">
 								<transition-group>
-									<div v-for="traveller in travellersCount" :key="traveller">
+									<div
+										v-for="traveller in Array.from(
+											Array(travellersCount).keys()
+										)"
+										:key="traveller"
+									>
 										<p class="font-inter text-2xl font-light mb-6">
 											{{ t("checkout.traveller") }} {{ traveller + 1 }}
 										</p>
@@ -190,11 +195,8 @@
 					<div class="flex justify-between font-bold">
 						<p class="text-lg font-inter">{{ t("checkout.total") }}</p>
 
-						<p
-							v-if="currentTripPackage"
-							class="font-roboto-serif text-3xl whitespace-nowrap"
-						>
-							{{ `$ ${currentTripPackage.price.usd}` }}
+						<p class="font-roboto-serif text-3xl whitespace-nowrap">
+							{{ `$ ${totalPrice}` }}
 							<span class="font-inter text-lg">{{ t("dirham") }}</span>
 						</p>
 					</div>
@@ -216,7 +218,8 @@
 				</p>
 			</CheckboxField>
 
-			<button type="submit" class="btn-primary">
+			<Loading v-if="loadingForm" />
+			<button v-else type="submit" class="btn-primary">
 				{{ t("checkout.purchaseButton") }}
 			</button>
 		</div>
@@ -293,6 +296,11 @@ const loadTripPackage = async () => {
 
 // Travellers
 const travellersCount = ref(1)
+const totalPrice = computed(() => {
+	if (!currentTripPackage.value) return 0
+
+	return currentTripPackage.value?.price.aed * travellersCount.value
+})
 
 const addTraveller = () => travellersCount.value++
 const onTravellersChange = (data: number) => (travellersCount.value = data)
@@ -337,7 +345,11 @@ const handleFlightYearLabel = (data: Flight) => {
 }
 
 // Form
+const loadingForm = ref(false)
+
 const onSubmit = async (formData: CheckoutSchemaSubmit) => {
+	loadingForm.value = true
+
 	try {
 		if (!currentTripPackage.value) return
 
@@ -353,10 +365,15 @@ const onSubmit = async (formData: CheckoutSchemaSubmit) => {
 
 		navigateTo(data.link, {
 			external: true,
+			open: {
+				target: "_blank",
+			},
 		})
 	} catch (error) {
 		console.error(error)
 	}
+
+	loadingForm.value = false
 }
 
 // Locales
@@ -365,8 +382,9 @@ const localePath = useLocalePath()
 
 // Routes
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
-const openTripPackage = () =>
+const openTripPackage = () => {
 	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.value.id)))
+}
 
 // Watchers
 watch(
