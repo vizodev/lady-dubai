@@ -357,7 +357,11 @@ const onSubmit = async (formData: CheckoutSchemaSubmit) => {
 			API_PAYMENTS(
 				currentTripPackage.value.payment_price_id,
 				formData.users.length
-			)
+			),
+			{
+				method: "POST",
+				body: formData,
+			}
 		)
 		const data = res.data.value as any
 
