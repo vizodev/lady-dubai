@@ -6,11 +6,14 @@
 			transition: 'background-image 1.5s ease-in-out',
 		}"
 	>
+		<Flower :src="FLOWER_LEFT1_SVG" class="top-40 -left-10 z-10" />
+
 		<div
 			class="absolute inset-0 w-full h-full bg-[#5E6567] mix-blend-hard-light"
 		></div>
+
 		<div
-			class="flex flex-col pl-[6%] 2xl:pl-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-1"
+			class="flex flex-col pl-[12%] 2xl:pl-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-1"
 		>
 			<div class="w-[250px] hidden md:block">
 				<img :src="LOGO_SVG" alt="Logo" class="w-full" />
@@ -47,6 +50,7 @@
 				<button class="btn-primary">{{ t("hero.button") }}</button>
 			</div>
 		</div>
+
 		<div
 			class="flex flex-col absolute bottom-[121px] right-[40px] xl:right-[76px] gap-[28px]"
 		>
@@ -63,6 +67,7 @@
 				<img :src="INSTAGRAM_ICON_SVG" alt="" />
 			</button>
 		</div>
+
 		<span
 			class="absolute bottom-[28px] right-[40px] xl:right-[82px] text-pink-100 font-inter font-medium"
 		>
@@ -86,6 +91,8 @@ import {
 	HERO6_IMAGE,
 	HERO7_IMAGE,
 	HERO8_IMAGE,
+	FLOWER_LEFT1_SVG,
+	FLOWER_LEFT2_SVG,
 } from "~/constants"
 
 // Locales

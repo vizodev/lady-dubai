@@ -30,6 +30,8 @@ export const LOGO_SVG = "/svg/logo.svg"
 export const FLOWER1_SVG = "/svg/flower1.svg"
 export const FLOWER2_SVG = "/svg/flower2.svg"
 export const FLOWER_RIGHT_SVG = "/svg/flower-right.svg"
+export const FLOWER_LEFT1_SVG = "/svg/flower-left1.svg"
+export const FLOWER_LEFT2_SVG = "/svg/flower-left2.svg"
 
 export const PLANE1_SVG = "/svg/plane1.svg"
 export const PLANE2_SVG = "/svg/plane2.svg"

@@ -1,33 +1,43 @@
 <template>
-	<Header with-logo class="z-50"/>
+	<Header with-logo class="z-50" />
 
-	<div class="flex flex-col overflow-y-auto w-full">
-		<iframe
-			:src="currentAttraction?.video_url"
-			frameborder="0"
-			class="w-full h-[90vh]"
-		></iframe>
+	<iframe
+		:src="currentAttraction?.video_url"
+		frameborder="0"
+		class="w-full h-[90vh]"
+	></iframe>
+
+	<div class="relative">
+		<Flower :src="FLOWER_LEFT2_SVG" class="-top-15 left-0" />
 
 		<div
 			v-if="currentAttraction"
-			class="w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 mb-16"
+			class="attraction-page-padding pt-[47px] relative z-10 mb-16 z-10"
 		>
 			<RelativePath :relativePath="relativePath" class="mb-8" />
 
 			<div>
-				<p class="font-roboto-serif text-7xl font-bold mb-16">
-					{{ currentAttraction.title[locale] }}
+				<div class="font-roboto-serif mb-16">
+					<p class="font-roboto-serif text-7xl font-bold">
+						{{ currentAttraction.title[locale] }}
+					</p>
 					<p
-					v-if="locale !== languageToLocale[LanguageEnum.ARABIC]"
-					class="text-4xl font-light mt-2">{{ currentAttraction.title.ar }}</p>
-				</p>
+						v-if="locale !== languageToLocale[LanguageEnum.ARABIC]"
+						class="text-4xl font-light mt-2"
+					>
+						{{ currentAttraction.title.ar }}
+					</p>
+				</div>
 
 				<div class="mb-36">
-					<div v-html="currentAttraction?.long_description_html[locale]" class="mb-24 font-inter w-full lg:w-4/5"></div>
+					<div
+						v-html="currentAttraction?.long_description_html[locale]"
+						class="mb-24 font-inter w-full lg:w-4/5"
+					></div>
 
-					<div >
+					<div>
 						<p class="mb-6 text-base font-bold">
-							{{t("attraction.includedInTravelPackages")}}
+							{{ t("attraction.includedInTravelPackages") }}
 						</p>
 
 						<div class="flex flex-wrap gap-3">
@@ -42,7 +52,10 @@
 					</div>
 				</div>
 
-				<div v-html="currentAttraction?.first_text_html[locale]" class="mb-20 font-inter w-full lg:w-4/5"></div>
+				<div
+					v-html="currentAttraction?.first_text_html[locale]"
+					class="mb-20 font-inter w-full lg:w-4/5"
+				></div>
 
 				<WhatsappBox
 					data-aos="fade-right"
@@ -57,10 +70,11 @@
 			class="mb-24 lg:mb-40"
 		/>
 
-		<div
-			class="flex flex-col gap-20 mb-20 w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
-		>
-			<div v-html="currentAttraction?.second_text_html[locale]" class="font-inter w-full lg:w-4/5"></div>
+		<div class="flex flex-col gap-20 mb-20 attraction-page-padding">
+			<div
+				v-html="currentAttraction?.second_text_html[locale]"
+				class="font-inter w-full lg:w-4/5"
+			></div>
 		</div>
 
 		<iframe
@@ -72,9 +86,7 @@
 			class="w-full"
 		></iframe>
 
-		<Contact
-			class="w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
-		/>
+		<Contact class="attraction-page-padding" />
 	</div>
 
 	<Footer />
@@ -83,9 +95,14 @@
 </template>
 
 <script lang="ts" setup>
-import { type Attraction, type RelativePathComponent, type TripPackage, LanguageEnum } from "~/models"
-import {HOME_ROUTE, TRIP_PACKAGE_ROUTE} from "~/constants"
-import {languageToLocale} from "~/data"
+import {
+	type Attraction,
+	type RelativePathComponent,
+	type TripPackage,
+	LanguageEnum,
+} from "~/models"
+import { FLOWER_LEFT2_SVG, HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
+import { languageToLocale } from "~/data"
 import {
 	languageAr,
 	languageDe,
@@ -100,8 +117,7 @@ import {
 // General
 const tripPackagesStore = useTripPackagesStore()
 const attractionStore = useAttractionsStore()
-const { attractions } =
-	storeToRefs(attractionStore)
+const { attractions } = storeToRefs(attractionStore)
 
 // Relative path
 const relativePath = computed(
@@ -110,31 +126,31 @@ const relativePath = computed(
 			{
 				label: {
 					en: languageEn.companyName,
-				ar: languageAr.companyName,
-				de: languageDe.companyName,
-				es: languageEs.companyName,
-				ru: languageRu.companyName,
-				fr: languageFr.companyName,
-				ptBr: languagePtBr.companyName,
-				he: languageHe.companyName,
+					ar: languageAr.companyName,
+					de: languageDe.companyName,
+					es: languageEs.companyName,
+					ru: languageRu.companyName,
+					fr: languageFr.companyName,
+					ptBr: languagePtBr.companyName,
+					he: languageHe.companyName,
 				},
 				path: "/",
 			},
 			{
 				label: {
 					en: languageEn.attractions,
-				ar: languageAr.attractions,
-				de: languageDe.attractions,
-				es: languageEs.attractions,
-				ru: languageRu.attractions,
-				fr: languageFr.attractions,
-				ptBr: languagePtBr.attractions,
-				he: languageHe.attractions,
+					ar: languageAr.attractions,
+					de: languageDe.attractions,
+					es: languageEs.attractions,
+					ru: languageRu.attractions,
+					fr: languageFr.attractions,
+					ptBr: languagePtBr.attractions,
+					he: languageHe.attractions,
 				},
 				path: "/",
 			},
 			{
-				label: currentAttraction.value?.title
+				label: currentAttraction.value?.title,
 			},
 		] as RelativePathComponent[]
 )
@@ -146,9 +162,10 @@ const attractionId = computed(() => {
 })
 
 const loadAttraction = async () => {
-	currentAttraction.value = attractions.value.find(
-		(attraction) => attraction.id === attractionId.value
-	) ?? await attractionStore.getAttractionById(attractionId.value)
+	currentAttraction.value =
+		attractions.value.find(
+			(attraction) => attraction.id === attractionId.value
+		) ?? (await attractionStore.getAttractionById(attractionId.value))
 
 	if (!currentAttraction.value) openHome()
 }
@@ -157,18 +174,17 @@ const loadAttraction = async () => {
 const tripPackagesByAttraction = ref<TripPackage[]>()
 
 const loadTripPackagesByAttraction = async () => {
-	tripPackagesByAttraction.value = await tripPackagesStore.getTripPackagesByAttractionId(attractionId.value)
+	tripPackagesByAttraction.value =
+		await tripPackagesStore.getTripPackagesByAttractionId(attractionId.value)
 }
 
 // Locales
-const {locale, t} = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes
 const openTripPackage = (id: number) => {
-	navigateTo(
-		localePath(TRIP_PACKAGE_ROUTE(id))
-	)
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(id)))
 }
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
 
@@ -178,4 +194,3 @@ onMounted(() => {
 	loadAttraction()
 })
 </script>
-
