@@ -1,3 +1,6 @@
+// Sections
+export const CONTACT_SECTION = "contact_section"
+
 // Stores
 export const TRIP_PACKAGE_STORE = "TRIP_PACKAGE_STORE"
 export const ATTRACTIONS_STORE = "ATTRACTIONS_STORE"

@@ -41,9 +41,9 @@
 					</div>
 				</div>
 
-				<button class="btn-primary">
+				<a rel="noopener" :href="`#${CONTACT_SECTION}`" class="btn-primary">
 					{{ t("tripPackage.buildOwnPackageButton") }}
-				</button>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -51,6 +51,7 @@
 
 <script lang="ts" setup>
 import { type TripPackage } from "~/models"
+import { CONTACT_SECTION } from "~/constants"
 
 // General
 const tripPackagesStore = useTripPackagesStore()

@@ -1,5 +1,6 @@
 <template>
-	<div
+	<section
+		:id="CONTACT_SECTION"
 		class="flex items-center lg:items-stretch gap-16 lg:gap-16 xl:gap-24 justify-center py-16 sm:py-20 md:py-[100px] px-6 flex-col lg:flex-row"
 	>
 		<BaseForm
@@ -52,12 +53,13 @@
 			data-aos-offset="-300"
 			data-aos-duration="800"
 		/>
-	</div>
+	</section>
 </template>
 
 <script lang="ts" setup>
 import { contactSchema, type ContactSchemaSubmit } from "../formSchemas"
 import { defaultTripPackages } from "~/data"
+import { CONTACT_SECTION } from "~/constants"
 
 // Locales
 const { t } = useI18n()

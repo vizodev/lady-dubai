@@ -80,9 +80,12 @@
 				</div>
 			</div>
 
-			<a class="font-medium font-inter uppercase" href="">{{
-				t("header.contactUs")
-			}}</a>
+			<button
+				@click="scrollToId(CONTACT_SECTION)"
+				class="font-medium font-inter uppercase"
+			>
+				{{ t("header.contactUs") }}
+			</button>
 		</div>
 
 		<!-- Mobile menu -->
@@ -167,9 +170,12 @@
 						</transition>
 					</div>
 
-					<a class="font-medium font-inter uppercase" href="">{{
-						t("header.contactUs")
-					}}</a>
+					<button
+						@click="scrollToId(CONTACT_SECTION)"
+						class="font-medium font-inter uppercase"
+					>
+						{{ t("header.contactUs") }}
+					</button>
 				</div>
 
 				<div class="flex items-center gap-6 justify-center">
@@ -205,6 +211,7 @@ import {
 	MENU_SVG,
 	CROSS_SVG,
 	ATTRACTION_ROUTE,
+	CONTACT_SECTION,
 } from "~/constants"
 import { localeToLanguage } from "~/data"
 import { LanguageEnum, type Attraction } from "~/models"
@@ -240,6 +247,16 @@ const onAttractionHover = (data: Attraction) => {
 // Locales
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
+
+// Scroll
+const scrollToId = (id: string) => {
+	var el = document.getElementById(id)
+
+	if (!el) return
+
+	showMenu.value = false
+	window.scrollTo(el.offsetLeft, el.offsetTop)
+}
 
 // Listeners
 const showMenu = ref(false)
