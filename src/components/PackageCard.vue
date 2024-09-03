@@ -12,6 +12,7 @@
 				New
 			</span>
 		</div>
+
 		<div class="relative w-full flex flex-col items-center justify-center">
 			<div
 				ref="bannerScrollList"
@@ -36,6 +37,7 @@
 				></button>
 			</div>
 		</div>
+
 		<div class="flex flex-col p-5 lg:p-8 gap-6 md:gap-4 lg:gap-6">
 			<div class="flex flex-col gap-1 md:gap-0.5">
 				<span
@@ -47,9 +49,9 @@
 					{{ tripPackage.headline[locale] }}
 				</span>
 			</div>
-			<div class="flex flex-wrap gap-5 items-center">
+			<div class="flex flex-wrap gap-3 items-center">
 				<span
-					class="border border-pink-600 text-pink-600 text-[12px] font-medium font-inter px-1.5 py-1 rounded-md"
+					class="rounded-box"
 					v-for="language in tripPackage.guidelanguages"
 				>
 					{{ language.label.en }}
@@ -89,10 +91,11 @@
 						>
 							{{ `$ ${tripPackage.price.usd}` }}
 						</span>
-						<div class="flex flex-col font-inter">
-							<span class="text-[12px] font-bold text-blue-200 leading-none">
+						<div class="flex flex-col font-inter gap-1">
+							<span class="text-sm font-bold text-blue-200 leading-none">
 								DIRHAM
 							</span>
+
 							<span class="text-[10px] font-medium text-blue-200">
 								per person
 							</span>
@@ -105,6 +108,7 @@
 						Limited Time Promotional Price
 					</span>
 				</div>
+
 				<button @click="openTripPackage" class="btn-primary">See More</button>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ export interface ILocaleMessages {
 		whyUs: string
 		travelBlog: string
 		attractions: string
+		contactUs: string
 	}
 	footer: {
 		customerService: string
@@ -19,6 +20,7 @@ export interface ILocaleMessages {
 	hero: {
 		title1: string
 		title2: string
+		title3: string
 		description1: string
 		description2: string
 		button: string

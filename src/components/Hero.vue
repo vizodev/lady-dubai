@@ -29,7 +29,8 @@
 						<span
 							class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-roboto-serif text-light"
 						>
-							{{ t("hero.title2") }}
+							{{ t("hero.title2") }} <br />
+							{{ t("hero.title3") }}
 						</span>
 					</div>
 					<div class="flex flex-col">

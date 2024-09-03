@@ -5,6 +5,7 @@ export default defineConfig({
 	theme: {
 		extend: {
 			colors: {
+				"off-black": "#272223",
 				pink: {
 					100: "#FFC1D3",
 					500: "#F14990",
@@ -36,6 +37,8 @@ export default defineConfig({
 		"btn-rounded":
 			"w-max border border-pink-600 px-3 py-2 text-pink-600 font-bold text-[14px] leading-tight font-inter rounded-xl hover:(bg-pink-300)",
 		"dropdown-box": "relative hover:(cursor-pointer)",
+		"rounded-box":
+			"border border-pink-600 text-pink-600 text-[12px] font-medium font-inter px-1.5 py-1 rounded-md",
 		"dropdown-content":
 			"p-6 pr-14 w-max right-0 bg-white rounded-lg hidden absolute shadow-md",
 	},

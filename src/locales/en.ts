@@ -10,6 +10,7 @@ export const languageEn: ILocaleMessages = {
 		whyUs: "Why us",
 		attractions: "Attractions",
 		travelBlog: "Travel Blog",
+		contactUs: "Contact Us",
 	},
 	footer: {
 		customerService: "Customer Service",
@@ -21,10 +22,11 @@ export const languageEn: ILocaleMessages = {
 	},
 	hero: {
 		title1: "Woman-only",
-		title2: "Travel Packages\nto Dubai",
+		title2: "Travel Packages",
+		title3: "to Dubai",
 		description1: "Enjoy the attractions of Dubai and the UAE in a",
 		description2: "safe, gender-oriented, women-exclusive tour.",
-		button: "Book your trip",
+		button: "Find Your Package",
 		footer: "The Dubai Experience",
 	},
 	cta: {

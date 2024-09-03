@@ -9,6 +9,7 @@ const tripPackagesStore = useTripPackagesStore()
 const attractionsStore = useAttractionsStore()
 const airportsStore = useAirportsStore()
 const countriesStore = useCountriesStore()
+const languagesStore = useLanguagesStore()
 
 onMounted(async () => {
 	await Promise.all([
@@ -16,6 +17,7 @@ onMounted(async () => {
 		attractionsStore.loadAttractions(),
 		airportsStore.loadAirports(),
 		countriesStore.loadCountries(),
+		languagesStore.loadLanguages(),
 	])
 })
 </script>

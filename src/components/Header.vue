@@ -2,9 +2,9 @@
 	<header
 		class="flex w-full justify-between items-center fixed top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px]"
 		:class="{
-			'bg-[#FFC1D3] shadow-md md:(bg-transparent shadow-none)': !paintHeaderBg,
+			'bg-[#FFC1D3] shadow-md xl:(bg-transparent shadow-none)': !paintHeaderBg,
 			'bg-[#FFC1D3] !shadow-md': paintHeaderBg,
-			'md:justify-end': !props.withLogo && !paintHeaderBg,
+			'xl:justify-end': !props.withLogo && !paintHeaderBg,
 		}"
 	>
 		<img
@@ -12,16 +12,16 @@
 			alt=""
 			class="h-[40px]"
 			:class="{
-				'md:hidden': !showLogo,
+				'xl:hidden': !showLogo,
 			}"
 		/>
 
-		<button class="md:hidden" @click="showMenu = true">
+		<button class="xl:hidden" @click="showMenu = true">
 			<img :src="MENU_SVG" alt="" />
 		</button>
 
 		<!-- Desktop menu -->
-		<div class="md:flex items-center gap-[72px] text-white hidden">
+		<div class="xl:flex items-center gap-[72px] text-white hidden">
 			<a class="font-medium font-inter uppercase" href="">{{
 				t("header.whyUs")
 			}}</a>
@@ -79,6 +79,10 @@
 					/>
 				</div>
 			</div>
+
+			<a class="font-medium font-inter uppercase" href="">{{
+				t("header.contactUs")
+			}}</a>
 		</div>
 
 		<!-- Mobile menu -->
@@ -93,6 +97,7 @@
 					<a class="font-medium font-inter uppercase" href="">{{
 						t("header.whyUs")
 					}}</a>
+
 					<a class="font-medium font-inter uppercase" href="">{{
 						t("header.travelBlog")
 					}}</a>
@@ -161,6 +166,10 @@
 							</div>
 						</transition>
 					</div>
+
+					<a class="font-medium font-inter uppercase" href="">{{
+						t("header.contactUs")
+					}}</a>
 				</div>
 
 				<div class="flex items-center gap-6 justify-center">
@@ -241,7 +250,7 @@ const resizeEventName = "resize"
 const scrollEventName = "scroll"
 
 const handleResize = () => {
-	if (window.innerWidth > 767) {
+	if (window.innerWidth > 1280) {
 		showMenu.value = false
 	}
 }

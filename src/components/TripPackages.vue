@@ -2,9 +2,8 @@
 	<div
 		class="flex flex-col w-full pt-10 sm:pt-[64px] lg:pt-[100px] pb-10 sm:pb-[114px] lg:pb-[150px] items-center px-6 sm:px-8 lg:px-16 2xl:px-8"
 	>
-		<!-- <div class="flex gap-8 items-stretch justify-center flex-wrap"> -->
 		<div
-			class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full sm:max-w-[calc((456px*2)+(32px))] xl:max-w-[calc((456px*3)+(32px*2))]"
+			class="mb-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full sm:max-w-[calc((456px*2)+(32px))] xl:max-w-[calc((456px*3)+(32px*2))]"
 		>
 			<div
 				class="col-span flex justify-center w-full"
@@ -16,20 +15,64 @@
 			</div>
 		</div>
 
-		<!-- </div> -->
+		<div class="bg-white shadow-md rounded-xl p-8">
+			<div class="mb-3 bg-off-black w-max py-1 px-2 rounded-md">
+				<p class="text-[10px] text-white font-bold font-inter uppercase">
+					FOR GROUPS OF +15 PEOPLE
+				</p>
+			</div>
+
+			<div class="mb-6">
+				<p class="font-roboto-serif font-medium text-4xl mb-1">
+					Build Your Own Package
+				</p>
+
+				<p class="text-sm font-inter font-medium text-gray-600">
+					Available for groups of 15 People or more. Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Vivamus turpis velit, laoreet pulvinar
+					est vel, pharetra tristique enim. Nunc justo magna, semper sit amet
+					augue. Ut consequat, velit at venenatis consectetur, nibh quam lacinia
+					ligula, id porttitor ante turpis eu tortor. Aliquam eleifend vitae
+					ante vitae posuere. Sed turpis purus, faucibus a purus scelerisque,
+					auctor fringilla velit. Quisque varius mollis ultrices. Sed accumsan
+					odio at felis eleifend tincidunt. Mauris molestie pellentesque sapien
+					sit amet blandit. Aenean aliquet ultricies arcu in semper. In lectus
+					nunc, pharetra non molestie in, volutpat vitae arcu. Maecenas
+					consectetur auctor arcu ac interdum. Proin vitae velit felis.
+				</p>
+			</div>
+
+			<div
+				class="flex flex-col items-stretch sm:(flex-row items-start gap-3) justify-between"
+			>
+				<div class="flex flex-wrap gap-3 mb-4 sm:mb-0">
+					<div v-for="language of languages" class="rounded-box">
+						{{ language.label.en }}
+					</div>
+				</div>
+
+				<button class="btn-primary">See More</button>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
 import { type TripPackage } from "~/models"
 
+// General
+const tripPackagesStore = useTripPackagesStore()
+const languagesStore = useLanguagesStore()
+
+// Languages
+const { languages } = storeToRefs(languagesStore)
+
+// Trip packages
+const { tripPackages } = storeToRefs(tripPackagesStore)
 const packages = reactive({
 	baseTripPackages: [] as TripPackage[],
 	tripPackages: [] as TripPackage[],
 })
-
-const tripPackagesStore = useTripPackagesStore()
-const { tripPackages } = storeToRefs(tripPackagesStore)
 
 const loadTripPackages = async () => {
 	packages.baseTripPackages = tripPackages.value
