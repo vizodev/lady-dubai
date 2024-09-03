@@ -10,6 +10,7 @@ export const languageFr: ILocaleMessages = {
 		whyUs: "Pourquoi nous",
 		attractions: "Attractions",
 		travelBlog: "Blog de voyage",
+		contactUs: "Contactez-nous",
 	},
 	footer: {
 		customerService: "Service client",
@@ -21,11 +22,12 @@ export const languageFr: ILocaleMessages = {
 	},
 	hero: {
 		title1: "Réservé aux femmes",
-		title2: "Forfaits de voyage\n",
+		title2: "Forfaits de voyage",
+		title3: "à Dubaï",
 		description1:
 			"Profitez des attractions de Dubaï et des Émirats arabes unis dans un",
 		description2: "visite sûre, axée sur le genre et exclusive aux femmes.",
-		button: "Réservez votre voyage",
+		button: "Trouvez votre forfait",
 		footer: "L'expérience de Dubaï",
 	},
 	cta: {
@@ -68,6 +70,11 @@ export const languageFr: ILocaleMessages = {
 		edgeCardCancelationPolicy: "Politique d'annulation :",
 		edgeCardDisclaimer: "Discalimer :",
 		modalButton: "Sauvegarder",
+		buildOwnPackageTitle: "Créez votre propre forfait",
+		buildOwnPackageGroups: "POUR GROUPES DE +15 PERSONNES",
+		buildOwnPackageDescription:
+			"Disponible pour les groupes de 15 personnes ou plus. ",
+		buildOwnPackageButton: "Voir plus",
 	},
 	attraction: {
 		learnMore: "Apprendre encore plus",

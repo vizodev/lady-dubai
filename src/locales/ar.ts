@@ -10,6 +10,7 @@ export const languageAr: ILocaleMessages = {
 		whyUs: "لماذا نحن",
 		attractions: "جاذبية",
 		travelBlog: "مدونة السفر",
+		contactUs: "اتصل بنا",
 	},
 	footer: {
 		customerService: "خدمة العملاء",
@@ -21,10 +22,11 @@ export const languageAr: ILocaleMessages = {
 	},
 	hero: {
 		title1: "للنساء فقط",
-		title2: "عروض السفر\n",
+		title2: "عروض السفر",
+		title3: "إلى دبي",
 		description1: "استمتع بمعالم الجذب في دبي والإمارات العربية المتحدة في",
 		description2: "جولة آمنة وموجهة نحو الجنس وحصرية للنساء.",
-		button: "احجز رحلتك",
+		button: "ابحث عن الحزمة الخاصة بك",
 		footer: "تجربة دبي",
 	},
 	cta: {
@@ -65,6 +67,10 @@ export const languageAr: ILocaleMessages = {
 		edgeCardCancelationPolicy: "سياسة الإلغاء:",
 		edgeCardDisclaimer: "مخفف:",
 		modalButton: "يحفظ",
+		buildOwnPackageTitle: "قم ببناء الحزمة الخاصة بك",
+		buildOwnPackageGroups: "للمجموعات المكونة من +15 شخصًا",
+		buildOwnPackageDescription: "متاح للمجموعات المكونة من 15 شخصًا أو أكثر. ",
+		buildOwnPackageButton: "شاهد المزيد",
 	},
 	attraction: {
 		learnMore: "يتعلم أكثر",

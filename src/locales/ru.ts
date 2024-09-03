@@ -10,6 +10,7 @@ export const languageRu: ILocaleMessages = {
 		whyUs: "Почему мы",
 		attractions: "Достопримечательности",
 		travelBlog: "Блог о путешествиях",
+		contactUs: "Связаться с нами",
 	},
 	footer: {
 		customerService: "Обслуживание клиентов",
@@ -21,11 +22,12 @@ export const languageRu: ILocaleMessages = {
 	},
 	hero: {
 		title1: "Только для женщин",
-		title2: "Туристические пакеты\n",
+		title2: "Туристические пакеты",
+		title3: "в Дубай",
 		description1: "Наслаждайтесь достопримечательностями Дубая и ОАЭ в",
 		description2:
 			"безопасный, гендерно-ориентированный, эксклюзивный тур для женщин.",
-		button: "Забронируйте поездку",
+		button: "Найдите свой пакет",
 		footer: "Опыт Дубая",
 	},
 	cta: {
@@ -35,7 +37,7 @@ export const languageRu: ILocaleMessages = {
 		description1:
 			"Благодаря нашему персоналу, состоящему только из женщин, и турам, эксклюзивным для мужчин и женщин,",
 		description2:
-			"вы можете чувствовать себя в безопасности и комфортно, просто наслаждаясь поездкой.",
+			"вы можете чувствовать себя в безопасности и комфорте, просто наслаждаясь поездкой.",
 		testemonialButton: "См. отзывы",
 		testemonialDescription1: "Или проверьте наш",
 		testemonialDescription2: "плейлист ютуб",
@@ -58,7 +60,7 @@ export const languageRu: ILocaleMessages = {
 		flightTitle: "Рейсы из",
 		flightDescription1: "Прибываете из другого пункта назначения?",
 		flightDescription2:
-			"Свяжитесь с Lady Dubai, чтобы получить индивидуальные билеты на самолет из места отправления или приобрести пакет услуг, за исключением билетов на самолет.",
+			"Свяжитесь с Lady Dubai, чтобы получить индивидуальные билеты на самолет из места отправления или приобрести пакет услуг, исключая билеты на самолет.",
 		flightSelectedDate: "ВЫБРАННАЯ ДАТА",
 		excludePlaneTicketButton: "Исключить билет на самолет",
 		checkOtherPackages: "Проверьте другие пакеты",
@@ -68,6 +70,10 @@ export const languageRu: ILocaleMessages = {
 		edgeCardCancelationPolicy: "Политика отмены:",
 		edgeCardDisclaimer: "Дискалимер:",
 		modalButton: "Сохранять",
+		buildOwnPackageTitle: "Создайте свой собственный пакет",
+		buildOwnPackageGroups: "ДЛЯ ГРУПП +15 ЧЕЛОВЕК",
+		buildOwnPackageDescription: "Доступно для групп от 15 человек и более. ",
+		buildOwnPackageButton: "Посмотреть больше",
 	},
 	attraction: {
 		learnMore: "Узнать больше",

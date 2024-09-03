@@ -1,7 +1,7 @@
 import type { ILocaleMessages } from "~/models"
 
 export const languageEs: ILocaleMessages = {
-	companyName: "Lady dubai",
+	companyName: "dama dubai",
 	dirham: "DIRHAM",
 	allPackages: "Todos los paquetes",
 	attractions: "Atracciones",
@@ -10,6 +10,7 @@ export const languageEs: ILocaleMessages = {
 		whyUs: "¿Por qué nosotros?",
 		attractions: "Atracciones",
 		travelBlog: "Blog de viajes",
+		contactUs: "Contáctenos",
 	},
 	footer: {
 		customerService: "Servicio al cliente",
@@ -21,11 +22,12 @@ export const languageEs: ILocaleMessages = {
 	},
 	hero: {
 		title1: "Sólo para mujeres",
-		title2: "Paquetes de viaje\n",
+		title2: "Paquetes de viaje",
+		title3: "a Dubái",
 		description1:
 			"Disfrute de las atracciones de Dubai y los Emiratos Árabes Unidos en un",
 		description2: "Tour seguro, orientado al género y exclusivo para mujeres.",
-		button: "Reserva tu viaje",
+		button: "Encuentra tu paquete",
 		footer: "La experiencia de Dubái",
 	},
 	cta: {
@@ -68,6 +70,10 @@ export const languageEs: ILocaleMessages = {
 		edgeCardCancelationPolicy: "Política de cancelación:",
 		edgeCardDisclaimer: "Descalímero:",
 		modalButton: "Ahorrar",
+		buildOwnPackageTitle: "Construya su propio paquete",
+		buildOwnPackageGroups: "PARA GRUPOS DE +15 PERSONAS",
+		buildOwnPackageDescription: "Disponible para grupos de 15 personas o más. ",
+		buildOwnPackageButton: "Ver más",
 	},
 	attraction: {
 		learnMore: "Más información",

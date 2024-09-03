@@ -10,6 +10,7 @@ export const languageDe: ILocaleMessages = {
 		whyUs: "Warum wir",
 		attractions: "Attraktionen",
 		travelBlog: "Reiseblog",
+		contactUs: "Kontaktieren Sie uns",
 	},
 	footer: {
 		customerService: "Kundendienst",
@@ -21,12 +22,13 @@ export const languageDe: ILocaleMessages = {
 	},
 	hero: {
 		title1: "Nur für Frauen",
-		title2: "Reisepakete\n",
+		title2: "Reisepakete",
+		title3: "nach Dubai",
 		description1:
 			"Genießen Sie die Attraktionen von Dubai und den Vereinigten Arabischen Emiraten in einem",
 		description2:
 			"sichere, geschlechtsspezifische, ausschließlich Frauen vorbehaltene Tour.",
-		button: "Buchen Sie Ihre Reise",
+		button: "Finden Sie Ihr Paket",
 		footer: "Das Dubai-Erlebnis",
 	},
 	cta: {
@@ -69,6 +71,10 @@ export const languageDe: ILocaleMessages = {
 		edgeCardCancelationPolicy: "Stornierungsbedingungen:",
 		edgeCardDisclaimer: "Haftungsausschluss:",
 		modalButton: "Speichern",
+		buildOwnPackageTitle: "Erstellen Sie Ihr eigenes Paket",
+		buildOwnPackageGroups: "FÜR GRUPPEN VON +15 PERSONEN",
+		buildOwnPackageDescription: "Verfügbar für Gruppen ab 15 Personen. ",
+		buildOwnPackageButton: "Mehr anzeigen",
 	},
 	attraction: {
 		learnMore: "Erfahren Sie mehr",

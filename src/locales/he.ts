@@ -10,6 +10,7 @@ export const languageHe: ILocaleMessages = {
 		whyUs: "למה אנחנו",
 		attractions: "אטרקציות",
 		travelBlog: "בלוג טיולים",
+		contactUs: "צור קשר",
 	},
 	footer: {
 		customerService: "שֵׁירוּת לָקוֹחוֹת",
@@ -21,10 +22,11 @@ export const languageHe: ILocaleMessages = {
 	},
 	hero: {
 		title1: "לאישה בלבד",
-		title2: "חבילות נסיעות\n",
+		title2: "חבילות נסיעות",
+		title3: "לדובאי",
 		description1: "תיהנו מהאטרקציות של דובאי ואיחוד האמירויות ב-",
 		description2: "סיור בטוח, מגדר, בלעדי לנשים.",
-		button: "הזמינו את הטיול שלכם",
+		button: "מצא את החבילה שלך",
 		footer: "חוויית דובאי",
 	},
 	cta: {
@@ -65,6 +67,10 @@ export const languageHe: ILocaleMessages = {
 		edgeCardCancelationPolicy: "מדיניות ביטולים:",
 		edgeCardDisclaimer: "דיסקלימר:",
 		modalButton: "לְהַצִיל",
+		buildOwnPackageTitle: "בנה חבילה משלך",
+		buildOwnPackageGroups: "לקבוצות של +15 אנשים",
+		buildOwnPackageDescription: "זמין לקבוצות של 15 אנשים או יותר. ",
+		buildOwnPackageButton: "ראה עוד",
 	},
 	attraction: {
 		learnMore: "למידע נוסף",
