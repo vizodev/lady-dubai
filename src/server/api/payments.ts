@@ -1,6 +1,5 @@
 import stripe from "stripe"
-import { STRIPE_SECRET_KEY } from "../constants"
-import { useRoute } from "vue-router"
+import { STRIPE_SECRET_KEY } from "../../constants"
 
 export default defineEventHandler(async (event) => {
 	const query = getQuery(event)

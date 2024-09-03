@@ -1,3 +1,7 @@
+# Supabase
+.branches
+.temp
+
 # Nuxt dev/build outputs
 .output
 .data

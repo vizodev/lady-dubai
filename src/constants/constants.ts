@@ -4,6 +4,10 @@ export const ATTRACTIONS_STORE = "ATTRACTIONS_STORE"
 export const AIRPORTS_STORE = "AIRPORTS_STORE"
 export const COUNTRIES_STORE = "COUNTRIES_STORE"
 
+// Stripe
+export const STRIPE_SECRET_KEY =
+	"sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
+
 // Countries
 export const COUNTRIES_ENDPOINT =
 	"https://restcountries.com/v3.1/all?fields=name"

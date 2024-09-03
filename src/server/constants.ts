@@ -1,3 +1,0 @@
-// Stripe
-export const STRIPE_SECRET_KEY =
-	"sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
