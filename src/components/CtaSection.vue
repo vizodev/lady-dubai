@@ -48,7 +48,7 @@
 						{{ t("cta.testemonialButton") }}
 					</button>
 					<div class="flex items-center gap-3">
-						<img :src="YOUTUBE_ICON_SVG" alt="" class="w-[25px]" />
+						<img :src="YOUTUBE_ICON1_SVG" alt="" class="w-[25px]" />
 						<span
 							class="text-pink-600 font-medium font-inter text-center lg:text-start"
 						>
@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts" setup>
-import { CTA_IMAGE, YOUTUBE_ICON_SVG } from "~/constants"
+import { CTA_IMAGE, YOUTUBE_ICON1_SVG } from "~/constants"
 
 // Locales
 const { t } = useI18n()

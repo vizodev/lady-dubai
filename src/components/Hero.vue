@@ -54,6 +54,9 @@
 				<img :src="FACEBOOK_ICON_SVG" alt="" />
 			</button>
 			<button class="">
+				<img :src="YOUTUBE_ICON2_SVG" alt="" />
+			</button>
+			<button class="">
 				<img :src="TIKTOK_ICON_SVG" alt="" />
 			</button>
 			<button class="">
@@ -73,6 +76,7 @@ import {
 	FACEBOOK_ICON_SVG,
 	INSTAGRAM_ICON_SVG,
 	TIKTOK_ICON_SVG,
+	YOUTUBE_ICON2_SVG,
 	LOGO_SVG,
 	HERO1_IMAGE,
 	HERO2_IMAGE,
