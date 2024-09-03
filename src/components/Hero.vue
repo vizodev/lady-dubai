@@ -15,13 +15,11 @@
 		<div
 			class="flex flex-col pl-[12%] 2xl:pl-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-1"
 		>
-			<div class="w-[250px] hidden md:block">
+			<div class="w-[250px] hidden xl:block">
 				<img :src="LOGO_SVG" alt="Logo" class="w-full" />
 			</div>
 
-			<div
-				class="flex flex-col text-white gap-12 items-start pt-[145px] md:pt-0"
-			>
+			<div class="flex flex-col text-white gap-12 items-start pt-24 xl:pt-0">
 				<div class="flex flex-col gap-4">
 					<div class="flex flex-col">
 						<span
