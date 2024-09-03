@@ -12,7 +12,7 @@
 
 		<div
 			v-if="currentAttraction"
-			class="attraction-page-padding pt-[47px] relative z-10 mb-16 z-10"
+			class="page-padding pt-[47px] relative z-10 mb-16 z-10"
 		>
 			<RelativePath :relativePath="relativePath" class="mb-8" />
 
@@ -70,7 +70,7 @@
 			class="mb-24 lg:mb-40"
 		/>
 
-		<div class="flex flex-col gap-20 mb-20 attraction-page-padding">
+		<div class="flex flex-col gap-20 mb-20 page-padding">
 			<div
 				v-html="currentAttraction?.second_text_html[locale]"
 				class="font-inter w-full lg:w-4/5"
@@ -86,7 +86,7 @@
 			class="w-full"
 		></iframe>
 
-		<Contact class="attraction-page-padding" />
+		<Contact class="page-padding" />
 	</div>
 
 	<Footer />

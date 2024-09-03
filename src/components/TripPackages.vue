@@ -4,7 +4,7 @@
 	>
 		<Flower :src="FLOWER_LEFT2_SVG" class="-top-35 left-0" />
 
-		<Flower :src="FLOWER_RIGHT_SVG" class="bottom-85 -right-10" />
+		<Flower :src="FLOWER_RIGHT1_SVG" class="bottom-85 -right-10" />
 
 		<div
 			class="mb-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full sm:max-w-[calc((456px*2)+(32px))] xl:max-w-[calc((456px*3)+(32px*2))]"
@@ -58,7 +58,7 @@ import { type TripPackage } from "~/models"
 import {
 	CONTACT_SECTION,
 	FLOWER_LEFT2_SVG,
-	FLOWER_RIGHT_SVG,
+	FLOWER_RIGHT1_SVG,
 } from "~/constants"
 
 // General

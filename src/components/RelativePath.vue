@@ -1,5 +1,5 @@
 <template>
-	<div class="flex gap-3 flex-wrap bg-[#f5f8fa] rounded p-1">
+	<div class="flex gap-3 flex-wrap bg-[#f5f8fa] w-max rounded p-1">
 		<button
 			class="flex gap-3 items-center"
 			v-for="(path, index) in relativePath"

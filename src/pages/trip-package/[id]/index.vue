@@ -4,146 +4,157 @@
 
 		<TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
 
-		<section
-			class="flex flex-col lg:flex-row items-center lg:items-stretch w-full justify-between px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16 gap-10"
-		>
-			<div class="flex flex-col lg:max-w-[600px] gap-10 sm:gap-[52px]">
-				<div class="flex flex-col gap-6 sm:gap-8">
-					<RelativePath :relativePath="relativePath" />
-					<div class="flex flex-col gap-0.5">
-						<span
-							class="font-medium text-[32px] sm:text-[36px] md:text-[42px] lg:text-[52px] text-[#272223] leading-tight font-roboto-serif"
-						>
-							{{ currentTripPackage.title[locale] }}
-						</span>
-						<span
-							class="font-inter font-light text-[20px] sm:text-[24px] leading-none"
-						>
-							{{ currentTripPackage.subtitle[locale] }}
-						</span>
-					</div>
-					<span class="font-light font-inter leading-normal">
-						{{ currentTripPackage.description[locale] }}
-					</span>
-				</div>
-				<div class="flex flex-col gap-12">
-					<div class="flex flex-col gap-3">
-						<span class="uppercase font-bold font-inter leading-tight">
-							{{ t("tripPackage.whatsIncluded") }}
-						</span>
-						<div class="flex gap-y-4 gap-x-6 sm:gap-6 flex-wrap">
-							<TripServiceBadge
-								v-for="serv in currentTripPackage.services"
-								:key="serv.id"
-								:tripService="serv"
-							/>
-						</div>
-					</div>
-					<div class="flex flex-col gap-3">
-						<span class="uppercase font-bold font-inter leading-tight">
-							{{ t("tripPackage.availableGuideLanguages") }}
-						</span>
-						<div
-							class="flex flex-wrap gap-5 items-center w-full"
-							v-if="currentTripPackage"
-						>
-							<GuideLanguageBadge
-								v-for="language in currentTripPackage.guidelanguages"
-								:key="language.id"
-								:language="language"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="relative page-padding">
+			<Flower :src="FLOWER_LEFT2_SVG" class="-top-15 left-0" />
 
-			<TripPackagePageEdgeCard
-				v-if="currentTripPackage && currentFlightDate"
-				:trip-package="currentTripPackage"
-				:current-flight="currentFlightDate"
-				@on-flight-change="onFlightDateChange"
-			/>
-		</section>
+			<Flower :src="FLOWER_RIGHT2_SVG" class="-top-15 right-0" />
+			<Flower :src="FLOWER_RIGHT1_SVG" class="top-140 -right-5" />
 
-		<section
-			class="flex flex-col w-full px-6 md:px-16 lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] py-8 sm:py-10 md:py-[52px] gap-4 sm:gap-6 md:gap-8"
-		>
-			<span
-				class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
+			<section
+				class="flex flex-col lg:flex-row items-center lg:items-stretch justify-between pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16 gap-10"
 			>
-				{{ t("tripPackage.mainIncludedAttractions") }}
-			</span>
-
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
-				<div class="w-full" v-for="attraction in attractions">
-					<AttractionsCard :data="attraction" />
+				<div class="flex flex-col lg:max-w-[600px] gap-10 sm:gap-[52px]">
+					<div class="flex flex-col gap-6 sm:gap-8">
+						<RelativePath :relativePath="relativePath" />
+						<div class="flex flex-col gap-0.5">
+							<span
+								class="font-medium text-[32px] sm:text-[36px] md:text-[42px] lg:text-[52px] text-[#272223] leading-tight font-roboto-serif"
+							>
+								{{ currentTripPackage.title[locale] }}
+							</span>
+							<span
+								class="font-inter font-light text-[20px] sm:text-[24px] leading-none"
+							>
+								{{ currentTripPackage.subtitle[locale] }}
+							</span>
+						</div>
+						<span class="font-light font-inter leading-normal">
+							{{ currentTripPackage.description[locale] }}
+						</span>
+					</div>
+					<div class="flex flex-col gap-12">
+						<div class="flex flex-col gap-3">
+							<span class="uppercase font-bold font-inter leading-tight">
+								{{ t("tripPackage.whatsIncluded") }}
+							</span>
+							<div class="flex gap-y-4 gap-x-6 sm:gap-6 flex-wrap">
+								<TripServiceBadge
+									v-for="serv in currentTripPackage.services"
+									:key="serv.id"
+									:tripService="serv"
+								/>
+							</div>
+						</div>
+						<div class="flex flex-col gap-3">
+							<span class="uppercase font-bold font-inter leading-tight">
+								{{ t("tripPackage.availableGuideLanguages") }}
+							</span>
+							<div
+								class="flex flex-wrap gap-5 items-center w-full"
+								v-if="currentTripPackage"
+							>
+								<GuideLanguageBadge
+									v-for="language in currentTripPackage.guidelanguages"
+									:key="language.id"
+									:language="language"
+								/>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-		</section>
 
-		<section
-			class="flex flex-col w-full px-6 sm:(pt-10 py-10) md:(px-16 py-[52px]) lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 py-8 gap-8"
-		>
-			<Accommodations
-				v-if="currentTripPackage"
-				:data="currentTripPackage.accommodations"
-			/>
-		</section>
-
-		<section
-			class="flex flex-col w-full px-6 sm:(pt-10 py-10) md:(px-16 py-[52px]) lg:px-6 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px] pt-4 py-8"
-		>
-			<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
-				<p class="text-4xl font-medium font-roboto-serif">
-					{{ t("tripPackage.flightTitle") }}
-					{{ currentDepartingTakeoffAirport?.title[locale] }}
-				</p>
-				<p class="text-base font-light font-inter">
-					<span class="font-bold">{{
-						t("tripPackage.flightDescription1")
-					}}</span>
-					{{ t("tripPackage.flightDescription2") }}
-				</p>
-			</div>
-
-			<div class="flex flex-col gap-3 mb-16">
-				<p class="text-base font-bold font-inter">
-					{{ t("tripPackage.flightSelectedDate") }}
-				</p>
-
-				<TripPackageAvailableDates
-					v-if="currentFlightDate"
-					:flights="currentTripPackage.flights"
+				<TripPackagePageEdgeCard
+					v-if="currentTripPackage && currentFlightDate"
+					:trip-package="currentTripPackage"
 					:current-flight="currentFlightDate"
-					@on-change="onFlightDateChange"
+					@on-flight-change="onFlightDateChange"
 				/>
-			</div>
+			</section>
+		</div>
 
-			<div v-if="currentFlightDate" class="flex flex-col gap-16 mb-12">
-				<FlightBox
-					:key="currentFlightDate.departing_takeoff.toString()"
-					departingFlight
-					:takeoff="currentFlightDate.departing_takeoff"
-					:takeoffAirportId="currentFlightDate.departing_takeoff_airport_id"
-					:landing="currentFlightDate.departing_landing"
-					:landingAirportId="currentFlightDate.departing_landing_airport_id"
+		<div class="relative page-padding">
+			<Flower :src="FLOWER_LEFT3_SVG" class="top-15 left-0 -z-10" />
+
+			<Flower :src="FLOWER_RIGHT4_SVG" class="bottom-20 -right-5" />
+
+			<section
+				class="flex flex-col py-8 sm:py-10 md:py-[52px] gap-4 sm:gap-6 md:gap-8"
+			>
+				<span
+					class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
+				>
+					{{ t("tripPackage.mainIncludedAttractions") }}
+				</span>
+
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
+					<div class="w-full" v-for="attraction in attractions">
+						<AttractionsCard :data="attraction" />
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="page-padding">
+			<section class="flex flex-col pt-4 py-8 gap-8">
+				<Accommodations
+					v-if="currentTripPackage"
+					:data="currentTripPackage.accommodations"
 				/>
+			</section>
 
-				<FlightBox
-					:key="currentFlightDate.returning_takeoff.toString()"
-					:takeoff="currentFlightDate.returning_takeoff"
-					:takeoffAirportId="currentFlightDate.returning_takeoff_airport_id"
-					:landing="currentFlightDate.returning_landing"
-					:landingAirportId="currentFlightDate.returning_landing_airport_id"
-				/>
-			</div>
+			<section class="flex flex-col pt-4 py-8">
+				<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
+					<p class="text-4xl font-medium font-roboto-serif">
+						{{ t("tripPackage.flightTitle") }}
+						{{ currentDepartingTakeoffAirport?.title[locale] }}
+					</p>
+					<p class="text-base font-light font-inter">
+						<span class="font-bold">{{
+							t("tripPackage.flightDescription1")
+						}}</span>
+						{{ t("tripPackage.flightDescription2") }}
+					</p>
+				</div>
 
-			<button class="btn-rounded self-end">
-				<i class="fi fi-rs-circle-xmark not-italic flex items-center gap-2">
-					{{ t("tripPackage.excludePlaneTicketButton") }}
-				</i>
-			</button>
-		</section>
+				<div class="flex flex-col gap-3 mb-16">
+					<p class="text-base font-bold font-inter">
+						{{ t("tripPackage.flightSelectedDate") }}
+					</p>
+
+					<TripPackageAvailableDates
+						v-if="currentFlightDate"
+						:flights="currentTripPackage.flights"
+						:current-flight="currentFlightDate"
+						@on-change="onFlightDateChange"
+					/>
+				</div>
+
+				<div v-if="currentFlightDate" class="flex flex-col gap-16 mb-12">
+					<FlightBox
+						:key="currentFlightDate.departing_takeoff.toString()"
+						departingFlight
+						:takeoff="currentFlightDate.departing_takeoff"
+						:takeoffAirportId="currentFlightDate.departing_takeoff_airport_id"
+						:landing="currentFlightDate.departing_landing"
+						:landingAirportId="currentFlightDate.departing_landing_airport_id"
+					/>
+
+					<FlightBox
+						:key="currentFlightDate.returning_takeoff.toString()"
+						:takeoff="currentFlightDate.returning_takeoff"
+						:takeoffAirportId="currentFlightDate.returning_takeoff_airport_id"
+						:landing="currentFlightDate.returning_landing"
+						:landingAirportId="currentFlightDate.returning_landing_airport_id"
+					/>
+				</div>
+
+				<button class="btn-rounded self-end">
+					<i class="fi fi-rs-circle-xmark not-italic flex items-center gap-2">
+						{{ t("tripPackage.excludePlaneTicketButton") }}
+					</i>
+				</button>
+			</section>
+		</div>
 
 		<div
 			class="flex flex-col gap-6 sm:gap-3 w-full bg-pink-100 py-[26px] my-[52px] items-center"
@@ -210,7 +221,15 @@ import {
 	languagePtBr,
 	languageRu,
 } from "~/locales"
-import { HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
+import {
+	HOME_ROUTE,
+	TRIP_PACKAGE_ROUTE,
+	FLOWER_LEFT2_SVG,
+	FLOWER_LEFT3_SVG,
+	FLOWER_RIGHT2_SVG,
+	FLOWER_RIGHT1_SVG,
+	FLOWER_RIGHT4_SVG,
+} from "~/constants"
 
 // General
 const airportsStore = useAirportsStore()

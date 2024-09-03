@@ -41,7 +41,7 @@ export default defineConfig({
 			"border border-pink-600 text-pink-600 text-[12px] font-medium font-inter px-1.5 py-1 rounded-md",
 		"dropdown-content":
 			"p-6 pr-14 w-max right-0 bg-white rounded-lg hidden absolute shadow-md",
-		"attraction-page-padding":
+		"page-padding":
 			"w-full px-6 md:px-16 lg:px-32 xl:px-[150px] 2xl:px-[200px] 3xl:px-[245px]",
 	},
 })
