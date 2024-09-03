@@ -9,8 +9,14 @@
 			data-aos="fade-right"
 			data-aos-offset="-300"
 			data-aos-duration="800"
-			class="flex flex-col bg-white w-full max-w-[768px] lg:max-w-[529px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] gap-8 sm:gap-[52px]"
+			class="relative flex flex-col bg-white w-full max-w-[768px] lg:max-w-[529px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] gap-8 sm:gap-[52px]"
 		>
+			<img
+				:src="FLOWER_RIGHT_SVG"
+				alt="Flower"
+				class="absolute -top-25 -left-20 -z-10"
+			/>
+
 			<span
 				class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
 			>
@@ -59,7 +65,7 @@
 <script lang="ts" setup>
 import { contactSchema, type ContactSchemaSubmit } from "../formSchemas"
 import { defaultTripPackages } from "~/data"
-import { CONTACT_SECTION } from "~/constants"
+import { CONTACT_SECTION, FLOWER_RIGHT_SVG } from "~/constants"
 
 // Locales
 const { t } = useI18n()
