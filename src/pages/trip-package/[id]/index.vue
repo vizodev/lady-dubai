@@ -201,6 +201,8 @@
 
 		<Contact />
 		<Footer />
+
+		<WhatsappButton />
 	</div>
 </template>
 

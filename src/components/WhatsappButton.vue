@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="showContact"
-		class="fixed bottom-[80px] right-20 animate-bounce hover:animate-none transition-all duration-[.2s]"
+		class="fixed bottom-[80px] right-20 animate-bounce hover:animate-none transition-all duration-[.2s] z-50"
 	>
 		<button
 			class="flex items-center justify-center bg-[#21B65A] rounded-full w-[52px] h-[52px] text-white text-[24px] customShadow"
@@ -26,10 +26,10 @@ const handleScroll = () => {
 
 // Life cycle
 onMounted(() => {
-	window.addEventListener(scrollEventName, () => scrollEventName)
+	window.addEventListener(scrollEventName, handleScroll)
 })
 
 onUnmounted(() => {
-	window.removeEventListener(scrollEventName, () => scrollEventName)
+	window.removeEventListener(scrollEventName, handleScroll)
 })
 </script>
