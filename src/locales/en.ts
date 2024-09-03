@@ -68,6 +68,11 @@ export const languageEn: ILocaleMessages = {
 		edgeCardCancelationPolicy: "Cancelation policy:",
 		edgeCardDisclaimer: "Discalimer:",
 		modalButton: "Save",
+		buildOwnPackageTitle: "Build Your Own Package",
+		buildOwnPackageGroups: "FOR GROUPS OF +15 PEOPLE",
+		buildOwnPackageDescription:
+			"Available for groups of 15 People or more. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis velit, laoreet pulvinar est vel, pharetra tristique enim. Nunc justo magna, semper sit amet augue. Ut consequat, velit at venenatis consectetur, nibh quam lacinia ligula, id porttitor ante turpis eu tortor. Aliquam eleifend vitae ante vitae posuere. Sed turpis purus, faucibus a purus scelerisque, auctor fringilla velit. Quisque varius mollis ultrices. Sed accumsan odio at felis eleifend tincidunt. Mauris molestie pellentesque sapien sit amet blandit. Aenean aliquet ultricies arcu in semper. In lectus nunc, pharetra non molestie in, volutpat vitae arcu. Maecenas consectetur auctor arcu ac interdum. Proin vitae velit felis.",
+		buildOwnPackageButton: "See More",
 	},
 	attraction: {
 		learnMore: "Learn more",

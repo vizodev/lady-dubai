@@ -18,27 +18,17 @@
 		<div class="bg-white shadow-md rounded-xl p-8">
 			<div class="mb-3 bg-off-black w-max py-1 px-2 rounded-md">
 				<p class="text-[10px] text-white font-bold font-inter uppercase">
-					FOR GROUPS OF +15 PEOPLE
+					{{ t("tripPackage.buildOwnPackageGroups") }}
 				</p>
 			</div>
 
 			<div class="mb-6">
 				<p class="font-roboto-serif font-medium text-4xl mb-1">
-					Build Your Own Package
+					{{ t("tripPackage.buildOwnPackageTitle") }}
 				</p>
 
 				<p class="text-sm font-inter font-medium text-gray-600">
-					Available for groups of 15 People or more. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit. Vivamus turpis velit, laoreet pulvinar
-					est vel, pharetra tristique enim. Nunc justo magna, semper sit amet
-					augue. Ut consequat, velit at venenatis consectetur, nibh quam lacinia
-					ligula, id porttitor ante turpis eu tortor. Aliquam eleifend vitae
-					ante vitae posuere. Sed turpis purus, faucibus a purus scelerisque,
-					auctor fringilla velit. Quisque varius mollis ultrices. Sed accumsan
-					odio at felis eleifend tincidunt. Mauris molestie pellentesque sapien
-					sit amet blandit. Aenean aliquet ultricies arcu in semper. In lectus
-					nunc, pharetra non molestie in, volutpat vitae arcu. Maecenas
-					consectetur auctor arcu ac interdum. Proin vitae velit felis.
+					{{ t("tripPackage.buildOwnPackageDescription") }}
 				</p>
 			</div>
 
@@ -51,7 +41,9 @@
 					</div>
 				</div>
 
-				<button class="btn-primary">See More</button>
+				<button class="btn-primary">
+					{{ t("tripPackage.buildOwnPackageButton") }}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -77,6 +69,9 @@ const packages = reactive({
 const loadTripPackages = async () => {
 	packages.baseTripPackages = tripPackages.value
 }
+
+// Locales
+const { t } = useI18n()
 
 // Listeners
 const resizeEventName = "resize"

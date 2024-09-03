@@ -63,6 +63,10 @@ export interface ILocaleMessages {
 		edgeCardCancelationPolicy: string
 		edgeCardDisclaimer: string
 		modalButton: string
+		buildOwnPackageTitle: string
+		buildOwnPackageGroups: string
+		buildOwnPackageDescription: string
+		buildOwnPackageButton: string
 	}
 	attraction: {
 		learnMore: string
