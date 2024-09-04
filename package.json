@@ -10,9 +10,9 @@
     "postinstall": "nuxt prepare",
     "functions:start": "npx supabase start && npx supabase functions serve --no-verify-jwt",
     "functions:deploy": "npx supabase functions deploy --no-verify-jwt --project-ref vjqpuprqwnpjqpgapdyt",
-    "docker:build": "docker build -t us-central1-docker.pkg.dev/lady-dubai/lady-dubai-website/client .",
+    "docker:build": "rm ~/.docker/config.json && docker build -t us-central1-docker.pkg.dev/lady-dubai/lady-dubai-website/client .",
     "docker:run": "docker run --rm -p 3000:3000 us-central1-docker.pkg.dev/lady-dubai/lady-dubai-website/client",
-    "docker:push": "docker push us-central1-docker.pkg.dev/lady-dubai/lady-dubai-website/client"
+    "docker:push": "gcloud auth configure-docker us-central1-docker.pkg.dev && docker push us-central1-docker.pkg.dev/lady-dubai/lady-dubai-website/client"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
