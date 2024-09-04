@@ -1,22 +1,22 @@
 <template>
 	<section
 		:id="CONTACT_SECTION"
-		class="flex items-center lg:items-stretch gap-16 lg:gap-16 xl:gap-24 justify-center py-16 sm:py-20 md:py-[100px] px-6 flex-col lg:flex-row"
+		class="relative flex items-center lg:items-stretch gap-16 lg:gap-16 xl:gap-24 justify-center py-16 sm:py-20 md:py-[100px] px-6 flex-col lg:flex-row"
 	>
+		<img
+			:src="FLOWER_RIGHT1_SVG"
+			alt="Flower"
+			class="absolute top-0 -left-5 xl:left-15 -z-10"
+		/>
+
 		<BaseForm
 			:validation-schema="contactSchema"
 			@submit="onSubmit"
 			data-aos="fade-right"
 			data-aos-offset="-300"
 			data-aos-duration="800"
-			class="relative flex flex-col bg-white w-full max-w-[768px] lg:max-w-[529px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] gap-8 sm:gap-[52px]"
+			class="flex flex-col bg-white w-full max-w-[768px] lg:max-w-[529px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] gap-8 sm:gap-[52px]"
 		>
-			<img
-				:src="FLOWER_RIGHT1_SVG"
-				alt="Flower"
-				class="absolute -top-25 -left-20 -z-10"
-			/>
-
 			<span
 				class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
 			>
