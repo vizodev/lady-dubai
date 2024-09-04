@@ -1,10 +1,12 @@
 <template>
+	<!-- class="relative flex flex-col w-full pt-10 sm:pt-[64px] lg:pt-[100px] pb-10 sm:pb-[114px] lg:pb-[150px] items-center px-6 sm:px-8 lg:px-16 2xl:px-8" -->
 	<div
-		class="relative flex flex-col w-full pt-10 sm:pt-[64px] lg:pt-[100px] pb-10 sm:pb-[114px] lg:pb-[150px] items-center px-6 sm:px-8 lg:px-16 2xl:px-8"
+		:id="TRIP_PACKAGES_SECTION"
+		class="relative flex flex-col w-full pt-10 sm:pt-[64px] lg:pt-[100px] pb-10 sm:pb-[114px] lg:pb-[150px] items-center page-padding"
 	>
-		<Flower :src="FLOWER_LEFT2_SVG" class="-top-35 left-0" />
+		<SidePageIcon :src="FLOWER_LEFT2_SVG" class="-top-35 left-0" />
 
-		<Flower :src="FLOWER_RIGHT1_SVG" class="bottom-85 -right-10" />
+		<SidePageIcon :src="FLOWER_RIGHT1_SVG" class="bottom-85 -right-10" />
 
 		<div
 			class="mb-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full sm:max-w-[calc((456px*2)+(32px))] xl:max-w-[calc((456px*3)+(32px*2))]"
@@ -54,12 +56,13 @@
 </template>
 
 <script lang="ts" setup>
-import { type TripPackage } from "~/models"
 import {
 	CONTACT_SECTION,
 	FLOWER_LEFT2_SVG,
 	FLOWER_RIGHT1_SVG,
+	TRIP_PACKAGES_SECTION,
 } from "~/constants"
+import { type TripPackage } from "~/models"
 
 // General
 const tripPackagesStore = useTripPackagesStore()
@@ -76,7 +79,11 @@ const packages = reactive({
 })
 
 const loadTripPackages = async () => {
-	packages.baseTripPackages = tripPackages.value
+	packages.baseTripPackages = [
+		...tripPackages.value,
+		...tripPackages.value,
+		...tripPackages.value,
+	]
 }
 
 // Locales

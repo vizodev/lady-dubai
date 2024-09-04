@@ -81,14 +81,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	FACEBOOK_ICON_SVG,
-	YOUTUBE_ICON2_SVG,
-	INSTAGRAM_ICON_SVG,
-	TIKTOK_ICON_SVG,
-	LOGO_FOOTER_SVG,
-	WHATSAPP_ICON_SVG,
-} from "~/constants"
+import { LOGO_FOOTER_SVG, WHATSAPP_ICON_SVG } from "~/constants"
 import { LanguageEnum } from "~/models"
 
 // Scroll

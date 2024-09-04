@@ -36,6 +36,7 @@ export const FLOWER_RIGHT4_SVG = "/svg/flower-right4.svg"
 export const FLOWER_LEFT1_SVG = "/svg/flower-left1.svg"
 export const FLOWER_LEFT2_SVG = "/svg/flower-left2.svg"
 export const FLOWER_LEFT3_SVG = "/svg/flower-left3.svg"
+export const FLOWER_LEFT4_SVG = "/svg/flower-left4.svg"
 
 export const PLANE1_SVG = "/svg/plane1.svg"
 export const PLANE2_SVG = "/svg/plane2.svg"

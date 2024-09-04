@@ -73,7 +73,7 @@
 				</div>
 			</div>
 			<div
-				class="flex 2xl:items-end justify-between flex-col 2xl:flex-row gap-4 2xl:gap-0"
+				class="flex 2xl:items-end justify-between flex-col gap-4 2xl:(flex-row gap-8)"
 			>
 				<div class="flex flex-col lg:gap-1.5">
 					<div class="relative w-max">
@@ -109,15 +109,17 @@
 					</span>
 				</div>
 
-				<button @click="openTripPackage" class="btn-primary">See More</button>
+				<button @click="openTripPackage" class="btn-primary w-full">
+					See More
+				</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import type { TripPackage } from "~/models"
 import { TRIP_PACKAGE_ROUTE } from "~/constants"
+import type { TripPackage } from "~/models"
 
 const props = defineProps<{
 	tripPackage: TripPackage

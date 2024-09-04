@@ -19,6 +19,7 @@ export const languageRu: ILocaleMessages = {
 		copyright: "Авторские права © 2024 Lady Dubai. ",
 		privacyPolicy: "политика конфиденциальности",
 		termsOfUse: "Условия эксплуатации",
+		backToTop: "Вернуться наверх",
 	},
 	hero: {
 		title1: "Только для женщин",

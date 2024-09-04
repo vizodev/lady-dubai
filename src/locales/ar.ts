@@ -19,6 +19,7 @@ export const languageAr: ILocaleMessages = {
 		copyright: "ليدي دبي حقوق النشر © 2024 ليدي دبي. ",
 		privacyPolicy: "سياسة الخصوصية",
 		termsOfUse: "شروط الاستخدام",
+		backToTop: "العودة إلى الأعلى",
 	},
 	hero: {
 		title1: "للنساء فقط",

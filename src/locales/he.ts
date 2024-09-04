@@ -19,6 +19,7 @@ export const languageHe: ILocaleMessages = {
 		copyright: "LADYDUBAI זכויות יוצרים © 2024 ליידי דובאי. ",
 		privacyPolicy: "מדיניות פרטיות",
 		termsOfUse: "תנאי שימוש",
+		backToTop: "חזרה למעלה",
 	},
 	hero: {
 		title1: "לאישה בלבד",

@@ -1,6 +1,10 @@
 {
 	"files.autoSave": "off",
 	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "always",
+		"source.fixAll": "explicit"
+	},
 	"files.eol": "\n",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.quickSuggestions": {
@@ -11,10 +15,6 @@
 	},
 	"css.lint.unknownAtRules": "ignore",
 	"scss.lint.unknownAtRules": "ignore",
-	"[sql]": {
-		"editor.defaultFormatter": "adpyke.vscode-sql-formatter"
-	},
-	"cSpell.words": ["Supabase", "supabase"],
 	"deno.enable": true,
 	"deno.enablePaths": ["supabase/functions/"],
 	"deno.unstable": true,

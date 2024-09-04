@@ -4,11 +4,11 @@
 	<iframe
 		:src="currentAttraction?.video_url"
 		frameborder="0"
-		class="w-full h-[90vh]"
+		class="w-full h-[79vh]"
 	></iframe>
 
 	<div class="relative">
-		<Flower :src="FLOWER_LEFT2_SVG" class="-top-15 left-0" />
+		<SidePageIcon :src="FLOWER_LEFT4_SVG" class="-top-15 left-0" />
 
 		<div
 			v-if="currentAttraction"
@@ -95,13 +95,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	type Attraction,
-	type RelativePathComponent,
-	type TripPackage,
-	LanguageEnum,
-} from "~/models"
-import { FLOWER_LEFT2_SVG, HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
+import { FLOWER_LEFT4_SVG, HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 import { languageToLocale } from "~/data"
 import {
 	languageAr,
@@ -113,6 +107,12 @@ import {
 	languagePtBr,
 	languageRu,
 } from "~/locales"
+import {
+	type Attraction,
+	type RelativePathComponent,
+	type TripPackage,
+	LanguageEnum,
+} from "~/models"
 
 // General
 const tripPackagesStore = useTripPackagesStore()

@@ -6,14 +6,16 @@
 			transition: 'background-image 1.5s ease-in-out',
 		}"
 	>
-		<Flower :src="FLOWER_LEFT1_SVG" class="top-40 -left-10 z-10" />
+		<SidePageIcon :src="PLANE1_SVG" class="top-30 z-10" />
+		<SidePageIcon :src="FLOWER_LEFT1_SVG" class="top-40 left-0 z-10" />
+		<SidePageIcon :src="PLANE2_SVG" class="top-120 z-10" />
 
 		<div
 			class="absolute inset-0 w-full h-full bg-[#5E6567] mix-blend-hard-light"
 		></div>
 
 		<div
-			class="flex flex-col pl-[12%] 2xl:pl-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-1"
+			class="flex flex-col pl-[12%] 2xl:pl-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-50"
 		>
 			<div class="w-[250px] hidden xl:block">
 				<img :src="LOGO_SVG" alt="Logo" class="w-full" />
@@ -45,7 +47,12 @@
 					</div>
 				</div>
 
-				<button class="btn-primary">{{ t("hero.button") }}</button>
+				<a
+					rel="noopener"
+					:href="`#${TRIP_PACKAGES_SECTION}`"
+					class="btn-primary"
+					>{{ t("hero.button") }}</a
+				>
 			</div>
 		</div>
 
@@ -63,7 +70,7 @@
 
 <script lang="ts" setup>
 import {
-	LOGO_SVG,
+	FLOWER_LEFT1_SVG,
 	HERO1_IMAGE,
 	HERO2_IMAGE,
 	HERO3_IMAGE,
@@ -72,11 +79,16 @@ import {
 	HERO6_IMAGE,
 	HERO7_IMAGE,
 	HERO8_IMAGE,
-	FLOWER_LEFT1_SVG,
+	HOME_ROUTE,
+	LOGO_SVG,
+	PLANE1_SVG,
+	PLANE2_SVG,
+	TRIP_PACKAGES_SECTION,
 } from "~/constants"
 
 // Locales
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 // Background
 const backgrounds = reactive<{
@@ -131,6 +143,9 @@ const changeBackground = () => {
 		backgrounds.currentHeroIndex++
 	}
 }
+
+// Routes
+const openHome = () => navigateTo(localePath(HOME_ROUTE))
 
 // Life cycle
 onBeforeMount(() => startChangeBackground())

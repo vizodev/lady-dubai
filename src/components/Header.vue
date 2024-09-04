@@ -1,6 +1,6 @@
 <template>
 	<header
-		class="flex w-full justify-between items-center fixed top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px] z-50"
+		class="flex w-full justify-between items-center fixed top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px] z-100"
 		:class="{
 			'bg-[#FFC1D3] shadow-md xl:(bg-transparent shadow-none)': !paintHeaderBg,
 			'bg-[#FFC1D3] !shadow-md': paintHeaderBg,
@@ -9,8 +9,9 @@
 	>
 		<img
 			:src="showLogo && !paintHeaderBg ? LOGO_SVG : LOGO_WHITE_SVG"
-			alt=""
-			class="h-[40px]"
+			@click="openHome"
+			alt="logo"
+			class="h-[40px] cursor-pointer"
 			:class="{
 				'xl:hidden': !showLogo,
 			}"
@@ -193,12 +194,13 @@
 
 <script lang="ts" setup>
 import {
-	LOGO_WHITE_SVG,
-	LOGO_SVG,
-	MENU_SVG,
-	CROSS_SVG,
 	ATTRACTION_ROUTE,
 	CONTACT_SECTION,
+	CROSS_SVG,
+	HOME_ROUTE,
+	LOGO_SVG,
+	LOGO_WHITE_SVG,
+	MENU_SVG,
 } from "~/constants"
 import { localeToLanguage } from "~/data"
 import { LanguageEnum, type Attraction } from "~/models"
@@ -271,6 +273,7 @@ const handleScroll = () => {
 }
 
 // Routes
+const openHome = () => navigateTo(localePath(HOME_ROUTE))
 const openAttraction = (id: number) => {
 	navigateTo(localePath(ATTRACTION_ROUTE(id)))
 }

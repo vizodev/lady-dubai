@@ -19,6 +19,7 @@ export const languageFr: ILocaleMessages = {
 		copyright: "LADYDUBAI Copyright © 2024 Lady Dubaï. ",
 		privacyPolicy: "politique de confidentialité",
 		termsOfUse: "Conditions d'utilisation",
+		backToTop: "Retour en haut de la page",
 	},
 	hero: {
 		title1: "Réservé aux femmes",

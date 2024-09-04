@@ -5,10 +5,10 @@
 		<TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
 
 		<div class="relative page-padding">
-			<Flower :src="FLOWER_LEFT2_SVG" class="-top-15 left-0" />
+			<SidePageIcon :src="FLOWER_LEFT4_SVG" class="-top-15 left-0" />
 
-			<Flower :src="FLOWER_RIGHT2_SVG" class="-top-15 right-0" />
-			<Flower :src="FLOWER_RIGHT1_SVG" class="top-140 -right-5" />
+			<SidePageIcon :src="FLOWER_RIGHT2_SVG" class="-top-15 right-0" />
+			<SidePageIcon :src="FLOWER_RIGHT1_SVG" class="top-140 -right-5" />
 
 			<section
 				class="flex flex-col lg:flex-row items-center lg:items-stretch justify-between pt-[47px] relative z-10 pb-4 md:pb-8 lg:pb-16 gap-10"
@@ -73,9 +73,9 @@
 		</div>
 
 		<div class="relative page-padding">
-			<Flower :src="FLOWER_LEFT3_SVG" class="top-15 left-0 -z-10" />
+			<SidePageIcon :src="FLOWER_LEFT3_SVG" class="top-45 left-0 -z-10" />
 
-			<Flower :src="FLOWER_RIGHT4_SVG" class="bottom-20 -right-5" />
+			<SidePageIcon :src="FLOWER_RIGHT4_SVG" class="bottom-20 -right-5" />
 
 			<section
 				class="flex flex-col py-8 sm:py-10 md:py-[52px] gap-4 sm:gap-6 md:gap-8"
@@ -208,11 +208,14 @@
 
 <script lang="ts" setup>
 import {
-	type Attraction,
-	type Flight,
-	type RelativePathComponent,
-	type TripPackage,
-} from "~/models"
+	FLOWER_LEFT3_SVG,
+	FLOWER_LEFT4_SVG,
+	FLOWER_RIGHT1_SVG,
+	FLOWER_RIGHT2_SVG,
+	FLOWER_RIGHT4_SVG,
+	HOME_ROUTE,
+	TRIP_PACKAGE_ROUTE,
+} from "~/constants"
 import {
 	languageAr,
 	languageDe,
@@ -224,14 +227,11 @@ import {
 	languageRu,
 } from "~/locales"
 import {
-	HOME_ROUTE,
-	TRIP_PACKAGE_ROUTE,
-	FLOWER_LEFT2_SVG,
-	FLOWER_LEFT3_SVG,
-	FLOWER_RIGHT2_SVG,
-	FLOWER_RIGHT1_SVG,
-	FLOWER_RIGHT4_SVG,
-} from "~/constants"
+	type Attraction,
+	type Flight,
+	type RelativePathComponent,
+	type TripPackage,
+} from "~/models"
 
 // General
 const airportsStore = useAirportsStore()
