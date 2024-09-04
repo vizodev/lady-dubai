@@ -79,11 +79,7 @@ const packages = reactive({
 })
 
 const loadTripPackages = async () => {
-	packages.baseTripPackages = [
-		...tripPackages.value,
-		...tripPackages.value,
-		...tripPackages.value,
-	]
+	packages.baseTripPackages = tripPackages.value
 }
 
 // Locales
