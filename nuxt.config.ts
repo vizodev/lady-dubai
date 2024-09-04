@@ -1,9 +1,11 @@
+import { languageToLocale } from "./src/data"
 import {
 	SUPABASE_KEY,
 	SUPABASE_REDIRECT,
 	SUPABASE_SERVICE_KEY,
 	SUPABASE_URL,
 } from "./src/constants"
+import { LanguageEnum } from "./src/models"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -25,9 +27,18 @@ export default defineNuxtConfig({
 	},
 	i18n: {
 		vueI18n: "./src/locales/i18n.config.ts",
-		locales: ["en", "he", "es", "pt-br", "de", "fr", "ar", "ru"],
-		defaultLocale: "en",
-		strategy: "prefix",
+		locales: [
+			languageToLocale[LanguageEnum.ENGLISH],
+			languageToLocale[LanguageEnum.HEBREW],
+			languageToLocale[LanguageEnum.SPANISH],
+			languageToLocale[LanguageEnum.PORTUGUESE_BR],
+			languageToLocale[LanguageEnum.GERMAN],
+			languageToLocale[LanguageEnum.FRENCH],
+			languageToLocale[LanguageEnum.ARABIC],
+			languageToLocale[LanguageEnum.RUSSIAN],
+		],
+		defaultLocale: languageToLocale[LanguageEnum.ENGLISH],
+		strategy: "prefix_except_default",
 	},
 	aos: {
 		// Global settings:
@@ -49,7 +60,6 @@ export default defineNuxtConfig({
 		mirror: false, // whether elements should animate out while scrolling past them
 		anchorPlacement: "top-center", // defines which position of the element regarding to window should trigger the animation
 	},
-
 	components: [
 		{
 			path: "~/components", // will get any components nested in let's say /components/test too

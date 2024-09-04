@@ -16,6 +16,7 @@ export interface ILocaleMessages {
 		copyright: string
 		privacyPolicy: string
 		termsOfUse: string
+		backToTop: string
 	}
 	hero: {
 		title1: string

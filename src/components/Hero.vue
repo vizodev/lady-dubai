@@ -49,22 +49,9 @@
 			</div>
 		</div>
 
-		<div
+		<SocialMedias
 			class="flex flex-col absolute bottom-[121px] right-[40px] xl:right-[76px] gap-[28px]"
-		>
-			<button class="">
-				<img :src="FACEBOOK_ICON_SVG" alt="" />
-			</button>
-			<button class="">
-				<img :src="YOUTUBE_ICON2_SVG" alt="" />
-			</button>
-			<button class="">
-				<img :src="TIKTOK_ICON_SVG" alt="" />
-			</button>
-			<button class="">
-				<img :src="INSTAGRAM_ICON_SVG" alt="" />
-			</button>
-		</div>
+		/>
 
 		<span
 			class="absolute bottom-[28px] right-[40px] xl:right-[82px] text-pink-100 font-inter font-medium"
@@ -76,10 +63,6 @@
 
 <script lang="ts" setup>
 import {
-	FACEBOOK_ICON_SVG,
-	INSTAGRAM_ICON_SVG,
-	TIKTOK_ICON_SVG,
-	YOUTUBE_ICON2_SVG,
 	LOGO_SVG,
 	HERO1_IMAGE,
 	HERO2_IMAGE,
@@ -90,7 +73,6 @@ import {
 	HERO7_IMAGE,
 	HERO8_IMAGE,
 	FLOWER_LEFT1_SVG,
-	FLOWER_LEFT2_SVG,
 } from "~/constants"
 
 // Locales

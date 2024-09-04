@@ -19,6 +19,7 @@ export const languageEn: ILocaleMessages = {
 		copyright: "LADYDUBAI Copyright © 2024 Lady Dubai. All rights reserved",
 		privacyPolicy: "Privacy Policy",
 		termsOfUse: "Terms of Use",
+		backToTop: "Back to Top",
 	},
 	hero: {
 		title1: "Woman-only",

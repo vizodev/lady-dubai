@@ -7,8 +7,8 @@ import {
 	RUSSIAN_FLAG_SVG,
 	SPANISH_FLAG_SVG,
 	USA_FLAG_SVG,
-} from "~/constants"
-import { LanguageEnum } from "~/models"
+} from "../constants"
+import { LanguageEnum } from "../models"
 
 export const languageToLocale = {
 	[LanguageEnum.ARABIC]: "ar",
@@ -22,14 +22,14 @@ export const languageToLocale = {
 }
 
 export const localeToLanguage = {
-	ar: LanguageEnum.ARABIC,
-	en: LanguageEnum.ENGLISH,
-	fr: LanguageEnum.FRENCH,
-	de: LanguageEnum.GERMAN,
-	he: LanguageEnum.HEBREW,
-	"pt-br": LanguageEnum.PORTUGUESE_BR,
-	ru: LanguageEnum.RUSSIAN,
-	es: LanguageEnum.SPANISH,
+	[languageToLocale[LanguageEnum.ARABIC]]: LanguageEnum.ARABIC,
+	[languageToLocale[LanguageEnum.ENGLISH]]: LanguageEnum.ENGLISH,
+	[languageToLocale[LanguageEnum.FRENCH]]: LanguageEnum.FRENCH,
+	[languageToLocale[LanguageEnum.GERMAN]]: LanguageEnum.GERMAN,
+	[languageToLocale[LanguageEnum.HEBREW]]: LanguageEnum.HEBREW,
+	[languageToLocale[LanguageEnum.PORTUGUESE_BR]]: LanguageEnum.PORTUGUESE_BR,
+	[languageToLocale[LanguageEnum.RUSSIAN]]: LanguageEnum.RUSSIAN,
+	[languageToLocale[LanguageEnum.SPANISH]]: LanguageEnum.SPANISH,
 }
 
 export const languageToFlagSrc = {

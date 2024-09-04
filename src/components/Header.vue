@@ -178,17 +178,7 @@
 					</button>
 				</div>
 
-				<div class="flex items-center gap-6 justify-center">
-					<button class="">
-						<img :src="FACEBOOK_ICON_SVG" alt="" />
-					</button>
-					<button class="">
-						<img :src="TIKTOK_ICON_SVG" alt="" />
-					</button>
-					<button class="">
-						<img :src="INSTAGRAM_ICON_SVG" alt="" />
-					</button>
-				</div>
+				<SocialMedias class="flex items-center gap-6 justify-center" />
 
 				<button
 					class="w-8 h-8 bg-white rounded-full flex items-center justify-center p-2"
@@ -203,9 +193,6 @@
 
 <script lang="ts" setup>
 import {
-	FACEBOOK_ICON_SVG,
-	INSTAGRAM_ICON_SVG,
-	TIKTOK_ICON_SVG,
 	LOGO_WHITE_SVG,
 	LOGO_SVG,
 	MENU_SVG,

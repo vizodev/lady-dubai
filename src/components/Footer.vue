@@ -1,5 +1,17 @@
 <template>
 	<footer class="flex flex-col px-6 lg:px-[72px] gap-8 lg:gap-[52px] py-[65px]">
+		<button
+			v-if="hasPageScroll"
+			@click="scrollToTop"
+			class="btn-rounded self-center mb-9"
+		>
+			<i
+				class="fi fi-rr-arrow-small-up flex gap-1 items-center not-italic order flex-row-reverse text-2xl"
+			>
+				<span class="text-sm">{{ t("footer.backToTop") }}</span>
+			</i>
+		</button>
+
 		<div
 			class="flex items-center justify-between px-6 xl:px-[9%] flex-col-reverse md:flex-row gap-8 md:gap-0"
 		>
@@ -24,17 +36,8 @@
 			<div
 				class="flex items-center gap-6 lg:gap-10 flex-col-reverse lg:flex-row"
 			>
-				<div class="flex items-center gap-[28px]">
-					<button class="socialShadow">
-						<img :src="FACEBOOK_ICON_SVG" alt="" />
-					</button>
-					<button class="socialShadow">
-						<img :src="TIKTOK_ICON_SVG" alt="" />
-					</button>
-					<button class="socialShadow">
-						<img :src="INSTAGRAM_ICON_SVG" alt="" />
-					</button>
-				</div>
+				<SocialMedias class="flex items-center gap-6" />
+
 				<div class="w-[250px]">
 					<img :src="LOGO_FOOTER_SVG" alt="Logo" class="w-full" />
 				</div>
@@ -80,6 +83,7 @@
 <script lang="ts" setup>
 import {
 	FACEBOOK_ICON_SVG,
+	YOUTUBE_ICON2_SVG,
 	INSTAGRAM_ICON_SVG,
 	TIKTOK_ICON_SVG,
 	LOGO_FOOTER_SVG,
@@ -87,8 +91,31 @@ import {
 } from "~/constants"
 import { LanguageEnum } from "~/models"
 
+// Scroll
+const hasPageScroll = ref(false)
+
+const scrollToTop = () => window.scrollTo(0, 0)
+
+// Listeners
+const scrollEventName = "scroll"
+
+const handleScroll = () => {
+	if (window.scrollY > 0 && !hasPageScroll.value) {
+		hasPageScroll.value = true
+	}
+}
+
 // Locales
 const { t } = useI18n()
+
+// Life cycle
+onMounted(() => {
+	window.addEventListener(scrollEventName, handleScroll)
+})
+
+onUnmounted(() => {
+	window.removeEventListener(scrollEventName, handleScroll)
+})
 </script>
 
 <style scoped>
