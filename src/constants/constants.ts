@@ -8,6 +8,7 @@ export const ATTRACTIONS_STORE = "ATTRACTIONS_STORE"
 export const AIRPORTS_STORE = "AIRPORTS_STORE"
 export const COUNTRIES_STORE = "COUNTRIES_STORE"
 export const LANGUAGES_STORE = "LANGUAGES_STORE"
+export const CONTACTS_STORE = "CONTACTS_STORE"
 
 // Stripe
 export const STRIPE_SECRET_KEY =
@@ -33,6 +34,7 @@ export const SUPABASE_AIRPORTS_POOL_TABLE = "airports_pool"
 export const SUPABASE_ATTRACTIONS_POOL_TABLE = "attractions_pool"
 export const SUPABASE_TRIP_PACKAGES_TABLE = "trippackages"
 export const SUPABASE_LANGUAGES_TABLE = "languages"
+export const SUPABASE_CONTACTS_TABLE = "contacts"
 export const SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE =
 	"trip_package_attractions"
 

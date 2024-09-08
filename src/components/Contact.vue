@@ -12,6 +12,7 @@
 		<BaseForm
 			:validation-schema="contactSchema"
 			@submit="onSubmit"
+			reset-on-submit
 			data-aos="fade-right"
 			data-aos-offset="-300"
 			data-aos-duration="800"
@@ -49,7 +50,8 @@
 				<TextAreaField name="message" placeholder="Message" />
 			</div>
 
-			<button type="submit" class="btn-primary">
+			<Loading v-if="loadingContact" />
+			<button v-else type="submit" class="btn-primary">
 				{{ t("contact.button") }}
 			</button>
 		</BaseForm>
@@ -63,15 +65,29 @@
 </template>
 
 <script lang="ts" setup>
-import { contactSchema, type ContactSchemaSubmit } from "../formSchemas"
-import { defaultTripPackages } from "~/data"
 import { CONTACT_SECTION, FLOWER_RIGHT1_SVG } from "~/constants"
+import { defaultTripPackages } from "~/data"
+import { contactSchema, type ContactSchemaSubmit } from "../formSchemas"
+
+// General
+const contactsStore = useContactsStore()
 
 // Locales
 const { t } = useI18n()
 
 // Form
-const onSubmit = (data: ContactSchemaSubmit) => {
-	console.log(data)
+const { loadingContact } = storeToRefs(contactsStore)
+
+const onSubmit = async (data: ContactSchemaSubmit) => {
+	try {
+		await contactsStore.createContact(
+			data.name,
+			data.email,
+			data.message,
+			data.tripPackages
+		)
+	} catch (error) {
+		console.error(error)
+	}
 }
 </script>

@@ -12,11 +12,11 @@
 			class="mb-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full sm:max-w-[calc((456px*2)+(32px))] xl:max-w-[calc((456px*3)+(32px*2))]"
 		>
 			<div
-				class="col-span flex justify-center w-full"
+				class="col-span flex justify-center w-full items-stretch"
 				v-for="tripPackage in packages.tripPackages"
 			>
 				<div class="w-full">
-					<PackageCard :tripPackage="tripPackage" />
+					<PackageCard :tripPackage="tripPackage" class="h-full" />
 				</div>
 			</div>
 		</div>

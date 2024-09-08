@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { Form as VeeForm } from "vee-validate"
+import { Form as VeeForm, type FormActions } from "vee-validate"
 
-defineProps<{
+const { resetOnSubmit } = defineProps<{
 	validationSchema: Record<string, any> | undefined
 	initialValues?: any
+	resetOnSubmit?: boolean
 }>()
 
+// Form
 const emit = defineEmits<{
 	(e: "submit", data: any): void
 }>()
 
-const onSubmit = (data: any) => emit("submit", data)
+const onSubmit = (data: any, actions: FormActions<any>) => {
+	emit("submit", data)
+
+	if (resetOnSubmit) actions.resetForm()
+}
 </script>
 
 <template>

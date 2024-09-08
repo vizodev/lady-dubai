@@ -38,40 +38,45 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col p-5 lg:p-8 gap-6 md:gap-4 lg:gap-6">
-			<div class="flex flex-col gap-1 md:gap-0.5">
-				<span
-					class="text-brown-700 text-[28px] sm:text-[32px] md:text-[36px] font-roboto-serif font-medium !leading-tight"
-				>
-					{{ tripPackage.title[locale] }}
-				</span>
-				<span class="text-brown-700 text-[14px] font-inter font-medium">
-					{{ tripPackage.headline[locale] }}
-				</span>
-			</div>
-			<div class="flex flex-wrap gap-3 items-center">
-				<span
-					class="rounded-box"
-					v-for="language in tripPackage.guidelanguages"
-				>
-					{{ language.label.en }}
-				</span>
-			</div>
-			<div class="flex flex-col gap-1">
-				<span
-					class="font-bold text-brown-700 text-xs leading-tight uppercase font-inter"
-				>
-					Included:
-				</span>
-				<div class="flex flex-wrap items-center gap-4">
-					<div
-						class="flex items-center justify-center"
-						v-for="serv in tripPackage.services"
+		<div class="flex flex-col h-full justify-between p-5 lg:p-8 gap-10">
+			<div class="flex flex-col gap-6 md:gap-4 lg:gap-6">
+				<div class="flex flex-col gap-1 md:gap-0.5">
+					<span
+						class="text-brown-700 text-[28px] sm:text-[32px] md:text-[36px] font-roboto-serif font-medium !leading-tight"
 					>
-						<img :src="serv.icon" alt="" class="w-6 h-6 object-cover" />
+						{{ tripPackage.title[locale] }}
+					</span>
+					<span class="text-brown-700 text-[14px] font-inter font-medium">
+						{{ tripPackage.headline[locale] }}
+					</span>
+				</div>
+
+				<div class="flex flex-wrap gap-3 items-center">
+					<span
+						class="rounded-box"
+						v-for="language in tripPackage.guidelanguages"
+					>
+						{{ language.label.en }}
+					</span>
+				</div>
+
+				<div class="flex flex-col gap-1">
+					<span
+						class="font-bold text-brown-700 text-xs leading-tight uppercase font-inter"
+					>
+						Included:
+					</span>
+					<div class="flex flex-wrap items-center gap-4">
+						<div
+							class="flex items-center justify-center"
+							v-for="serv in tripPackage.services"
+						>
+							<img :src="serv.icon" alt="" class="w-6 h-6 object-cover" />
+						</div>
 					</div>
 				</div>
 			</div>
+
 			<div
 				class="flex 2xl:items-end justify-between flex-col gap-4 2xl:(flex-row gap-8)"
 			>
