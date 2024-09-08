@@ -28,22 +28,25 @@
 				<TextField name="name" placeholder="Name" />
 				<TextField name="email" placeholder="E-mail" />
 
-				<div class="flex flex-col gap-3 sm:px-4 pt-[9px] pb-8">
+				<div class="flex flex-col gap-3 sm:pl-4 pt-[9px] pb-8">
 					<span
 						class="font-inter text-[20px] sm:text-[24px] text-brown-700 mb-2"
 					>
 						{{ t("contact.interestedInPark") }}
 					</span>
 
-					<div class="grid grid-cols-2 gap-4">
-						<div
-							class="flex flex-col gap-4"
-							v-for="tripPackage in defaultTripPackages"
+					<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+						<CheckboxField
+							v-for="tripPackage in tripPackages"
+							name="tripPackages"
+							:value="tripPackage.id"
 						>
-							<CheckboxField name="tripPackages" :value="tripPackage.value">
-								{{ tripPackage.title }}
-							</CheckboxField>
-						</div>
+							{{ tripPackage.title[locale] }}
+						</CheckboxField>
+
+						<CheckboxField name="tripPackages" value="Other">
+							Other
+						</CheckboxField>
 					</div>
 				</div>
 
@@ -66,14 +69,17 @@
 
 <script lang="ts" setup>
 import { CONTACT_SECTION, FLOWER_RIGHT1_SVG } from "~/constants"
-import { defaultTripPackages } from "~/data"
 import { contactSchema, type ContactSchemaSubmit } from "../formSchemas"
 
 // General
 const contactsStore = useContactsStore()
+const tripPackagesStore = useTripPackagesStore()
+
+// Trip Packages
+const { tripPackages } = storeToRefs(tripPackagesStore)
 
 // Locales
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 // Form
 const { loadingContact } = storeToRefs(contactsStore)
