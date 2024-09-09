@@ -1,6 +1,6 @@
 import type { ILocaleMessages } from "~/models"
 
-export const languagePtBr: ILocaleMessages = {
+export const languagePt: ILocaleMessages = {
 	companyName: "Senhora Dubai",
 	dirham: "DIHAM",
 	allPackages: "Todos os pacotes",

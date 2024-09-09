@@ -16,7 +16,7 @@ export const languageToLocale = {
 	[LanguageEnum.FRENCH]: "fr",
 	[LanguageEnum.GERMAN]: "de",
 	[LanguageEnum.HEBREW]: "he",
-	[LanguageEnum.PORTUGUESE_BR]: "pt-br",
+	[LanguageEnum.PORTUGUESE_BR]: "pt",
 	[LanguageEnum.RUSSIAN]: "ru",
 	[LanguageEnum.SPANISH]: "es",
 }

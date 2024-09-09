@@ -178,7 +178,7 @@
 					<span
 						class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
 					>
-						{{ previousPackage.title }}
+						{{ previousPackage.title[locale] }}
 					</span>
 				</button>
 
@@ -190,7 +190,7 @@
 					<span
 						class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
 					>
-						{{ nextPackage.title }}
+						{{ nextPackage.title[locale] }}
 					</span>
 					<div class="flex items-center justify-center w-9 h-9">
 						<i class="fi fi-sr-angle-right text-[12px]"></i>
@@ -223,7 +223,7 @@ import {
 	languageEs,
 	languageFr,
 	languageHe,
-	languagePtBr,
+	languagePt,
 	languageRu,
 } from "~/locales"
 import {
@@ -311,7 +311,7 @@ const relativePath = computed(() => {
 				es: languageEs.companyName,
 				ru: languageRu.companyName,
 				fr: languageFr.companyName,
-				ptBr: languagePtBr.companyName,
+				ptBr: languagePt.companyName,
 				he: languageHe.companyName,
 			},
 			path: "/",
@@ -324,7 +324,7 @@ const relativePath = computed(() => {
 				es: languageEs.allPackages,
 				ru: languageRu.allPackages,
 				fr: languageFr.allPackages,
-				ptBr: languagePtBr.allPackages,
+				ptBr: languagePt.allPackages,
 				he: languageHe.allPackages,
 			},
 			path: "/",

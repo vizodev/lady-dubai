@@ -105,7 +105,7 @@ export type TextType = {
 	he: string
 	ru: string
 	de: string
-	"pt-br": string
+	pt: string
 }
 
 export type TextListType = {
@@ -117,7 +117,7 @@ export type TextListType = {
 	he: string[]
 	ru: string[]
 	de: string[]
-	"pt-br": string[]
+	pt: string[]
 }
 
 export enum LanguageEnum {

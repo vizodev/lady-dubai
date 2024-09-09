@@ -104,7 +104,7 @@ import {
 	languageEs,
 	languageFr,
 	languageHe,
-	languagePtBr,
+	languagePt,
 	languageRu,
 } from "~/locales"
 import {
@@ -131,7 +131,7 @@ const relativePath = computed(
 					es: languageEs.companyName,
 					ru: languageRu.companyName,
 					fr: languageFr.companyName,
-					ptBr: languagePtBr.companyName,
+					ptBr: languagePt.companyName,
 					he: languageHe.companyName,
 				},
 				path: "/",
@@ -144,7 +144,7 @@ const relativePath = computed(
 					es: languageEs.attractions,
 					ru: languageRu.attractions,
 					fr: languageFr.attractions,
-					ptBr: languagePtBr.attractions,
+					ptBr: languagePt.attractions,
 					he: languageHe.attractions,
 				},
 				path: "/",

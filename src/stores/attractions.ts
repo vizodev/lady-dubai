@@ -1,12 +1,11 @@
 import {
 	ATTRACTIONS_STORE,
-	SUPABASE_ATTRACTION_ID_FIELD,
 	SUPABASE_ATTRACTIONS_POOL_TABLE,
 	SUPABASE_ID_FIELD,
 	SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE,
 	SUPABASE_TRIP_PACKAGE_ID_FIELD,
 } from "~/constants"
-import { type Attraction, type TripPackage } from "~/models"
+import { type Attraction } from "~/models"
 
 interface IState {
 	attractions: Attraction[]
@@ -71,9 +70,9 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 				if (!data) return []
 
 				const attractions = [] as Attraction[]
-				for (const attractionAttraction of data) {
+				for (const i of data) {
 					const attraction = await this.getAttractionById(
-						(attractionAttraction as any).trip_package_id
+						(i as any).attraction_id
 					)
 
 					if (attraction) attractions.push(attraction)
