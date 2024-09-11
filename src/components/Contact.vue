@@ -39,7 +39,7 @@
 						<CheckboxField
 							v-for="tripPackage in tripPackages"
 							name="tripPackages"
-							:value="tripPackage.id"
+							:value="tripPackage.title.en"
 						>
 							{{ tripPackage.title[locale] }}
 						</CheckboxField>
