@@ -49,7 +49,7 @@ export const languageRu: ILocaleMessages = {
 		interestedInPark: "Заинтересованы в конкретном пакете?",
 		button: "Отправлять",
 	},
-	whatsappBox: {
+	whatsapp: {
 		title: "Или свяжитесь с нами через WhatsApp",
 		description: "Если у вас есть какие-либо сомнения или особые пожелания",
 		button: "Чат в WhatsApp",

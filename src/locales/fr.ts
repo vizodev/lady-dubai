@@ -49,7 +49,7 @@ export const languageFr: ILocaleMessages = {
 		interestedInPark: "Intéressé par un Pack spécifique ?",
 		button: "Envoyer",
 	},
-	whatsappBox: {
+	whatsapp: {
 		title: "Ou parlez-nous via WhatsApp",
 		description: "Si vous avez des doutes ou des demandes particulières",
 		button: "Discutez sur WhatsApp",

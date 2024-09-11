@@ -45,7 +45,7 @@
 					<div class="flex gap-8 items-center">
 						<img
 							:src="currentAttractionHovered?.banner ?? attractions[0]?.banner"
-							class="w-64 lg:w-96"
+							class="w-64 object-contain lg:(w-96 h-64)"
 						/>
 
 						<div class="flex flex-col gap-6">
@@ -77,6 +77,7 @@
 					<LanguageFlag
 						v-for="language of Object.values(LanguageEnum)"
 						:language="language"
+						class="text-brown-700"
 					/>
 				</div>
 			</div>
@@ -110,7 +111,7 @@
 					<div class="flex flex-col gap-3 items-center">
 						<div
 							@click="toogleShowAttractionsMobileDropdown"
-							class="flex gap-3"
+							class="flex gap-3 cursor-pointer"
 						>
 							<p class="font-medium font-inter uppercase">
 								{{ t("header.attractions") }}
@@ -143,7 +144,10 @@
 
 					<!-- Languages dropdown -->
 					<div class="flex flex-col gap-3 items-center">
-						<div @click="toogleShowLanguagesMobileDropdown" class="flex gap-3">
+						<div
+							@click="toogleShowLanguagesMobileDropdown"
+							class="flex gap-3 cursor-pointer"
+						>
 							<LanguageFlag
 								class="text-white pointer-events-none"
 								:language="localeToLanguage[locale as keyof typeof localeToLanguage]"
@@ -166,6 +170,7 @@
 								<LanguageFlag
 									v-for="language of Object.values(LanguageEnum)"
 									:language="language"
+									class="text-brown-700"
 								/>
 							</div>
 						</transition>

@@ -46,7 +46,7 @@ export const languageAr: ILocaleMessages = {
 		interestedInPark: "هل أنت مهتم بحزمة معينة؟",
 		button: "يرسل",
 	},
-	whatsappBox: {
+	whatsapp: {
 		title: "أو تحدث معنا عبر الواتساب",
 		description: "إذا كان لديك أي شكوك أو طلبات خاصة",
 		button: "الدردشة على الواتساب",

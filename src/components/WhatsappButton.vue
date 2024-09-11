@@ -1,17 +1,25 @@
 <template>
 	<div
 		v-if="showContact"
-		class="fixed bottom-[80px] right-20 animate-bounce hover:animate-none transition-all duration-[.2s] z-50"
+		class="group fixed bottom-[80px] right-20 animate-bounce hover:animate-none transition-all duration-[.2s] z-50"
 	>
 		<button
-			class="flex items-center justify-center bg-[#21B65A] rounded-full w-[52px] h-[52px] text-white text-[24px] customShadow"
+			class="flex gap-4 items-center justify-center bg-[#21B65A] rounded-full text-white text-[24px] customShadow w-[52px] h-[52px] group-hover:(w-auto px-6)"
 		>
+			<p class="text-base font-inter font-bold hidden group-hover:block">
+				{{ t("whatsapp.button") }}
+			</p>
+
 			<i class="fi fi-brands-whatsapp"></i>
 		</button>
 	</div>
 </template>
 
 <script setup lang="ts">
+// Locales
+const { t } = useI18n()
+
+// Contact
 const showContact = ref(false)
 
 // Listeners

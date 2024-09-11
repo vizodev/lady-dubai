@@ -57,7 +57,7 @@
 					class="mb-20 font-inter w-full lg:w-4/5"
 				></div>
 
-				<WhatsappBox
+				<whatsapp
 					data-aos="fade-right"
 					data-aos-offset="-300"
 					data-aos-duration="800"

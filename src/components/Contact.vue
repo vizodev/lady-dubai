@@ -9,55 +9,77 @@
 			class="absolute top-0 -left-5 xl:left-15 -z-10"
 		/>
 
-		<BaseForm
-			:validation-schema="contactSchema"
-			@submit="onSubmit"
-			reset-on-submit
+		<div
 			data-aos="fade-right"
 			data-aos-offset="-300"
 			data-aos-duration="800"
-			class="flex flex-col bg-white w-full max-w-[768px] lg:max-w-[529px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] gap-8 sm:gap-[52px]"
+			class="bg-white w-full max-w-[768px] rounded-xl shadow-md px-6 py-12 pb-8 sm:p-[52px] lg:max-w-[529px]"
 		>
-			<span
-				class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
-			>
-				{{ t("contact.title") }}
-			</span>
-
-			<div class="flex flex-col gap-6 my-12">
-				<TextField name="name" placeholder="Name" />
-				<TextField name="email" placeholder="E-mail" />
-
-				<div class="flex flex-col gap-3 sm:pl-4 pt-[9px] pb-8">
+			<transition>
+				<BaseForm
+					v-if="showForm"
+					:validation-schema="contactSchema"
+					@submit="onSubmit"
+					reset-on-submit
+					class="flex flex-col gap-8 sm:gap-[52px]"
+				>
 					<span
-						class="font-inter text-[20px] sm:text-[24px] text-brown-700 mb-2"
+						class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
 					>
-						{{ t("contact.interestedInPark") }}
+						{{ t("contact.title") }}
 					</span>
 
-					<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-						<CheckboxField
-							v-for="tripPackage in tripPackages"
-							name="tripPackages"
-							:value="tripPackage.title.en"
-						>
-							{{ tripPackage.title[locale] }}
-						</CheckboxField>
+					<div class="flex flex-col gap-6 my-12">
+						<TextField name="name" placeholder="Name" />
+						<TextField name="email" placeholder="E-mail" />
 
-						<CheckboxField name="tripPackages" value="Other">
-							Other
-						</CheckboxField>
+						<div class="flex flex-col gap-3 sm:pl-4 pt-[9px] pb-8">
+							<span
+								class="font-inter text-[20px] sm:text-[24px] text-brown-700 mb-2"
+							>
+								{{ t("contact.interestedInPark") }}
+							</span>
+
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<CheckboxField
+									v-for="tripPackage in tripPackages"
+									name="tripPackages"
+									:value="tripPackage.title.en"
+								>
+									{{ tripPackage.title[locale] }}
+								</CheckboxField>
+
+								<CheckboxField name="tripPackages" value="Other">
+									Other
+								</CheckboxField>
+							</div>
+						</div>
+
+						<TextAreaField name="message" placeholder="Message" />
 					</div>
+
+					<Loading v-if="loadingContact" />
+					<button v-else type="submit" class="btn-primary">
+						{{ t("contact.button") }}
+					</button>
+				</BaseForm>
+
+				<div
+					v-else
+					class="h-full flex flex-col justify-center items-center gap-5"
+				>
+					<i
+						class="fi fi-br-check flex gap-3 items-center text-pink-600 text-2xl"
+					>
+						<p class="font-light text-center not-italic">Sent</p>
+					</i>
+
+					<button @click="changeShowForm(true)" class="btn-primary">
+						New Message
+					</button>
 				</div>
-
-				<TextAreaField name="message" placeholder="Message" />
-			</div>
-
-			<Loading v-if="loadingContact" />
-			<button v-else type="submit" class="btn-primary">
-				{{ t("contact.button") }}
-			</button>
-		</BaseForm>
+			</transition>
+		</div>
 
 		<WhatsappBox
 			data-aos="fade-left"
@@ -82,8 +104,10 @@ const { tripPackages } = storeToRefs(tripPackagesStore)
 const { t, locale } = useI18n()
 
 // Form
+const showForm = ref(true)
 const { loadingContact } = storeToRefs(contactsStore)
 
+const changeShowForm = (data: boolean) => (showForm.value = data)
 const onSubmit = async (data: ContactSchemaSubmit) => {
 	try {
 		await contactsStore.createContact(
@@ -92,6 +116,8 @@ const onSubmit = async (data: ContactSchemaSubmit) => {
 			data.message,
 			data.tripPackages
 		)
+
+		changeShowForm(false)
 	} catch (error) {
 		console.error(error)
 	}

@@ -43,7 +43,7 @@ export interface ILocaleMessages {
 		interestedInPark: string
 		button: string
 	}
-	whatsappBox: {
+	whatsapp: {
 		title: string
 		description: string
 		button: string

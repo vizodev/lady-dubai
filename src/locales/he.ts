@@ -46,7 +46,7 @@ export const languageHe: ILocaleMessages = {
 		interestedInPark: "מעוניין בחבילה ספציפית?",
 		button: "לִשְׁלוֹחַ",
 	},
-	whatsappBox: {
+	whatsapp: {
 		title: "או דברו איתנו דרך WhatsApp",
 		description: "אם יש לך ספקות או בקשות מיוחדות",
 		button: "צ'אט בוואטסאפ",
