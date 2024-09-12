@@ -171,20 +171,7 @@ const loadAttraction = async () => {
 		attractions.value.find((i) => i.slug === props.value.slug) ??
 		(await attractionStore.getAttractionBySlug(props.value.slug))
 
-	if (!currentAttraction.value) {
-		openHome()
-		return
-	}
-
-	useHead({
-		title: currentAttraction.value.title[locale.value],
-		meta: [
-			{
-				name: currentAttraction.value.metadata.name[locale.value],
-				content: currentAttraction.value.metadata.content[locale.value],
-			},
-		],
-	})
+	if (!currentAttraction.value) return openHome()
 }
 
 // Trip Packages by attractions
@@ -204,6 +191,24 @@ const openTripPackage = (slug: string) => {
 	navigateTo(localePath(TRIP_PACKAGE_ROUTE(slug)))
 }
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
+
+// Watchers
+watch(
+	() => currentAttraction.value,
+	(value) => {
+		if (!value) return
+
+		useHead({
+			title: value.title[locale.value],
+			meta: [
+				{
+					name: value.metadata.name[locale.value],
+					content: value.metadata.content[locale.value],
+				},
+			],
+		})
+	}
+)
 
 // Life cycle
 onMounted(async () => {

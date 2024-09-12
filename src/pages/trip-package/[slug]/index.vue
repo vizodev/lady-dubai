@@ -280,16 +280,6 @@ const loadTripPackage = async () => {
 	if (!currentTripPackage.value) return openHome()
 
 	currentFlightDate.value = currentTripPackage.value.flights[0]
-
-	useHead({
-		title: currentTripPackage.value.title[locale.value],
-		meta: [
-			{
-				name: currentTripPackage.value.metadata.name[locale.value],
-				content: currentTripPackage.value.metadata.content[locale.value],
-			},
-		],
-	})
 }
 
 // Attractions
@@ -356,6 +346,24 @@ const localePath = useLocalePath()
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
 const openTripPackage = (slug: string) =>
 	navigateTo(localePath(TRIP_PACKAGE_ROUTE(slug)))
+
+// Watchers
+watch(
+	() => currentTripPackage.value,
+	(value) => {
+		if (!value) return
+
+		useHead({
+			title: value.title[locale.value],
+			meta: [
+				{
+					name: value.metadata.name[locale.value],
+					content: value.metadata.content[locale.value],
+				},
+			],
+		})
+	}
+)
 
 // Life cycle
 onMounted(async () => {

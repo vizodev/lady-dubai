@@ -1,6 +1,7 @@
 export * from "./airports"
 export * from "./attraction"
 export * from "./countries"
+export * from "./home"
 export * from "./locales"
 export * from "./path"
 export * from "./tripPackage"

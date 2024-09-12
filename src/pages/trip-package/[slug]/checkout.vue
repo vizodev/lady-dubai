@@ -390,6 +390,9 @@ const openTripPackage = () => {
 	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.value.slug)))
 }
 
+// Head
+useHead({ title: t("checkout.checkout") })
+
 // Watchers
 watch(
 	() => currentTripPackage.value,
