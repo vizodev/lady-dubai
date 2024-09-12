@@ -19,7 +19,7 @@
     "@nuxtjs/i18n": "^8.5.0",
     "@nuxtjs/supabase": "^1.4.0",
     "@pinia/nuxt": "^0.5.1",
-    "nuxt": "^3.12.2",
+    "nuxt": "^3.13.1",
     "pinia": "^2.1.7",
     "stripe": "^16.9.0",
     "vee-validate": "^4.13.2",
