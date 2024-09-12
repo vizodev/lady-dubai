@@ -43,7 +43,7 @@
 						<div class="flex flex-wrap gap-3">
 							<button
 								v-for="tripPackage of tripPackagesByAttraction"
-								@click="openTripPackage(tripPackage.id)"
+								@click="openTripPackage(tripPackage.slug)"
 								class="btn-primary"
 							>
 								{{ tripPackage.title[locale] }} >
@@ -115,6 +115,14 @@ import {
 } from "~/models"
 
 // General
+const props = computed(() => {
+	const params = useRoute().params
+
+	return {
+		slug: params.slug as string,
+	}
+})
+
 const tripPackagesStore = useTripPackagesStore()
 const attractionStore = useAttractionsStore()
 const { attractions } = storeToRefs(attractionStore)
@@ -134,7 +142,7 @@ const relativePath = computed(
 					ptBr: languagePt.companyName,
 					he: languageHe.companyName,
 				},
-				path: "/",
+				path: HOME_ROUTE,
 			},
 			{
 				label: {
@@ -147,7 +155,7 @@ const relativePath = computed(
 					ptBr: languagePt.attractions,
 					he: languageHe.attractions,
 				},
-				path: "/",
+				path: HOME_ROUTE,
 			},
 			{
 				label: currentAttraction.value?.title,
@@ -157,15 +165,11 @@ const relativePath = computed(
 
 // Attraction
 const currentAttraction = ref<Attraction>()
-const attractionId = computed(() => {
-	return Number(useRoute().params.id)
-})
 
 const loadAttraction = async () => {
 	currentAttraction.value =
-		attractions.value.find(
-			(attraction) => attraction.id === attractionId.value
-		) ?? (await attractionStore.getAttractionById(attractionId.value))
+		attractions.value.find((i) => i.slug === props.value.slug) ??
+		(await attractionStore.getAttractionBySlug(props.value.slug))
 
 	if (!currentAttraction.value) openHome()
 }
@@ -173,9 +177,9 @@ const loadAttraction = async () => {
 // Trip Packages by attractions
 const tripPackagesByAttraction = ref<TripPackage[]>()
 
-const loadTripPackagesByAttraction = async () => {
+const loadTripPackagesByAttraction = async (id: number) => {
 	tripPackagesByAttraction.value =
-		await tripPackagesStore.getTripPackagesByAttractionId(attractionId.value)
+		await tripPackagesStore.getTripPackagesByAttractionId(id)
 }
 
 // Locales
@@ -183,14 +187,20 @@ const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes
-const openTripPackage = (id: number) => {
-	navigateTo(localePath(TRIP_PACKAGE_ROUTE(id)))
+const openTripPackage = (slug: string) => {
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(slug)))
 }
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
 
 // Life cycle
-onMounted(() => {
-	loadTripPackagesByAttraction()
-	loadAttraction()
+onMounted(async () => {
+	await loadAttraction()
+
+	if (!currentAttraction.value) {
+		openHome()
+		return
+	}
+
+	loadTripPackagesByAttraction(currentAttraction.value.id)
 })
 </script>

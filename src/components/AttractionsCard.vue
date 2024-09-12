@@ -38,6 +38,6 @@ const localePath = useLocalePath()
 
 // Routes
 const goToAttraction = () => {
-	navigateTo(localePath(ATTRACTION_ROUTE(data.id)))
+	navigateTo(localePath(ATTRACTION_ROUTE(data.slug)))
 }
 </script>

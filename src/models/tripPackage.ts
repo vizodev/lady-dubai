@@ -3,6 +3,7 @@ import type { TextListType, TextType } from "./locales"
 export type TripPackage = {
 	id: number
 	created_at: Date
+	slug: string
 	title: TextType
 	subtitle: TextType
 	headline: TextType

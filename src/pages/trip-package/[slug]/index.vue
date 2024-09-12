@@ -170,7 +170,7 @@
 				<button
 					class="flex items-center gap-1.5"
 					v-if="previousPackage"
-					@click="openTripPackage(previousPackage.id)"
+					@click="openTripPackage(previousPackage.slug)"
 				>
 					<div class="flex items-center justify-center w-9 h-9">
 						<i class="fi fi-sr-angle-left text-[12px]"></i>
@@ -185,7 +185,7 @@
 				<button
 					class="flex items-center gap-1.5"
 					v-if="nextPackage"
-					@click="openTripPackage(nextPackage.id)"
+					@click="openTripPackage(nextPackage.slug)"
 				>
 					<span
 						class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
@@ -214,6 +214,7 @@ import {
 	FLOWER_RIGHT2_SVG,
 	FLOWER_RIGHT4_SVG,
 	HOME_ROUTE,
+	HOME_TRIP_PACKAGES_SECTION_ROUTE,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
 import {
@@ -246,7 +247,7 @@ const props = computed(() => {
 	const queryParams = route.query
 
 	return {
-		id: Number(params.id),
+		slug: params.slug as string,
 		date: queryParams.date as string,
 	}
 })
@@ -255,22 +256,26 @@ const props = computed(() => {
 const currentTripPackage = ref<TripPackage>()
 
 const previousPackage = computed(() => {
+	if (!currentTripPackage.value) return
+
 	const index = tripPackages.value.findIndex(
-		(tripPackage) => tripPackage.id === props.value.id
+		(tripPackage) => tripPackage.id === currentTripPackage.value!.id
 	)
 	return tripPackages.value[index - 1]
 })
 const nextPackage = computed(() => {
+	if (!currentTripPackage.value) return
+
 	const index = tripPackages.value.findIndex(
-		(tripPackage) => tripPackage.id === props.value.id
+		(tripPackage) => tripPackage.id === currentTripPackage.value!.id
 	)
 	return tripPackages.value[index + 1]
 })
 
 const loadTripPackage = async () => {
 	currentTripPackage.value =
-		tripPackages.value.find((i) => i.id === props.value.id) ??
-		(await tripPackagesStore.getTripPackageById(props.value.id))
+		tripPackages.value.find((i) => i.slug === props.value.slug) ??
+		(await tripPackagesStore.getTripPackageBySlug(props.value.slug))
 
 	if (!currentTripPackage.value) return openHome()
 
@@ -280,10 +285,8 @@ const loadTripPackage = async () => {
 // Attractions
 const attractions = ref<Attraction[]>()
 
-const loadAttractions = async () => {
-	attractions.value = await attractionsStore.getAttractionsByTripPackageId(
-		props.value.id
-	)
+const loadAttractions = async (id: number) => {
+	attractions.value = await attractionsStore.getAttractionsByTripPackageId(id)
 }
 
 // Flights
@@ -314,7 +317,7 @@ const relativePath = computed(() => {
 				ptBr: languagePt.companyName,
 				he: languageHe.companyName,
 			},
-			path: "/",
+			path: HOME_ROUTE,
 		},
 		{
 			label: {
@@ -327,7 +330,7 @@ const relativePath = computed(() => {
 				ptBr: languagePt.allPackages,
 				he: languageHe.allPackages,
 			},
-			path: "/",
+			path: HOME_TRIP_PACKAGES_SECTION_ROUTE,
 		},
 		{
 			label: currentTripPackage.value?.title,
@@ -341,12 +344,18 @@ const localePath = useLocalePath()
 
 // Routes
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
-const openTripPackage = (id: number) =>
-	navigateTo(localePath(TRIP_PACKAGE_ROUTE(id)))
+const openTripPackage = (slug: string) =>
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(slug)))
 
 // Life cycle
-onMounted(() => {
-	loadAttractions()
-	loadTripPackage()
+onMounted(async () => {
+	await loadTripPackage()
+
+	if (!currentTripPackage.value) {
+		openHome()
+		return
+	}
+
+	loadAttractions(currentTripPackage.value.id)
 })
 </script>

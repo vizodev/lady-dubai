@@ -2,6 +2,7 @@ import type { TextType } from "./locales"
 
 export type Attraction = {
 	id: number
+	slug: string
 	banner: string
 	video_url: string
 	title: TextType

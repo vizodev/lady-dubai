@@ -39,5 +39,6 @@ export const SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE =
 	"trip_package_attractions"
 
 export const SUPABASE_ID_FIELD = "id"
+export const SUPABASE_SLUG_FIELD = "slug"
 export const SUPABASE_TRIP_PACKAGE_ID_FIELD = "trip_package_id"
 export const SUPABASE_ATTRACTION_ID_FIELD = "attraction_id"

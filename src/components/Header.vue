@@ -52,7 +52,7 @@
 							<p
 								v-for="attraction of attractions"
 								@mouseenter="() => onAttractionHover(attraction)"
-								@click="openAttraction(attraction.id)"
+								@click="openAttraction(attraction.slug)"
 								class="text-base uppercase text-brown-700 font-medium hover:(text-blue-500)"
 							>
 								{{ attraction.title[locale] }}
@@ -133,7 +133,7 @@
 							>
 								<p
 									v-for="attraction of attractions"
-									@click="openAttraction(attraction.id)"
+									@click="openAttraction(attraction.slug)"
 									class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
 								>
 									{{ attraction.title[locale] }}
@@ -279,8 +279,8 @@ const handleScroll = () => {
 
 // Routes
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
-const openAttraction = (id: number) => {
-	navigateTo(localePath(ATTRACTION_ROUTE(id)))
+const openAttraction = (slug: string) => {
+	navigateTo(localePath(ATTRACTION_ROUTE(slug)))
 }
 
 // Life cycle

@@ -253,8 +253,6 @@
 </template>
 
 <script setup lang="ts">
-import { type Flight, type TripPackage } from "~/models"
-import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
 import {
 	API_PAYMENTS,
 	HOME_ROUTE,
@@ -263,6 +261,8 @@ import {
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
 import { genders } from "~/data"
+import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
+import { type Flight, type TripPackage } from "~/models"
 
 // General
 const props = computed(() => {
@@ -270,7 +270,7 @@ const props = computed(() => {
 	const queryParams = useRoute().query
 
 	return {
-		id: Number(params.id),
+		slug: params.slug as string,
 		date: queryParams.date as string,
 	}
 })
@@ -288,8 +288,8 @@ const currentTripPackage = ref<TripPackage>()
 
 const loadTripPackage = async () => {
 	currentTripPackage.value =
-		tripPackages.value.find((i) => i.id === props.value.id) ??
-		(await tripPackagesStore.getTripPackageById(props.value.id))
+		tripPackages.value.find((i) => i.slug === props.value.slug) ??
+		(await tripPackagesStore.getTripPackageBySlug(props.value.slug))
 
 	if (!currentTripPackage.value) openHome()
 }
@@ -387,7 +387,7 @@ const localePath = useLocalePath()
 // Routes
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
 const openTripPackage = () => {
-	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.value.id)))
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.value.slug)))
 }
 
 // Watchers

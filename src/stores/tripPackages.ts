@@ -1,8 +1,8 @@
 import {
 	SUPABASE_ATTRACTION_ID_FIELD,
 	SUPABASE_ID_FIELD,
+	SUPABASE_SLUG_FIELD,
 	SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE,
-	SUPABASE_TRIP_PACKAGE_ID_FIELD,
 	SUPABASE_TRIP_PACKAGES_TABLE,
 	TRIP_PACKAGE_STORE,
 } from "~/constants"
@@ -69,6 +69,40 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 					.from(SUPABASE_TRIP_PACKAGES_TABLE)
 					.select("*")
 					.eq(SUPABASE_ID_FIELD, id)
+
+				const tripPackage = data![0] as any
+
+				return {
+					...tripPackage,
+					cancelationPolicy: tripPackage.cancelationpolicy[0],
+					disclaimer: tripPackage.disclaimer[0],
+					flights: tripPackage.flights.map((i: any) => ({
+						...i,
+						departing_takeoff: new Date(i.departing_takeoff),
+						departing_landing: new Date(i.departing_landing),
+
+						returning_takeoff: new Date(i.returning_takeoff),
+						returning_landing: new Date(i.returning_landing),
+					})),
+				} as TripPackage
+			} catch (error) {
+				this.errorOnLoadTripPackage = true
+				console.error("Error loading trip package", error)
+			}
+
+			this.loadingTripPackage = false
+		},
+		async getTripPackageBySlug(slug: string): Promise<TripPackage | undefined> {
+			const client = useSupabaseClient()
+
+			this.errorOnLoadTripPackage = false
+			this.loadingTripPackage = true
+
+			try {
+				const { data } = await client
+					.from(SUPABASE_TRIP_PACKAGES_TABLE)
+					.select("*")
+					.eq(SUPABASE_SLUG_FIELD, slug)
 
 				const tripPackage = data![0] as any
 

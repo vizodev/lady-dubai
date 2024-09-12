@@ -166,7 +166,7 @@ const localePath = useLocalePath()
 
 // Routes
 const openTripPackage = () => {
-	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.tripPackage.id)))
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.tripPackage.slug)))
 }
 
 // Life cycle

@@ -1,9 +1,10 @@
+import { TRIP_PACKAGES_SECTION } from "./constants"
+
 export const HOME_ROUTE = "/"
+export const HOME_TRIP_PACKAGES_SECTION_ROUTE = `${HOME_ROUTE}#${TRIP_PACKAGES_SECTION}`
 
 export const ATTRACTION_ROUTE = (id: string | number) => `/attraction/${id}`
 
-export const TRIP_PACKAGE_ROUTE = (id: string | number) => `/trip-package/${id}`
-export const TRIP_PACKAGE_CHECKOUT_ROUTE = (
-	id: string | number,
-	date: number
-) => `${TRIP_PACKAGE_ROUTE(id)}/checkout?date=${date}`
+export const TRIP_PACKAGE_ROUTE = (slug: string) => `/trip-package/${slug}`
+export const TRIP_PACKAGE_CHECKOUT_ROUTE = (slug: string, date: number) =>
+	`${TRIP_PACKAGE_ROUTE(slug)}/checkout?date=${date}`

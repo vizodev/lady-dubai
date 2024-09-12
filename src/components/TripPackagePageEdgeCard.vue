@@ -95,8 +95,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Flight, TripPackage } from "~/models"
 import { TRIP_PACKAGE_CHECKOUT_ROUTE } from "~/constants"
+import type { Flight, TripPackage } from "~/models"
 
 const props = defineProps<{
 	tripPackage: TripPackage
@@ -120,7 +120,7 @@ const openCheckout = () => {
 	navigateTo(
 		localePath(
 			TRIP_PACKAGE_CHECKOUT_ROUTE(
-				props.tripPackage.id,
+				props.tripPackage.slug,
 				props.tripPackage.flights.indexOf(props.currentFlight)
 			)
 		)

@@ -2,6 +2,7 @@ import {
 	ATTRACTIONS_STORE,
 	SUPABASE_ATTRACTIONS_POOL_TABLE,
 	SUPABASE_ID_FIELD,
+	SUPABASE_SLUG_FIELD,
 	SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE,
 	SUPABASE_TRIP_PACKAGE_ID_FIELD,
 } from "~/constants"
@@ -54,6 +55,22 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 				return data[0] as Attraction
 			} catch (error) {
 				console.error("Error getting attraction by id", error)
+			}
+		},
+		async getAttractionBySlug(slug: string): Promise<Attraction | undefined> {
+			const client = useSupabaseClient()
+
+			try {
+				const { data } = await client
+					.from(SUPABASE_ATTRACTIONS_POOL_TABLE)
+					.select("*")
+					.eq(SUPABASE_SLUG_FIELD, slug)
+
+				if (!data) return
+
+				return data[0] as Attraction
+			} catch (error) {
+				console.error("Error getting attraction by slug", error)
 			}
 		},
 		async getAttractionsByTripPackageId(
