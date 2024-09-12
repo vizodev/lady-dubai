@@ -1,9 +1,10 @@
-import type { TextListType, TextType } from "./locales"
+import type { MetaData, TextListType, TextType } from "./"
 
 export type TripPackage = {
 	id: number
 	created_at: Date
 	slug: string
+	metadata: MetaData
 	title: TextType
 	subtitle: TextType
 	headline: TextType

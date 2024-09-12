@@ -1,8 +1,9 @@
-import type { TextType } from "./locales"
+import type { MetaData, TextType } from "./"
 
 export type Attraction = {
 	id: number
 	slug: string
+	metadata: MetaData
 	banner: string
 	video_url: string
 	title: TextType

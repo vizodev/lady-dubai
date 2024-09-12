@@ -57,7 +57,7 @@
 					class="mb-20 font-inter w-full lg:w-4/5"
 				></div>
 
-				<whatsapp
+				<WhatsappBox
 					data-aos="fade-right"
 					data-aos-offset="-300"
 					data-aos-duration="800"
@@ -171,7 +171,20 @@ const loadAttraction = async () => {
 		attractions.value.find((i) => i.slug === props.value.slug) ??
 		(await attractionStore.getAttractionBySlug(props.value.slug))
 
-	if (!currentAttraction.value) openHome()
+	if (!currentAttraction.value) {
+		openHome()
+		return
+	}
+
+	useHead({
+		title: currentAttraction.value.title[locale.value],
+		meta: [
+			{
+				name: currentAttraction.value.metadata.name[locale.value],
+				content: currentAttraction.value.metadata.content[locale.value],
+			},
+		],
+	})
 }
 
 // Trip Packages by attractions

@@ -280,6 +280,16 @@ const loadTripPackage = async () => {
 	if (!currentTripPackage.value) return openHome()
 
 	currentFlightDate.value = currentTripPackage.value.flights[0]
+
+	useHead({
+		title: currentTripPackage.value.title[locale.value],
+		meta: [
+			{
+				name: currentTripPackage.value.metadata.name[locale.value],
+				content: currentTripPackage.value.metadata.content[locale.value],
+			},
+		],
+	})
 }
 
 // Attractions
