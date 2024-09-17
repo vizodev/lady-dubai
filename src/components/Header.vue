@@ -44,6 +44,7 @@
 				<div class="dropdown-content flex-col gap-6 group-hover:flex">
 					<div class="flex gap-8 items-center">
 						<img
+							:key="currentAttractionHovered?.banner ?? attractions[0]?.banner"
 							:src="currentAttractionHovered?.banner ?? attractions[0]?.banner"
 							class="w-64 object-contain lg:(w-96 h-64)"
 						/>

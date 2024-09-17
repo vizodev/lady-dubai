@@ -6,10 +6,9 @@ export type Attraction = {
 	title_metadata?: TextType
 	description_metadata?: TextType
 	banner: string
-	video_url: string
+	video_url?: string
 	title: TextType
 	description: TextType
-	aside_img: string
 	gallery: string[]
 	map_src: string
 	long_description_html: TextType

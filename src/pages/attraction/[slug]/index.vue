@@ -2,10 +2,17 @@
 	<Header with-logo class="z-50" />
 
 	<iframe
-		:src="currentAttraction?.video_url"
+		v-if="currentAttractionVideoUrl"
+		:src="currentAttractionVideoUrl"
 		frameborder="0"
 		class="w-full h-[79vh]"
 	></iframe>
+	<img
+		v-else
+		:src="currentAttraction?.banner"
+		alt="Attraction Banner"
+		class="w-full h-[79vh]"
+	/>
 
 	<div class="relative">
 		<SidePageIcon :src="FLOWER_LEFT4_SVG" class="-top-15 left-0" />
@@ -165,6 +172,9 @@ const relativePath = computed(
 
 // Attraction
 const currentAttraction = ref<Attraction>()
+const currentAttractionVideoUrl = computed(() => {
+	return getYoutubeVideoUrl(currentAttraction.value?.video_url)
+})
 
 const loadAttraction = async () => {
 	currentAttraction.value =
