@@ -1,9 +1,13 @@
+const isDevelopment = process.env.NODE_ENV === "development"
+
 // Stripe
 export const STRIPE_API_VERSION = "2024-06-20"
-export const STRIPE_SECRET_KEY =
-	"sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
-export const STRIPE_WEBHOOK_SIGNING_SECRET =
-	"whsec_8e3d3279e0910a55d1ed77012442f994eaacc4e79f370178d7a54c84507f7ea8"
+export const STRIPE_SECRET_KEY = isDevelopment
+	? "sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
+	: "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"
+export const STRIPE_WEBHOOK_SIGNING_SECRET = isDevelopment
+	? "whsec_GRrdigxylbbMxbPXT04yiJLdgqCX21yu"
+	: "whsec_YfdSEhD8a1yXX2ohcOYtmbOkdw8WY1Sd"
 
 // Supabase
 export const SUPABASE_URL = "https://vjqpuprqwnpjqpgapdyt.supabase.co"
