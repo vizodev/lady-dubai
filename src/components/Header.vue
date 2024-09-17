@@ -7,15 +7,25 @@
 			'xl:justify-end': !props.withLogo && !paintHeaderBg,
 		}"
 	>
-		<img
-			:src="showLogo && !paintHeaderBg ? LOGO_SVG : LOGO_WHITE_SVG"
-			@click="openHome"
-			alt="logo"
-			class="h-[40px] cursor-pointer"
+		<div
+			class="cursor-pointer"
 			:class="{
 				'xl:hidden': !showLogo,
 			}"
-		/>
+		>
+			<img
+				:src="paintHeaderBg ? LOGO_WHITE_SVG : LOGO_SVG"
+				@click="openHome"
+				alt="logo"
+				class="hidden xl:block h-[40px]"
+			/>
+			<img
+				:src="LOGO_WHITE_SVG"
+				@click="openHome"
+				alt="logo"
+				class="block xl:hidden h-[40px]"
+			/>
+		</div>
 
 		<button class="xl:hidden" @click="showMenu = true">
 			<img :src="MENU_SVG" alt="" />
@@ -130,7 +140,7 @@
 						<transition>
 							<div
 								v-if="showAttractionsMobileDropdown"
-								class="p-6 bg-white rounded-lg flex flex-col gap-6"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center"
 							>
 								<p
 									v-for="attraction of attractions"
@@ -270,11 +280,11 @@ const handleScroll = () => {
 	if ((window?.scrollY ?? 0) > 200) {
 		paintHeaderBg.value = true
 
-		if (!props.withLogo) showLogo.value = true
+		!props.withLogo && (showLogo.value = true)
 	} else {
 		paintHeaderBg.value = false
 
-		if (!props.withLogo) showLogo.value = false
+		!props.withLogo && (showLogo.value = false)
 	}
 }
 

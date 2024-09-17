@@ -1,4 +1,4 @@
-export const getYoutubeVideoUrl = (url?: string) => {
+export const getYoutubeVideoUrl = (url: string): string | undefined => {
 	if (!url || url.length === 0) return
 
 	// https://www.youtube.com/embed/DR8IvfQK0io?autoplay=1&mute=1&controls=1&showinfo=0&captions=0&loop=1

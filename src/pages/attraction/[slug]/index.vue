@@ -1,12 +1,7 @@
 <template>
 	<Header with-logo class="z-50" />
 
-	<iframe
-		v-if="currentAttractionVideoUrl"
-		:src="currentAttractionVideoUrl"
-		frameborder="0"
-		class="w-full h-[79vh]"
-	></iframe>
+	<VideoRender v-if="videoUrl" :src="videoUrl" class="w-full h-[79vh]" />
 	<img
 		v-else
 		:src="currentAttraction?.banner"
@@ -42,7 +37,7 @@
 						class="html-paragraph mb-24"
 					></div>
 
-					<div>
+					<div v-if="tripPackagesByAttraction?.length > 0">
 						<p class="mb-6 text-base font-bold">
 							{{ t("attraction.includedInTravelPackages") }}
 						</p>
@@ -172,8 +167,12 @@ const relativePath = computed(
 
 // Attraction
 const currentAttraction = ref<Attraction>()
-const currentAttractionVideoUrl = computed(() => {
-	return getYoutubeVideoUrl(currentAttraction.value?.video_url)
+const videoUrl = computed(() => {
+	const url = currentAttraction.value?.video_url
+
+	if (!url || url.length === 0) return
+
+	return isYoutubeUrl(url) ? getYoutubeVideoUrl(url) : url
 })
 
 const loadAttraction = async () => {
@@ -185,7 +184,7 @@ const loadAttraction = async () => {
 }
 
 // Trip Packages by attractions
-const tripPackagesByAttraction = ref<TripPackage[]>()
+const tripPackagesByAttraction = ref<TripPackage[]>([])
 
 const loadTripPackagesByAttraction = async (id: number) => {
 	tripPackagesByAttraction.value =
