@@ -2,7 +2,7 @@
 	<div class="flex flex-col overflow-y-auto w-full" v-if="currentTripPackage">
 		<Header with-logo class="z-50" />
 
-		<TripPackageGallery :gallery="currentTripPackage?.gallery ?? []" />
+		<Gallery :gallery="currentTripPackage?.gallery ?? []" />
 
 		<div class="relative page-padding">
 			<SidePageIcon :src="FLOWER_LEFT4_SVG" class="-top-15 left-0" />

@@ -32,7 +32,7 @@
 				<div class="mb-36">
 					<div
 						v-html="currentAttraction?.long_description_html[locale]"
-						class="mb-24 font-inter w-full lg:w-4/5"
+						class="html-paragraph mb-24"
 					></div>
 
 					<div>
@@ -54,7 +54,7 @@
 
 				<div
 					v-html="currentAttraction?.first_text_html[locale]"
-					class="mb-20 font-inter w-full lg:w-4/5"
+					class="mb-20 html-paragraph"
 				></div>
 
 				<WhatsappBox
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 
-		<TripPackageGallery
+		<Gallery
 			:gallery="currentAttraction?.gallery ?? []"
 			class="mb-24 lg:mb-40"
 		/>
@@ -73,7 +73,7 @@
 		<div class="flex flex-col gap-20 mb-20 page-padding">
 			<div
 				v-html="currentAttraction?.second_text_html[locale]"
-				class="font-inter w-full lg:w-4/5"
+				class="html-paragraph"
 			></div>
 		</div>
 

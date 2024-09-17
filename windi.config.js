@@ -43,5 +43,6 @@ export default defineConfig({
 			"p-6 pr-14 w-max right-0 bg-white rounded-lg hidden absolute shadow-md",
 		"page-padding":
 			"w-full px-6 md:px-16 lg:px-32 xl:px-[150px] 2xl:px-[200px] 3xl:px-[245px]",
+		"html-paragraph": "font-inter w-full lg:w-4/5",
 	},
 })
