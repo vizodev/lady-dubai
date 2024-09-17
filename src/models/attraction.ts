@@ -1,9 +1,10 @@
-import type { MetaData, TextType } from "./"
+import type { TextType } from "./"
 
 export type Attraction = {
 	id: number
 	slug: string
-	metadata: MetaData
+	title_metadata?: TextType
+	description_metadata?: TextType
 	banner: string
 	video_url: string
 	title: TextType

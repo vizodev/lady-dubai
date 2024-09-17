@@ -198,15 +198,14 @@ watch(
 	(value) => {
 		if (!value) return
 
-		useHead({
-			title: value.title[locale.value],
-			meta: [
-				{
-					name: value.metadata.name[locale.value],
-					content: value.metadata.content[locale.value],
-				},
-			],
-		})
+		useHead(
+			generateHead(
+				locale.value,
+				value.title,
+				value.title_metadata,
+				value.description_metadata
+			)
+		)
 	}
 )
 
