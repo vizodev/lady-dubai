@@ -1,8 +1,8 @@
 <template>
-	<div class="z-50">
-		<button v-for="media of medias">
+	<div>
+		<a v-for="media of medias">
 			<img :src="media.icon" class="cursor-pointer" />
-		</button>
+		</a>
 	</div>
 </template>
 

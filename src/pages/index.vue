@@ -2,7 +2,7 @@
 	<Header />
 	<Hero />
 
-	<div class="dynamic-section" v-if="!loadingTripPackages">
+	<div v-if="!loadingTripPackages">
 		<TripPackages />
 		<CtaSection />
 		<Contact />
