@@ -1,5 +1,3 @@
-const isDevelopment = process.env.NODE_ENV === "development"
-
 // Sections
 export const CONTACT_SECTION = "contact_section"
 export const TRIP_PACKAGES_SECTION = "trip_packages_section"
@@ -14,9 +12,8 @@ export const CONTACTS_STORE = "CONTACTS_STORE"
 export const HOME_STORE = "HOME_STORE"
 
 // Stripe
-export const STRIPE_SECRET_KEY = isDevelopment
-	? "sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
-	: "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"
+export const STRIPE_SECRET_KEY =
+	"sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
 
 // Countries
 export const COUNTRIES_ENDPOINT =
