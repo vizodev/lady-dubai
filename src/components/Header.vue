@@ -1,6 +1,6 @@
 <template>
 	<header
-		class="flex w-full justify-between items-center fixed top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px] z-100"
+		class="flex w-screen justify-between items-center fixed top-0 z-10 px-4 sm:px-[40px] lg:px-[100px] h-[75px] z-100"
 		:class="{
 			'bg-[#FFC1D3] shadow-md xl:(bg-transparent shadow-none)': !paintHeaderBg,
 			'bg-[#FFC1D3] !shadow-md': paintHeaderBg,

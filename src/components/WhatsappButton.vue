@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="showContact"
-		class="group fixed bottom-[80px] right-20 animate-bounce hover:animate-none transition-all duration-[.2s] z-50"
+		class="group fixed bottom-[80px] animate-bounce hover:animate-none transition-all duration-[.2s] z-50 bottom-10 right-5 md:(right-10 bottom-15) lg:(right-20 bottom-20)"
 	>
 		<button
 			class="flex gap-4 items-center justify-center bg-[#21B65A] rounded-full text-white text-[24px] customShadow w-[52px] h-[52px] group-hover:(w-auto px-6)"

@@ -9,7 +9,6 @@
 
 body {
 	background: #f5f8fa;
-	overflow-x: hidden;
 }
 
 ol {
@@ -23,13 +22,6 @@ ul {
 	padding-left: 30px;
 	line-height: 2;
 }
-
-/* .font-roboto-serif {
-	font-family: "Roboto Serif" sans-serif;
-}
-.font-inter {
-	font-family: "Inter" sans-serif;
-} */
 
 .hide-scrollbar {
 	-ms-overflow-style: none;
