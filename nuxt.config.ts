@@ -1,10 +1,10 @@
-import { languageToLocale } from "./src/data"
 import {
 	SUPABASE_KEY,
 	SUPABASE_REDIRECT,
 	SUPABASE_SERVICE_KEY,
 	SUPABASE_URL,
 } from "./src/constants"
+import { languageToLocale } from "./src/data"
 import { LanguageEnum } from "./src/models"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 		"nuxt-aos",
 		"nuxt-windicss",
 		"@nuxtjs/i18n",
+		"@nuxt/scripts",
 	],
 	supabase: {
 		key: SUPABASE_KEY,

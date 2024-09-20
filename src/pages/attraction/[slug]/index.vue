@@ -68,7 +68,8 @@
 		</div>
 
 		<Gallery
-			:gallery="currentAttraction?.gallery ?? []"
+			v-if="currentAttraction"
+			:gallery="currentAttraction.gallery"
 			class="mb-24 lg:mb-40"
 		/>
 

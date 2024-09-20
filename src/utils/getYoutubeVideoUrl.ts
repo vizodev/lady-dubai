@@ -14,7 +14,7 @@ export const getYoutubeVideoUrl = (url: string): string | undefined => {
 		{ key: "autoplay", value: "1" },
 		{ key: "playlist", value: videoId },
 		{ key: "mute", value: "1" },
-		{ key: "controls", value: "1" },
+		{ key: "controls", value: "0" },
 		{ key: "loop", value: "1" },
 	]
 

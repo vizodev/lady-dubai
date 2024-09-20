@@ -41,9 +41,9 @@ const scrollLeft = ref(0)
 const maxScrollLeft = computed(
 	() => scroller.value.scrollWidth - scroller.value.clientWidth
 )
-const scrollValue = computed(() => scroller.value.scrollWidth / gallery.length)
+const scrollValue = computed(() => maxScrollLeft.value / gallery.length)
 
-const onWheel = (e: Event) => {
+const onWheel = () => {
 	scrollLeft.value = scroller.value.scrollLeft
 }
 const onScrollRight = () => {
