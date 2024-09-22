@@ -7,6 +7,7 @@
 		:player-vars="youtubeVideoData.vars"
 		@ready="onReady"
 		@state-change="onStateChange"
+		:width="5000"
 	/>
 	<video v-else controls autoplay class="bg-off-black">
 		<source :src="src" />
