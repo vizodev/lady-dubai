@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col">
+	<BaseField :name="name">
 		<label
 			class="flex flex-row items-center gap-3 mb-2 text-regular-14-bold-grey cursor-pointer"
 		>
@@ -11,18 +11,11 @@
 			/>
 			<slot />
 		</label>
-
-		<transition>
-			<ErrorMessage
-				:name="name"
-				class="mt-3 italic text-xs text-red-600 font-bold"
-			/>
-		</transition>
-	</div>
+	</BaseField>
 </template>
 
 <script lang="ts" setup>
-import { ErrorMessage, Field } from "vee-validate"
+import { Field } from "vee-validate"
 
 defineProps<{
 	name: string

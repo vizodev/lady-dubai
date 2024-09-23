@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<BaseField :name="name">
 		<label
 			class="flex flex-row items-center gap-3 mb-2 text-regular-14-bold-grey cursor-pointer"
 		>
@@ -13,17 +13,11 @@
 
 			<slot />
 		</label>
-
-		<transition>
-			<p v-if="errorMessage" class="mt-3 italic text-xs text-red-600 font-bold">
-				{{ errorMessage }}
-			</p>
-		</transition>
-	</div>
+	</BaseField>
 </template>
 
 <script lang="ts" setup>
-import { useField, Field } from "vee-validate"
+import { Field, useField } from "vee-validate"
 
 const { name } = defineProps<{
 	name: string

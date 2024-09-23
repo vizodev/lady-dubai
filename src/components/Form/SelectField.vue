@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<p v-if="label" class="text-sm font-bold ml-3">{{ label }}</p>
-
+	<BaseField :name="name" :label="label">
 		<div class="focus:border-pink-600 border border-black px-4 py-3 rounded-md">
 			<Field
 				:name="name"
@@ -11,18 +9,11 @@
 				<slot />
 			</Field>
 		</div>
-
-		<transition>
-			<ErrorMessage
-				:name="name"
-				class="mt-3 italic text-xs text-red-600 font-bold"
-			/>
-		</transition>
-	</div>
+	</BaseField>
 </template>
 
 <script lang="ts" setup>
-import { Field, ErrorMessage } from "vee-validate"
+import { Field } from "vee-validate"
 
 defineProps<{
 	name: string

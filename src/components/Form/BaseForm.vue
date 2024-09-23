@@ -1,3 +1,15 @@
+<template>
+	<div>
+		<VeeForm
+			:validation-schema="validationSchema"
+			:initial-values="initialValues"
+			@submit="onSubmit"
+		>
+			<slot />
+		</VeeForm>
+	</div>
+</template>
+
 <script setup lang="ts">
 import { Form as VeeForm, type FormActions } from "vee-validate"
 
@@ -18,15 +30,3 @@ const onSubmit = (data: any, actions: FormActions<any>) => {
 	if (resetOnSubmit) actions.resetForm()
 }
 </script>
-
-<template>
-	<div>
-		<VeeForm
-			:validation-schema="validationSchema"
-			:initial-values="initialValues"
-			@submit="onSubmit"
-		>
-			<slot />
-		</VeeForm>
-	</div>
-</template>
