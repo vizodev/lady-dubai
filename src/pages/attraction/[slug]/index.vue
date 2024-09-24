@@ -1,17 +1,10 @@
 <template>
 	<Header with-logo class="z-50" />
 
-	<VideoRender
-		v-if="videoUrl"
-		:src="videoUrl"
-		class="w-full h-[50vh] mt-10 sm:(h-[79vh] mt-0)"
-	/>
-	<img
-		v-else
-		:src="currentAttraction?.banner"
-		alt="Attraction Banner"
-		class="w-full h-[79vh]"
-	/>
+	<div class="flex w-full h-[50vh] mt-10 sm:(h-[79vh] mt-0)">
+		<VideoRender v-if="videoUrl" :src="videoUrl" />
+		<img v-else :src="currentAttraction?.banner" alt="Attraction Banner" />
+	</div>
 
 	<div class="relative">
 		<SidePageIcon :src="FLOWER_LEFT4_SVG" class="-top-15 left-0" />
