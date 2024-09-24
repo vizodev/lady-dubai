@@ -1,7 +1,11 @@
 <template>
 	<Header with-logo class="z-50" />
 
-	<VideoRender v-if="videoUrl" :src="videoUrl" class="w-full h-[79vh]" />
+	<VideoRender
+		v-if="videoUrl"
+		:src="videoUrl"
+		class="w-full h-[50vh] mt-10 sm:(h-[79vh] mt-0)"
+	/>
 	<img
 		v-else
 		:src="currentAttraction?.banner"
@@ -20,7 +24,7 @@
 
 			<div>
 				<div class="font-roboto-serif mb-16">
-					<p class="font-roboto-serif text-7xl font-bold">
+					<p class="font-roboto-serif font-bold text-5xl sm:text-7xl">
 						{{ currentAttraction.title[locale] }}
 					</p>
 					<p
@@ -128,7 +132,6 @@ const props = computed(() => {
 
 const tripPackagesStore = useTripPackagesStore()
 const attractionStore = useAttractionsStore()
-const { attractions } = storeToRefs(attractionStore)
 
 // Relative path
 const relativePath = computed(
@@ -167,6 +170,7 @@ const relativePath = computed(
 )
 
 // Attraction
+const { attractions } = storeToRefs(attractionStore)
 const currentAttraction = ref<Attraction>()
 const videoUrl = computed(() => {
 	const url = currentAttraction.value?.video_url

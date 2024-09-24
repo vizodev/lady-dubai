@@ -1,5 +1,5 @@
 <template>
-	<div class="flex gap-3 flex-wrap bg-[#f5f8fa] w-max rounded p-1">
+	<div class="flex gap-3 flex-wrap bg-[#f5f8fa] rounded p-1">
 		<button
 			class="flex gap-3 items-center"
 			v-for="(path, index) in relativePath"
@@ -15,6 +15,7 @@
 			>
 				{{ path.label[locale] }}
 			</span>
+
 			<div
 				class="flex items-center justify-center h-full"
 				v-if="index < relativePath.length - 1"

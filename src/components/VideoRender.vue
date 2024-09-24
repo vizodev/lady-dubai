@@ -1,5 +1,4 @@
 <template>
-	<!-- <iframe v-if="isYoutubeVideoUrl" :src="src" frameborder="0"></iframe> -->
 	<ScriptYouTubePlayer
 		v-if="isYoutubeVideoUrl && youtubeVideoData"
 		trigger="immediate"
