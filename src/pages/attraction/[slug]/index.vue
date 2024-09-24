@@ -3,7 +3,12 @@
 
 	<div class="flex w-full h-[50vh] mt-10 sm:(h-[79vh] mt-0)">
 		<VideoRender v-if="videoUrl" :src="videoUrl" />
-		<img v-else :src="currentAttraction?.banner" alt="Attraction Banner" />
+		<img
+			v-else
+			:src="currentAttraction?.banner"
+			alt="Attraction Banner"
+			class="w-full object-cover"
+		/>
 	</div>
 
 	<div class="relative">
