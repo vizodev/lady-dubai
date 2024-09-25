@@ -27,19 +27,44 @@ export default defineNuxtConfig({
 		serviceKey: SUPABASE_SERVICE_KEY,
 	},
 	i18n: {
-		vueI18n: "./src/locales/i18n.config.ts",
-		locales: [
-			languageToLocale[LanguageEnum.ENGLISH],
-			languageToLocale[LanguageEnum.HEBREW],
-			languageToLocale[LanguageEnum.SPANISH],
-			languageToLocale[LanguageEnum.PORTUGUESE_BR],
-			languageToLocale[LanguageEnum.GERMAN],
-			languageToLocale[LanguageEnum.FRENCH],
-			languageToLocale[LanguageEnum.ARABIC],
-			languageToLocale[LanguageEnum.RUSSIAN],
-		],
 		defaultLocale: languageToLocale[LanguageEnum.ENGLISH],
 		strategy: "prefix_except_default",
+		lazy: true,
+		langDir: "./locales",
+		locales: [
+			{
+				code: languageToLocale[LanguageEnum.ENGLISH],
+				file: `${languageToLocale[LanguageEnum.ENGLISH]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.HEBREW],
+				file: `${languageToLocale[LanguageEnum.HEBREW]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.SPANISH],
+				file: `${languageToLocale[LanguageEnum.SPANISH]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.PORTUGUESE_BR],
+				file: `${languageToLocale[LanguageEnum.PORTUGUESE_BR]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.GERMAN],
+				file: `${languageToLocale[LanguageEnum.GERMAN]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.FRENCH],
+				file: `${languageToLocale[LanguageEnum.FRENCH]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.ARABIC],
+				file: `${languageToLocale[LanguageEnum.ARABIC]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.RUSSIAN],
+				file: `${languageToLocale[LanguageEnum.RUSSIAN]}.ts`,
+			},
+		],
 	},
 	aos: {
 		// Global settings:

@@ -1,5 +1,5 @@
 export * from "./ar"
-export * from "./de"
+export * from "./deu"
 export * from "./en"
 export * from "./es"
 export * from "./fr"

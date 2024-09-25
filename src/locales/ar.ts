@@ -1,6 +1,6 @@
 import type { ILocaleMessages } from "~/models"
 
-export const languageAr: ILocaleMessages = {
+export default {
 	companyName: "سيدة دبي",
 	dirham: "درهم",
 	allPackages: "جميع الباقات",
@@ -98,4 +98,4 @@ export const languageAr: ILocaleMessages = {
 		paymentMethodInfo: "طريقة الدفع",
 		cardDetailsInfo: "تفاصيل البطاقة",
 	},
-}
+} as ILocaleMessages

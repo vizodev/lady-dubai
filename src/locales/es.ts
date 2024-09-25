@@ -1,6 +1,6 @@
 import type { ILocaleMessages } from "~/models"
 
-export const languageEs: ILocaleMessages = {
+export default {
 	companyName: "dama dubai",
 	dirham: "DIRHAM",
 	allPackages: "Todos los paquetes",
@@ -101,4 +101,4 @@ export const languageEs: ILocaleMessages = {
 		paymentMethodInfo: "Método de pago",
 		cardDetailsInfo: "Detalles de la tarjeta",
 	},
-}
+} as ILocaleMessages
