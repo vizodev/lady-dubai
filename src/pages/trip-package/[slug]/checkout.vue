@@ -21,7 +21,7 @@
 		<div class="mb-16">
 			<div
 				@click="openTripPackage"
-				class="text-[16px] text-pink-600 flex gap-3 cursor-pointer mb-6"
+				class="text-[16px] text-pink-600 flex gap-3 cursor-pointer mb-6 w-max"
 			>
 				<i class="fi fi-ss-angle-double-left"></i>
 
