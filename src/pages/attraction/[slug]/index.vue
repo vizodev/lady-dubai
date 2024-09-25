@@ -102,16 +102,14 @@
 <script lang="ts" setup>
 import { FLOWER_LEFT4_SVG, HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 import { languageToLocale } from "~/data"
-import {
-	languageAr,
-	languageDe,
-	languageEn,
-	languageEs,
-	languageFr,
-	languageHe,
-	languagePt,
-	languageRu,
-} from "~/locales"
+import languageAr from "~/locales/ar"
+import languageDeu from "~/locales/deu"
+import languageEn from "~/locales/en"
+import languageEs from "~/locales/es"
+import languageFr from "~/locales/fr"
+import languageHe from "~/locales/he"
+import languagePt from "~/locales/pt"
+import languageRu from "~/locales/ru"
 import {
 	type Attraction,
 	type RelativePathComponent,
@@ -139,7 +137,7 @@ const relativePath = computed(
 				label: {
 					en: languageEn.companyName,
 					ar: languageAr.companyName,
-					de: languageDe.companyName,
+					de: languageDeu.companyName,
 					es: languageEs.companyName,
 					ru: languageRu.companyName,
 					fr: languageFr.companyName,
@@ -152,7 +150,7 @@ const relativePath = computed(
 				label: {
 					en: languageEn.attractions,
 					ar: languageAr.attractions,
-					de: languageDe.attractions,
+					de: languageDeu.attractions,
 					es: languageEs.attractions,
 					ru: languageRu.attractions,
 					fr: languageFr.attractions,
