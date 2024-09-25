@@ -2,12 +2,12 @@
 	<Header with-logo class="z-50" />
 
 	<div class="flex w-full h-[50vh] mt-10 sm:(h-[79vh] mt-0)">
-		<VideoRender v-if="videoUrl" :src="videoUrl" />
+		<VideoRender v-if="videoUrl" :src="videoUrl" class="w-full h-full" />
 		<img
 			v-else
 			:src="currentAttraction?.banner"
 			alt="Attraction Banner"
-			class="w-full object-cover"
+			class="w-full h-full object-cover"
 		/>
 	</div>
 
