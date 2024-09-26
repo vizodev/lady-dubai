@@ -6,7 +6,7 @@
 		:player-vars="youtubeVideoData.vars"
 		@ready="onReady"
 		@state-change="onStateChange"
-		:width="50000"
+		:width="youtubeWidth"
 		:height="youtubeHeight"
 	/>
 	<video v-else autoplay muted class="bg-off-black">
@@ -26,14 +26,16 @@ const isYoutubeVideoUrl = isYoutubeUrl(src)
 
 // Youtube Video
 const youtubeHeight = ref(0)
+const youtubeWidth = ref(0)
 const youtubeVideoData =
 	isYoutubeVideoUrl && src ? getYoutubeVideoUrlData(src) : null
 
 const calculateYoutubePlayerHeight = () => {
-	const { height } = window.screen
+	const { height, width } = window.screen
 
-	const factor = height < 640 ? 0.5 : 0.79
+	const factor = height < 640 ? 0.5 : 0.7
 
+	youtubeWidth.value = width
 	youtubeHeight.value = height * factor
 }
 const onReady = (e: YT.PlayerEvent) => {

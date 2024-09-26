@@ -79,7 +79,6 @@ import {
 	HERO6_IMAGE,
 	HERO7_IMAGE,
 	HERO8_IMAGE,
-	HOME_ROUTE,
 	LOGO_SVG,
 	PLANE1_SVG,
 	PLANE2_SVG,
@@ -88,7 +87,6 @@ import {
 
 // Locales
 const { t } = useI18n()
-const localePath = useLocalePath()
 
 // Background
 const backgrounds = reactive<{
@@ -143,9 +141,6 @@ const changeBackground = () => {
 		backgrounds.currentHeroIndex++
 	}
 }
-
-// Routes
-const openHome = () => navigateTo(localePath(HOME_ROUTE))
 
 // Life cycle
 onBeforeMount(() => startChangeBackground())
