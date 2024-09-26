@@ -1,6 +1,6 @@
 import type { ILocaleMessages } from "~/models"
 
-export default {
+export const languageHe: ILocaleMessages = {
 	companyName: "ליידי דובאי",
 	dirham: "DIRHAM",
 	allPackages: "כל החבילות",
@@ -98,4 +98,4 @@ export default {
 		paymentMethodInfo: "שיטת תשלום",
 		cardDetailsInfo: "פרטי כרטיס",
 	},
-} as ILocaleMessages
+}

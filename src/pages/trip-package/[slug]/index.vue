@@ -217,14 +217,16 @@ import {
 	HOME_TRIP_PACKAGES_SECTION_ROUTE,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
-import languageAr from "~/locales/ar"
-import languageDeu from "~/locales/deu"
-import languageEn from "~/locales/en"
-import languageEs from "~/locales/es"
-import languageFr from "~/locales/fr"
-import languageHe from "~/locales/he"
-import languagePt from "~/locales/pt"
-import languageRu from "~/locales/ru"
+import {
+	languageAr,
+	languageDeu,
+	languageEn,
+	languageEs,
+	languageFr,
+	languageHe,
+	languagePt,
+	languageRu,
+} from "~/locales"
 import {
 	type Attraction,
 	type Flight,

@@ -6,9 +6,10 @@
 		:player-vars="youtubeVideoData.vars"
 		@ready="onReady"
 		@state-change="onStateChange"
-		:width="5000"
+		:width="50000"
+		:height="youtubeHeight"
 	/>
-	<video v-else controls autoplay class="bg-off-black">
+	<video v-else autoplay muted class="bg-off-black">
 		<source :src="src" />
 	</video>
 </template>
@@ -24,9 +25,17 @@ const { src } = defineProps<{
 const isYoutubeVideoUrl = isYoutubeUrl(src)
 
 // Youtube Video
+const youtubeHeight = ref(0)
 const youtubeVideoData =
 	isYoutubeVideoUrl && src ? getYoutubeVideoUrlData(src) : null
 
+const calculateYoutubePlayerHeight = () => {
+	const { height } = window.screen
+
+	const factor = height < 640 ? 0.5 : 0.79
+
+	youtubeHeight.value = height * factor
+}
 const onReady = (e: YT.PlayerEvent) => {
 	e.target.playVideo()
 }
@@ -41,4 +50,22 @@ const onStateChange = (e: YT.OnStateChangeEvent) => {
 		})
 	}
 }
+
+//  Listners
+const resizeEventName = "resize"
+
+const handleResize = () => {
+	calculateYoutubePlayerHeight()
+}
+
+// Life Cycle
+onMounted(() => {
+	calculateYoutubePlayerHeight()
+
+	window.addEventListener(resizeEventName, handleResize)
+})
+
+onUnmounted(() => {
+	window.removeEventListener(resizeEventName, handleResize)
+})
 </script>
