@@ -81,7 +81,10 @@
 				class="flex 2xl:items-end justify-between flex-col gap-4 2xl:(flex-row gap-8)"
 			>
 				<div class="flex flex-col lg:gap-1.5">
-					<div class="relative w-max">
+					<div
+						v-if="tripPackage.downsale_price.usd !== tripPackage.price.usd"
+						class="relative w-max"
+					>
 						<span class="text-brown-700 font-semibold font-roboto-serif">
 							{{ `$ ${tripPackage.downsale_price.usd}` }}
 						</span>

@@ -19,6 +19,7 @@ export default defineNuxtConfig({
 		"nuxt-windicss",
 		"@nuxtjs/i18n",
 		"@nuxt/scripts",
+		"nuxt-windicss",
 	],
 	supabase: {
 		key: SUPABASE_KEY,
