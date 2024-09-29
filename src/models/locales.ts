@@ -104,7 +104,7 @@ export type TextType = {
 	fr: string
 	he: string
 	ru: string
-	de: string
+	deu: string
 	pt: string
 }
 
@@ -116,7 +116,7 @@ export type TextListType = {
 	fr: string[]
 	he: string[]
 	ru: string[]
-	de: string[]
+	deu: string[]
 	pt: string[]
 }
 

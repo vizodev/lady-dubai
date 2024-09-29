@@ -33,7 +33,7 @@ const youtubeVideoData =
 const calculateYoutubePlayerHeight = () => {
 	const { height, width } = window.screen
 
-	const factor = height < 640 ? 0.5 : 0.7
+	const factor = height < 640 ? 0.5 : 0.67
 
 	youtubeWidth.value = width
 	youtubeHeight.value = height * factor

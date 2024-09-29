@@ -33,9 +33,9 @@
 
 		<!-- Desktop menu -->
 		<div class="xl:flex items-center gap-[72px] text-white hidden">
-			<a class="font-medium font-inter uppercase" href="">{{
+			<NuxtLink :to="WHY_US_ROUTE" class="font-medium font-inter uppercase">{{
 				t("header.whyUs")
-			}}</a>
+			}}</NuxtLink>
 
 			<a class="font-medium font-inter uppercase" href="">{{
 				t("header.travelBlog")
@@ -110,9 +110,11 @@
 				class="py-10 relative flex flex-col items-center gap-20 overflow-scroll"
 			>
 				<div class="flex flex-col gap-8 items-center">
-					<a class="font-medium font-inter uppercase" href="">{{
-						t("header.whyUs")
-					}}</a>
+					<NuxtLink
+						:to="WHY_US_ROUTE"
+						class="font-medium font-inter uppercase"
+						>{{ t("header.whyUs") }}</NuxtLink
+					>
 
 					<a class="font-medium font-inter uppercase" href="">{{
 						t("header.travelBlog")
@@ -217,6 +219,7 @@ import {
 	LOGO_SVG,
 	LOGO_WHITE_SVG,
 	MENU_SVG,
+	WHY_US_ROUTE,
 } from "~/constants"
 import { localeToLanguage } from "~/data"
 import { LanguageEnum, type Attraction } from "~/models"
