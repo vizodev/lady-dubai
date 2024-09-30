@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { FLIGHT_ICON_SVG, FLIGHT1_SVG } from "~/constants"
+import { FLIGHT1_SVG, FLIGHT_ICON_SVG } from "~/constants"
 
 // General
 const { takeoff, landing } = defineProps<{
@@ -56,8 +56,14 @@ const daysFromTakeoff = () => {
 		Math.abs(takeoffDate.getTime() - landingDate.getTime()) /
 			(24 * 60 * 60 * 1000)
 	)
+	const differenceInHours = Math.floor(
+		Math.abs(takeoffDate.getTime() - landingDate.getTime()) / (60 * 60 * 1000)
+	)
 
-	return differenceInDays + 1
+	return (
+		differenceInDays +
+		(differenceInHours >= 24 && differenceInHours % 24 === 0 ? 0 : 1)
+	)
 }
 
 // Labels

@@ -218,16 +218,6 @@ import {
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
 import {
-	languageAr,
-	languageDeu,
-	languageEn,
-	languageEs,
-	languageFr,
-	languageHe,
-	languagePt,
-	languageRu,
-} from "~/locales"
-import {
 	type Attraction,
 	type Flight,
 	type RelativePathComponent,
@@ -307,29 +297,11 @@ const onFlightDateChange = (data: Flight) => {
 const relativePath = computed(() => {
 	return [
 		{
-			label: {
-				en: languageEn.companyName,
-				ar: languageAr.companyName,
-				deu: languageDeu.companyName,
-				es: languageEs.companyName,
-				ru: languageRu.companyName,
-				fr: languageFr.companyName,
-				pt: languagePt.companyName,
-				he: languageHe.companyName,
-			},
+			label: "company_name",
 			path: HOME_ROUTE,
 		},
 		{
-			label: {
-				en: languageEn.allPackages,
-				ar: languageAr.allPackages,
-				deu: languageDeu.allPackages,
-				es: languageEs.allPackages,
-				ru: languageRu.allPackages,
-				fr: languageFr.allPackages,
-				pt: languagePt.allPackages,
-				he: languageHe.allPackages,
-			},
+			label: "all_packages",
 			path: HOME_TRIP_PACKAGES_SECTION_ROUTE,
 		},
 		{

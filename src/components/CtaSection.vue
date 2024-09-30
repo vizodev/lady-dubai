@@ -55,7 +55,9 @@
 							{{ t("cta_testemonial_description1") }}
 							<b>{{ t("cta_testemonial_description2") }}</b>
 							{{ t("cta_testemonial_description3") }}
-							<span class="font-extralight italic">{{ t("companyName") }}</span>
+							<span class="font-extralight italic">{{
+								t("company_name")
+							}}</span>
 						</span>
 					</div>
 				</div>

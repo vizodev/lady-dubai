@@ -4,12 +4,16 @@
 	>
 		<div class="flex flex-col gap-8 items-center w-full">
 			<div class="flex flex-col gap-6 items-center">
-				<div class="flex flex-col items-center gap-1">
+				<div
+					v-if="tripPackage?.price?.usd !== tripPackage?.downsale_price?.usd"
+					class="flex flex-col items-center gap-1"
+				>
 					<span
 						class="text-[#749BFF] font-bold text-[20px] leading-tight font-inter"
 					>
 						{{ t("trip_package_edge_card_title") }}
 					</span>
+
 					<div class="relative w-fit">
 						<span
 							class="text-brown-700 font-semibold font-roboto-serif text-[20px] sm:text-[24px]"
@@ -20,6 +24,7 @@
 							class="transform w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 z-[1] top-[50%] translate-y-[-50%]"
 						></div>
 					</div>
+
 					<div
 						class="flex items-center gap-1 bg-blue-200 text-white rounded-[10px] px-1.5 py-1"
 					>
@@ -27,6 +32,7 @@
 						<span class="text-sm font-bold font-inter"> 7 Days, 23H, 13m </span>
 					</div>
 				</div>
+
 				<div class="flex items-center gap-3">
 					<span
 						class="text-pink-500 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] xl:text-[48px] whitespace-nowrap"
@@ -49,7 +55,7 @@
 		</div>
 		<div class="flex flex-col gap-3 items-start">
 			<span class="uppercase font-bold font-inter leading-tight">
-				{{ t("nextAvailableDates") }}
+				{{ t("next_available_dates") }}
 			</span>
 
 			<TripPackageAvailableDates

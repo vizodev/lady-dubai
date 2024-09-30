@@ -105,16 +105,6 @@
 import { FLOWER_LEFT4_SVG, HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
 import { languageToLocale } from "~/data"
 import {
-	languageAr,
-	languageDeu,
-	languageEn,
-	languageEs,
-	languageFr,
-	languageHe,
-	languagePt,
-	languageRu,
-} from "~/locales"
-import {
 	type Attraction,
 	type RelativePathComponent,
 	type TripPackage,
@@ -138,29 +128,11 @@ const relativePath = computed(
 	() =>
 		[
 			{
-				label: {
-					en: languageEn.companyName,
-					ar: languageAr.companyName,
-					deu: languageDeu.companyName,
-					es: languageEs.companyName,
-					ru: languageRu.companyName,
-					fr: languageFr.companyName,
-					pt: languagePt.companyName,
-					he: languageHe.companyName,
-				},
+				label: "company_name",
 				path: HOME_ROUTE,
 			},
 			{
-				label: {
-					en: languageEn.attractions,
-					ar: languageAr.attractions,
-					deu: languageDeu.attractions,
-					es: languageEs.attractions,
-					ru: languageRu.attractions,
-					fr: languageFr.attractions,
-					pt: languagePt.attractions,
-					he: languageHe.attractions,
-				},
+				label: "attractions",
 				path: HOME_ROUTE,
 			},
 			{

@@ -29,16 +29,6 @@
 
 <script setup lang="ts">
 import { FLOWER_LEFT4_SVG, HOME_ROUTE } from "~/constants"
-import {
-	languageAr,
-	languageDeu,
-	languageEn,
-	languageEs,
-	languageFr,
-	languageHe,
-	languagePt,
-	languageRu,
-} from "~/locales"
 import type { RelativePathComponent } from "~/models"
 
 // General
@@ -55,29 +45,11 @@ const relativePath = computed(
 	() =>
 		[
 			{
-				label: {
-					en: languageEn.companyName,
-					ar: languageAr.companyName,
-					deu: languageDeu.companyName,
-					es: languageEs.companyName,
-					ru: languageRu.companyName,
-					fr: languageFr.companyName,
-					pt: languagePt.companyName,
-					he: languageHe.companyName,
-				},
+				label: "company_name",
 				path: HOME_ROUTE,
 			},
 			{
-				label: {
-					en: languageEn.header.whyUs,
-					ar: languageAr.header.whyUs,
-					deu: languageDeu.header.whyUs,
-					es: languageEs.header.whyUs,
-					ru: languageRu.header.whyUs,
-					fr: languageFr.header.whyUs,
-					pt: languagePt.header.whyUs,
-					he: languageHe.header.whyUs,
-				},
+				label: "header_why_us",
 			},
 		] as RelativePathComponent[]
 )

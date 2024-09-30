@@ -13,7 +13,9 @@
 			<span
 				class="text-[12px] leading-tight font-medium font-inter uppercase hover:underline"
 			>
-				{{ path.label[locale] }}
+				{{
+					typeof path.label === "string" ? t(path.label) : path.label[locale]
+				}}
 			</span>
 
 			<div
@@ -34,7 +36,7 @@ defineProps<{
 }>()
 
 // Locales
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 // Routes
