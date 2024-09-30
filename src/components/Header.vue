@@ -34,18 +34,18 @@
 		<!-- Desktop menu -->
 		<div class="xl:flex items-center gap-[72px] text-white hidden">
 			<NuxtLink :to="WHY_US_ROUTE" class="font-medium font-inter uppercase">{{
-				t("header.whyUs")
+				t("header_why_us")
 			}}</NuxtLink>
 
 			<a class="font-medium font-inter uppercase" href="">{{
-				t("header.travelBlog")
+				t("header_travel_blog")
 			}}</a>
 
 			<!-- Attractions dropdown -->
 			<div class="dropdown-box group">
 				<div class="flex gap-3">
 					<p class="font-medium font-inter uppercase">
-						{{ t("header.attractions") }}
+						{{ t("header_attractions") }}
 					</p>
 
 					<i class="fi fi-rs-angle-down"></i>
@@ -97,7 +97,7 @@
 				@click="scrollToId(CONTACT_SECTION)"
 				class="font-medium font-inter uppercase"
 			>
-				{{ t("header.contactUs") }}
+				{{ t("header_contact_us") }}
 			</button>
 		</div>
 
@@ -113,11 +113,11 @@
 					<NuxtLink
 						:to="WHY_US_ROUTE"
 						class="font-medium font-inter uppercase"
-						>{{ t("header.whyUs") }}</NuxtLink
+						>{{ t("header_why_us") }}</NuxtLink
 					>
 
 					<a class="font-medium font-inter uppercase" href="">{{
-						t("header.travelBlog")
+						t("header_travel_blog")
 					}}</a>
 
 					<!-- Attractions dropdown -->
@@ -127,7 +127,7 @@
 							class="flex gap-3 cursor-pointer"
 						>
 							<p class="font-medium font-inter uppercase">
-								{{ t("header.attractions") }}
+								{{ t("header_attractions") }}
 							</p>
 
 							<i
@@ -193,7 +193,7 @@
 						@click="scrollToId(CONTACT_SECTION)"
 						class="font-medium font-inter uppercase"
 					>
-						{{ t("header.contactUs") }}
+						{{ t("header_contact_us") }}
 					</button>
 				</div>
 

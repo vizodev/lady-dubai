@@ -3,8 +3,8 @@
 		<p class="font-bold">
 			{{
 				departingFlight
-					? t("checkout.flightDeparture")
-					: t("checkout.flightReturn")
+					? t("checkout_flight_departure")
+					: t("checkout_flight_return")
 			}}
 		</p>
 

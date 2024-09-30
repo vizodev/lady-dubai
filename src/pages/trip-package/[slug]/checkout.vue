@@ -4,11 +4,11 @@
 	>
 		<img :src="LOGO_FOOTER_SVG" alt="Logo" class="h-8 md:h-10" />
 
-		<p class="text-2xl md:text-3xl">{{ t("checkout.checkout") }}</p>
+		<p class="text-2xl md:text-3xl">{{ t("checkout_checkout") }}</p>
 
 		<i class="fi fi-rr-info flex gap-3 items-center">
 			<p class="text-base md:text-lg not-italic">
-				{{ t("checkout.support") }}
+				{{ t("checkout_support") }}
 			</p>
 		</i>
 	</header>
@@ -25,13 +25,13 @@
 			>
 				<i class="fi fi-ss-angle-double-left"></i>
 
-				<p>{{ t("checkout.return") }}</p>
+				<p>{{ t("checkout_return") }}</p>
 			</div>
 
 			<div class="flex flex-col gap-16 xl:flex-row xl:gap-6">
 				<div class="flex-[3] flex-grow-[2]">
 					<div class="flex flex-col gap-8">
-						<CheckoutSession :title="t('checkout.travellerInfo')">
+						<CheckoutSession :title="t('checkout_traveller_info')">
 							<div class="flex flex-col gap-14">
 								<transition-group>
 									<div
@@ -41,7 +41,7 @@
 										:key="traveller"
 									>
 										<p class="font-inter text-2xl font-light mb-6">
-											{{ t("checkout.traveller") }} {{ traveller + 1 }}
+											{{ t("checkout_traveller") }} {{ traveller + 1 }}
 										</p>
 
 										<div class="grid grid-cols-2 gap-6">
@@ -109,12 +109,12 @@
 								</transition-group>
 
 								<button @click="addTraveller" class="btn-rounded">
-									{{ t("checkout.addTraveller") }}
+									{{ t("checkout_add_traveller") }}
 								</button>
 							</div>
 						</CheckoutSession>
 
-						<CheckoutSession :title="t('checkout.contactInfo')">
+						<CheckoutSession :title="t('checkout_contactInfo')">
 							<div class="flex gap-6 flex-col md:flex-row">
 								<TextField
 									name="email"
@@ -161,7 +161,7 @@
 								@click="toogleShowFlightsModal"
 								class="text-pink-600 font-bold text-sm cursor-pointer"
 							>
-								{{ t("checkout.alterDate") }}
+								{{ t("checkout_alter_date") }}
 							</p>
 						</div>
 
@@ -193,7 +193,7 @@
 					<Separator class="my-12" />
 
 					<div class="flex justify-between font-bold">
-						<p class="text-lg font-inter">{{ t("checkout.total") }}</p>
+						<p class="text-lg font-inter">{{ t("checkout_total") }}</p>
 
 						<p class="font-roboto-serif text-3xl whitespace-nowrap">
 							{{ `$ ${totalPrice}` }}
@@ -207,20 +207,20 @@
 		<div class="ml-12">
 			<CheckboxField name="privacyPolicy" :value="true" class="mb-8">
 				<p class="text-base font-inter font-light text-brown-700">
-					{{ t("checkout.privacyPolicyDescription1") }}
+					{{ t("checkout_privacy_policy_description1") }}
 					<span class="text-pink-600 font-bold">{{
-						t("checkout.privacyPolicyDescription2")
+						t("checkout_privacy_policy_description2")
 					}}</span>
-					{{ t("checkout.privacyPolicyDescription3") }}
+					{{ t("checkout_privacy_policy_description3") }}
 					<span class="text-pink-600 font-bold">{{
-						t("checkout.privacyPolicyDescription4")
+						t("checkout_privacy_policy_description4")
 					}}</span>
 				</p>
 			</CheckboxField>
 
 			<Loading v-if="loadingForm" />
 			<button v-else type="submit" class="btn-primary">
-				{{ t("checkout.purchaseButton") }}
+				{{ t("checkout_purchase_button") }}
 			</button>
 		</div>
 	</BaseForm>
@@ -234,7 +234,7 @@
 	>
 		<div class="bg-white rounded-lg shadow-md px-8 py-10 w-[90%] md:w-[460px]">
 			<p class="mb-3 font-bold font-inter text-base uppercase">
-				{{ t("nextAvailableDates") }}
+				{{ t("next_available_dates") }}
 			</p>
 
 			<TripPackageAvailableDates
@@ -246,7 +246,7 @@
 			/>
 
 			<button @click="toogleShowFlightsModal" class="btn-primary w-full">
-				{{ t("checkout.modalButton") }}
+				{{ t("checkout_modal_button") }}
 			</button>
 		</div>
 	</div>
@@ -391,7 +391,7 @@ const openTripPackage = () => {
 }
 
 // Head
-useHead({ title: t("checkout.checkout") })
+useHead({ title: t("checkout_checkout") })
 
 // Watchers
 watch(

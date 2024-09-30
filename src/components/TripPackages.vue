@@ -24,17 +24,17 @@
 		<div class="bg-white shadow-md rounded-xl p-8">
 			<div class="mb-3 bg-off-black w-max py-1 px-2 rounded-md">
 				<p class="text-[10px] text-white font-bold font-inter uppercase">
-					{{ t("tripPackage.buildOwnPackageGroups") }}
+					{{ t("trip_package_build_own_package_groups") }}
 				</p>
 			</div>
 
 			<div class="mb-6">
 				<p class="font-roboto-serif font-medium text-4xl mb-1">
-					{{ t("tripPackage.buildOwnPackageTitle") }}
+					{{ t("trip_package_build_own_package_title") }}
 				</p>
 
 				<p class="text-sm font-inter font-medium text-gray-600">
-					{{ t("tripPackage.buildOwnPackageDescription") }}
+					{{ t("trip_package_build_own_package_description") }}
 				</p>
 			</div>
 
@@ -48,7 +48,7 @@
 				</div>
 
 				<a rel="noopener" :href="`#${CONTACT_SECTION}`" class="btn-primary">
-					{{ t("tripPackage.buildOwnPackageButton") }}
+					{{ t("trip_package_build_own_package_button") }}
 				</a>
 			</div>
 		</div>

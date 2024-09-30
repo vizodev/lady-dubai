@@ -43,7 +43,7 @@
 
 					<div v-if="tripPackagesByAttraction?.length > 0">
 						<p class="mb-6 text-base font-bold">
-							{{ t("attraction.includedInTravelPackages") }}
+							{{ t("attraction_included_in_travel_packages") }}
 						</p>
 
 						<div class="flex flex-wrap gap-3">

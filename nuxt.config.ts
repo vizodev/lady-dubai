@@ -28,21 +28,44 @@ export default defineNuxtConfig({
 		serviceKey: SUPABASE_SERVICE_KEY,
 	},
 	i18n: {
-		vueI18n: "./src/locales/i18n.config.ts",
+		lazy: true,
+		langDir: "./locales",
 		defaultLocale: languageToLocale[LanguageEnum.ENGLISH],
-		strategy: "prefix_except_default",
 		locales: [
-			languageToLocale[LanguageEnum.ENGLISH],
-			languageToLocale[LanguageEnum.HEBREW],
-			languageToLocale[LanguageEnum.SPANISH],
-			languageToLocale[LanguageEnum.PORTUGUESE_BR],
-			languageToLocale[LanguageEnum.GERMAN],
-			languageToLocale[LanguageEnum.FRENCH],
-			languageToLocale[LanguageEnum.ARABIC],
-			languageToLocale[LanguageEnum.RUSSIAN],
+			{
+				code: languageToLocale[LanguageEnum.ENGLISH],
+				file: `${languageToLocale[LanguageEnum.ENGLISH]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.ARABIC],
+				file: `${languageToLocale[LanguageEnum.ARABIC]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.GERMAN],
+				file: `${languageToLocale[LanguageEnum.GERMAN]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.SPANISH],
+				file: `${languageToLocale[LanguageEnum.SPANISH]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.FRENCH],
+				file: `${languageToLocale[LanguageEnum.FRENCH]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.HEBREW],
+				file: `${languageToLocale[LanguageEnum.HEBREW]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.PORTUGUESE_BR],
+				file: `${languageToLocale[LanguageEnum.PORTUGUESE_BR]}.ts`,
+			},
+			{
+				code: languageToLocale[LanguageEnum.RUSSIAN],
+				file: `${languageToLocale[LanguageEnum.RUSSIAN]}.ts`,
+			},
 		],
 	},
-
 	aos: {
 		// Global settings:
 		disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
@@ -55,7 +78,7 @@ export default defineNuxtConfig({
 		throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
 
 		// Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-		offset: 100, // offset (in px) from the original trigger point
+		offset: 100, // offset (in px) FRENCHom the original trigger point
 		delay: 0, // values from 0 to 3000, with step 50ms
 		duration: 400, // values from 0 to 3000, with step 50ms
 		easing: "ease", // default easing for AOS animations
@@ -63,14 +86,12 @@ export default defineNuxtConfig({
 		mirror: false, // whether elements should animate out while scrolling past them
 		anchorPlacement: "top-center", // defines which position of the element regarding to window should trigger the animation
 	},
-
 	components: [
 		{
 			path: "~/components", // will get any components nested in let's say /components/test too
 			pathPrefix: false,
 		},
 	],
-
 	app: {
 		head: {
 			title: "Lady Dubai",
@@ -91,10 +112,8 @@ export default defineNuxtConfig({
 			],
 		},
 	},
-
 	devServer: {
 		port: 3001,
 	},
-
 	compatibilityDate: "2024-09-25",
 })

@@ -27,22 +27,22 @@
 						<span
 							class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-bold font-roboto-serif text-light"
 						>
-							{{ t("hero.title1") }}
+							{{ t("hero_title1") }}
 						</span>
 						<span
 							class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-roboto-serif text-light"
 						>
-							{{ t("hero.title2") }} <br />
-							{{ t("hero.title3") }}
+							{{ t("hero_title2") }} <br />
+							{{ t("hero_title3") }}
 						</span>
 					</div>
 					<div class="flex flex-col">
 						<p
 							class="font-inter sm:text-[20px] xl:text-[24px] text-light !leading-9"
 						>
-							{{ t("hero.description1") }}
+							{{ t("hero_description1") }}
 							<br />
-							<b>{{ t("hero.description2") }}</b>
+							<b>{{ t("hero_description2") }}</b>
 						</p>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 					rel="noopener"
 					:href="`#${TRIP_PACKAGES_SECTION}`"
 					class="btn-primary"
-					>{{ t("hero.button") }}</a
+					>{{ t("hero_button") }}</a
 				>
 			</div>
 		</div>
@@ -63,7 +63,7 @@
 		<span
 			class="absolute bottom-[28px] right-[40px] xl:right-[82px] text-pink-100 font-inter font-medium"
 		>
-			{{ t("hero.footer") }}
+			{{ t("hero_footer") }}
 		</span>
 	</div>
 </template>

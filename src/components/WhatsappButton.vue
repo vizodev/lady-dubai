@@ -7,7 +7,7 @@
 			class="flex gap-4 items-center justify-center bg-[#21B65A] rounded-full text-white text-[24px] customShadow w-[52px] h-[52px] group-hover:(w-auto px-6)"
 		>
 			<p class="text-base font-inter font-bold hidden group-hover:block">
-				{{ t("whatsapp.button") }}
+				{{ t("whatsapp_button") }}
 			</p>
 
 			<i class="fi fi-brands-whatsapp"></i>

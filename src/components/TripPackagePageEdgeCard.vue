@@ -8,7 +8,7 @@
 					<span
 						class="text-[#749BFF] font-bold text-[20px] leading-tight font-inter"
 					>
-						{{ t("tripPackage.edgeCardTitle") }}
+						{{ t("trip_package_edge_card_title") }}
 					</span>
 					<div class="relative w-fit">
 						<span
@@ -38,13 +38,13 @@
 							{{ t("dirham") }}
 						</span>
 						<span class="text-[14px] font-medium text-pink-500">
-							{{ t("tripPackage.edgeCardPerPerson") }}
+							{{ t("trip_package_edge_card_per_person") }}
 						</span>
 					</div>
 				</div>
 			</div>
 			<button @click="openCheckout" class="btn-primary w-full">
-				{{ t("tripPackage.edgeCardButton") }}
+				{{ t("trip_package_edge_card_button") }}
 			</button>
 		</div>
 		<div class="flex flex-col gap-3 items-start">
@@ -63,7 +63,7 @@
 				<span
 					class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
 				>
-					{{ t("tripPackage.edgeCardCancelationPolicy") }}
+					{{ t("trip_package_edge_card_cancelation_policy") }}
 				</span>
 				<ul class="m-0 pl-4 w-full list-disc">
 					<li
@@ -80,7 +80,7 @@
 				<span
 					class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
 				>
-					{{ t("tripPackage.edgeCardDisclaimer") }}
+					{{ t("trip_package_edge_card_disclaimer") }}
 				</span>
 				<ul class="m-0 pl-4 w-full list-disc">
 					<li v-for="text in tripPackage.disclaimer.label[locale]" class="">

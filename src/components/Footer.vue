@@ -8,7 +8,7 @@
 			<i
 				class="fi fi-rr-arrow-small-up flex gap-1 items-center not-italic order flex-row-reverse text-2xl"
 			>
-				<span class="text-sm">{{ t("footer.backToTop") }}</span>
+				<span class="text-sm">{{ t("footer_back_to_top") }}</span>
 			</i>
 		</button>
 
@@ -20,10 +20,10 @@
 					class="flex flex-col gap-1.5 text-brown-700 items-center md:items-start"
 				>
 					<span class="font-inter font-bold uppercase">{{
-						t("footer.customerService")
+						t("footer_customer_service")
 					}}</span>
 					<span class="font-inter font-light">{{
-						t("footer.customerServiceDescription")
+						t("footer_customer_service_description")
 					}}</span>
 				</div>
 				<div class="flex items-center gap-3">
@@ -59,7 +59,7 @@
 			class="flex items-center justify-between px-6 xl:px-[9%] flex-col lg:flex-row gap-4 lg:gap-0"
 		>
 			<span class="font-inter font-light text-center sm:text-start">
-				{{ t("footer.copyright") }}
+				{{ t("footer_copyright") }}
 			</span>
 
 			<div class="flex flex-col gap-6 items-center lg:items-end">
@@ -67,12 +67,12 @@
 					<a
 						href="*"
 						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s]"
-						>{{ t("footer.privacyPolicy") }}</a
+						>{{ t("footer_privacy_policy") }}</a
 					>
 					<a
 						href="*"
 						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s]"
-						>{{ t("footer.termsOfUse") }}</a
+						>{{ t("footer_terms_of_use") }}</a
 					>
 				</div>
 			</div>

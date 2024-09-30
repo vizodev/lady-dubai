@@ -17,7 +17,7 @@
 					@click="goToAttraction"
 					class="uppercase text-pink-600 text-[12px] leading-tight font-semibold font-inter"
 				>
-					{{ t("attraction.learnMore") }}
+					{{ t("attraction_learn_more") }}
 				</button>
 			</div>
 		</div>

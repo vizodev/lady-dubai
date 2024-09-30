@@ -6,17 +6,17 @@
 			<span
 				class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
 			>
-				{{ t("whatsapp.title") }}
+				{{ t("whatsapp_title") }}
 			</span>
 			<span class="text-[20px] sm:text-[24px] font-roboto-serif leading-tight">
-				{{ t("whatsapp.description") }}
+				{{ t("whatsapp_description") }}
 			</span>
 		</div>
 		<button class="btn-primary">
 			<div class="w-max flex gap-3">
 				<i class="fi fi-brands-whatsapp"> </i>
 
-				<p class="text-center">{{ t("whatsapp.button") }}</p>
+				<p class="text-center">{{ t("whatsapp_button") }}</p>
 			</div>
 		</button>
 	</div>

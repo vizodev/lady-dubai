@@ -26,7 +26,7 @@
 					<span
 						class="text-[24px] sm:text-[30px] font-bold font-roboto-serif leading-tight"
 					>
-						{{ t("contact.title") }}
+						{{ t("contact_title") }}
 					</span>
 
 					<div class="flex flex-col gap-6 my-12">
@@ -37,7 +37,7 @@
 							<span
 								class="font-inter text-[20px] sm:text-[24px] text-brown-700 mb-2"
 							>
-								{{ t("contact.interestedInPark") }}
+								{{ t("contact_interested_in_park") }}
 							</span>
 
 							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -60,7 +60,7 @@
 
 					<Loading v-if="loadingContact" />
 					<button v-else type="submit" class="btn-primary">
-						{{ t("contact.button") }}
+						{{ t("contact_button") }}
 					</button>
 				</BaseForm>
 

@@ -35,7 +35,7 @@
 					<div class="flex flex-col gap-12">
 						<div class="flex flex-col gap-3">
 							<span class="uppercase font-bold font-inter leading-tight">
-								{{ t("tripPackage.whatsIncluded") }}
+								{{ t("trip_package_whats_included") }}
 							</span>
 							<div class="flex gap-y-4 gap-x-6 sm:gap-6 flex-wrap">
 								<TripServiceBadge
@@ -47,7 +47,7 @@
 						</div>
 						<div class="flex flex-col gap-3">
 							<span class="uppercase font-bold font-inter leading-tight">
-								{{ t("tripPackage.availableGuideLanguages") }}
+								{{ t("trip_package_available_guide_languages") }}
 							</span>
 							<div
 								class="flex flex-wrap gap-5 items-center w-full"
@@ -83,7 +83,7 @@
 				<span
 					class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
 				>
-					{{ t("tripPackage.mainIncludedAttractions") }}
+					{{ t("trip_package_main_included_attractions") }}
 				</span>
 
 				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
@@ -105,20 +105,20 @@
 			<section class="flex flex-col pt-4 py-8">
 				<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
 					<p class="text-4xl font-medium font-roboto-serif">
-						{{ t("tripPackage.flightTitle") }}
+						{{ t("trip_package_flight_title") }}
 						{{ currentDepartingTakeoffAirport?.title[locale] }}
 					</p>
 					<p class="text-base font-light font-inter">
 						<span class="font-bold">{{
-							t("tripPackage.flightDescription1")
+							t("trip_package_flight_description1")
 						}}</span>
-						{{ t("tripPackage.flightDescription2") }}
+						{{ t("trip_package_flight_description2") }}
 					</p>
 				</div>
 
 				<div class="flex flex-col gap-3 mb-16">
 					<p class="text-base font-bold font-inter">
-						{{ t("tripPackage.flightSelectedDate") }}
+						{{ t("trip_package_flight_selected_date") }}
 					</p>
 
 					<TripPackageAvailableDates
@@ -150,7 +150,7 @@
 
 				<button class="btn-rounded self-end">
 					<i class="fi fi-rs-circle-xmark not-italic flex items-center gap-2">
-						{{ t("tripPackage.excludePlaneTicketButton") }}
+						{{ t("trip_package_exclude_plane_ticket_button") }}
 					</i>
 				</button>
 			</section>
@@ -162,7 +162,7 @@
 			<span
 				class="text-[32px] sm:text-[36px] md:text-[42px] xl:text-[52px] font-roboto-serif font-medium leading-tight text-[#272223] text-center"
 			>
-				{{ t("tripPackage.checkOtherPackages") }}
+				{{ t("trip_package_check_other_packages") }}
 			</span>
 			<div
 				class="flex items-center gap-6 sm:gap-10 md:gap-16 lg:gap-[82px] text-pink-600 flex-col sm:flex-row"
