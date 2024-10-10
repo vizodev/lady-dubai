@@ -17,15 +17,14 @@
 			<span
 				class="text-[40px] sm:text-[60px] xl:text-[80px] !leading-[1.09] -tracking-[0.02] font-bold font-roboto-serif z-50"
 			>
-				Travel <span class="font-normal">Blog</span>
+				{{ t("blog_title1") }}
+				<span class="font-normal">{{ t("blog_title2") }}</span>
 			</span>
 
 			<div class="font-inter text-2xl z-50">
-				<span>Everything you need to know about traveling to Dubai,</span>
+				<span>{{ t("blog_description1") }}</span>
 				<br />
-				<span class="font-bold"
-					>including tips and info specific for women.</span
-				>
+				<span class="font-bold">{{ t("blog_description2") }}</span>
 			</div>
 		</div>
 
@@ -60,7 +59,9 @@
 							{{ post.title[locale] }}
 						</p>
 
-						<p class="my-3 font-inter font-medium text-sm line-clamp-2">
+						<p
+							class="text-off-black my-3 font-inter font-medium text-sm line-clamp-2"
+						>
 							{{ post.description[locale] }}
 						</p>
 					</div>
@@ -69,9 +70,9 @@
 						<div></div>
 						<p
 							@click="goBlogArticle(post.slug)"
-							class="cursor-pointer uppercase text-pink-600 text-[12px] leading-tight font-semibold font-inter"
+							class="cursor-pointer uppercase text-pink-600 text-[12px] leading-tight font-semibold font-inter uppercase"
 						>
-							READ MORE
+							{{ t("read_more") }}
 						</p>
 					</div>
 				</div>
@@ -98,7 +99,7 @@ const blogStore = useBlogStore()
 
 // Locales
 const localePath = useLocalePath()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
 // Routes
 const goBlogArticle = (slug: string) => {

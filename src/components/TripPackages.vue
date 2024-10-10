@@ -48,7 +48,7 @@
 				</div>
 
 				<a rel="noopener" :href="`#${CONTACT_SECTION}`" class="btn-primary">
-					{{ t("trip_package_build_own_package_button") }}
+					{{ t("see_more") }}
 				</a>
 			</div>
 		</div>

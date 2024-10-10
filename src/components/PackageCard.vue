@@ -9,7 +9,7 @@
 			<span
 				class="text-[24px] text-white font-bold font-inter textShadow leading-none"
 			>
-				New
+				{{ t("trip_package_new") }}
 			</span>
 		</div>
 
@@ -25,10 +25,11 @@
 					:style="`background-image: url(${image});`"
 				></div>
 			</div>
+
 			<div class="absolute bottom-3.5 flex items-center gap-3">
 				<button
 					class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-white"
-					v-for="(image, index) in tripPackage.gallery"
+					v-for="(_, index) in tripPackage.gallery"
 					:class="{
 						'!bg-white': index === activeBanner,
 						'!bg-gray-300': index !== activeBanner,
@@ -64,7 +65,7 @@
 					<span
 						class="font-bold text-brown-700 text-xs leading-tight uppercase font-inter"
 					>
-						Included:
+						{{ t("trip_package_included") }}
 					</span>
 					<div class="flex flex-wrap items-center gap-4">
 						<div
@@ -101,11 +102,11 @@
 						</span>
 						<div class="flex flex-col font-inter gap-1">
 							<span class="text-sm font-bold text-blue-200 leading-none">
-								DIRHAM
+								{{ t("dirham") }}
 							</span>
 
 							<span class="text-[10px] font-medium text-blue-200">
-								per person
+								{{ t("per_person") }}
 							</span>
 						</div>
 					</div>
@@ -113,12 +114,12 @@
 					<span
 						class="text-white bg-blue-200 text-[10px] font-bold font-inter w-full rounded-md text-center px-1.5 py-2 uppercase mt-1.5 lg:mt-0"
 					>
-						Limited Time Promotional Price
+						{{ t("limited_time_promotional_price") }}
 					</span>
 				</div>
 
 				<button @click="openTripPackage" class="btn-primary w-full">
-					See More
+					{{ t("see_more") }}
 				</button>
 			</div>
 		</div>
@@ -164,7 +165,7 @@ const checkIsNew = () => {
 }
 
 // Locales
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes

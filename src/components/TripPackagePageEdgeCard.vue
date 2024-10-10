@@ -11,7 +11,7 @@
 					<span
 						class="text-[#749BFF] font-bold text-[20px] leading-tight font-inter"
 					>
-						{{ t("trip_package_edge_card_title") }}
+						{{ t("limited_time_promotional_price") }}
 					</span>
 
 					<div class="relative w-fit">
@@ -44,7 +44,7 @@
 							{{ t("dirham") }}
 						</span>
 						<span class="text-[14px] font-medium text-pink-500">
-							{{ t("trip_package_edge_card_per_person") }}
+							{{ t("per_person") }}
 						</span>
 					</div>
 				</div>

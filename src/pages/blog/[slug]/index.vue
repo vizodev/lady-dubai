@@ -15,7 +15,7 @@
 				{{ currentPost.title[locale] }}
 			</p>
 
-			<p class="font-inter text-lg text-gray-500 w-full lg:(w-3/5)">
+			<p class="font-inter text-lg text-off-black w-full lg:(w-3/5)">
 				{{ currentPost.description[locale] }}
 			</p>
 		</div>
@@ -53,7 +53,7 @@ const relativePath = computed(
 				path: HOME_ROUTE,
 			},
 			{
-				label: "blog",
+				label: "header_travel_blog",
 				path: BLOG_ROUTE,
 			},
 			{
