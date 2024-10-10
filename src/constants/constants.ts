@@ -12,6 +12,7 @@ export const CONTACTS_STORE = "CONTACTS_STORE"
 export const HOME_STORE = "HOME_STORE"
 export const WHY_US_STORE = "WHY_US_STORE"
 export const LOCALES_STORE = "LOCALES_STORE"
+export const BLOG_STORE = "BLOG_STORE"
 
 // Stripe
 export const STRIPE_SECRET_KEY =
@@ -40,6 +41,7 @@ export const SUPABASE_LANGUAGES_TABLE = "languages"
 export const SUPABASE_CONTACTS_TABLE = "contacts"
 export const SUPABASE_HOME_TABLE = "home"
 export const SUPABASE_WHY_US_TABLE = "why_us"
+export const SUPABASE_BLOG_TABLE = "blog"
 export const SUPABASE_LOCALES_TABLE = "locales"
 export const SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE =
 	"trip_package_attractions"

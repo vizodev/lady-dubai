@@ -55,6 +55,8 @@ export const BANNER1_IMAGE = "/images/banner1.webp"
 export const BANNER2_IMAGE = "/images/banner2.webp"
 export const BANNER3_IMAGE = "/images/banner3.webp"
 
+export const BLOG_BANNER_IMAGE = "/images/blog-banner.webp"
+
 export const CONTACT1_IMAGE = "/images/contact1.webp"
 export const CONTACT2_IMAGE = "/images/contact2.webp"
 

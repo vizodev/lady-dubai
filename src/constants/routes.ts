@@ -5,6 +5,8 @@ export const HOME_TRIP_PACKAGES_SECTION_ROUTE = `${HOME_ROUTE}#${TRIP_PACKAGES_S
 
 export const WHY_US_ROUTE = "/why-us"
 
+export const BLOG_ROUTE = "/blog"
+
 export const ATTRACTION_ROUTE = (id: string | number) => `/attraction/${id}`
 
 export const TRIP_PACKAGE_ROUTE = (slug: string) => `/trip-package/${slug}`

@@ -37,9 +37,9 @@
 				t("header_why_us")
 			}}</NuxtLink>
 
-			<a class="font-medium font-inter uppercase" href="">{{
+			<NuxtLink :to="BLOG_ROUTE" class="font-medium font-inter uppercase">{{
 				t("header_travel_blog")
-			}}</a>
+			}}</NuxtLink>
 
 			<!-- Attractions dropdown -->
 			<div class="dropdown-box group">
@@ -116,9 +116,9 @@
 						>{{ t("header_why_us") }}</NuxtLink
 					>
 
-					<a class="font-medium font-inter uppercase" href="">{{
+					<NuxtLink :to="BLOG_ROUTE" class="font-medium font-inter uppercase">{{
 						t("header_travel_blog")
-					}}</a>
+					}}</NuxtLink>
 
 					<!-- Attractions dropdown -->
 					<div class="flex flex-col gap-3 items-center">
@@ -213,6 +213,7 @@
 <script lang="ts" setup>
 import {
 	ATTRACTION_ROUTE,
+	BLOG_ROUTE,
 	CONTACT_SECTION,
 	CROSS_SVG,
 	HOME_ROUTE,
