@@ -68,6 +68,7 @@
 					<div class="flex justify-between">
 						<div></div>
 						<p
+							@click="goBlogArticle(post.slug)"
 							class="cursor-pointer uppercase text-pink-600 text-[12px] leading-tight font-semibold font-inter"
 						>
 							READ MORE
@@ -86,13 +87,23 @@
 </template>
 
 <script setup lang="ts">
-import { BLOG_BANNER_IMAGE, FLOWER_LEFT4_SVG } from "~/constants"
+import {
+	BLOG_ARTICLE_ROUTE,
+	BLOG_BANNER_IMAGE,
+	FLOWER_LEFT4_SVG,
+} from "~/constants"
 
 // General
 const blogStore = useBlogStore()
 
 // Locales
+const localePath = useLocalePath()
 const { locale } = useI18n()
+
+// Routes
+const goBlogArticle = (slug: string) => {
+	navigateTo(localePath(BLOG_ARTICLE_ROUTE(slug)))
+}
 </script>
 
 <style scoped>
