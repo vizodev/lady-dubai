@@ -51,8 +51,56 @@
 					<i class="fi fi-rs-angle-down"></i>
 				</div>
 
-				<div class="dropdown-content flex-col gap-6 group-hover:flex">
-					<div class="flex gap-8 items-center">
+				<div class="dropdown-content flex-col gap-6 flex group-hover:flex">
+					<div class="flex h-full gap-8">
+						<div class="flex flex-col gap-4 self-center">
+							<p
+								v-for="category of categories"
+								@mouseenter="() => onAttractionCategoryHover(category)"
+								class="font-inter text-sm font-bold text-black uppercase"
+								:class="{
+									'!text-pink-600':
+										category.id === currentAttractionCategoryHovered?.id,
+								}"
+							>
+								{{ category.title[locale] }}
+
+								<i
+									v-if="category.id === currentAttractionCategoryHovered?.id"
+									class="fi fi-rs-angle-right ml-1"
+								></i>
+							</p>
+						</div>
+
+						<div class="border-l-1 border-black"></div>
+
+						<div class="self-center flex items-center">
+							<i
+								v-if="currentAttractionsLoading"
+								class="fi fi-br-rotate-right text-black animate-spin w-5 h-5 mr-3"
+							></i>
+							<div class="my-3 flex flex-col gap-4">
+								<p
+									v-for="attraction of currentAttractions"
+									@mouseenter="() => onAttractionHover(attraction)"
+									class="font-inter text-base font-medium text-off-black"
+									:class="{
+										'!text-pink-600':
+											attraction.id === currentAttractionHovered?.id,
+									}"
+								>
+									{{ attraction.title[locale] }}
+								</p>
+							</div>
+						</div>
+
+						<img
+							:key="currentAttractionHovered?.banner"
+							:src="currentAttractionHovered?.banner"
+							class="w-60 h-40 object-contain lg:(w-80 h-60)"
+						/>
+					</div>
+					<!-- <div class="flex gap-8 items-center">
 						<img
 							:key="currentAttractionHovered?.banner ?? attractions[0]?.banner"
 							:src="currentAttractionHovered?.banner ?? attractions[0]?.banner"
@@ -69,7 +117,7 @@
 								{{ attraction.title[locale] }}
 							</p>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
@@ -223,12 +271,19 @@ import {
 	WHY_US_ROUTE,
 } from "~/constants"
 import { localeToLanguage } from "~/data"
-import { LanguageEnum, type Attraction } from "~/models"
+import {
+	LanguageEnum,
+	type Attraction,
+	type AttractionCategory,
+} from "~/models"
 
 // General
 const props = defineProps<{
 	withLogo?: boolean
 }>()
+
+const attractionsStore = useAttractionsStore()
+const attractionsCategoriesStore = useAttractionsCategoriesStore()
 
 // Mobile dropdowns
 const showLanguagesMobileDropdown = ref(false)
@@ -244,10 +299,33 @@ const toogleShowAttractionsMobileDropdown = () => {
 }
 
 // Attractions
-const attractionsStore = useAttractionsStore()
+const { categories } = storeToRefs(attractionsCategoriesStore)
 const { attractions } = storeToRefs(attractionsStore)
 
+const currentAttractionCategoryHovered = ref<AttractionCategory>()
+const currentAttractions = ref<Attraction[]>([])
+const currentAttractionsLoading = ref(false)
 const currentAttractionHovered = ref<Attraction>()
+
+const onAttractionCategoryHover = async (data: AttractionCategory) => {
+	if (currentAttractionCategoryHovered.value === data) return
+
+	currentAttractionCategoryHovered.value = data
+
+	currentAttractionsLoading.value = true
+
+	try {
+		const res = await attractionsStore.getAttractionsByAttractionCategoryId(
+			data.id
+		)
+		currentAttractions.value = res
+		currentAttractionHovered.value = res.length > 0 ? res[0] : undefined
+	} catch (error) {
+		console.error(error)
+	}
+
+	currentAttractionsLoading.value = false
+}
 
 const onAttractionHover = (data: Attraction) => {
 	currentAttractionHovered.value = data
@@ -297,6 +375,30 @@ const openHome = () => navigateTo(localePath(HOME_ROUTE))
 const openAttraction = (slug: string) => {
 	navigateTo(localePath(ATTRACTION_ROUTE(slug)))
 }
+
+// Watchers
+watch(
+	() => categories.value,
+	async (data) => {
+		if (data.length === 0) return
+
+		currentAttractionsLoading.value = true
+
+		try {
+			currentAttractionCategoryHovered.value = data[0]
+
+			const res = await attractionsStore.getAttractionsByAttractionCategoryId(
+				data[0].id
+			)
+			currentAttractions.value = res
+			currentAttractionHovered.value = res.length > 0 ? res[0] : undefined
+		} catch (error) {
+			console.error(error)
+		}
+
+		currentAttractionsLoading.value = false
+	}
+)
 
 // Life cycle
 onMounted(() => {

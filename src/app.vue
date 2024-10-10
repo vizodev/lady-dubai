@@ -15,6 +15,7 @@ const languagesStore = useLanguagesStore()
 const homeStore = useHomeStore()
 const whyUsStore = useWhyUsStore()
 const blogStore = useBlogStore()
+const attractionsCategoriesStore = useAttractionsCategoriesStore()
 
 onMounted(async () => {
 	await Promise.all([
@@ -26,6 +27,7 @@ onMounted(async () => {
 		homeStore.loadHome(),
 		whyUsStore.loadWhyUs(),
 		blogStore.loadPosts(),
+		attractionsCategoriesStore.loadCategories(),
 	])
 })
 </script>

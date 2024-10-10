@@ -13,6 +13,7 @@ export const HOME_STORE = "HOME_STORE"
 export const WHY_US_STORE = "WHY_US_STORE"
 export const LOCALES_STORE = "LOCALES_STORE"
 export const BLOG_STORE = "BLOG_STORE"
+export const ATTRACTIONS_CATEGORIES_STORE = "ATTRACTIONS_CATEGORIES_STORE"
 
 // Stripe
 export const STRIPE_SECRET_KEY =
@@ -36,6 +37,7 @@ export const SUPABASE_SERVICE_KEY =
 
 export const SUPABASE_AIRPORTS_POOL_TABLE = "airports_pool"
 export const SUPABASE_ATTRACTIONS_POOL_TABLE = "attractions_pool"
+export const SUPABASE_ATTRACTIONS_CATEGORIES_TABLE = "attractions_categories"
 export const SUPABASE_TRIP_PACKAGES_TABLE = "trippackages"
 export const SUPABASE_LANGUAGES_TABLE = "languages"
 export const SUPABASE_CONTACTS_TABLE = "contacts"
@@ -51,3 +53,4 @@ export const SUPABASE_SLUG_FIELD = "slug"
 export const SUPABASE_TRIP_PACKAGE_ID_FIELD = "trip_package_id"
 export const SUPABASE_ATTRACTION_ID_FIELD = "attraction_id"
 export const SUPABASE_LOCALE_ACRONYM_FIELD = "locale_acronym"
+export const SUPABASE_ATTRACTION_CATEGORY_ID_FIELD = "attraction_category_id"

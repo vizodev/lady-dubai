@@ -2,6 +2,7 @@ import type { TextType } from "./"
 
 export type Attraction = {
 	id: number
+	attraction_category_id: number
 	slug: string
 	title_metadata?: TextType
 	description_metadata?: TextType
@@ -14,4 +15,9 @@ export type Attraction = {
 	long_description_html: TextType
 	first_text_html: TextType
 	second_text_html: TextType
+}
+
+export type AttractionCategory = {
+	id: number
+	title: TextType
 }

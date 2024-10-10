@@ -1,5 +1,6 @@
 import {
 	ATTRACTIONS_STORE,
+	SUPABASE_ATTRACTION_CATEGORY_ID_FIELD,
 	SUPABASE_ATTRACTIONS_POOL_TABLE,
 	SUPABASE_ID_FIELD,
 	SUPABASE_SLUG_FIELD,
@@ -98,6 +99,29 @@ export const useAttractionsStore = defineStore(ATTRACTIONS_STORE, {
 				return attractions
 			} catch (error) {
 				console.error("Error loading trip packages by attraction id", error)
+			}
+
+			return []
+		},
+		async getAttractionsByAttractionCategoryId(
+			attractionCategoryId: number
+		): Promise<Attraction[]> {
+			const client = useSupabaseClient()
+
+			try {
+				const { data } = await client
+					.from(SUPABASE_ATTRACTIONS_POOL_TABLE)
+					.select("*")
+					.eq(SUPABASE_ATTRACTION_CATEGORY_ID_FIELD, attractionCategoryId)
+
+				if (!data) return []
+
+				return data as Attraction[]
+			} catch (error) {
+				console.error(
+					"Error loading trip packages by attraction category id",
+					error
+				)
 			}
 
 			return []
