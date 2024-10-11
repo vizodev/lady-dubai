@@ -42,7 +42,7 @@
 			}}</NuxtLink>
 
 			<!-- Attractions dropdown -->
-			<div class="dropdown-box group">
+			<div @mouseenter="onAttractionMenuHover" class="dropdown-box group">
 				<div class="flex gap-3">
 					<p class="font-medium font-inter uppercase">
 						{{ t("header_attractions") }}
@@ -51,7 +51,7 @@
 					<i class="fi fi-rs-angle-down"></i>
 				</div>
 
-				<div class="dropdown-content flex-col gap-6 flex group-hover:flex">
+				<div class="dropdown-content flex-col gap-6 group-hover:flex">
 					<div class="flex h-full gap-8">
 						<div class="flex flex-col gap-4 self-center">
 							<p
@@ -83,6 +83,7 @@
 								<p
 									v-for="attraction of currentAttractions"
 									@mouseenter="() => onAttractionHover(attraction)"
+									@click="openAttraction(attraction.slug)"
 									class="font-inter text-base font-medium text-off-black"
 									:class="{
 										'!text-pink-600':
@@ -307,6 +308,23 @@ const currentAttractions = ref<Attraction[]>([])
 const currentAttractionsLoading = ref(false)
 const currentAttractionHovered = ref<Attraction>()
 
+const onAttractionMenuHover = async () => {
+	if (categories.value.length === 0) return
+
+	currentAttractionsLoading.value = true
+	try {
+		currentAttractionCategoryHovered.value = categories.value[0]
+
+		const res = await attractionsStore.getAttractionsByAttractionCategoryId(
+			categories.value[0].id
+		)
+		currentAttractions.value = res
+		currentAttractionHovered.value = res.length > 0 ? res[0] : undefined
+	} catch (error) {
+		console.error(error)
+	}
+	currentAttractionsLoading.value = false
+}
 const onAttractionCategoryHover = async (data: AttractionCategory) => {
 	if (currentAttractionCategoryHovered.value === data) return
 
@@ -326,7 +344,6 @@ const onAttractionCategoryHover = async (data: AttractionCategory) => {
 
 	currentAttractionsLoading.value = false
 }
-
 const onAttractionHover = (data: Attraction) => {
 	currentAttractionHovered.value = data
 }
