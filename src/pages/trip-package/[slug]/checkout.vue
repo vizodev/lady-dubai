@@ -2,7 +2,12 @@
 	<header
 		class="flex justify-between items-center py-6 mb-10 px-6 md:px-10 lg:px-16 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
 	>
-		<img :src="LOGO_FOOTER_SVG" alt="Logo" class="h-8 md:h-10" />
+		<img
+			:src="LOGO_FOOTER_SVG"
+			alt="Logo"
+			@click="openHome"
+			class="cursor-pointer h-8 md:h-10"
+		/>
 
 		<p class="text-2xl md:text-3xl">{{ t("checkout_checkout") }}</p>
 
@@ -47,23 +52,22 @@
 										<div class="grid grid-cols-2 gap-6">
 											<TextField
 												:name="`users[${traveller}].name`"
-												label="FIRST NAME"
-												placeholder="Gabriel"
+												:label="t('form_first_name_label')"
+												:placeholder="t('form_first_name_placeholder')"
 											/>
 											<TextField
 												:name="`users[${traveller}].lastName`"
-												label="LAST NAME"
-												placeholder="Doe"
+												:label="t('form_last_name_label')"
+												:placeholder="t('form_last_name_placeholder')"
 											/>
 											<DateField
 												:name="`users[${traveller}].birthday`"
-												label="DATE OF BIRTH"
-												placeholder="DD/MM/YYYY"
+												:label="t('form_birth_label')"
 											/>
 
 											<SelectField
 												:name="`users[${traveller}].gender`"
-												label="GENDER"
+												:label="t('form_gender_label')"
 											>
 												<option v-for="gender of genders" :value="gender.value">
 													{{ gender.title }}
@@ -72,7 +76,7 @@
 
 											<SelectField
 												:name="`users[${traveller}].nationality`"
-												label="NATIONALITY"
+												:label="t('form_nationality_label')"
 											>
 												<option
 													v-for="country of countries"
@@ -84,18 +88,17 @@
 
 											<TextField
 												:name="`users[${traveller}].passportId`"
-												label="PASSPORT ID"
-												placeholder="GH12345"
+												:label="t('form_passport_label')"
+												:placeholder="t('form_passport_placeholder')"
 											/>
 											<DateField
 												:name="`users[${traveller}].passportExpiration`"
-												label="PASSPORT EXPIRY DATE"
-												placeholder="DD/MM/YYYY"
+												:label="t('form_passport_expiry_date_label')"
 											/>
 
 											<SelectField
 												:name="`users[${traveller}].passportIssuedFrom`"
-												label="PASSPORT ISSUING COUNTRY"
+												:label="t('form_passport_issuing_country_label')"
 											>
 												<option
 													v-for="country of countries"
@@ -114,25 +117,25 @@
 							</div>
 						</CheckoutSession>
 
-						<CheckoutSession :title="t('checkout_contactInfo')">
+						<CheckoutSession :title="t('checkout_contact_info')">
 							<div class="flex gap-6 flex-col md:flex-row">
 								<TextField
 									name="email"
-									label="EMAIL"
-									placeholder="Johndoe@gmail.com"
+									:label="t('form_email_label')"
+									:placeholder="t('form_email_placeholder')"
 									class="grow-[3]"
 								/>
 
 								<TextField
 									name="countryCode"
-									label="COUNTRY CODE"
-									placeholder="+ 55 (Brasil)"
+									:label="t('form_country_code_label')"
+									:placeholder="t('form_country_code_placeholder')"
 								/>
 
 								<TextField
 									name="phone"
-									label="MOBILE"
-									placeholder="12345-678910"
+									:label="t('form_mobile_label')"
+									:placeholder="t('form_mobile_placeholder')"
 								/>
 							</div>
 						</CheckoutSession>
@@ -197,7 +200,7 @@
 
 						<p class="font-roboto-serif text-3xl whitespace-nowrap">
 							{{ `$ ${totalPrice}` }}
-							<span class="font-inter text-lg">{{ t("dirham") }}</span>
+							<span class="font-inter text-lg">{{ t("dollars") }}</span>
 						</p>
 					</div>
 				</div>
@@ -299,7 +302,7 @@ const travellersCount = ref(1)
 const totalPrice = computed(() => {
 	if (!currentTripPackage.value) return 0
 
-	return currentTripPackage.value?.price.aed * travellersCount.value
+	return currentTripPackage.value?.price.usd * travellersCount.value
 })
 
 const addTraveller = () => travellersCount.value++

@@ -102,7 +102,7 @@
 						</span>
 						<div class="flex flex-col font-inter gap-1">
 							<span class="text-sm font-bold text-blue-200 leading-none">
-								{{ t("dirham") }}
+								{{ t("dollars") }}
 							</span>
 
 							<span class="text-[10px] font-medium text-blue-200">

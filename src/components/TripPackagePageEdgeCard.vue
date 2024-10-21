@@ -41,7 +41,7 @@
 					</span>
 					<div class="flex flex-col font-inter">
 						<span class="font-bold text-pink-600 leading-none">
-							{{ t("dirham") }}
+							{{ t("dollars") }}
 						</span>
 						<span class="text-[14px] font-medium text-pink-500">
 							{{ t("per_person") }}

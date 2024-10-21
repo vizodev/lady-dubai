@@ -30,8 +30,11 @@
 					</span>
 
 					<div class="flex flex-col gap-6 my-12">
-						<TextField name="name" placeholder="Name" />
-						<TextField name="email" placeholder="E-mail" />
+						<TextField name="name" :placeholder="t('form_name_placeholder')" />
+						<TextField
+							name="email"
+							:placeholder="t('form_email_placeholder')"
+						/>
 
 						<div class="flex flex-col gap-3 sm:pl-4 pt-[9px] pb-8">
 							<span
@@ -55,7 +58,10 @@
 							</div>
 						</div>
 
-						<TextAreaField name="message" placeholder="Message" />
+						<TextAreaField
+							name="message"
+							:placeholder="t('form_message_placeholder')"
+						/>
 					</div>
 
 					<Loading v-if="loadingContact" />
