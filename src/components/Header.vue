@@ -42,7 +42,7 @@
 			}}</NuxtLink>
 
 			<!-- Attractions dropdown -->
-			<div @mouseenter="onAttractionMenuHover" class="dropdown-box group">
+			<div class="dropdown-box group">
 				<div class="flex gap-3">
 					<p class="font-medium font-inter uppercase">
 						{{ t("header_attractions") }}
@@ -56,17 +56,18 @@
 						<div class="flex flex-col gap-4 self-center">
 							<p
 								v-for="category of categories"
-								@mouseenter="() => onAttractionCategoryHover(category)"
-								class="font-inter text-sm font-bold text-black uppercase"
+								:key="category.id"
+								@mouseenter="() => onAttractionCategorySelect(category)"
+								class="font-inter text-sm font-bold text-black uppercase cursor-pointer"
 								:class="{
 									'!text-pink-600':
-										category.id === currentAttractionCategoryHovered?.id,
+										category.id === currentAttractionCategorySelected?.id,
 								}"
 							>
 								{{ category.title[locale] }}
 
 								<i
-									v-if="category.id === currentAttractionCategoryHovered?.id"
+									v-if="category.id === currentAttractionCategorySelected?.id"
 									class="fi fi-rs-angle-right ml-1"
 								></i>
 							</p>
@@ -75,19 +76,16 @@
 						<div class="border-l-1 border-black"></div>
 
 						<div class="self-center flex items-center">
-							<i
-								v-if="currentAttractionsLoading"
-								class="fi fi-br-rotate-right text-black animate-spin w-5 h-5 mr-3"
-							></i>
 							<div class="my-3 flex flex-col gap-4">
 								<p
 									v-for="attraction of currentAttractions"
+									:key="attraction.id"
 									@mouseenter="() => onAttractionHover(attraction)"
 									@click="openAttraction(attraction.slug)"
 									class="font-inter text-base font-medium text-off-black"
 									:class="{
 										'!text-pink-600':
-											attraction.id === currentAttractionHovered?.id,
+											attraction.id === currentAttractionSelected?.id,
 									}"
 								>
 									{{ attraction.title[locale] }}
@@ -96,29 +94,11 @@
 						</div>
 
 						<img
-							:key="currentAttractionHovered?.banner"
-							:src="currentAttractionHovered?.banner"
+							:key="currentAttractionSelected?.banner"
+							:src="currentAttractionSelected?.banner"
 							class="w-60 h-40 object-contain lg:(w-80 h-60)"
 						/>
 					</div>
-					<!-- <div class="flex gap-8 items-center">
-						<img
-							:key="currentAttractionHovered?.banner ?? attractions[0]?.banner"
-							:src="currentAttractionHovered?.banner ?? attractions[0]?.banner"
-							class="w-64 object-contain lg:(w-96 h-64)"
-						/>
-
-						<div class="flex flex-col gap-6">
-							<p
-								v-for="attraction of attractions"
-								@mouseenter="() => onAttractionHover(attraction)"
-								@click="openAttraction(attraction.slug)"
-								class="text-base uppercase text-brown-700 font-medium hover:(text-blue-500)"
-							>
-								{{ attraction.title[locale] }}
-							</p>
-						</div>
-					</div> -->
 				</div>
 			</div>
 
@@ -191,15 +171,46 @@
 						<transition>
 							<div
 								v-if="showAttractionsMobileDropdown"
-								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center"
+								class="p-6 bg-white rounded-lg flex flex-col gap-5 items-start"
 							>
-								<p
-									v-for="attraction of attractions"
-									@click="openAttraction(attraction.slug)"
-									class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
-								>
-									{{ attraction.title[locale] }}
-								</p>
+								<div v-for="category of categories">
+									<p
+										@click="() => onAttractionCategorySelect(category)"
+										class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
+										:class="{
+											'!text-pink-600 font-bold':
+												category.id === currentAttractionCategorySelected?.id,
+										}"
+									>
+										{{ category.title[locale] }}
+
+										<i
+											class="fi ml-1"
+											:class="{
+												'fi-rs-angle-down':
+													currentAttractionCategorySelected?.id === category.id,
+												'fi-rs-angle-right':
+													currentAttractionCategorySelected?.id !== category.id,
+											}"
+										></i>
+									</p>
+
+									<transition>
+										<div
+											v-if="
+												currentAttractionCategorySelected?.id === category.id
+											"
+											class="flex flex-col gap-1 mt-2 ml-2"
+										>
+											<p
+												v-for="attraction of currentAttractions"
+												class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
+											>
+												{{ attraction.title[locale] }}
+											</p>
+										</div>
+									</transition>
+								</div>
 							</div>
 						</transition>
 					</div>
@@ -303,49 +314,29 @@ const toogleShowAttractionsMobileDropdown = () => {
 const { categories } = storeToRefs(attractionsCategoriesStore)
 const { attractions } = storeToRefs(attractionsStore)
 
-const currentAttractionCategoryHovered = ref<AttractionCategory>()
+const currentAttractionCategorySelected = ref<AttractionCategory>()
 const currentAttractions = ref<Attraction[]>([])
 const currentAttractionsLoading = ref(false)
-const currentAttractionHovered = ref<Attraction>()
+const currentAttractionSelected = ref<Attraction>()
 
-const onAttractionMenuHover = async () => {
-	if (categories.value.length === 0) return
+const onAttractionCategorySelect = (data: AttractionCategory) => {
+	if (currentAttractionCategorySelected.value === data) return
 
-	currentAttractionsLoading.value = true
+	currentAttractionCategorySelected.value = data
+
 	try {
-		currentAttractionCategoryHovered.value = categories.value[0]
-
-		const res = await attractionsStore.getAttractionsByAttractionCategoryId(
-			categories.value[0].id
+		const res = attractions.value.filter(
+			(i) => i.attraction_category_id === data.id
 		)
+
 		currentAttractions.value = res
-		currentAttractionHovered.value = res.length > 0 ? res[0] : undefined
+		currentAttractionSelected.value = res.length > 0 ? res[0] : undefined
 	} catch (error) {
 		console.error(error)
 	}
-	currentAttractionsLoading.value = false
-}
-const onAttractionCategoryHover = async (data: AttractionCategory) => {
-	if (currentAttractionCategoryHovered.value === data) return
-
-	currentAttractionCategoryHovered.value = data
-
-	currentAttractionsLoading.value = true
-
-	try {
-		const res = await attractionsStore.getAttractionsByAttractionCategoryId(
-			data.id
-		)
-		currentAttractions.value = res
-		currentAttractionHovered.value = res.length > 0 ? res[0] : undefined
-	} catch (error) {
-		console.error(error)
-	}
-
-	currentAttractionsLoading.value = false
 }
 const onAttractionHover = (data: Attraction) => {
-	currentAttractionHovered.value = data
+	currentAttractionSelected.value = data
 }
 
 // Locales
@@ -395,20 +386,22 @@ const openAttraction = (slug: string) => {
 
 // Watchers
 watch(
-	() => categories.value,
-	async (data) => {
-		if (data.length === 0) return
+	() => categories.value.length + attractions.value.length,
+	async (_) => {
+		if (categories.value.length === 0 || attractions.value.length === 0) return
 
 		currentAttractionsLoading.value = true
 
 		try {
-			currentAttractionCategoryHovered.value = data[0]
+			currentAttractionCategorySelected.value = categories.value[0]
 
-			const res = await attractionsStore.getAttractionsByAttractionCategoryId(
-				data[0].id
+			const res = attractions.value.filter(
+				(i) =>
+					i.attraction_category_id ===
+					currentAttractionCategorySelected.value!.id
 			)
 			currentAttractions.value = res
-			currentAttractionHovered.value = res.length > 0 ? res[0] : undefined
+			currentAttractionSelected.value = res.length > 0 ? res[0] : undefined
 		} catch (error) {
 			console.error(error)
 		}
