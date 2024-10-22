@@ -33,13 +33,17 @@
 
 		<!-- Desktop menu -->
 		<div class="xl:flex items-center gap-[72px] text-white hidden">
-			<NuxtLink :to="WHY_US_ROUTE" class="font-medium font-inter uppercase">{{
-				t("header_why_us")
-			}}</NuxtLink>
+			<NuxtLink
+				:to="WHY_US_ROUTE"
+				class="font-medium font-inter uppercase text-center"
+				>{{ t("header_why_us") }}</NuxtLink
+			>
 
-			<NuxtLink :to="BLOG_ROUTE" class="font-medium font-inter uppercase">{{
-				t("header_travel_blog")
-			}}</NuxtLink>
+			<NuxtLink
+				:to="BLOG_ROUTE"
+				class="font-medium font-inter uppercase text-center"
+				>{{ t("header_travel_blog") }}</NuxtLink
+			>
 
 			<!-- Trip Packages dropdown -->
 			<div class="dropdown-box group">
@@ -405,7 +409,6 @@ const { attractions } = storeToRefs(attractionsStore)
 
 const currentAttractionCategorySelected = ref<AttractionCategory>()
 const currentAttractions = ref<Attraction[]>([])
-const currentAttractionsLoading = ref(false)
 const currentAttractionSelected = ref<Attraction>()
 
 const onAttractionCategorySelect = (data: AttractionCategory) => {
@@ -480,7 +483,7 @@ const openTripPackage = (slug: string) => {
 watch(tripPackages, (data) => {
 	if (data.length === 0) return
 
-	currentTripPackageSelected.value = data[0]
+	onTripPackageHover(data[0])
 })
 
 watch(
@@ -488,23 +491,7 @@ watch(
 	async (_) => {
 		if (categories.value.length === 0 || attractions.value.length === 0) return
 
-		currentAttractionsLoading.value = true
-
-		try {
-			currentAttractionCategorySelected.value = categories.value[0]
-
-			const res = attractions.value.filter(
-				(i) =>
-					i.attraction_category_id ===
-					currentAttractionCategorySelected.value!.id
-			)
-			currentAttractions.value = res
-			currentAttractionSelected.value = res.length > 0 ? res[0] : undefined
-		} catch (error) {
-			console.error(error)
-		}
-
-		currentAttractionsLoading.value = false
+		onAttractionCategorySelect(categories.value[0])
 	}
 )
 
@@ -514,6 +501,10 @@ onMounted(() => {
 	window.addEventListener(scrollEventName, handleScroll)
 
 	if (props.withLogo) showLogo.value = true
+
+	// Dropdowns data
+	onTripPackageHover(tripPackages.value[0])
+	onAttractionCategorySelect(categories.value[0])
 })
 
 onUnmounted(() => {
