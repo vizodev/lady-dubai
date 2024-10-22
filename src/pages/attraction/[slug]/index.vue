@@ -33,6 +33,12 @@
 					>
 						{{ currentAttraction.title.ar }}
 					</p>
+
+					<p
+						class="mt-6 font-light font-inter leading-normal w-full xl:(w-2/3)"
+					>
+						{{ currentAttraction.description[locale] }}
+					</p>
 				</div>
 
 				<div class="mb-36">
