@@ -41,6 +41,42 @@
 				t("header_travel_blog")
 			}}</NuxtLink>
 
+			<!-- Trip Packages dropdown -->
+			<div class="dropdown-box group">
+				<div class="flex gap-3">
+					<p class="font-medium font-inter uppercase">
+						{{ t("header_packages") }}
+					</p>
+
+					<i class="fi fi-rs-angle-down"></i>
+				</div>
+
+				<div class="dropdown-content flex-col gap-6 group-hover:flex">
+					<div class="flex gap-8 items-center">
+						<img
+							:key="currentTripPackageSelected?.gallery[0]"
+							:src="currentTripPackageSelected?.gallery[0]"
+							class="w-50 h-40 object-cover"
+						/>
+
+						<div class="flex flex-col gap-6">
+							<p
+								v-for="tripPackage of tripPackages"
+								@mouseenter="() => onTripPackageHover(tripPackage)"
+								@click="openTripPackage(tripPackage.slug)"
+								class="w-72 text-base uppercase text-brown-700 font-medium"
+								:class="{
+									'!text-pink-600 font-bold':
+										tripPackage.id === currentTripPackageSelected?.id,
+								}"
+							>
+								{{ tripPackage.title[locale] }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<!-- Attractions dropdown -->
 			<div class="dropdown-box group">
 				<div class="flex gap-3">
@@ -96,7 +132,7 @@
 						<img
 							:key="currentAttractionSelected?.banner"
 							:src="currentAttractionSelected?.banner"
-							class="w-60 h-40 object-contain lg:(w-80 h-60)"
+							class="w-80 h-60 object-cover"
 						/>
 					</div>
 				</div>
@@ -148,6 +184,41 @@
 					<NuxtLink :to="BLOG_ROUTE" class="font-medium font-inter uppercase">{{
 						t("header_travel_blog")
 					}}</NuxtLink>
+
+					<!-- Trip Packages dropdown -->
+					<div class="flex flex-col gap-3 items-center">
+						<div
+							@click="toogleShowTripPackagesMobileDropdown"
+							class="flex gap-3 cursor-pointer"
+						>
+							<p class="font-medium font-inter uppercase">
+								{{ t("header_packages") }}
+							</p>
+
+							<i
+								class="fi fi-rs-angle-down"
+								:class="{
+									'fi-rs-angle-down': !showTripPackagesMobileDropdown,
+									'fi-rs-angle-up': showTripPackagesMobileDropdown,
+								}"
+							></i>
+						</div>
+
+						<transition>
+							<div
+								v-if="showTripPackagesMobileDropdown"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center"
+							>
+								<p
+									v-for="tripPackage of tripPackages"
+									@click="openTripPackage(tripPackage.slug)"
+									class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
+								>
+									{{ tripPackage.title[locale] }}
+								</p>
+							</div>
+						</transition>
+					</div>
 
 					<!-- Attractions dropdown -->
 					<div class="flex flex-col gap-3 items-center">
@@ -204,6 +275,7 @@
 										>
 											<p
 												v-for="attraction of currentAttractions"
+												@click="openAttraction(attraction.slug)"
 												class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
 											>
 												{{ attraction.title[locale] }}
@@ -280,6 +352,7 @@ import {
 	LOGO_SVG,
 	LOGO_WHITE_SVG,
 	MENU_SVG,
+	TRIP_PACKAGE_ROUTE,
 	WHY_US_ROUTE,
 } from "~/constants"
 import { localeToLanguage } from "~/data"
@@ -287,6 +360,7 @@ import {
 	LanguageEnum,
 	type Attraction,
 	type AttractionCategory,
+	type TripPackage,
 } from "~/models"
 
 // General
@@ -294,12 +368,14 @@ const props = defineProps<{
 	withLogo?: boolean
 }>()
 
+const tripPackagesStore = useTripPackagesStore()
 const attractionsStore = useAttractionsStore()
 const attractionsCategoriesStore = useAttractionsCategoriesStore()
 
 // Mobile dropdowns
 const showLanguagesMobileDropdown = ref(false)
 const showAttractionsMobileDropdown = ref(false)
+const showTripPackagesMobileDropdown = ref(false)
 
 const toogleShowLanguagesMobileDropdown = () => {
 	showAttractionsMobileDropdown.value = false
@@ -308,6 +384,19 @@ const toogleShowLanguagesMobileDropdown = () => {
 const toogleShowAttractionsMobileDropdown = () => {
 	showLanguagesMobileDropdown.value = false
 	showAttractionsMobileDropdown.value = !showAttractionsMobileDropdown.value
+}
+const toogleShowTripPackagesMobileDropdown = () => {
+	showLanguagesMobileDropdown.value = false
+	showTripPackagesMobileDropdown.value = !showTripPackagesMobileDropdown.value
+}
+
+// Trip Packages
+const { tripPackages } = storeToRefs(tripPackagesStore)
+
+const currentTripPackageSelected = ref<TripPackage>()
+
+const onTripPackageHover = (data: TripPackage) => {
+	currentTripPackageSelected.value = data
 }
 
 // Attractions
@@ -383,8 +472,17 @@ const openHome = () => navigateTo(localePath(HOME_ROUTE))
 const openAttraction = (slug: string) => {
 	navigateTo(localePath(ATTRACTION_ROUTE(slug)))
 }
+const openTripPackage = (slug: string) => {
+	navigateTo(localePath(TRIP_PACKAGE_ROUTE(slug)))
+}
 
 // Watchers
+watch(tripPackages, (data) => {
+	if (data.length === 0) return
+
+	currentTripPackageSelected.value = data[0]
+})
+
 watch(
 	() => categories.value.length + attractions.value.length,
 	async (_) => {
