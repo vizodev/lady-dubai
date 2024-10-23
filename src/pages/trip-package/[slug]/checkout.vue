@@ -265,7 +265,12 @@ import {
 } from "~/constants"
 import { genders } from "~/data"
 import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
-import { type Flight, type TripPackage } from "~/models"
+import {
+	type Flight,
+	type GetPaymentInfoBody,
+	type TripPackage,
+} from "~/models"
+import { getTripPackagePrice } from "~/utils/getTripPackagePrice"
 
 // General
 const props = computed(() => {
@@ -302,7 +307,7 @@ const travellersCount = ref(1)
 const totalPrice = computed(() => {
 	if (!currentTripPackage.value) return 0
 
-	return currentTripPackage.value?.price.usd * travellersCount.value
+	return getTripPackagePrice(currentTripPackage.value, travellersCount.value)
 })
 
 const addTraveller = () => travellersCount.value++
@@ -356,25 +361,20 @@ const onSubmit = async (formData: CheckoutSchemaSubmit) => {
 	try {
 		if (!currentTripPackage.value) return
 
-		const res = await useFetch(
-			API_PAYMENTS(
-				currentTripPackage.value.payment_price_id,
-				formData.users.length
-			),
-			{
-				method: "POST",
-				body: formData,
-			}
-		)
+		const body: GetPaymentInfoBody = {
+			tripPackage: currentTripPackage.value,
+			data: formData,
+		}
+		const res = await useFetch(API_PAYMENTS(currentTripPackage.value!.id), {
+			method: "POST",
+			body,
+		})
 		const data = res.data.value as any
 
 		if (!data) return
 
 		navigateTo(data.link, {
 			external: true,
-			open: {
-				target: "_blank",
-			},
 		})
 	} catch (error) {
 		console.error(error)

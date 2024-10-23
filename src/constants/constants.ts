@@ -1,3 +1,10 @@
+const isDev = process.env.NODE_ENV === "development"
+
+// General
+export const WEBSITE_URL = isDev
+	? "http://localhost:3001"
+	: "https://ladydubai.ae/"
+
 // Sections
 export const CONTACT_SECTION = "contact_section"
 export const TRIP_PACKAGES_SECTION = "trip_packages_section"
@@ -19,13 +26,16 @@ export const ATTRACTIONS_CATEGORIES_STORE = "ATTRACTIONS_CATEGORIES_STORE"
 export const STRIPE_SECRET_KEY =
 	"sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
 
+export const STRIPE_SUCCESS_URL = WEBSITE_URL
+export const STRIPE_CANCEL_URL = WEBSITE_URL
+
 // Countries
 export const COUNTRIES_ENDPOINT =
 	"https://restcountries.com/v3.1/all?fields=name"
 
 // API
-export const API_PAYMENTS = (priceId: string, quant: number) =>
-	`/api/payments?priceId=${priceId}&quant=${quant}`
+export const API_PAYMENTS = (tripPackageId: number) =>
+	`/api/payments?tripPackageId=${tripPackageId}`
 
 // Supabase
 export const SUPABASE_KEY =

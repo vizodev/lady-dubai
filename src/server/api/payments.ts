@@ -1,28 +1,40 @@
 import stripe from "stripe"
-import { STRIPE_SECRET_KEY } from "../../constants"
+import { GetPaymentInfoBody, GetPaymentInfoResponse } from "~/models"
+import {
+	STRIPE_CANCEL_URL,
+	STRIPE_SECRET_KEY,
+	STRIPE_SUCCESS_URL,
+} from "../../constants"
+import { getTripPackagePrice } from "../../utils/getTripPackagePrice"
 
 export default defineEventHandler(async (event) => {
-	const query = getQuery(event)
-	const body = await readBody(event)
-
-	const priceId = query.priceId as string
-	const quant = query.quant as number
+	const body: GetPaymentInfoBody = await readBody(event)
 
 	const client = new stripe(STRIPE_SECRET_KEY)
 
-	const paymentLink = await client.paymentLinks.create({
+	const amount = getTripPackagePrice(body.tripPackage, body.data.users.length)
+	const checkoutSession = await client.checkout.sessions.create({
 		metadata: {
-			data: JSON.stringify(body),
+			data: JSON.stringify(body.data),
 		},
 		line_items: [
 			{
-				price: priceId,
-				quantity: quant,
+				price_data: {
+					currency: "usd",
+					product_data: {
+						name: `Booking \n${body.data.users.map((i) => i.name).join(", ")}`,
+					},
+					unit_amount: amount * 100,
+				},
+				quantity: 1,
 			},
 		],
+		mode: "payment",
+		success_url: STRIPE_SUCCESS_URL,
+		cancel_url: STRIPE_CANCEL_URL,
 	})
 
 	return {
-		link: paymentLink.url,
-	}
+		link: checkoutSession.url,
+	} as GetPaymentInfoResponse
 })
