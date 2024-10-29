@@ -1,4 +1,5 @@
 import {
+	ARTICLES_LIMIT_PER_PAGE,
 	BLOG_STORE,
 	SUPABASE_BLOG_TABLE,
 	SUPABASE_ID_FIELD,
@@ -36,6 +37,43 @@ export const useBlogStore = defineStore(BLOG_STORE, {
 			}
 
 			this.loadingPost = false
+		},
+		async getPostsByPage(page: number): Promise<BlogPost[]> {
+			const client = useSupabaseClient()
+
+			this.errorOnLoadPost = false
+			this.loadingPost = true
+
+			try {
+				/*
+				Page 1: 11 x 1 = 11
+				Page 2: 11 x 2 = 22
+				*/
+
+				let from = page * ARTICLES_LIMIT_PER_PAGE
+				let to = from + ARTICLES_LIMIT_PER_PAGE
+
+				console.log(from, to)
+				if (page > 0) {
+					from += 1
+				}
+
+				const { data } = await client
+					.from(SUPABASE_BLOG_TABLE)
+					.select("*")
+					.range(from, to)
+
+				this.loadingPost = false
+
+				return data as BlogPost[]
+			} catch (error) {
+				this.errorOnLoadPost = true
+				console.error("Error loading posts", error)
+			}
+
+			this.loadingPost = false
+
+			return []
 		},
 		async getPostById(id: number): Promise<BlogPost | undefined> {
 			const client = useSupabaseClient()

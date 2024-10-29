@@ -1,6 +1,7 @@
 const isDev = process.env.NODE_ENV === "development"
 
 // General
+export const ARTICLES_LIMIT_PER_PAGE = 12
 export const WEBSITE_URL = isDev
 	? "http://localhost:3001"
 	: "https://ladydubai.ae/"
@@ -8,6 +9,7 @@ export const WEBSITE_URL = isDev
 // Sections
 export const CONTACT_SECTION = "contact_section"
 export const TRIP_PACKAGES_SECTION = "trip_packages_section"
+export const ARTICLES_SECTION = "articles_section"
 
 // Stores
 export const TRIP_PACKAGE_STORE = "TRIP_PACKAGE_STORE"

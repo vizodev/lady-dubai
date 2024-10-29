@@ -34,14 +34,56 @@
 	</div>
 
 	<div class="mb-34 page-padding relative">
-		<SidePageIcon :src="FLOWER_LEFT4_SVG" class="-top-55 left-0" />
+		<SidePageIcon
+			:id="ARTICLES_SECTION"
+			:src="FLOWER_LEFT4_SVG"
+			class="-top-55 left-0"
+		/>
 
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
-			<BlogPost
-				v-for="(post, idx) of blogStore.posts"
-				:post="post"
-				:idx="idx"
-			/>
+		<div class="flex flex-col items-center gap-20">
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6"
+			>
+				<Loading v-if="blogStore.loadingPost" />
+				<BlogPost
+					v-else
+					v-for="(post, idx) of currentArticles"
+					:post="post"
+					:idx="idx"
+				/>
+			</div>
+
+			<div v-if="articlesPagesCount > 1" class="flex">
+				<i
+					@click="previousPage"
+					class="fi fi-rs-angle-left cursor-not-allowed"
+					:class="{
+						'hover:(text-pink-500) !cursor-pointer': currentArticlePageIdx > 0,
+					}"
+				></i>
+
+				<div class="flex gap-6 mx-16">
+					<p
+						v-for="(_, idx) of Array.from(Array(articlesPagesCount).keys())"
+						@click="specificPage(idx)"
+						class="text-sm font-inter cursor-pointer hover:(underline)"
+						:class="{
+							'text-pink-500 font-bold': currentArticlePageIdx === idx,
+						}"
+					>
+						{{ idx + 1 }}
+					</p>
+				</div>
+
+				<i
+					@click="nextPage"
+					class="fi fi-rs-angle-right cursor-not-allowed"
+					:class="{
+						'hover:(text-pink-500) !cursor-pointer':
+							currentArticlePageIdx + 1 != articlesPagesCount,
+					}"
+				></i>
+			</div>
 		</div>
 	</div>
 
@@ -53,11 +95,51 @@
 </template>
 
 <script setup lang="ts">
-import { BLOG_BANNER_IMAGE, FLOWER_LEFT4_SVG } from "~/constants"
+import {
+	ARTICLES_LIMIT_PER_PAGE,
+	ARTICLES_SECTION,
+	BLOG_BANNER_IMAGE,
+	FLOWER_LEFT4_SVG,
+} from "~/constants"
+import type { BlogPost } from "~/models"
 
 // General
 const blogStore = useBlogStore()
 const blogPageStore = useBlogPageStore()
+
+// Blog Articles
+const currentArticles = ref<BlogPost[]>([])
+const currentArticlePageIdx = ref(0)
+const articlesPagesCount = computed(() => {
+	const res = blogStore.posts.length / ARTICLES_LIMIT_PER_PAGE
+
+	return res < 0 ? 0 : Math.ceil(res)
+})
+
+const getCurrentArticles = async () => {
+	const posts = await blogStore.getPostsByPage(currentArticlePageIdx.value)
+
+	currentArticles.value = posts
+
+	// Scroll to articles section
+	document.getElementById(ARTICLES_SECTION)?.scrollIntoView()
+}
+const specificPage = (idx: number) => {
+	if (idx === currentArticlePageIdx.value) return
+
+	currentArticlePageIdx.value = idx
+	getCurrentArticles()
+}
+const nextPage = () => {
+	currentArticlePageIdx.value++
+
+	getCurrentArticles()
+}
+const previousPage = () => {
+	currentArticlePageIdx.value--
+
+	getCurrentArticles()
+}
 
 // Blog Page
 const { blogData } = storeToRefs(blogPageStore)
@@ -84,4 +166,9 @@ watch(
 		immediate: true,
 	}
 )
+
+// Life cycle
+onMounted(() => {
+	getCurrentArticles()
+})
 </script>

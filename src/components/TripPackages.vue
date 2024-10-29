@@ -1,5 +1,4 @@
 <template>
-	<!-- class="relative flex flex-col w-full pt-10 sm:pt-[64px] lg:pt-[100px] pb-10 sm:pb-[114px] lg:pb-[150px] items-center px-6 sm:px-8 lg:px-16 2xl:px-8" -->
 	<div
 		:id="TRIP_PACKAGES_SECTION"
 		class="relative flex flex-col w-full pt-10 sm:pt-[64px] lg:pt-[100px] pb-10 sm:pb-[114px] lg:pb-[150px] items-center page-padding"
