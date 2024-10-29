@@ -33,18 +33,6 @@
 
 		<!-- Desktop menu -->
 		<div class="xl:flex items-center gap-[72px] text-white hidden">
-			<NuxtLink
-				:to="WHY_US_ROUTE"
-				class="font-medium font-inter uppercase text-center"
-				>{{ t("header_why_us") }}</NuxtLink
-			>
-
-			<NuxtLink
-				:to="BLOG_ROUTE"
-				class="font-medium font-inter uppercase text-center"
-				>{{ t("header_travel_blog") }}</NuxtLink
-			>
-
 			<!-- Trip Packages dropdown -->
 			<div class="dropdown-box group">
 				<div class="flex gap-3">
@@ -55,7 +43,7 @@
 					<i class="fi fi-rs-angle-down"></i>
 				</div>
 
-				<div class="dropdown-content flex-col gap-6 group-hover:flex">
+				<div class="dropdown-content left-0 flex-col gap-6 group-hover:flex">
 					<div class="flex gap-8 items-center">
 						<img
 							:key="currentTripPackageSelected?.gallery[0]"
@@ -91,7 +79,7 @@
 					<i class="fi fi-rs-angle-down"></i>
 				</div>
 
-				<div class="dropdown-content flex-col gap-6 group-hover:flex">
+				<div class="dropdown-content left-0 flex-col gap-6 group-hover:flex">
 					<div class="flex h-full gap-8">
 						<div class="flex flex-col gap-4 self-center">
 							<p
@@ -142,6 +130,25 @@
 				</div>
 			</div>
 
+			<NuxtLink
+				:to="BLOG_ROUTE"
+				class="font-medium font-inter uppercase text-center"
+				>{{ t("header_travel_blog") }}</NuxtLink
+			>
+
+			<button
+				@click="scrollToId(CONTACT_SECTION)"
+				class="font-medium font-inter uppercase"
+			>
+				{{ t("header_contact_us") }}
+			</button>
+
+			<NuxtLink
+				:to="WHY_US_ROUTE"
+				class="font-medium font-inter uppercase text-center"
+				>{{ t("header_why_us") }}</NuxtLink
+			>
+
 			<!-- Languages dropdown -->
 			<div class="dropdown-box group">
 				<div class="flex gap-3">
@@ -161,13 +168,6 @@
 					/>
 				</div>
 			</div>
-
-			<button
-				@click="scrollToId(CONTACT_SECTION)"
-				class="font-medium font-inter uppercase"
-			>
-				{{ t("header_contact_us") }}
-			</button>
 		</div>
 
 		<!-- Mobile menu -->
@@ -178,17 +178,7 @@
 			<div
 				class="py-10 relative flex flex-col items-center gap-20 overflow-scroll"
 			>
-				<div class="flex flex-col gap-8 items-center">
-					<NuxtLink
-						:to="WHY_US_ROUTE"
-						class="font-medium font-inter uppercase"
-						>{{ t("header_why_us") }}</NuxtLink
-					>
-
-					<NuxtLink :to="BLOG_ROUTE" class="font-medium font-inter uppercase">{{
-						t("header_travel_blog")
-					}}</NuxtLink>
-
+				<div class="flex flex-col gap-8 items-start">
 					<!-- Trip Packages dropdown -->
 					<div class="flex flex-col gap-3 items-center">
 						<div
@@ -291,6 +281,23 @@
 						</transition>
 					</div>
 
+					<NuxtLink :to="BLOG_ROUTE" class="font-medium font-inter uppercase">{{
+						t("header_travel_blog")
+					}}</NuxtLink>
+
+					<button
+						@click="scrollToId(CONTACT_SECTION)"
+						class="font-medium font-inter uppercase"
+					>
+						{{ t("header_contact_us") }}
+					</button>
+
+					<NuxtLink
+						:to="WHY_US_ROUTE"
+						class="font-medium font-inter uppercase"
+						>{{ t("header_why_us") }}</NuxtLink
+					>
+
 					<!-- Languages dropdown -->
 					<div class="flex flex-col gap-3 items-center">
 						<div
@@ -324,13 +331,6 @@
 							</div>
 						</transition>
 					</div>
-
-					<button
-						@click="scrollToId(CONTACT_SECTION)"
-						class="font-medium font-inter uppercase"
-					>
-						{{ t("header_contact_us") }}
-					</button>
 				</div>
 
 				<SocialMedias class="flex items-center gap-6 justify-center" />
