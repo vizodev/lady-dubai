@@ -45,11 +45,6 @@ export const useBlogStore = defineStore(BLOG_STORE, {
 			this.loadingPost = true
 
 			try {
-				/*
-				Page 1: 11 x 1 = 11
-				Page 2: 11 x 2 = 22
-				*/
-
 				let from = page * ARTICLES_LIMIT_PER_PAGE
 				let to = from + ARTICLES_LIMIT_PER_PAGE
 

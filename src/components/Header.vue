@@ -56,7 +56,7 @@
 								v-for="tripPackage of tripPackages"
 								@mouseenter="() => onTripPackageHover(tripPackage)"
 								@click="openTripPackage(tripPackage.slug)"
-								class="w-72 text-base uppercase text-brown-700 font-medium"
+								class="max-w-72 text-base uppercase text-brown-700 font-medium"
 								:class="{
 									'!text-pink-600 font-bold':
 										tripPackage.id === currentTripPackageSelected?.id,
@@ -126,6 +126,42 @@
 							:src="currentAttractionSelected?.banner"
 							class="w-80 h-60 object-cover"
 						/>
+					</div>
+				</div>
+			</div>
+
+			<!-- Relocation dropdown -->
+			<div class="dropdown-box group">
+				<div class="flex gap-3">
+					<p class="font-medium font-inter uppercase">
+						{{ t("header_relocation") }}
+					</p>
+
+					<i class="fi fi-rs-angle-down"></i>
+				</div>
+
+				<div class="dropdown-content left-0 flex-col gap-6 group-hover:flex">
+					<div class="flex gap-8 items-center">
+						<img
+							:key="currentRelocationEventSelected?.gallery[0]"
+							:src="currentRelocationEventSelected?.gallery[0]"
+							class="w-50 h-40 object-cover"
+						/>
+
+						<div class="flex flex-col gap-6">
+							<p
+								v-for="relocationEvent of relocationEvents"
+								@mouseenter="() => onRelocationEventHover(relocationEvent)"
+								@click="openAttraction(relocationEvent.slug)"
+								class="max-w-72 text-base uppercase text-brown-700 font-medium"
+								:class="{
+									'!text-pink-600 font-bold':
+										relocationEvent.id === currentRelocationEventSelected?.id,
+								}"
+							>
+								{{ relocationEvent.title[locale] }}
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -380,6 +416,7 @@ const attractionsCategoriesStore = useAttractionsCategoriesStore()
 const showLanguagesMobileDropdown = ref(false)
 const showAttractionsMobileDropdown = ref(false)
 const showTripPackagesMobileDropdown = ref(false)
+const showRelocationMobileDropdown = ref(false)
 
 const toogleShowLanguagesMobileDropdown = () => {
 	showAttractionsMobileDropdown.value = false
@@ -392,6 +429,10 @@ const toogleShowAttractionsMobileDropdown = () => {
 const toogleShowTripPackagesMobileDropdown = () => {
 	showLanguagesMobileDropdown.value = false
 	showTripPackagesMobileDropdown.value = !showTripPackagesMobileDropdown.value
+}
+const toogleShowRelocationMobileDropdown = () => {
+	showLanguagesMobileDropdown.value = false
+	showRelocationMobileDropdown.value = !showRelocationMobileDropdown.value
 }
 
 // Trip Packages
@@ -418,7 +459,7 @@ const onAttractionCategorySelect = (data: AttractionCategory) => {
 
 	try {
 		const res = attractions.value.filter(
-			(i) => i.attraction_category_id === data.id
+			(i) => i.attraction_category_id === data.id && !i.is_relocation
 		)
 
 		currentAttractions.value = res
@@ -429,6 +470,16 @@ const onAttractionCategorySelect = (data: AttractionCategory) => {
 }
 const onAttractionHover = (data: Attraction) => {
 	currentAttractionSelected.value = data
+}
+
+// Relocation
+const currentRelocationEventSelected = ref<Attraction>()
+const relocationEvents = computed(() => {
+	return attractions.value.filter((i) => i.is_relocation)
+})
+
+const onRelocationEventHover = (data: Attraction) => {
+	currentRelocationEventSelected.value = data
 }
 
 // Locales
@@ -486,6 +537,12 @@ watch(tripPackages, (data) => {
 	onTripPackageHover(data[0])
 })
 
+watch(relocationEvents, (data) => {
+	if (data.length === 0) return
+
+	onRelocationEventHover(relocationEvents.value[0])
+})
+
 watch(
 	() => categories.value.length + attractions.value.length,
 	async (_) => {
@@ -504,6 +561,7 @@ onMounted(() => {
 
 	// Dropdowns data
 	onTripPackageHover(tripPackages.value[0])
+	onRelocationEventHover(relocationEvents.value[0])
 	onAttractionCategorySelect(categories.value[0])
 })
 

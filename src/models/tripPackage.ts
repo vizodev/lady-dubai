@@ -16,6 +16,7 @@ export type TripPackage = {
 	services: PackageService[]
 	guidelanguages: Language[]
 	flights: Flight[]
+	is_relocation: boolean
 	accommodations: Accommodation[]
 	cancelationPolicy: {
 		label: TextListType

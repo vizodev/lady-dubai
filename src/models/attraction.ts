@@ -15,6 +15,7 @@ export type Attraction = {
 	long_description_html: TextType
 	first_text_html: TextType
 	second_text_html: TextType
+	is_relocation: boolean
 }
 
 export type AttractionCategory = {

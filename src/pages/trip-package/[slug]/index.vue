@@ -83,7 +83,13 @@
 				<span
 					class="font-roboto-serif font-medium text-[28px] sm:text-[32px] md:text-[36px] leading-tight"
 				>
-					{{ t("trip_package_main_included_attractions") }}
+					{{
+						t(
+							currentTripPackage.is_relocation
+								? "trip_package_included_attractions_events"
+								: "trip_package_included_attractions"
+						)
+					}}
 				</span>
 
 				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
