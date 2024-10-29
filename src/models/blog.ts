@@ -10,3 +10,9 @@ export type BlogPost = {
 	description: TextType
 	text_html: TextType
 }
+
+export type BlogData = {
+	title: TextType
+	title_metadata?: TextType
+	description_metadata?: TextType
+}

@@ -37,46 +37,11 @@
 		<SidePageIcon :src="FLOWER_LEFT4_SVG" class="-top-55 left-0" />
 
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
-			<div
+			<BlogPost
 				v-for="(post, idx) of blogStore.posts"
-				class="flex flex-col rounded-xl bg-white customShadow w-full"
-				:class="{
-					'sm:(col-span-2) lg:(row-span-2)': idx === 0,
-				}"
-			>
-				<img
-					:src="post.banner"
-					:alt="`${post.title[locale]} banner`"
-					class="rounded-t-xl object-cover flex-grow"
-					:class="{
-						'max-h-41': idx !== 0,
-					}"
-				/>
-
-				<div class="pt-4 px-6 pb-8 flex flex-col justify-between">
-					<div>
-						<p class="text-2xl font-semibold font-roboto-serif">
-							{{ post.title[locale] }}
-						</p>
-
-						<p
-							class="text-off-black my-3 font-inter font-medium text-sm line-clamp-2"
-						>
-							{{ post.description[locale] }}
-						</p>
-					</div>
-
-					<div class="flex justify-between">
-						<div></div>
-						<p
-							@click="goBlogArticle(post.slug)"
-							class="cursor-pointer uppercase text-pink-600 text-[12px] leading-tight font-semibold font-inter uppercase"
-						>
-							{{ t("read_more") }}
-						</p>
-					</div>
-				</div>
-			</div>
+				:post="post"
+				:idx="idx"
+			/>
 		</div>
 	</div>
 
@@ -88,34 +53,35 @@
 </template>
 
 <script setup lang="ts">
-import {
-	BLOG_ARTICLE_ROUTE,
-	BLOG_BANNER_IMAGE,
-	FLOWER_LEFT4_SVG,
-} from "~/constants"
+import { BLOG_BANNER_IMAGE, FLOWER_LEFT4_SVG } from "~/constants"
 
 // General
 const blogStore = useBlogStore()
+const blogPageStore = useBlogPageStore()
+
+// Blog Page
+const { blogData } = storeToRefs(blogPageStore)
 
 // Locales
-const localePath = useLocalePath()
-const { locale, t } = useI18n()
+const { t, locale } = useI18n()
 
-// Routes
-const goBlogArticle = (slug: string) => {
-	navigateTo(localePath(BLOG_ARTICLE_ROUTE(slug)))
-}
+// Watchers
+watch(
+	() => blogData.value,
+	(value) => {
+		if (!value) return
+
+		useHead(
+			generateHead(
+				locale.value,
+				value.title,
+				value.title_metadata,
+				value.description_metadata
+			)
+		)
+	},
+	{
+		immediate: true,
+	}
+)
 </script>
-
-<style scoped>
-.customShadow {
-	box-shadow: 0 4px 32px rgb(119, 51, 67, 0.05),
-		0 2px 2px rgba(118, 32, 78, 0.15);
-}
-.line-clamp-2 {
-	overflow: hidden;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
-}
-</style>

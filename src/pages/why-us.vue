@@ -32,10 +32,10 @@ import { FLOWER_LEFT4_SVG, HOME_ROUTE } from "~/constants"
 import type { RelativePathComponent } from "~/models"
 
 // General
-const whyUsStore = useWhyUsStore()
+const whyUsPageStore = useWhyUsPageStore()
 
 // Page data
-const { whyUsData } = storeToRefs(whyUsStore)
+const { whyUsData } = storeToRefs(whyUsPageStore)
 
 // Locales
 const { locale } = useI18n()

@@ -12,8 +12,9 @@ const attractionsStore = useAttractionsStore()
 const airportsStore = useAirportsStore()
 const countriesStore = useCountriesStore()
 const languagesStore = useLanguagesStore()
-const homeStore = useHomeStore()
-const whyUsStore = useWhyUsStore()
+const homePageStore = useHomePageStore()
+const whyUsPageStore = useWhyUsPageStore()
+const blogPageStore = useBlogPageStore()
 const blogStore = useBlogStore()
 const attractionsCategoriesStore = useAttractionsCategoriesStore()
 
@@ -24,8 +25,9 @@ onMounted(async () => {
 		airportsStore.loadAirports(),
 		countriesStore.loadCountries(),
 		languagesStore.loadLanguages(),
-		homeStore.loadHome(),
-		whyUsStore.loadWhyUs(),
+		homePageStore.loadHome(),
+		whyUsPageStore.loadWhyUs(),
+		blogPageStore.loadBlog(),
 		blogStore.loadPosts(),
 		attractionsCategoriesStore.loadCategories(),
 	])

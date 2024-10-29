@@ -15,12 +15,12 @@
 
 <script lang="ts" setup>
 // General
-const homeStore = useHomeStore()
+const homePageStore = useHomePageStore()
 const tripPackagesStore = useTripPackagesStore()
 
 // Trip Packages
 const { loadingTripPackages } = storeToRefs(tripPackagesStore)
-const { homeData } = storeToRefs(homeStore)
+const { homeData } = storeToRefs(homePageStore)
 
 // Locales
 const { locale } = useI18n()

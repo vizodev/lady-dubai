@@ -1,4 +1,4 @@
-import { HOME_STORE, SUPABASE_HOME_TABLE } from "~/constants"
+import { HOME_PAGE_STORE, SUPABASE_HOME_PAGE_TABLE } from "~/constants"
 import { type HomeData } from "~/models"
 
 interface IState {
@@ -7,7 +7,7 @@ interface IState {
 	errorOnLoadHomeData: boolean
 }
 
-export const useHomeStore = defineStore(HOME_STORE, {
+export const useHomePageStore = defineStore(HOME_PAGE_STORE, {
 	state: (): IState => ({
 		homeData: null,
 		loadingHomeData: false,
@@ -22,7 +22,7 @@ export const useHomeStore = defineStore(HOME_STORE, {
 			this.loadingHomeData = true
 
 			try {
-				const { data } = await client.from(SUPABASE_HOME_TABLE).select("*")
+				const { data } = await client.from(SUPABASE_HOME_PAGE_TABLE).select("*")
 
 				if (!data) throw new Error()
 
@@ -38,5 +38,5 @@ export const useHomeStore = defineStore(HOME_STORE, {
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useHomeStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useHomePageStore, import.meta.hot))
 }

@@ -1,4 +1,4 @@
-import { SUPABASE_WHY_US_TABLE, WHY_US_STORE } from "~/constants"
+import { SUPABASE_WHY_US_PAGE_TABLE, WHY_US_PAGE_STORE } from "~/constants"
 import { type WhyUsData } from "~/models"
 
 interface IState {
@@ -7,7 +7,7 @@ interface IState {
 	errorOnLoadWhyUsData: boolean
 }
 
-export const useWhyUsStore = defineStore(WHY_US_STORE, {
+export const useWhyUsPageStore = defineStore(WHY_US_PAGE_STORE, {
 	state: (): IState => ({
 		whyUsData: null,
 		loadingWhyUsData: false,
@@ -22,7 +22,9 @@ export const useWhyUsStore = defineStore(WHY_US_STORE, {
 			this.loadingWhyUsData = true
 
 			try {
-				const { data } = await client.from(SUPABASE_WHY_US_TABLE).select("*")
+				const { data } = await client
+					.from(SUPABASE_WHY_US_PAGE_TABLE)
+					.select("*")
 
 				if (!data) throw new Error()
 
@@ -38,5 +40,5 @@ export const useWhyUsStore = defineStore(WHY_US_STORE, {
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useWhyUsStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useWhyUsPageStore, import.meta.hot))
 }
