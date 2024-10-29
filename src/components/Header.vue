@@ -8,7 +8,7 @@
 		}"
 	>
 		<div
-			class="cursor-pointer"
+			class="cursor-pointer mr-5"
 			:class="{
 				'xl:hidden': !showLogo,
 			}"
@@ -17,7 +17,7 @@
 				:src="paintHeaderBg ? LOGO_WHITE_SVG : LOGO_SVG"
 				@click="openHome"
 				alt="logo"
-				class="hidden xl:block h-[40px]"
+				class="hidden xl:block h-[40px] mr-5"
 			/>
 			<img
 				:src="LOGO_WHITE_SVG"
@@ -32,7 +32,7 @@
 		</button>
 
 		<!-- Desktop menu -->
-		<div class="xl:flex items-center gap-[72px] text-white hidden">
+		<div class="justify-between w-max-[1100px] text-white hidden xl:(flex)">
 			<!-- Trip Packages dropdown -->
 			<div class="dropdown-box group">
 				<div class="flex gap-3">
@@ -214,7 +214,7 @@
 			<div
 				class="py-10 relative flex flex-col items-center gap-20 overflow-scroll"
 			>
-				<div class="flex flex-col gap-8 items-start">
+				<div class="flex flex-col gap-8 items-center">
 					<!-- Trip Packages dropdown -->
 					<div class="flex flex-col gap-3 items-center">
 						<div
@@ -317,22 +317,71 @@
 						</transition>
 					</div>
 
-					<NuxtLink :to="BLOG_ROUTE" class="font-medium font-inter uppercase">{{
-						t("header_travel_blog")
-					}}</NuxtLink>
+					<!-- Relocation dropdown -->
+					<div class="flex flex-col gap-3 items-center">
+						<div
+							@click="toogleShowRelocationMobileDropdown"
+							class="flex gap-3 cursor-pointer"
+						>
+							<p class="font-medium font-inter uppercase">
+								{{ t("header_relocation") }}
+							</p>
 
-					<button
-						@click="scrollToId(CONTACT_SECTION)"
-						class="font-medium font-inter uppercase"
-					>
-						{{ t("header_contact_us") }}
-					</button>
+							<i
+								class="fi fi-rs-angle-down"
+								:class="{
+									'fi-rs-angle-down': !showRelocationMobileDropdown,
+									'fi-rs-angle-up': showRelocationMobileDropdown,
+								}"
+							></i>
+						</div>
 
-					<NuxtLink
-						:to="WHY_US_ROUTE"
-						class="font-medium font-inter uppercase"
-						>{{ t("header_why_us") }}</NuxtLink
-					>
+						<transition>
+							<div
+								v-if="showRelocationMobileDropdown"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center"
+							>
+								<p
+									v-for="relocationEvent of relocationEvents"
+									@click="openAttraction(relocationEvent.slug)"
+									class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
+								>
+									{{ relocationEvent.title[locale] }}
+								</p>
+							</div>
+						</transition>
+					</div>
+
+					<div class="flex gap-3 cursor-pointer">
+						<NuxtLink
+							:to="BLOG_ROUTE"
+							class="font-medium font-inter uppercase"
+							>{{ t("header_travel_blog") }}</NuxtLink
+						>
+
+						<i class="fi fi-sr-share-square"></i>
+					</div>
+
+					<div class="flex gap-3 cursor-pointer">
+						<button
+							@click="scrollToId(CONTACT_SECTION)"
+							class="font-medium font-inter uppercase"
+						>
+							{{ t("header_contact_us") }}
+						</button>
+
+						<i class="fi fi-sr-share-square"></i>
+					</div>
+
+					<div class="flex gap-3 cursor-pointer">
+						<NuxtLink
+							:to="WHY_US_ROUTE"
+							class="font-medium font-inter uppercase"
+							>{{ t("header_why_us") }}</NuxtLink
+						>
+
+						<i class="fi fi-sr-share-square"></i>
+					</div>
 
 					<!-- Languages dropdown -->
 					<div class="flex flex-col gap-3 items-center">
