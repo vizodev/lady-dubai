@@ -83,11 +83,16 @@
 			>
 				<div class="flex flex-col lg:gap-1.5">
 					<div
-						v-if="tripPackage.downsale_price.usd !== tripPackage.price.usd"
+						v-if="
+							tripPackage.downsale_price[currentCurrency] !==
+							tripPackage.price[currentCurrency]
+						"
 						class="relative w-max"
 					>
 						<span class="text-brown-700 font-semibold font-roboto-serif">
-							{{ `$ ${tripPackage.downsale_price.usd}` }}
+							{{
+								`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage.downsale_price[currentCurrency]}`
+							}}
 						</span>
 						<div
 							class="transform w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 top-[50%] translate-y-[-50%]"
@@ -98,11 +103,13 @@
 						<span
 							class="text-blue-200 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] whitespace-nowrap"
 						>
-							{{ `$ ${tripPackage.price.usd}` }}
+							{{
+								`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage.price[currentCurrency]}`
+							}}
 						</span>
 						<div class="flex flex-col font-inter gap-1">
 							<span class="text-sm font-bold text-blue-200 leading-none">
-								{{ t("dollars") }}
+								{{ t(`currency_${currentCurrency}`) }}
 							</span>
 
 							<span class="text-[10px] font-medium text-blue-200">
@@ -128,12 +135,19 @@
 
 <script lang="ts" setup>
 import { TRIP_PACKAGE_ROUTE } from "~/constants"
+import { tripPackageCurrencies } from "~/data"
 import type { TripPackage } from "~/models"
 
 const props = defineProps<{
 	tripPackage: TripPackage
 }>()
 
+const currenciesStore = useCurrenciesStore()
+
+// Currencies
+const { currentCurrency } = storeToRefs(currenciesStore)
+
+// Gallery scroll
 const bannerScrollList = ref<HTMLElement | null>(null)
 const activeBanner = ref(0)
 const isNew = ref(false)

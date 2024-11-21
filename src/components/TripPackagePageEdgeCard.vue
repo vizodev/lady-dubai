@@ -18,7 +18,9 @@
 						<span
 							class="text-brown-700 font-semibold font-roboto-serif text-[20px] sm:text-[24px]"
 						>
-							{{ `$ ${tripPackage?.downsale_price?.usd}` }}
+							{{
+								`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage?.downsale_price[currentCurrency]}`
+							}}
 						</span>
 						<div
 							class="transform w-full h-0.5 bg-blue-200 absolute rotate-[15deg] left-0 z-[1] top-[50%] translate-y-[-50%]"
@@ -37,11 +39,13 @@
 					<span
 						class="text-pink-500 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] xl:text-[48px] whitespace-nowrap"
 					>
-						{{ `$ ${tripPackage?.price?.usd}` }}
+						{{
+							`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage?.price[currentCurrency]}`
+						}}
 					</span>
 					<div class="flex flex-col font-inter">
 						<span class="font-bold text-pink-600 leading-none">
-							{{ t("dollars") }}
+							{{ t(`currency_${currentCurrency}`) }}
 						</span>
 						<span class="text-[14px] font-medium text-pink-500">
 							{{ t("per_person") }}
@@ -102,6 +106,7 @@
 
 <script lang="ts" setup>
 import { TRIP_PACKAGE_CHECKOUT_ROUTE } from "~/constants"
+import { tripPackageCurrencies } from "~/data"
 import type { Flight, TripPackage } from "~/models"
 
 const props = defineProps<{
@@ -111,6 +116,11 @@ const props = defineProps<{
 const emit = defineEmits<{
 	(e: "onFlightChange", data: Flight): void
 }>()
+
+const currenciesStore = useCurrenciesStore()
+
+// Currencies
+const { currentCurrency } = storeToRefs(currenciesStore)
 
 // Flight
 const onFlightChange = (data: Flight) => {

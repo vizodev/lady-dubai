@@ -199,8 +199,12 @@
 						<p class="text-lg font-inter">{{ t("checkout_total") }}</p>
 
 						<p class="font-roboto-serif text-3xl whitespace-nowrap">
-							{{ `$ ${totalPrice}` }}
-							<span class="font-inter text-lg">{{ t("dollars") }}</span>
+							{{
+								`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice}`
+							}}
+							<span class="font-inter text-lg">{{
+								t(`currency_${currentCurrency}`)
+							}}</span>
 						</p>
 					</div>
 				</div>
@@ -263,7 +267,7 @@ import {
 	PACKAGE_SVG,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
-import { genders } from "~/data"
+import { genders, tripPackageCurrencies } from "~/data"
 import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
 import {
 	type Flight,
@@ -286,6 +290,10 @@ const props = computed(() => {
 // Stores
 const tripPackagesStore = useTripPackagesStore()
 const countriesStore = useCountriesStore()
+const currenciesStore = useCurrenciesStore()
+
+// Currencies
+const { currentCurrency } = storeToRefs(currenciesStore)
 
 // Countries
 const { countries } = storeToRefs(countriesStore)
@@ -307,7 +315,11 @@ const travellersCount = ref(1)
 const totalPrice = computed(() => {
 	if (!currentTripPackage.value) return 0
 
-	return getTripPackagePrice(currentTripPackage.value, travellersCount.value)
+	return getTripPackagePrice(
+		currentTripPackage.value,
+		travellersCount.value,
+		currentCurrency.value
+	)
 })
 
 const addTraveller = () => travellersCount.value++
@@ -364,6 +376,7 @@ const onSubmit = async (formData: CheckoutSchemaSubmit) => {
 		const body: GetPaymentInfoBody = {
 			tripPackage: currentTripPackage.value,
 			data: formData,
+			currency: currentCurrency.value,
 		}
 		const res = await useFetch(API_PAYMENTS(currentTripPackage.value!.id), {
 			method: "POST",

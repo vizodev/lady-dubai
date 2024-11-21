@@ -16,3 +16,11 @@ export const defaultTripPackages = [
 		value: "other",
 	},
 ]
+
+export const tripPackageCurrencies = {
+	usd: { acronym: "USD", symbol: "$" },
+	ils: { acronym: "ILS", symbol: "₪" },
+	aed: { acronym: "AED", symbol: "AED" },
+	gbp: { acronym: "GBP", symbol: "£" },
+	eur: { acronym: "EUR", symbol: "€" },
+}

@@ -12,7 +12,11 @@ export default defineEventHandler(async (event) => {
 
 	const client = new stripe(STRIPE_SECRET_KEY)
 
-	const amount = getTripPackagePrice(body.tripPackage, body.data.users.length)
+	const amount = getTripPackagePrice(
+		body.tripPackage,
+		body.data.users.length,
+		body.currency
+	)
 	const checkoutSession = await client.checkout.sessions.create({
 		metadata: {
 			data: JSON.stringify(body.data),
@@ -20,7 +24,7 @@ export default defineEventHandler(async (event) => {
 		line_items: [
 			{
 				price_data: {
-					currency: "usd",
+					currency: body.currency,
 					product_data: {
 						name: `Booking \n${body.data.users.map((i) => i.name).join(", ")}`,
 					},

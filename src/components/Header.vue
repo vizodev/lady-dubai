@@ -185,6 +185,27 @@
 				>{{ t("header_why_us") }}</NuxtLink
 			>
 
+			<!-- Currencies dropdown -->
+			<div class="dropdown-box group">
+				<div class="flex gap-3">
+					<p class="font-medium font-inter uppercase">
+						{{ getCurrencyName(currentCurrency) }}
+					</p>
+
+					<i class="fi fi-rs-angle-down"></i>
+				</div>
+
+				<div class="dropdown-content flex-col gap-6 group-hover:flex">
+					<p
+						class="text-black uppercase font-inter font-medium text-normal cursor-pointer duration-[.2s] hover:(text-blue-500)"
+						v-for="currency of Object.keys(tripPackageCurrencies)"
+						@click="changeCurrentCurrency(currency as Currency)"
+					>
+						{{ getCurrencyName(currency as Currency) }}
+					</p>
+				</div>
+			</div>
+
 			<!-- Languages dropdown -->
 			<div class="dropdown-box group">
 				<div class="flex gap-3">
@@ -444,11 +465,12 @@ import {
 	TRIP_PACKAGE_ROUTE,
 	WHY_US_ROUTE,
 } from "~/constants"
-import { localeToLanguage } from "~/data"
+import { localeToLanguage, tripPackageCurrencies } from "~/data"
 import {
 	LanguageEnum,
 	type Attraction,
 	type AttractionCategory,
+	type Currency,
 	type TripPackage,
 } from "~/models"
 
@@ -460,6 +482,7 @@ const props = defineProps<{
 const tripPackagesStore = useTripPackagesStore()
 const attractionsStore = useAttractionsStore()
 const attractionsCategoriesStore = useAttractionsCategoriesStore()
+const currenciesStore = useCurrenciesStore()
 
 // Mobile dropdowns
 const showLanguagesMobileDropdown = ref(false)
@@ -529,6 +552,16 @@ const relocationEvents = computed(() => {
 
 const onRelocationEventHover = (data: Attraction) => {
 	currentRelocationEventSelected.value = data
+}
+
+// Currencies
+const { currentCurrency } = storeToRefs(currenciesStore)
+
+const getCurrencyName = (data: Currency) => {
+	return `${tripPackageCurrencies[data].acronym}(${tripPackageCurrencies[data].symbol})`
+}
+const changeCurrentCurrency = (newCurreny: Currency) => {
+	currenciesStore.changeCurrentCurrency(newCurreny)
 }
 
 // Locales

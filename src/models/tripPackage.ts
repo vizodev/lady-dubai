@@ -1,3 +1,4 @@
+import { tripPackageCurrencies } from "../data"
 import type { TextListType, TextType } from "./"
 
 export type TripPackage = {
@@ -26,6 +27,12 @@ export type TripPackage = {
 	}
 }
 
+export type Price = {
+	[key in Currency]: number
+}
+
+export type Currency = keyof typeof tripPackageCurrencies
+
 export type Accommodation = {
 	id: number
 
@@ -34,12 +41,6 @@ export type Accommodation = {
 	subtitle: TextType
 	description: TextType
 	features: TextType[]
-}
-
-export type Price = {
-	usd: number
-	ils: number
-	aed: number
 }
 
 export type Flight = {

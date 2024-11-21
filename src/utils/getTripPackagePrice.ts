@@ -1,8 +1,9 @@
-import type { TripPackage } from "~/models"
+import type { Currency, TripPackage } from "~/models"
 
 export const getTripPackagePrice = (
 	tripPackage: TripPackage,
-	travellersCount: number
+	travellersCount: number,
+	currency: Currency
 ) => {
-	return tripPackage.price.usd * travellersCount
+	return tripPackage.price[currency] * travellersCount
 }
