@@ -404,6 +404,41 @@
 						<i class="fi fi-sr-share-square"></i>
 					</div>
 
+					<!-- Currencies dropdown -->
+					<div class="flex flex-col gap-3 items-center">
+						<div
+							@click="toogleShowCurrenciesMobileDropdown"
+							class="flex gap-3 cursor-pointer"
+						>
+							<p class="font-medium font-inter uppercase">
+								{{ getCurrencyName(currentCurrency) }}
+							</p>
+
+							<i
+								class="fi fi-rs-angle-down"
+								:class="{
+									'fi-rs-angle-down': !showCurrenciesMobileDropdown,
+									'fi-rs-angle-up': showCurrenciesMobileDropdown,
+								}"
+							></i>
+						</div>
+
+						<transition>
+							<div
+								v-if="showCurrenciesMobileDropdown"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6"
+							>
+								<p
+									class="text-black uppercase font-inter font-medium text-normal cursor-pointer duration-[.2s] hover:(text-blue-500)"
+									v-for="currency of Object.keys(tripPackageCurrencies)"
+									@click="changeCurrentCurrency(currency as Currency)"
+								>
+									{{ getCurrencyName(currency as Currency) }}
+								</p>
+							</div>
+						</transition>
+					</div>
+
 					<!-- Languages dropdown -->
 					<div class="flex flex-col gap-3 items-center">
 						<div
@@ -489,22 +524,50 @@ const showLanguagesMobileDropdown = ref(false)
 const showAttractionsMobileDropdown = ref(false)
 const showTripPackagesMobileDropdown = ref(false)
 const showRelocationMobileDropdown = ref(false)
+const showCurrenciesMobileDropdown = ref(false)
+
+const closeAllDropdowns = () => {
+	showLanguagesMobileDropdown.value = false
+	showAttractionsMobileDropdown.value = false
+	showTripPackagesMobileDropdown.value = false
+	showRelocationMobileDropdown.value = false
+	showCurrenciesMobileDropdown.value = false
+}
 
 const toogleShowLanguagesMobileDropdown = () => {
-	showAttractionsMobileDropdown.value = false
-	showLanguagesMobileDropdown.value = !showLanguagesMobileDropdown.value
+	const currentValue = showLanguagesMobileDropdown.value
+
+	closeAllDropdowns()
+
+	showLanguagesMobileDropdown.value = !currentValue
 }
 const toogleShowAttractionsMobileDropdown = () => {
-	showLanguagesMobileDropdown.value = false
-	showAttractionsMobileDropdown.value = !showAttractionsMobileDropdown.value
+	const currentValue = showAttractionsMobileDropdown.value
+
+	closeAllDropdowns()
+
+	showAttractionsMobileDropdown.value = !currentValue
 }
 const toogleShowTripPackagesMobileDropdown = () => {
-	showLanguagesMobileDropdown.value = false
-	showTripPackagesMobileDropdown.value = !showTripPackagesMobileDropdown.value
+	const currentValue = showTripPackagesMobileDropdown.value
+
+	closeAllDropdowns()
+
+	showTripPackagesMobileDropdown.value = !currentValue
 }
 const toogleShowRelocationMobileDropdown = () => {
-	showLanguagesMobileDropdown.value = false
-	showRelocationMobileDropdown.value = !showRelocationMobileDropdown.value
+	const currentValue = showRelocationMobileDropdown.value
+
+	closeAllDropdowns()
+
+	showRelocationMobileDropdown.value = !currentValue
+}
+const toogleShowCurrenciesMobileDropdown = () => {
+	const currentValue = showCurrenciesMobileDropdown.value
+
+	closeAllDropdowns()
+
+	showCurrenciesMobileDropdown.value = !currentValue
 }
 
 // Trip Packages
