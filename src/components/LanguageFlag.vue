@@ -9,17 +9,20 @@
 </template>
 
 <script lang="ts" setup>
-import { languageToFlagSrc, languageToLocale } from "~/data";
-import { LanguageEnum } from "~/models";
+import { languageToCurrency, languageToFlagSrc, languageToLocale } from "~/data";
+import { LanguageEnum, type Currency } from "~/models";
 
 const { language } = defineProps<{
 	language: LanguageEnum
 }>()
+
+const currenciesStore = useCurrenciesStore()
 
 // Locales
 const { setLocale } = useI18n()
 
 const changeLocale = () => {
 	setLocale(languageToLocale[language])
+	currenciesStore.changeCurrentCurrency(languageToCurrency[language].acronym.toLowerCase() as Currency)
 }
 </script>

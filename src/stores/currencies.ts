@@ -7,7 +7,7 @@ interface IState {
 
 export const useCurrenciesStore = defineStore(CURRENCIES_STORE, {
 	state: (): IState => ({
-		currentCurrency: "usd",
+		currentCurrency: "gbp",
 	}),
 	getters: {},
 	actions: {

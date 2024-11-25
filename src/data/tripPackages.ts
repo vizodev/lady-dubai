@@ -23,4 +23,5 @@ export const tripPackageCurrencies = {
 	aed: { acronym: "AED", symbol: "AED" },
 	gbp: { acronym: "GBP", symbol: "£" },
 	eur: { acronym: "EUR", symbol: "€" },
+	rub: { acronym: "RUB", symbol: "₽" },
 }

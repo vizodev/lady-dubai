@@ -9,6 +9,7 @@ import {
 	USA_FLAG_SVG,
 } from "../constants"
 import { LanguageEnum } from "../models"
+import { tripPackageCurrencies } from "./tripPackages"
 
 export const languageToLocale = {
 	[LanguageEnum.ARABIC]: "ar",
@@ -41,4 +42,15 @@ export const languageToFlagSrc = {
 	[LanguageEnum.PORTUGUESE_BR]: BRASIL_FLAG_SVG,
 	[LanguageEnum.RUSSIAN]: RUSSIAN_FLAG_SVG,
 	[LanguageEnum.SPANISH]: SPANISH_FLAG_SVG,
+}
+
+export const languageToCurrency = {
+	[LanguageEnum.ARABIC]: tripPackageCurrencies.aed,
+	[LanguageEnum.ENGLISH]: tripPackageCurrencies.gbp,
+	[LanguageEnum.FRENCH]: tripPackageCurrencies.eur,
+	[LanguageEnum.GERMAN]: tripPackageCurrencies.eur,
+	[LanguageEnum.HEBREW]: tripPackageCurrencies.ils,
+	[LanguageEnum.PORTUGUESE_BR]: tripPackageCurrencies.eur,
+	[LanguageEnum.RUSSIAN]: tripPackageCurrencies.rub,
+	[LanguageEnum.SPANISH]: tripPackageCurrencies.eur,
 }
