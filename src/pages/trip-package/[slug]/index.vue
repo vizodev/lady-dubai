@@ -110,10 +110,22 @@
 
 			<section class="flex flex-col pt-4 py-8">
 				<div class="flex flex-col gap-2 mb-12 lg:(w-1/2)">
-					<p class="text-4xl font-medium font-roboto-serif">
-						{{ t("trip_package_flight_title") }}
-						{{ currentDepartingTakeoffAirport?.title[locale] }}
-					</p>
+					<div class="flex gap-5 items-center">
+						<p class="text-4xl font-medium font-roboto-serif">
+							{{ t("trip_package_flight_title") }}
+						</p>
+
+						<SelectField
+							:name="`locale`"
+							:value="currentAirportId?.toString()"
+							@change="onAirportChange"
+						>
+							<option v-for="airport of availableAirports" :value="airport.id">
+								{{ airport.title[locale] }}
+							</option>
+						</SelectField>
+					</div>
+
 					<p class="text-base font-light font-inter">
 						<span class="font-bold">{{
 							t("trip_package_flight_description1")
@@ -129,7 +141,7 @@
 
 					<TripPackageAvailableDates
 						v-if="currentFlightDate"
-						:flights="currentTripPackage.flights"
+						:flights="flights"
 						:current-flight="currentFlightDate"
 						@on-change="onFlightDateChange"
 					/>
@@ -293,16 +305,29 @@ const loadAttractions = async (id: number) => {
 
 // Flights
 const currentFlightDate = ref<Flight>()
-const currentDepartingTakeoffAirport = computed(() => {
-	if (!currentFlightDate.value) return
-
-	return airports.value.find(
-		(i) => i.id === currentFlightDate.value!.departing_takeoff_airport_id
+const currentAirportId = ref<number>()
+const flights = computed(() => {
+	return currentTripPackage.value
+		? currentTripPackage.value.flights.filter(
+				(i) => i.departing_takeoff_airport_id == currentAirportId.value
+		  )
+		: []
+})
+const availableAirports = computed(() => {
+	return airports.value.filter((i) =>
+		currentTripPackage.value?.flights
+			.map((i) => i.departing_takeoff_airport_id)
+			.includes(i.id)
 	)
 })
 
 const onFlightDateChange = (data: Flight) => {
 	currentFlightDate.value = data
+	currentAirportId.value = data.departing_takeoff_airport_id
+}
+const onAirportChange = (data: string) => {
+	currentAirportId.value = Number(data)
+	currentFlightDate.value = flights.value[0]
 }
 
 // Relative path
@@ -345,6 +370,15 @@ watch(
 				value.description_metadata
 			)
 		)
+	}
+)
+
+watch(
+	() => availableAirports.value,
+	(value) => {
+		if (!value) return
+
+		onAirportChange(value[0].id.toString())
 	}
 )
 

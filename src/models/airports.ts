@@ -4,4 +4,5 @@ export type Airport = {
 	id: number
 	title: TextType
 	description: TextType
+	locale: string
 }

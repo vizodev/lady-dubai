@@ -1,5 +1,36 @@
 <template>
-	<div class="flex items-center gap-3 flex-wrap w-full">
+	<div v-if="showByAiports" class="flex flex-col gap-4 w-full">
+		<div
+			v-for="airport of airports.filter((i) =>
+				flights.map((e) => e.departing_takeoff_airport_id).includes(i.id)
+			)"
+			class="flex flex-col gap-4 w-full"
+		>
+			<p class="text-normal font-inter self-start italic">
+				{{ airport.title[locale] }}
+			</p>
+
+			<div class="flex items-center gap-3 flex-wrap">
+				<button
+					v-for="dt in flights.filter(
+						(i) => i.departing_takeoff_airport_id === airport.id
+					)"
+					class="btn-rounded"
+					:class="{
+						'bg-pink-600 text-white hover:(bg-pink-700)': currentFlight === dt,
+					}"
+					@click="() => onChange(dt)"
+				>
+					{{ handleFlightLabel(dt) }}
+					<span class="text-xs font-light">{{
+						handleFlightYearLabel(dt)
+					}}</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div v-else class="flex items-center gap-3 flex-wrap w-full">
 		<button
 			v-for="dt in flights"
 			class="btn-rounded"
@@ -20,11 +51,14 @@ import { type Flight } from "~/models"
 defineProps<{
 	flights: Flight[]
 	currentFlight: Flight
+	showByAiports?: boolean
 }>()
 
 const emit = defineEmits<{
 	(e: "onChange", data: Flight): void
 }>()
+
+const airportsStore = useAirportsStore()
 
 // Dates
 const onChange = (data: Flight) => {
@@ -53,4 +87,10 @@ const handleFlightYearLabel = (data: Flight) => {
 
 	return to.getFullYear()
 }
+
+// Locales
+const { locale } = useI18n()
+
+// Airports
+const { airports } = storeToRefs(airportsStore)
 </script>

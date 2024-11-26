@@ -57,7 +57,7 @@
 				{{ t("trip_package_edge_card_button") }}
 			</button>
 		</div>
-		<div class="flex flex-col gap-3 items-start">
+		<div class="flex flex-col gap-6 items-start self-start">
 			<span class="uppercase font-bold font-inter leading-tight">
 				{{ t("next_available_dates") }}
 			</span>
@@ -65,6 +65,7 @@
 			<TripPackageAvailableDates
 				:flights="tripPackage.flights"
 				:current-flight="currentFlight"
+				show-by-aiports
 				@on-change="onFlightChange"
 			/>
 		</div>
@@ -142,11 +143,6 @@ const openCheckout = () => {
 		)
 	)
 }
-
-// Life cycle
-onMounted(() => {
-	onFlightChange(props.tripPackage.flights[0])
-})
 </script>
 
 <style scoped>

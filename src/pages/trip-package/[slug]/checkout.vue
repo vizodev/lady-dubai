@@ -248,6 +248,7 @@
 				v-if="currentTripPackage && currentFlight"
 				:flights="currentTripPackage.flights"
 				:current-flight="currentFlight"
+				show-by-aiports
 				@on-change="onFlightChange"
 				class="mb-8"
 			/>

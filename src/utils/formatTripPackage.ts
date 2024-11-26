@@ -14,13 +14,18 @@ export const formatTripPackage = (
 		...data,
 		cancelationPolicy: data.cancelationpolicy[0],
 		disclaimer: data.disclaimer[0],
-		flights: data.flights.map((i: any) => ({
-			...i,
-			departing_takeoff: new Date(i.departing_takeoff),
-			departing_landing: new Date(i.departing_landing),
+		flights: (data.flights as any[])
+			.map((i: any) => ({
+				...i,
+				departing_takeoff: new Date(i.departing_takeoff),
+				departing_landing: new Date(i.departing_landing),
 
-			returning_takeoff: new Date(i.returning_takeoff),
-			returning_landing: new Date(i.returning_landing),
-		})),
+				returning_takeoff: new Date(i.returning_takeoff),
+				returning_landing: new Date(i.returning_landing),
+			}))
+			.sort(
+				(i1, i2) =>
+					i1.departing_takeoff.getTime() - i2.departing_takeoff.getTime()
+			),
 	}
 }
