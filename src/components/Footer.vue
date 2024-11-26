@@ -29,7 +29,7 @@
 				<div class="flex items-center gap-3">
 					<img :src="WHATSAPP_ICON_SVG" alt="" class="w-6" />
 					<span class="font-inter font-medium text-[18px] xl:text-[24px]">
-						+55 813-369-5388
+						{{ t("footer_phone_number") }}
 					</span>
 				</div>
 			</div>
