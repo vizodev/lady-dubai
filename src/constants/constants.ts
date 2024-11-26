@@ -27,6 +27,7 @@ export const LOCALES_STORE = "LOCALES_STORE"
 export const BLOG_STORE = "BLOG_STORE"
 export const BLOG_PAGE_STORE = "BLOG_PAGE_STORE"
 export const ATTRACTIONS_CATEGORIES_STORE = "ATTRACTIONS_CATEGORIES_STORE"
+export const SOCIAL_MEDIAS_STORE = "SOCIAL_MEDIAS_STORE"
 
 // Stripe
 export const STRIPE_SECRET_KEY =
@@ -67,6 +68,7 @@ export const SUPABASE_BLOG_TABLE = "blog"
 export const SUPABASE_LOCALES_TABLE = "locales"
 export const SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE =
 	"trip_package_attractions"
+export const SUPABASE_SOCIAL_MEDIAS_TABLE = "social_medias"
 
 export const SUPABASE_ID_FIELD = "id"
 export const SUPABASE_SLUG_FIELD = "slug"

@@ -19,6 +19,7 @@ const privacyPolicyPageStore = usePrivacyPolicyPageStore()
 const blogPageStore = useBlogPageStore()
 const blogStore = useBlogStore()
 const attractionsCategoriesStore = useAttractionsCategoriesStore()
+const socialMediasStore = useSocialMediasStore()
 
 onMounted(async () => {
 	await Promise.all([
@@ -34,6 +35,7 @@ onMounted(async () => {
 		blogPageStore.loadBlog(),
 		blogStore.loadPosts(),
 		attractionsCategoriesStore.loadCategories(),
+		socialMediasStore.loadSocialMedias(),
 	])
 })
 </script>

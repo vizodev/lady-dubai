@@ -1,6 +1,11 @@
 <template>
-	<div>
-		<a v-for="media of medias">
+	<div class="z-50">
+		<a
+			v-for="media of socialMedias.socialMedias"
+			:href="media.link"
+			target="_blank"
+			class="cursor-pointer"
+		>
 			<img :src="media.icon" class="cursor-pointer" />
 		</a>
 	</div>
@@ -13,6 +18,8 @@ import {
 	TIKTOK_ICON_SVG,
 	YOUTUBE_ICON2_SVG,
 } from "~/constants"
+
+const socialMedias = useSocialMediasStore()
 
 const medias: { icon: string }[] = [
 	{ icon: FACEBOOK_ICON_SVG },
