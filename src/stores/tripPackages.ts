@@ -1,4 +1,5 @@
 import {
+	SUPABASE_ACCOMMODATIONS_FEATURES_TABLE,
 	SUPABASE_ATTRACTION_ID_FIELD,
 	SUPABASE_ID_FIELD,
 	SUPABASE_SLUG_FIELD,
@@ -6,10 +7,11 @@ import {
 	SUPABASE_TRIP_PACKAGES_TABLE,
 	TRIP_PACKAGE_STORE,
 } from "~/constants"
-import { type TripPackage } from "~/models"
+import { type AccommodationFeature, type TripPackage } from "~/models"
 
 interface IState {
 	tripPackages: TripPackage[]
+	accommodationsFeatures: AccommodationFeature[]
 	loadingTripPackages: boolean
 	loadingTripPackage: boolean
 	errorOnLoadTripPackages: boolean
@@ -19,6 +21,7 @@ interface IState {
 export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 	state: (): IState => ({
 		tripPackages: [],
+		accommodationsFeatures: [],
 		loadingTripPackages: false,
 		loadingTripPackage: false,
 		errorOnLoadTripPackages: false,
@@ -37,20 +40,11 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 					.from(SUPABASE_TRIP_PACKAGES_TABLE)
 					.select("*")
 
-				data?.map((i: any) => {
-					i.cancelationPolicy = i.cancelationpolicy[0]
-					i.disclaimer = i.disclaimer[0]
-					i.flights = (i.flights as any[]).map((i) => ({
-						...i,
-						departing_takeoff: new Date(i.departing_takeoff),
-						departing_landing: new Date(i.departing_landing),
+				await this.getAccommodationsFeatures()
 
-						returning_takeoff: new Date(i.returning_takeoff),
-						returning_landing: new Date(i.returning_landing),
-					}))
-				})
-
-				this.tripPackages = data as TripPackage[]
+				this.tripPackages = data?.map((i) =>
+					formatTripPackage(i, this.accommodationsFeatures)
+				) as TripPackage[]
 			} catch (error) {
 				this.errorOnLoadTripPackages = true
 				console.error("Error loading trip packages", error)
@@ -70,21 +64,9 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 					.select("*")
 					.eq(SUPABASE_ID_FIELD, id)
 
-				const tripPackage = data![0] as any
+				await this.getAccommodationsFeatures()
 
-				return {
-					...tripPackage,
-					cancelationPolicy: tripPackage.cancelationpolicy[0],
-					disclaimer: tripPackage.disclaimer[0],
-					flights: tripPackage.flights.map((i: any) => ({
-						...i,
-						departing_takeoff: new Date(i.departing_takeoff),
-						departing_landing: new Date(i.departing_landing),
-
-						returning_takeoff: new Date(i.returning_takeoff),
-						returning_landing: new Date(i.returning_landing),
-					})),
-				} as TripPackage
+				return formatTripPackage(data![0], this.accommodationsFeatures)
 			} catch (error) {
 				this.errorOnLoadTripPackage = true
 				console.error("Error loading trip package", error)
@@ -104,21 +86,9 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 					.select("*")
 					.eq(SUPABASE_SLUG_FIELD, slug)
 
-				const tripPackage = data![0] as any
+				await this.getAccommodationsFeatures()
 
-				return {
-					...tripPackage,
-					cancelationPolicy: tripPackage.cancelationpolicy[0],
-					disclaimer: tripPackage.disclaimer[0],
-					flights: tripPackage.flights.map((i: any) => ({
-						...i,
-						departing_takeoff: new Date(i.departing_takeoff),
-						departing_landing: new Date(i.departing_landing),
-
-						returning_takeoff: new Date(i.returning_takeoff),
-						returning_landing: new Date(i.returning_landing),
-					})),
-				} as TripPackage
+				return formatTripPackage(data![0], this.accommodationsFeatures)
 			} catch (error) {
 				this.errorOnLoadTripPackage = true
 				console.error("Error loading trip package", error)
@@ -139,18 +109,42 @@ export const useTripPackagesStore = defineStore(TRIP_PACKAGE_STORE, {
 
 				if (!data) return []
 
+				await this.getAccommodationsFeatures()
+
 				const tripPackages = [] as TripPackage[]
 				for (const tripPackageAttraction of data) {
 					const tripPackage = await this.getTripPackageById(
 						(tripPackageAttraction as any).trip_package_id
 					)
 
-					if (tripPackage) tripPackages.push(tripPackage)
+					if (tripPackage)
+						tripPackages.push(
+							formatTripPackage(tripPackage, this.accommodationsFeatures)
+						)
 				}
 
 				return tripPackages
 			} catch (error) {
 				console.error("Error loading trip packages by attraction id", error)
+			}
+
+			return []
+		},
+		async getAccommodationsFeatures(): Promise<AccommodationFeature[]> {
+			const client = useSupabaseClient()
+
+			try {
+				if (this.accommodationsFeatures.length === 0) {
+					const { data } = await client
+						.from(SUPABASE_ACCOMMODATIONS_FEATURES_TABLE)
+						.select("*")
+
+					this.accommodationsFeatures = data as AccommodationFeature[]
+				}
+
+				return this.accommodationsFeatures
+			} catch (error) {
+				console.error("Error loading accommodations features", error)
 			}
 
 			return []

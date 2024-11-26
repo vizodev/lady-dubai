@@ -51,6 +51,7 @@ export const SUPABASE_SERVICE_KEY =
 
 export const SUPABASE_AIRPORTS_POOL_TABLE = "airports_pool"
 export const SUPABASE_ATTRACTIONS_POOL_TABLE = "attractions_pool"
+export const SUPABASE_ACCOMMODATIONS_FEATURES_TABLE = "accommodations_features"
 export const SUPABASE_ATTRACTIONS_CATEGORIES_TABLE = "attractions_categories"
 export const SUPABASE_TRIP_PACKAGES_TABLE = "trippackages"
 export const SUPABASE_LANGUAGES_TABLE = "languages"

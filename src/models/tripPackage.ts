@@ -43,6 +43,12 @@ export type Accommodation = {
 	features: TextType[]
 }
 
+export type AccommodationFeature = {
+	id: number
+
+	title: TextType
+}
+
 export type Flight = {
 	id: number
 

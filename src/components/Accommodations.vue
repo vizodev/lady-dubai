@@ -39,7 +39,7 @@
 					{{ accommodation.subtitle[locale] }}
 				</span>
 			</div>
-			<span class="font-light font-inter leading-tight">
+			<span class="font-light font-inter leading-tight whitespace-pre-line">
 				{{ accommodation.description[locale] }}
 			</span>
 			<ul class="m-0 pl-4 w-full list-disc flex flex-col gap-2">
@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Accommodation, TextType } from "~/models"
+import type { Accommodation } from "~/models"
 
 const { data } = defineProps<{
 	data: Accommodation[]
