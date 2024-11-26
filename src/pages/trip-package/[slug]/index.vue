@@ -378,7 +378,14 @@ watch(
 	(value) => {
 		if (!value) return
 
-		onAirportChange(value[0].id.toString())
+		const filteredAirports = value.filter((i) => i.locale == locale.value) ?? []
+
+		onAirportChange(
+			(filteredAirports.length > 0
+				? filteredAirports[0].id
+				: value[0].id
+			).toString()
+		)
 	}
 )
 
