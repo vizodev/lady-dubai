@@ -11,7 +11,10 @@
 			@click="path.path?.length ? openPath(path.path) : null"
 		>
 			<span
-				class="text-[12px] leading-tight font-medium font-inter uppercase hover:underline"
+				class="text-[12px] leading-tight font-medium font-inter uppercase cursor-default"
+				:class="{
+					'hover:underline !cursor-pointer': path.path,
+				}"
 			>
 				{{
 					typeof path.label === "string" ? t(path.label) : path.label[locale]

@@ -4,6 +4,8 @@ export const HOME_ROUTE = "/"
 export const HOME_TRIP_PACKAGES_SECTION_ROUTE = `${HOME_ROUTE}#${TRIP_PACKAGES_SECTION}`
 
 export const WHY_US_ROUTE = "/why-us"
+export const PRIVACY_POLICY_ROUTE = "/privacy-policy"
+export const TERMS_OF_USE_ROUTE = "/terms-of-use"
 
 export const BLOG_ROUTE = "/blog"
 export const BLOG_ARTICLE_ROUTE = (slug: string) => `${BLOG_ROUTE}/${slug}`

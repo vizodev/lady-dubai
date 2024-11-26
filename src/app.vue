@@ -14,6 +14,8 @@ const countriesStore = useCountriesStore()
 const languagesStore = useLanguagesStore()
 const homePageStore = useHomePageStore()
 const whyUsPageStore = useWhyUsPageStore()
+const termsOfUsePageStore = useTermsOfUsePageStore()
+const privacyPolicyPageStore = usePrivacyPolicyPageStore()
 const blogPageStore = useBlogPageStore()
 const blogStore = useBlogStore()
 const attractionsCategoriesStore = useAttractionsCategoriesStore()
@@ -27,6 +29,8 @@ onMounted(async () => {
 		languagesStore.loadLanguages(),
 		homePageStore.loadHome(),
 		whyUsPageStore.loadWhyUs(),
+		termsOfUsePageStore.loadTermsOfUse(),
+		privacyPolicyPageStore.loadPrivacyPolicy(),
 		blogPageStore.loadBlog(),
 		blogStore.loadPosts(),
 		attractionsCategoriesStore.loadCategories(),

@@ -64,16 +64,19 @@
 
 			<div class="flex flex-col gap-6 items-center lg:items-end">
 				<div class="flex items-center gap-6">
-					<a
-						href="*"
-						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s]"
-						>{{ t("footer_privacy_policy") }}</a
+					<p
+						@click="openPrivacyPolicy"
+						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s] cursor-pointer"
 					>
-					<a
-						href="*"
-						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s]"
-						>{{ t("footer_terms_of_use") }}</a
+						{{ t("footer_privacy_policy") }}
+					</p>
+
+					<p
+						@click="openTermsOfUse"
+						class="font-inter font-light hover:text-blue-500 hover:underline transition-all duration-[.2s] cursor-pointer"
 					>
+						{{ t("footer_terms_of_use") }}
+					</p>
 				</div>
 			</div>
 		</div>
@@ -81,7 +84,12 @@
 </template>
 
 <script lang="ts" setup>
-import { LOGO_FOOTER_SVG, WHATSAPP_ICON_SVG } from "~/constants"
+import {
+	LOGO_FOOTER_SVG,
+	PRIVACY_POLICY_ROUTE,
+	TERMS_OF_USE_ROUTE,
+	WHATSAPP_ICON_SVG,
+} from "~/constants"
 import { LanguageEnum } from "~/models"
 
 // Scroll
@@ -100,6 +108,11 @@ const handleScroll = () => {
 
 // Locales
 const { t } = useI18n()
+const localePath = useLocalePath()
+
+// Routes
+const openPrivacyPolicy = () => navigateTo(localePath(PRIVACY_POLICY_ROUTE))
+const openTermsOfUse = () => navigateTo(localePath(TERMS_OF_USE_ROUTE))
 
 // Life cycle
 onMounted(() => {

@@ -166,11 +166,9 @@
 				</div>
 			</div>
 
-			<NuxtLink
-				:to="BLOG_ROUTE"
-				class="font-medium font-inter uppercase text-center"
-				>{{ t("header_travel_blog") }}</NuxtLink
-			>
+			<p @click="openBlog" class="font-medium font-inter uppercase text-center">
+				{{ t("header_travel_blog") }}
+			</p>
 
 			<button
 				@click="scrollToId(CONTACT_SECTION)"
@@ -179,11 +177,12 @@
 				{{ t("header_contact_us") }}
 			</button>
 
-			<NuxtLink
-				:to="WHY_US_ROUTE"
+			<p
+				@click="openWhyUs"
 				class="font-medium font-inter uppercase text-center"
-				>{{ t("header_why_us") }}</NuxtLink
 			>
+				{{ t("header_why_us") }}
+			</p>
 
 			<!-- Currencies dropdown -->
 			<div class="dropdown-box group">
@@ -374,11 +373,9 @@
 					</div>
 
 					<div class="flex gap-3 cursor-pointer">
-						<NuxtLink
-							:to="BLOG_ROUTE"
-							class="font-medium font-inter uppercase"
-							>{{ t("header_travel_blog") }}</NuxtLink
-						>
+						<p @click="openBlog" class="font-medium font-inter uppercase">
+							{{ t("header_travel_blog") }}
+						</p>
 
 						<i class="fi fi-sr-share-square"></i>
 					</div>
@@ -395,11 +392,9 @@
 					</div>
 
 					<div class="flex gap-3 cursor-pointer">
-						<NuxtLink
-							:to="WHY_US_ROUTE"
-							class="font-medium font-inter uppercase"
-							>{{ t("header_why_us") }}</NuxtLink
-						>
+						<p @click="openWhyUs" class="font-medium font-inter uppercase">
+							{{ t("header_why_us") }}
+						</p>
 
 						<i class="fi fi-sr-share-square"></i>
 					</div>
@@ -668,6 +663,8 @@ const handleScroll = () => {
 
 // Routes
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
+const openWhyUs = () => navigateTo(localePath(WHY_US_ROUTE))
+const openBlog = () => navigateTo(localePath(BLOG_ROUTE))
 const openAttraction = (slug: string) => {
 	navigateTo(localePath(ATTRACTION_ROUTE(slug)))
 }

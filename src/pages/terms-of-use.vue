@@ -2,8 +2,8 @@
 	<Header with-logo class="z-50" />
 
 	<img
-		:src="whyUsData?.banner"
-		alt="Why us Banner"
+		:src="termsOfUseData?.banner"
+		alt="Terms of use Banner"
 		class="object-cover w-full h-[50vh] sm:(h-[79vh])"
 	/>
 
@@ -14,11 +14,11 @@
 			<RelativePath :relativePath="relativePath" class="mb-8" />
 
 			<p class="font-roboto-serif font-bold text-5xl sm:text-7xl mb-16">
-				{{ whyUsData?.title[locale] }}
+				{{ termsOfUseData?.title[locale] }}
 			</p>
 
 			<div
-				v-html="whyUsData?.text_html[locale]"
+				v-html="termsOfUseData?.text_html[locale]"
 				class="mb-20 html-paragraph"
 			></div>
 		</div>
@@ -36,10 +36,10 @@ import { FLOWER_LEFT4_SVG, HOME_ROUTE } from "~/constants"
 import type { RelativePathComponent } from "~/models"
 
 // General
-const whyUsPageStore = useWhyUsPageStore()
+const termsOfUsePageStore = useTermsOfUsePageStore()
 
 // Page data
-const { whyUsData } = storeToRefs(whyUsPageStore)
+const { termsOfUseData } = storeToRefs(termsOfUsePageStore)
 
 // Locales
 const { locale } = useI18n()
@@ -53,14 +53,14 @@ const relativePath = computed(
 				path: HOME_ROUTE,
 			},
 			{
-				label: "header_why_us",
+				label: "footer_terms_of_use",
 			},
 		] as RelativePathComponent[]
 )
 
 // Watchers
 watch(
-	() => whyUsData.value,
+	() => termsOfUseData.value,
 	(value) => {
 		if (!value) return
 
