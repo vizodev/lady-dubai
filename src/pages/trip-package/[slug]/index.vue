@@ -171,9 +171,23 @@
 				{{ t("trip_package_check_other_packages") }}
 			</span>
 			<div
-				class="flex items-center gap-6 sm:gap-10 md:gap-16 lg:gap-[82px] text-pink-600 flex-col sm:flex-row"
+				class="flex items-center justify-center gap-y-6 gap-x-6 sm:gap-x-10 md:gap-x-16 lg:gap-x-[82px] text-pink-600 sm:flex-wrap w-3/4"
 			>
 				<button
+					v-for="otherPackage of otherPackages"
+					class="flex items-center gap-1.5"
+					@click="openTripPackage(otherPackage.slug)"
+				>
+					<span
+						class="text-base sm:text-[20px] md:text-[24px] font-medium font-roboto-serif leading-tight"
+					>
+						{{ otherPackage.title[locale] }}
+					</span>
+					<div class="flex items-center justify-center w-9 h-9">
+						<i class="fi fi-sr-share-square text-[12px]"></i>
+					</div>
+				</button>
+				<!-- <button
 					class="flex items-center gap-1.5"
 					v-if="previousPackage"
 					@click="openTripPackage(previousPackage.slug)"
@@ -201,7 +215,7 @@
 					<div class="flex items-center justify-center w-9 h-9">
 						<i class="fi fi-sr-angle-right text-[12px]"></i>
 					</div>
-				</button>
+				</button> -->
 			</div>
 		</div>
 
@@ -250,30 +264,22 @@ const props = computed(() => {
 
 // Package
 const currentTripPackage = ref<TripPackage>()
-
-const previousPackage = computed(() => {
-	if (!currentTripPackage.value) return
-
-	const index = tripPackages.value.findIndex(
-		(tripPackage) => tripPackage.id === currentTripPackage.value!.id
-	)
-	return tripPackages.value[index - 1]
-})
-const nextPackage = computed(() => {
-	if (!currentTripPackage.value) return
-
-	const index = tripPackages.value.findIndex(
-		(tripPackage) => tripPackage.id === currentTripPackage.value!.id
-	)
-	return tripPackages.value[index + 1]
-})
+const otherPackages = ref<TripPackage[]>([])
 
 const loadTripPackage = async () => {
-	currentTripPackage.value =
-		tripPackages.value.find((i) => i.slug === props.value.slug) ??
-		(await tripPackagesStore.getTripPackageBySlug(props.value.slug))
+	if (tripPackages.value.length === 0) {
+		await tripPackagesStore.loadTripPackages()
+	}
+
+	currentTripPackage.value = tripPackages.value.find(
+		(i) => i.slug === props.value.slug
+	)
 
 	if (!currentTripPackage.value) return openHome()
+
+	otherPackages.value = tripPackages.value.filter(
+		(i) => i.id !== currentTripPackage.value!.id
+	)
 
 	currentFlightDate.value = currentTripPackage.value.flights[0]
 }
