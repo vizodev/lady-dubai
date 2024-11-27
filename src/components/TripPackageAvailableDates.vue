@@ -50,7 +50,7 @@ import { type Flight } from "~/models"
 
 defineProps<{
 	flights: Flight[]
-	currentFlight: Flight
+	currentFlight?: Flight
 	showByAiports?: boolean
 }>()
 

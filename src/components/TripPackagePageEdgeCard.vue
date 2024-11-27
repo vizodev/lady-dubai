@@ -5,7 +5,10 @@
 		<div class="flex flex-col gap-8 items-center w-full">
 			<div class="flex flex-col gap-6 items-center">
 				<div
-					v-if="tripPackage?.price?.usd !== tripPackage?.downsale_price?.usd"
+					v-if="
+						tripPackage?.price[currentCurrency] !==
+						tripPackage?.downsale_price[currentCurrency]
+					"
 					class="flex flex-col items-center gap-1"
 				>
 					<span
@@ -112,7 +115,7 @@ import type { Flight, TripPackage } from "~/models"
 
 const props = defineProps<{
 	tripPackage: TripPackage
-	currentFlight: Flight
+	currentFlight?: Flight
 }>()
 const emit = defineEmits<{
 	(e: "onFlightChange", data: Flight): void
@@ -138,7 +141,8 @@ const openCheckout = () => {
 		localePath(
 			TRIP_PACKAGE_CHECKOUT_ROUTE(
 				props.tripPackage.slug,
-				props.tripPackage.flights.indexOf(props.currentFlight)
+				props.currentFlight &&
+					props.tripPackage.flights.indexOf(props.currentFlight)
 			)
 		)
 	)

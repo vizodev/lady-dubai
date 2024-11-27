@@ -64,7 +64,7 @@
 				</div>
 
 				<TripPackagePageEdgeCard
-					v-if="currentTripPackage && currentFlightDate"
+					v-if="currentTripPackage"
 					:trip-package="currentTripPackage"
 					:current-flight="currentFlightDate"
 					@on-flight-change="onFlightDateChange"
@@ -140,7 +140,6 @@
 					</p>
 
 					<TripPackageAvailableDates
-						v-if="currentFlightDate"
 						:flights="flights"
 						:current-flight="currentFlightDate"
 						@on-change="onFlightDateChange"
@@ -148,6 +147,24 @@
 				</div>
 
 				<div v-if="currentFlightDate" class="flex flex-col gap-16 mb-12">
+					<div class="flex items-center gap-3">
+						<span
+							class="font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] xl:text-[48px] whitespace-nowrap"
+						>
+							{{
+								`${tripPackageCurrencies[currentCurrency].symbol} ${currentFlightDate.price[currentCurrency]}`
+							}}
+						</span>
+						<div class="flex flex-col font-inter">
+							<span class="font-bold leading-none">
+								{{ t(`currency_${currentCurrency}`) }}
+							</span>
+							<span class="text-[14px] font-medium">
+								{{ t("per_person") }}
+							</span>
+						</div>
+					</div>
+
 					<FlightBox
 						:key="currentFlightDate.departing_takeoff.toString()"
 						departingFlight
@@ -166,7 +183,11 @@
 					/>
 				</div>
 
-				<button class="btn-rounded self-end">
+				<button
+					v-if="currentFlightDate"
+					@click="hideCurrentFlight"
+					class="btn-rounded self-end"
+				>
 					<i class="fi fi-rs-circle-xmark not-italic flex items-center gap-2">
 						{{ t("trip_package_exclude_plane_ticket_button") }}
 					</i>
@@ -249,6 +270,7 @@ import {
 	HOME_TRIP_PACKAGES_SECTION_ROUTE,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
+import { tripPackageCurrencies } from "~/data"
 import {
 	type Attraction,
 	type Flight,
@@ -262,6 +284,7 @@ const attractionsStore = useAttractionsStore()
 const tripPackagesStore = useTripPackagesStore()
 const { tripPackages } = storeToRefs(tripPackagesStore)
 const { airports } = storeToRefs(airportsStore)
+const currenciesStore = useCurrenciesStore()
 
 const props = computed(() => {
 	const route = useRoute()
@@ -273,6 +296,9 @@ const props = computed(() => {
 		date: queryParams.date as string,
 	}
 })
+
+// Currencies
+const { currentCurrency } = storeToRefs(currenciesStore)
 
 // Package
 const currentTripPackage = ref<TripPackage>()
@@ -328,6 +354,9 @@ const onFlightDateChange = (data: Flight) => {
 const onAirportChange = (data: string) => {
 	currentAirportId.value = Number(data)
 	currentFlightDate.value = flights.value[0]
+}
+const hideCurrentFlight = () => {
+	currentFlightDate.value = undefined
 }
 
 // Relative path

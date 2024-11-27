@@ -169,6 +169,19 @@
 						</div>
 
 						<div class="flex flex-col gap-3">
+							<div class="flex items-center gap-3">
+								<span
+									class="font-bold font-roboto-serif text-2xl whitespace-nowrap"
+								>
+									{{
+										`${tripPackageCurrencies[currentCurrency].symbol} ${currentFlight.price[currentCurrency]}`
+									}}
+								</span>
+								<span class="font-inter font-bold leading-none">
+									{{ t(`currency_${currentCurrency}`) }}
+								</span>
+							</div>
+
 							<CheckoutFlightDetails
 								:takeOffAirportId="currentFlight.departing_takeoff_airport_id"
 								:landingAirportId="currentFlight.departing_landing_airport_id"
@@ -318,6 +331,7 @@ const totalPrice = computed(() => {
 
 	return getTripPackagePrice(
 		currentTripPackage.value,
+		currentFlight.value,
 		travellersCount.value,
 		currentCurrency.value
 	)
@@ -416,13 +430,14 @@ watch(
 	(data) => {
 		if (!data) return
 
+		if (props.value?.date === undefined) {
+			currentFlight.value = undefined
+			return
+		}
+
 		let idx = Number(props.value?.date)
 
-		if (!idx) {
-			idx = 0
-		} else {
-			idx = idx <= data.flights.length - 1 ? idx : 0
-		}
+		idx = idx <= data.flights.length - 1 ? idx : 0
 
 		currentFlight.value = data.flights[idx]
 	}

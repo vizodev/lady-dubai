@@ -52,6 +52,8 @@ export type AccommodationFeature = {
 export type Flight = {
 	id: number
 
+	price: Price
+
 	departing_takeoff: Date
 	departing_takeoff_airport_id: number
 	departing_landing: Date

@@ -13,5 +13,7 @@ export const BLOG_ARTICLE_ROUTE = (slug: string) => `${BLOG_ROUTE}/${slug}`
 export const ATTRACTION_ROUTE = (slug: string) => `/attraction/${slug}`
 
 export const TRIP_PACKAGE_ROUTE = (slug: string) => `/trip-package/${slug}`
-export const TRIP_PACKAGE_CHECKOUT_ROUTE = (slug: string, date: number) =>
-	`${TRIP_PACKAGE_ROUTE(slug)}/checkout?date=${date}`
+export const TRIP_PACKAGE_CHECKOUT_ROUTE = (slug: string, date?: number) =>
+	`${TRIP_PACKAGE_ROUTE(slug)}/checkout${
+		date != undefined ? `?date=${date}` : ""
+	}`
