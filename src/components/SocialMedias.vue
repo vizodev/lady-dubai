@@ -12,19 +12,5 @@
 </template>
 
 <script setup lang="ts">
-import {
-	FACEBOOK_ICON_SVG,
-	INSTAGRAM_ICON_SVG,
-	TIKTOK_ICON_SVG,
-	YOUTUBE_ICON2_SVG,
-} from "~/constants"
-
 const socialMedias = useSocialMediasStore()
-
-const medias: { icon: string }[] = [
-	{ icon: FACEBOOK_ICON_SVG },
-	{ icon: YOUTUBE_ICON2_SVG },
-	{ icon: TIKTOK_ICON_SVG },
-	{ icon: INSTAGRAM_ICON_SVG },
-]
 </script>

@@ -1,8 +1,13 @@
-import { SOCIAL_MEDIAS_STORE, SUPABASE_SOCIAL_MEDIAS_TABLE } from "~/constants"
-import { type SocialMedia } from "~/models"
+import {
+	SOCIAL_MEDIAS_STORE,
+	SUPABASE_SOCIAL_MEDIAS_TABLE,
+	SUPABASE_WHATSAPP_TABLE,
+} from "~/constants"
+import { type SocialMedia, type WhatsappSocialMedia } from "~/models"
 
 interface IState {
 	socialMedias: SocialMedia[]
+	whatsappMedia?: WhatsappSocialMedia
 	loadingSocialMedias: boolean
 	errorOnLoadSocialMedias: boolean
 }
@@ -22,11 +27,15 @@ export const useSocialMediasStore = defineStore(SOCIAL_MEDIAS_STORE, {
 			this.loadingSocialMedias = true
 
 			try {
-				const { data } = await client
-					.from(SUPABASE_SOCIAL_MEDIAS_TABLE)
-					.select("*")
+				const [socialMediasRes, whatsappMediaRes] = await Promise.all([
+					client.from(SUPABASE_SOCIAL_MEDIAS_TABLE).select("*"),
+					client.from(SUPABASE_WHATSAPP_TABLE).select("*"),
+				])
 
-				this.socialMedias = data as SocialMedia[]
+				this.whatsappMedia = whatsappMediaRes.data![0] as WhatsappSocialMedia
+				this.socialMedias = socialMediasRes.data as SocialMedia[]
+
+				console.log(this.whatsappMedia)
 			} catch (error) {
 				this.errorOnLoadSocialMedias = true
 				console.error("Error loading social medias", error)

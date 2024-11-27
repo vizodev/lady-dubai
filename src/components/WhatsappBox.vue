@@ -12,7 +12,7 @@
 				{{ t("whatsapp_description") }}
 			</span>
 		</div>
-		<button class="btn-primary">
+		<button @click="openWhatsapp" class="btn-primary">
 			<div class="w-max flex gap-3">
 				<i class="fi fi-brands-whatsapp"> </i>
 
@@ -23,6 +23,18 @@
 </template>
 
 <script setup lang="ts">
+const socialMediasStore = useSocialMediasStore()
+
 // Locales
 const { t } = useI18n()
+
+// Routes
+const openWhatsapp = () => {
+	navigateTo(socialMediasStore.whatsappMedia?.link, {
+		external: true,
+		open: {
+			target: "_blank",
+		},
+	})
+}
 </script>

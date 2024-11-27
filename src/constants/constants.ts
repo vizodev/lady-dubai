@@ -69,6 +69,7 @@ export const SUPABASE_LOCALES_TABLE = "locales"
 export const SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE =
 	"trip_package_attractions"
 export const SUPABASE_SOCIAL_MEDIAS_TABLE = "social_medias"
+export const SUPABASE_WHATSAPP_TABLE = "whatsapp"
 
 export const SUPABASE_ID_FIELD = "id"
 export const SUPABASE_SLUG_FIELD = "slug"

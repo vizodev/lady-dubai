@@ -1,6 +1,7 @@
 <template>
 	<div
 		v-if="showContact"
+		@click="openWhatsapp"
 		class="group fixed bottom-[80px] animate-bounce hover:animate-none transition-all duration-[.2s] z-50 bottom-10 right-5 md:(right-10 bottom-15) lg:(right-20 bottom-20)"
 	>
 		<button
@@ -16,6 +17,8 @@
 </template>
 
 <script setup lang="ts">
+const socialMediasStore = useSocialMediasStore()
+
 // Locales
 const { t } = useI18n()
 
@@ -30,6 +33,16 @@ const handleScroll = () => {
 	} else {
 		showContact.value = false
 	}
+}
+
+// Routes
+const openWhatsapp = () => {
+	navigateTo(socialMediasStore.whatsappMedia?.link, {
+		external: true,
+		open: {
+			target: "_blank",
+		},
+	})
 }
 
 // Life cycle
