@@ -1,9 +1,10 @@
 import type { CheckoutSchemaSubmit } from "~/formSchemas"
-import type { Currency, TripPackage } from "./tripPackage"
+import type { Currency, Flight, TripPackage } from "./tripPackage"
 
 export type GetPaymentInfoBody = {
 	data: CheckoutSchemaSubmit
 	tripPackage: TripPackage
+	flight?: Flight
 	currency: Currency
 }
 

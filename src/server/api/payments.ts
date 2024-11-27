@@ -14,6 +14,7 @@ export default defineEventHandler(async (event) => {
 
 	const amount = getTripPackagePrice(
 		body.tripPackage,
+		body.flight,
 		body.data.users.length,
 		body.currency
 	)

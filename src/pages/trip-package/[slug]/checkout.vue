@@ -392,6 +392,7 @@ const onSubmit = async (formData: CheckoutSchemaSubmit) => {
 			tripPackage: currentTripPackage.value,
 			data: formData,
 			currency: currentCurrency.value,
+			flight: currentFlight.value,
 		}
 		const res = await useFetch(API_PAYMENTS(currentTripPackage.value!.id), {
 			method: "POST",
