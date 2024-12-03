@@ -1,4 +1,29 @@
-import type { AccommodationFeature, TripPackage } from "~/models"
+import type {
+	AccommodationFeature,
+	Currency,
+	Flight,
+	TripPackage,
+} from "~/models"
+
+export const filterTripPackagesToShow = (packages: TripPackage[]) => {
+	return packages.filter((i) => i.is_visible && !i.is_custom)
+}
+
+export const canShowPackage = (data: TripPackage) => {
+	return data.is_visible
+}
+
+export const getTripPackagePrice = (
+	tripPackage: TripPackage,
+	flight: Flight | undefined,
+	travellersCount: number,
+	currency: Currency
+) => {
+	return (
+		(tripPackage.price[currency] + (flight ? flight?.price[currency] : 0)) *
+		travellersCount
+	)
+}
 
 export const formatTripPackage = (
 	data: any,

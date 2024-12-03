@@ -1,11 +1,11 @@
 import stripe from "stripe"
 import { GetPaymentInfoBody, GetPaymentInfoResponse } from "~/models"
+import { getTripPackagePrice } from "~/utils/tripPackages"
 import {
 	STRIPE_CANCEL_URL,
 	STRIPE_SECRET_KEY,
 	STRIPE_SUCCESS_URL,
 } from "../../constants"
-import { getTripPackagePrice } from "../../utils/getTripPackagePrice"
 
 export default defineEventHandler(async (event) => {
 	const body: GetPaymentInfoBody = await readBody(event)

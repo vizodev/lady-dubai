@@ -309,16 +309,18 @@ const loadTripPackage = async () => {
 		await tripPackagesStore.loadTripPackages()
 	}
 
-	currentTripPackage.value = tripPackages.value.find(
+	const packageBySlug = tripPackages.value.find(
 		(i) => i.slug === props.value.slug
 	)
 
-	if (!currentTripPackage.value) return openHome()
+	if (!packageBySlug || !canShowPackage(packageBySlug)) {
+		return openHome()
+	}
 
-	otherPackages.value = tripPackages.value.filter(
-		(i) => i.id !== currentTripPackage.value!.id
+	currentTripPackage.value = packageBySlug
+	otherPackages.value = filterTripPackagesToShow(
+		tripPackages.value.filter((i) => i.id !== currentTripPackage.value!.id)
 	)
-
 	currentFlightDate.value = currentTripPackage.value.flights[0]
 }
 

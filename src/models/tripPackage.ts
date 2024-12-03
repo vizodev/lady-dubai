@@ -18,6 +18,8 @@ export type TripPackage = {
 	guidelanguages: Language[]
 	flights: Flight[]
 	is_relocation: boolean
+	is_visible: boolean
+	is_custom: boolean
 	accommodations: Accommodation[]
 	cancelationPolicy: {
 		label: TextListType

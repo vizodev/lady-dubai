@@ -288,7 +288,6 @@ import {
 	type GetPaymentInfoBody,
 	type TripPackage,
 } from "~/models"
-import { getTripPackagePrice } from "~/utils/getTripPackagePrice"
 
 // General
 const props = computed(() => {
@@ -317,11 +316,15 @@ const { tripPackages } = storeToRefs(tripPackagesStore)
 const currentTripPackage = ref<TripPackage>()
 
 const loadTripPackage = async () => {
-	currentTripPackage.value =
+	const packageBySlug =
 		tripPackages.value.find((i) => i.slug === props.value.slug) ??
 		(await tripPackagesStore.getTripPackageBySlug(props.value.slug))
 
-	if (!currentTripPackage.value) openHome()
+	if (!packageBySlug || !canShowPackage(packageBySlug)) {
+		return openHome()
+	}
+
+	currentTripPackage.value = packageBySlug
 }
 
 // Travellers

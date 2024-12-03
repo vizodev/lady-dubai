@@ -12,7 +12,7 @@
 		>
 			<div
 				class="col-span flex justify-center w-full items-stretch"
-				v-for="tripPackage in packages.tripPackages"
+				v-for="tripPackage in tripPackages"
 			>
 				<div class="w-full">
 					<PackageCard :tripPackage="tripPackage" class="h-full" />
@@ -61,7 +61,6 @@ import {
 	FLOWER_RIGHT1_SVG,
 	TRIP_PACKAGES_SECTION,
 } from "~/constants"
-import { type TripPackage } from "~/models"
 
 // General
 const tripPackagesStore = useTripPackagesStore()
@@ -71,48 +70,10 @@ const languagesStore = useLanguagesStore()
 const { languages } = storeToRefs(languagesStore)
 
 // Trip packages
-const { tripPackages } = storeToRefs(tripPackagesStore)
-const packages = reactive({
-	baseTripPackages: [] as TripPackage[],
-	tripPackages: [] as TripPackage[],
-})
-
-const loadTripPackages = async () => {
-	packages.baseTripPackages = tripPackages.value
-}
+const tripPackages = computed(() =>
+	filterTripPackagesToShow(tripPackagesStore.tripPackages)
+)
 
 // Locales
 const { t } = useI18n()
-
-// Listeners
-const resizeEventName = "resize"
-const handleTripPackagesAccordingToScreenSize = () => {
-	if (window.innerWidth < 640) {
-		packages.tripPackages = packages.baseTripPackages.slice(0, 3)
-	} else if (window.innerWidth < 1024 && window.innerWidth > 639) {
-		packages.tripPackages = packages.baseTripPackages.slice(0, 4)
-	} else {
-		packages.tripPackages = packages.baseTripPackages.slice(0, 6)
-	}
-}
-
-// Life cylce
-onMounted(async () => {
-	await loadTripPackages()
-
-	handleTripPackagesAccordingToScreenSize()
-
-	// Limit the number of trip packages to 3 when the screen is sm or smaller
-	window.addEventListener(
-		resizeEventName,
-		handleTripPackagesAccordingToScreenSize
-	)
-})
-
-onUnmounted(() => {
-	window.removeEventListener(
-		resizeEventName,
-		handleTripPackagesAccordingToScreenSize
-	)
-})
 </script>
