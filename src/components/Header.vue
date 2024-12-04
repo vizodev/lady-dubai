@@ -567,7 +567,7 @@ const toogleShowCurrenciesMobileDropdown = () => {
 
 // Trip Packages
 const tripPackages = computed(() =>
-	filterTripPackagesToShow(tripPackagesStore.tripPackages)
+	filterTripPackagesToShow(tripPackagesStore.tripPackages, locale.value)
 )
 const currentTripPackageSelected = ref<TripPackage>()
 

@@ -20,6 +20,7 @@ export type TripPackage = {
 	is_relocation: boolean
 	is_visible: boolean
 	is_custom: boolean
+	visibility_languages: string[]
 	accommodations: Accommodation[]
 	cancelationPolicy: {
 		label: TextListType

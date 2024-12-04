@@ -5,8 +5,14 @@ import type {
 	TripPackage,
 } from "~/models"
 
-export const filterTripPackagesToShow = (packages: TripPackage[]) => {
-	return packages.filter((i) => i.is_visible && !i.is_custom)
+export const filterTripPackagesToShow = (
+	packages: TripPackage[],
+	locale: string
+) => {
+	return packages.filter(
+		(i) =>
+			i.is_visible && !i.is_custom && i.visibility_languages.includes(locale)
+	)
 }
 
 export const canShowPackage = (data: TripPackage) => {
@@ -39,6 +45,7 @@ export const formatTripPackage = (
 		...data,
 		cancelationPolicy: data.cancelationpolicy[0],
 		disclaimer: data.disclaimer[0],
+		visibility_languages: data.visibility_languages ?? [],
 		flights: (data.flights as any[])
 			.map((i: any) => ({
 				...i,

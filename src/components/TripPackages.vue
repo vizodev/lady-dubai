@@ -69,11 +69,11 @@ const languagesStore = useLanguagesStore()
 // Languages
 const { languages } = storeToRefs(languagesStore)
 
+// Locales
+const { t, locale } = useI18n()
+
 // Trip packages
 const tripPackages = computed(() =>
-	filterTripPackagesToShow(tripPackagesStore.tripPackages)
+	filterTripPackagesToShow(tripPackagesStore.tripPackages, locale.value)
 )
-
-// Locales
-const { t } = useI18n()
 </script>
