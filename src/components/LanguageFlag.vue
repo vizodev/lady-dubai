@@ -2,6 +2,9 @@
 	<button
 		@click="changeLocale"
 		class="flex items-center gap-3 duration-[.2s] hover:(text-blue-500)"
+		:class="{
+			'!opacity-25 pointer-events-none': !isLocaleReadyToUse,
+		}"
 	>
 		<img :src="languageToFlagSrc[language]" class="w-[27px] h-[16px] rounded-sm"></img>
 		<span class="uppercase font-inter font-medium text-xs">{{ language }}</span>
@@ -16,10 +19,16 @@ const { language } = defineProps<{
 	language: LanguageEnum
 }>()
 
+const localesStore = useLocalesStore()
 const currenciesStore = useCurrenciesStore()
 
 // Locales
-const { setLocale } = useI18n()
+const {translations} = storeToRefs(localesStore)
+const {  setLocale } = useI18n()
+
+const isLocaleReadyToUse = computed(() => {
+	return translations.value.find((i) => i.locale_acronym == languageToLocale[language])?.is_ready_to_use
+})
 
 const changeLocale = () => {
 	setLocale(languageToLocale[language])

@@ -20,6 +20,7 @@ const blogPageStore = useBlogPageStore()
 const blogStore = useBlogStore()
 const attractionsCategoriesStore = useAttractionsCategoriesStore()
 const socialMediasStore = useSocialMediasStore()
+const localesStore = useLocalesStore()
 
 onMounted(async () => {
 	await Promise.all([
@@ -36,6 +37,7 @@ onMounted(async () => {
 		blogStore.loadPosts(),
 		attractionsCategoriesStore.loadCategories(),
 		socialMediasStore.loadSocialMedias(),
+		localesStore.loadTranslations(),
 	])
 })
 </script>

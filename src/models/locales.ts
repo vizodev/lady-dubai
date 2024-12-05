@@ -1,3 +1,10 @@
+export type Translation = {
+	[key: string]: any
+
+	locale_acronym: string
+	is_ready_to_use: boolean
+}
+
 export type TextType = {
 	[key: string]: string
 	en: string

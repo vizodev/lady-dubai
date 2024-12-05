@@ -118,7 +118,7 @@ const props = defineProps<{
 	currentFlight?: Flight
 }>()
 const emit = defineEmits<{
-	(e: "onFlightChange", data: Flight): void
+	(e: "onFlightChange", data?: Flight): void
 }>()
 
 const currenciesStore = useCurrenciesStore()
@@ -127,7 +127,7 @@ const currenciesStore = useCurrenciesStore()
 const { currentCurrency } = storeToRefs(currenciesStore)
 
 // Flight
-const onFlightChange = (data: Flight) => {
+const onFlightChange = (data?: Flight) => {
 	emit("onFlightChange", data)
 }
 

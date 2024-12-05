@@ -151,49 +151,48 @@
 						</p>
 					</div>
 
-					<div v-if="currentFlight" class="flex flex-col gap-8 mb-12">
-						<div class="text-xl font-inter">
-							<p class="font-bold">
-								{{ handleFlightLabel(currentFlight) }}
-								<span class="font-light">{{
-									handleFlightYearLabel(currentFlight)
-								}}</span>
-							</p>
+					<div class="mb-12">
+						<div v-if="currentFlight" class="flex flex-col gap-8">
+							<div class="text-xl font-inter">
+								<p class="font-bold">
+									{{ handleFlightLabel(currentFlight) }}
+									<span class="font-light">{{
+										handleFlightYearLabel(currentFlight)
+									}}</span>
+								</p>
 
-							<p
-								@click="toogleShowFlightsModal"
-								class="text-pink-600 font-bold text-sm cursor-pointer"
-							>
-								{{ t("checkout_alter_date") }}
-							</p>
-						</div>
-
-						<div class="flex flex-col gap-3">
-							<div class="flex items-center gap-3">
-								<span
-									class="font-bold font-roboto-serif text-2xl whitespace-nowrap"
+								<p
+									@click="toogleShowFlightsModal"
+									class="text-pink-600 font-bold text-sm cursor-pointer"
 								>
-									{{
-										`${tripPackageCurrencies[currentCurrency].symbol} ${currentFlight.price[currentCurrency]}`
-									}}
-								</span>
-								<span class="font-inter font-bold leading-none">
-									{{ t(`currency_${currentCurrency}`) }}
-								</span>
+									{{ t("checkout_alter_date") }}
+								</p>
 							</div>
 
-							<CheckoutFlightDetails
-								:takeOffAirportId="currentFlight.departing_takeoff_airport_id"
-								:landingAirportId="currentFlight.departing_landing_airport_id"
-								:takeOffDate="currentFlight.departing_takeoff"
-								departingFlight
-							/>
+							<div class="flex flex-col gap-3">
+								<CheckoutFlightDetails
+									:takeOffAirportId="currentFlight.departing_takeoff_airport_id"
+									:landingAirportId="currentFlight.departing_landing_airport_id"
+									:takeOffDate="currentFlight.departing_takeoff"
+									departingFlight
+								/>
 
-							<CheckoutFlightDetails
-								:takeOffAirportId="currentFlight.returning_takeoff_airport_id"
-								:landingAirportId="currentFlight.returning_landing_airport_id"
-								:takeOffDate="currentFlight.returning_takeoff"
-							/>
+								<CheckoutFlightDetails
+									:takeOffAirportId="currentFlight.returning_takeoff_airport_id"
+									:landingAirportId="currentFlight.returning_landing_airport_id"
+									:takeOffDate="currentFlight.returning_takeoff"
+								/>
+							</div>
+						</div>
+						<div v-else class="flex gap-3 items-center">
+							<p
+								@click="toogleShowFlightsModal"
+								class="text-pink-600 font-bold text-lg cursor-pointer"
+							>
+								{{ t("checkout_add_flight") }}
+							</p>
+
+							<i class="fi fi-rr-square-plus text-pink-600"></i>
 						</div>
 					</div>
 
@@ -258,7 +257,7 @@
 			</p>
 
 			<TripPackageAvailableDates
-				v-if="currentTripPackage && currentFlight"
+				v-if="currentTripPackage"
 				:flights="currentTripPackage.flights"
 				:current-flight="currentFlight"
 				show-by-aiports
@@ -350,7 +349,7 @@ const showFlightsModal = ref(false)
 const toogleShowFlightsModal = () => {
 	showFlightsModal.value = !showFlightsModal.value
 }
-const onFlightChange = (data: Flight) => {
+const onFlightChange = (data?: Flight) => {
 	currentFlight.value = data
 }
 const handleFlightLabel = (data: Flight) => {

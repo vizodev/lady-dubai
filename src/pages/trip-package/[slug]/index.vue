@@ -147,24 +147,6 @@
 				</div>
 
 				<div v-if="currentFlightDate" class="flex flex-col gap-16 mb-12">
-					<div class="flex items-center gap-3">
-						<span
-							class="font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] xl:text-[48px] whitespace-nowrap"
-						>
-							{{
-								`${tripPackageCurrencies[currentCurrency].symbol} ${currentFlightDate.price[currentCurrency]}`
-							}}
-						</span>
-						<div class="flex flex-col font-inter">
-							<span class="font-bold leading-none">
-								{{ t(`currency_${currentCurrency}`) }}
-							</span>
-							<span class="text-[14px] font-medium">
-								{{ t("per_person") }}
-							</span>
-						</div>
-					</div>
-
 					<FlightBox
 						:key="currentFlightDate.departing_takeoff.toString()"
 						departingFlight
@@ -270,7 +252,6 @@ import {
 	HOME_TRIP_PACKAGES_SECTION_ROUTE,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
-import { tripPackageCurrencies } from "~/data"
 import {
 	type Attraction,
 	type Flight,
@@ -297,9 +278,6 @@ const props = computed(() => {
 	}
 })
 
-// Currencies
-const { currentCurrency } = storeToRefs(currenciesStore)
-
 // Package
 const currentTripPackage = ref<TripPackage>()
 const otherPackages = ref<TripPackage[]>([])
@@ -319,7 +297,8 @@ const loadTripPackage = async () => {
 
 	currentTripPackage.value = packageBySlug
 	otherPackages.value = filterTripPackagesToShow(
-		tripPackages.value.filter((i) => i.id !== currentTripPackage.value!.id)
+		tripPackages.value.filter((i) => i.id !== currentTripPackage.value!.id),
+		locale.value
 	)
 	currentFlightDate.value = currentTripPackage.value.flights[0]
 }
@@ -349,9 +328,10 @@ const availableAirports = computed(() => {
 	)
 })
 
-const onFlightDateChange = (data: Flight) => {
+const onFlightDateChange = (data?: Flight) => {
 	currentFlightDate.value = data
-	currentAirportId.value = data.departing_takeoff_airport_id
+
+	if (data) currentAirportId.value = data.departing_takeoff_airport_id
 }
 const onAirportChange = (data: string) => {
 	currentAirportId.value = Number(data)

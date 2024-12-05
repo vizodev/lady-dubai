@@ -48,21 +48,21 @@
 <script setup lang="ts">
 import { type Flight } from "~/models"
 
-defineProps<{
+const { currentFlight } = defineProps<{
 	flights: Flight[]
 	currentFlight?: Flight
 	showByAiports?: boolean
 }>()
 
 const emit = defineEmits<{
-	(e: "onChange", data: Flight): void
+	(e: "onChange", data?: Flight): void
 }>()
 
 const airportsStore = useAirportsStore()
 
 // Dates
 const onChange = (data: Flight) => {
-	emit("onChange", data)
+	emit("onChange", data !== currentFlight ? data : undefined)
 }
 const handleFlightLabel = (data: Flight) => {
 	// 18 - 24 Jan 2024 | Same month
