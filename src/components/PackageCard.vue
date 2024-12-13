@@ -3,7 +3,7 @@
 		class="flex flex-col bg-white rounded-xl overflow-hidden customShadow relative"
 	>
 		<div
-			class="absolute bg-pink-100 z-10 w-[135px] py-2 flex justify-center -rotate-45 left-[-33px] top-[15px]"
+			class="absolute bg-pink-100 z-10 w-[135px] py-2 flex justify-center -rotate-45 left-[-33px] top-[15px] rounded-r-xl"
 			v-if="isNew"
 		>
 			<span

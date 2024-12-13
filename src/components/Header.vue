@@ -8,7 +8,7 @@
 		}"
 	>
 		<div
-			class="cursor-pointer mr-5"
+			class="cursor-pointer mx-5"
 			:class="{
 				'xl:hidden': !showLogo,
 			}"

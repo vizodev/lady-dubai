@@ -27,6 +27,7 @@
 							data-aos="fade-left"
 							data-aos-offset="-300"
 							class="text-[40px] font-medium font-roboto-serif text-pink-600 !leading-snug text-center sm:(text-[48px]) lg:(text-left text-[52px])"
+							:class="{}"
 						>
 							{{ t("cta_title1") }} <br class="hidden sm:block" />
 							<b>{{ t("cta_title2") }}</b> <br class="hidden sm:block" />

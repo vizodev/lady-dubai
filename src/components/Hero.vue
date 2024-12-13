@@ -15,7 +15,7 @@
 		></div>
 
 		<div
-			class="flex flex-col pl-[12%] 2xl:pl-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-50"
+			class="flex flex-col px-[12%] 2xl:px-[12.96875%] items-start gap-[70px] lg:gap-[80px] xl:gap-[100px] relative z-50"
 		>
 			<div class="w-[250px] hidden xl:block">
 				<img :src="LOGO_SVG" alt="Logo" class="w-full" />
@@ -57,7 +57,11 @@
 		</div>
 
 		<SocialMedias
-			class="flex flex-col absolute bottom-[121px] right-[40px] xl:right-[76px] gap-[28px]"
+			class="flex flex-col absolute bottom-[121px] gap-[28px]"
+			:class="{
+				'left-[40px] xl:left-[76px]': isRtl(),
+				'right-[40px] xl:right-[76px]': !isRtl(),
+			}"
 		/>
 
 		<span
@@ -86,7 +90,7 @@ import {
 } from "~/constants"
 
 // Locales
-const { t } = useI18n()
+const { t, localeProperties } = useI18n()
 
 // Background
 const backgrounds = reactive<{

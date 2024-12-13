@@ -1,12 +1,16 @@
 <template>
 	<NuxtLayout>
-		<div class="w-full overflow-hidden">
+		<div :dir="localeProperties.dir" class="w-full overflow-hidden">
 			<NuxtPage />
 		</div>
 	</NuxtLayout>
 </template>
 
 <script setup lang="ts">
+// Locale
+const { localeProperties } = useI18n()
+
+// Stores
 const tripPackagesStore = useTripPackagesStore()
 const attractionsStore = useAttractionsStore()
 const airportsStore = useAirportsStore()

@@ -39,6 +39,7 @@ export default defineNuxtConfig({
 			{
 				code: languageToLocale[LanguageEnum.ARABIC],
 				file: `${languageToLocale[LanguageEnum.ARABIC]}.ts`,
+				dir: "rtl",
 			},
 			{
 				code: languageToLocale[LanguageEnum.GERMAN],
@@ -55,6 +56,7 @@ export default defineNuxtConfig({
 			{
 				code: languageToLocale[LanguageEnum.HEBREW],
 				file: `${languageToLocale[LanguageEnum.HEBREW]}.ts`,
+				dir: "rtl",
 			},
 			{
 				code: languageToLocale[LanguageEnum.PORTUGUESE_BR],

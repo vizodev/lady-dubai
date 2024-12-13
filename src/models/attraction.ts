@@ -16,6 +16,7 @@ export type Attraction = {
 	first_text_html: TextType
 	second_text_html: TextType
 	is_relocation: boolean
+	visibility_languages: string[]
 }
 
 export type AttractionCategory = {

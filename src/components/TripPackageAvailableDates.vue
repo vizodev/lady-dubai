@@ -39,8 +39,10 @@
 			}"
 			@click="() => onChange(dt)"
 		>
-			{{ handleFlightLabel(dt) }}
-			<span class="text-xs font-light">{{ handleFlightYearLabel(dt) }}</span>
+			<span>
+				{{ handleFlightLabel(dt) }}
+				<span class="text-xs font-light">{{ handleFlightYearLabel(dt) }}</span>
+			</span>
 		</button>
 	</div>
 </template>
