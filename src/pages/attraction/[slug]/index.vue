@@ -1,5 +1,5 @@
 <template>
-	<Header with-logo class="z-50" />
+	<Header with-logo :available-languages="availableLanguages" class="z-50" />
 
 	<VideoRender
 		v-if="videoUrl"
@@ -96,14 +96,14 @@
 		<Contact class="page-padding" />
 	</div>
 
-	<Footer />
+	<Footer :available-languages="availableLanguages" />
 
 	<WhatsappButton />
 </template>
 
 <script lang="ts" setup>
 import { FLOWER_LEFT4_SVG, HOME_ROUTE, TRIP_PACKAGE_ROUTE } from "~/constants"
-import { languageToLocale } from "~/data"
+import { languageToLocale, localeToLanguage } from "~/data"
 import {
 	type Attraction,
 	type RelativePathComponent,
@@ -122,6 +122,15 @@ const props = computed(() => {
 
 const tripPackagesStore = useTripPackagesStore()
 const attractionStore = useAttractionsStore()
+
+// Available languages
+const availableLanguages = computed(() => {
+	return currentAttraction.value
+		? currentAttraction.value.visibility_languages.map(
+				(i) => localeToLanguage[i]
+		  )
+		: []
+})
 
 // Relative path
 const relativePath = computed(
@@ -164,8 +173,8 @@ const loadAttraction = async () => {
 const tripPackagesByAttraction = ref<TripPackage[]>([])
 
 const loadTripPackagesByAttraction = async (id: number) => {
-	tripPackagesByAttraction.value =
-		await tripPackagesStore.getTripPackagesByAttractionId(id)
+	const data = await tripPackagesStore.getTripPackagesByAttractionId(id)
+	tripPackagesByAttraction.value = filterTripPackagesToShow(data, locale.value)
 }
 
 // Locales
@@ -200,6 +209,14 @@ onMounted(async () => {
 	await loadAttraction()
 
 	if (!currentAttraction.value) {
+		openHome()
+		return
+	}
+
+	const availableLocales = availableLanguages.value.map(
+		(i) => languageToLocale[i]
+	)
+	if (!availableLocales.includes(locale.value)) {
 		openHome()
 		return
 	}

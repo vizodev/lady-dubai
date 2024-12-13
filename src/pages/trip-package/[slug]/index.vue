@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col overflow-y-auto w-full" v-if="currentTripPackage">
-		<Header with-logo class="z-50" />
+		<Header with-logo :available-languages="availableLanguages" class="z-50" />
 
 		<Gallery :gallery="currentTripPackage?.gallery ?? []" />
 
@@ -235,7 +235,7 @@
 		</div>
 
 		<Contact />
-		<Footer />
+		<Footer :available-languages="availableLanguages" />
 
 		<WhatsappButton />
 	</div>
@@ -252,6 +252,7 @@ import {
 	HOME_TRIP_PACKAGES_SECTION_ROUTE,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
+import { languageToLocale, localeToLanguage } from "~/data"
 import {
 	type Attraction,
 	type Flight,
@@ -265,7 +266,6 @@ const attractionsStore = useAttractionsStore()
 const tripPackagesStore = useTripPackagesStore()
 const { tripPackages } = storeToRefs(tripPackagesStore)
 const { airports } = storeToRefs(airportsStore)
-const currenciesStore = useCurrenciesStore()
 
 const props = computed(() => {
 	const route = useRoute()
@@ -276,6 +276,15 @@ const props = computed(() => {
 		slug: params.slug as string,
 		date: queryParams.date as string,
 	}
+})
+
+// Available languages
+const availableLanguages = computed(() => {
+	return currentTripPackage.value
+		? currentTripPackage.value.visibility_languages.map(
+				(i) => localeToLanguage[i]
+		  )
+		: []
 })
 
 // Package
@@ -405,6 +414,13 @@ onMounted(async () => {
 	await loadTripPackage()
 
 	if (!currentTripPackage.value) {
+		openHome()
+		return
+	}
+	const availableLocales = availableLanguages.value.map(
+		(i) => languageToLocale[i]
+	)
+	if (!availableLocales.includes(locale.value)) {
 		openHome()
 		return
 	}

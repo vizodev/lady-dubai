@@ -244,7 +244,7 @@
 		</div>
 	</BaseForm>
 
-	<Footer />
+	<Footer :available-languages="availableLanguages" />
 
 	<!-- Modals -->
 	<div
@@ -280,7 +280,12 @@ import {
 	PACKAGE_SVG,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
-import { genders, tripPackageCurrencies } from "~/data"
+import {
+	genders,
+	languageToLocale,
+	localeToLanguage,
+	tripPackageCurrencies,
+} from "~/data"
 import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
 import {
 	type Flight,
@@ -297,6 +302,15 @@ const props = computed(() => {
 		slug: params.slug as string,
 		date: queryParams.date as string,
 	}
+})
+
+// Available languages
+const availableLanguages = computed(() => {
+	return currentTripPackage.value
+		? currentTripPackage.value.visibility_languages.map(
+				(i) => localeToLanguage[i]
+		  )
+		: []
 })
 
 // Stores
@@ -324,6 +338,14 @@ const loadTripPackage = async () => {
 	}
 
 	currentTripPackage.value = packageBySlug
+
+	const availableLocales = availableLanguages.value.map(
+		(i) => languageToLocale[i]
+	)
+	if (!availableLocales.includes(locale.value)) {
+		openHome()
+		return
+	}
 }
 
 // Travellers

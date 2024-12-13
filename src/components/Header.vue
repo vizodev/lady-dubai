@@ -83,7 +83,7 @@
 					<div class="flex h-full gap-8">
 						<div class="flex flex-col gap-4 self-center">
 							<p
-								v-for="category of categories"
+								v-for="category of filteredCategories"
 								:key="category.id"
 								@mouseenter="() => onAttractionCategorySelect(category)"
 								class="font-inter text-sm font-bold text-black uppercase cursor-pointer"
@@ -218,7 +218,8 @@
 
 				<div class="dropdown-content flex-col gap-6 group-hover:flex">
 					<LanguageFlag
-						v-for="language of Object.values(LanguageEnum)"
+						v-for="language of availableLanguages ??
+						Object.values(LanguageEnum)"
 						:language="language"
 						class="text-brown-700"
 					/>
@@ -294,7 +295,7 @@
 								v-if="showAttractionsMobileDropdown"
 								class="p-6 bg-white rounded-lg flex flex-col gap-5 items-start"
 							>
-								<div v-for="category of categories">
+								<div v-for="category of filteredCategories">
 									<p
 										@click="() => onAttractionCategorySelect(category)"
 										class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
@@ -460,7 +461,8 @@
 								class="p-6 bg-white rounded-lg flex flex-col gap-6"
 							>
 								<LanguageFlag
-									v-for="language of Object.values(LanguageEnum)"
+									v-for="language of availableLanguages ??
+									Object.values(LanguageEnum)"
 									:language="language"
 									class="text-brown-700"
 								/>
@@ -507,6 +509,7 @@ import {
 // General
 const props = defineProps<{
 	withLogo?: boolean
+	availableLanguages?: LanguageEnum[]
 }>()
 
 const tripPackagesStore = useTripPackagesStore()
@@ -579,6 +582,19 @@ const onTripPackageHover = (data: TripPackage) => {
 const { categories } = storeToRefs(attractionsCategoriesStore)
 const { attractions } = storeToRefs(attractionsStore)
 
+const filteredAttractions = computed(() => {
+	return filterAttractionsToShow(attractions.value, locale.value)
+})
+const filteredCategories = computed(() => {
+	const presentCategories = new Set(
+		filteredAttractions.value.map((i) => i.attraction_category_id)
+	)
+
+	return categories.value.filter((i) =>
+		Array.from(presentCategories).includes(i.id)
+	)
+})
+
 const currentAttractionCategorySelected = ref<AttractionCategory>()
 const currentAttractions = ref<Attraction[]>([])
 const currentAttractionSelected = ref<Attraction>()
@@ -589,7 +605,7 @@ const onAttractionCategorySelect = (data: AttractionCategory) => {
 	currentAttractionCategorySelected.value = data
 
 	try {
-		const res = attractions.value.filter(
+		const res = filteredAttractions.value.filter(
 			(i) => i.attraction_category_id === data.id && !i.is_relocation
 		)
 

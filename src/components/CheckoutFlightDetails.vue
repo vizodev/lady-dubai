@@ -9,7 +9,8 @@
 		</p>
 
 		<p>
-			{{ takeOffAirport?.title[locale] }} to {{ landingAirport?.title[locale] }}
+			{{ takeOffAirport?.title[locale] }} {{ t("checkout_flight_to") }}
+			{{ landingAirport?.title[locale] }}
 		</p>
 
 		<p>{{ timeLabel() }}</p>

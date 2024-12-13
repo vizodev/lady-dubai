@@ -50,7 +50,7 @@
 			class="flex justify-center md:justify-start gap-6 flex-wrap px-6 xl:px-[9%]"
 		>
 			<LanguageFlag
-				v-for="language of Object.values(LanguageEnum)"
+				v-for="language of availableLanguages ?? Object.values(LanguageEnum)"
 				:language="language"
 			/>
 		</div>
@@ -91,6 +91,11 @@ import {
 	WHATSAPP_ICON_SVG,
 } from "~/constants"
 import { LanguageEnum } from "~/models"
+
+// General
+defineProps<{
+	availableLanguages?: LanguageEnum[]
+}>()
 
 // Scroll
 const hasPageScroll = ref(false)
