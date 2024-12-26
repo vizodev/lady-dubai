@@ -39,10 +39,15 @@
 					{{ accommodation.subtitle[locale] }}
 				</span>
 			</div>
+
 			<span class="font-light font-inter leading-tight whitespace-pre-line">
 				{{ accommodation.description[locale] }}
 			</span>
-			<ul class="m-0 pl-4 w-full list-disc flex flex-col gap-2">
+
+			<ul
+				v-if="accommodation.features.length"
+				class="m-0 pl-4 w-full list-disc flex flex-col gap-2"
+			>
 				<li
 					v-for="feature of accommodation.features"
 					class="font-inter font-medium leading-tight"

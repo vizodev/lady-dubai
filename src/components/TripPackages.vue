@@ -32,7 +32,7 @@
 					{{ t("trip_package_build_own_package_title") }}
 				</p>
 
-				<p class="text-sm font-inter font-medium text-gray-600">
+				<p class="text-sm lg:text-base font-inter font-medium text-gray-600">
 					{{ t("trip_package_build_own_package_description") }}
 				</p>
 			</div>

@@ -47,7 +47,9 @@
 					>
 						{{ tripPackage.title[locale] }}
 					</span>
-					<span class="text-brown-700 text-[14px] font-inter font-medium">
+					<span
+						class="text-brown-700 font-inter font-medium text-sm lg:text-base"
+					>
 						{{ tripPackage.headline[locale] }}
 					</span>
 				</div>
