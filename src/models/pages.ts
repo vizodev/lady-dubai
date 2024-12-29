@@ -1,6 +1,6 @@
 import type { TextType } from "./locales"
 
-export type PrivacyPolicyData = {
+export type PageData = {
 	title: TextType
 	banner: string
 	text_html: TextType

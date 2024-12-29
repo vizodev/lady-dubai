@@ -227,13 +227,22 @@
 			<CheckboxField name="privacyPolicy" :value="true" class="mb-8">
 				<p class="text-base font-inter font-light text-brown-700">
 					{{ t("checkout_privacy_policy_description1") }}
-					<span class="text-pink-600 font-bold">{{
-						t("checkout_privacy_policy_description2")
-					}}</span>
-					{{ t("checkout_privacy_policy_description3") }}
-					<span class="text-pink-600 font-bold">{{
-						t("checkout_privacy_policy_description4")
-					}}</span>
+					<span
+						@click="openDisclaimer"
+						class="text-pink-600 font-bold hover:(underline)"
+						>{{ t("checkout_privacy_policy_description2") }}</span
+					>
+					<span
+						@click="openPrivacyPolicy"
+						class="text-pink-600 font-bold hover:(underline)"
+						>{{ t("checkout_privacy_policy_description3") }}</span
+					>
+					{{ t("checkout_privacy_policy_description4") }}
+					<span
+						@click="openCancellationPolicy"
+						class="text-pink-600 font-bold hover:(underline)"
+						>{{ t("checkout_privacy_policy_description5") }}</span
+					>
 				</p>
 			</CheckboxField>
 
@@ -275,9 +284,12 @@
 <script setup lang="ts">
 import {
 	API_PAYMENTS,
+	CANCELLATION_POLICY_ROUTE,
+	DISCLAIMER_ROUTE,
 	HOME_ROUTE,
 	LOGO_FOOTER_SVG,
 	PACKAGE_SVG,
+	PRIVACY_POLICY_ROUTE,
 	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
 import {
@@ -442,6 +454,27 @@ const localePath = useLocalePath()
 
 // Routes
 const openHome = () => navigateTo(localePath(HOME_ROUTE))
+const openDisclaimer = () => {
+	navigateTo(localePath(DISCLAIMER_ROUTE), {
+		open: {
+			target: "_blank",
+		},
+	})
+}
+const openPrivacyPolicy = () => {
+	navigateTo(localePath(PRIVACY_POLICY_ROUTE), {
+		open: {
+			target: "_blank",
+		},
+	})
+}
+const openCancellationPolicy = () => {
+	navigateTo(localePath(CANCELLATION_POLICY_ROUTE), {
+		open: {
+			target: "_blank",
+		},
+	})
+}
 const openTripPackage = () => {
 	navigateTo(localePath(TRIP_PACKAGE_ROUTE(props.value.slug)))
 }

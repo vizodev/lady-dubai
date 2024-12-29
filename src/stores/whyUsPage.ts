@@ -1,8 +1,8 @@
 import { SUPABASE_WHY_US_PAGE_TABLE, WHY_US_PAGE_STORE } from "~/constants"
-import { type WhyUsData } from "~/models"
+import { type PageData } from "~/models"
 
 interface IState {
-	whyUsData: WhyUsData | null
+	whyUsData: PageData | null
 	loadingWhyUsData: boolean
 	errorOnLoadWhyUsData: boolean
 }
@@ -28,7 +28,7 @@ export const useWhyUsPageStore = defineStore(WHY_US_PAGE_STORE, {
 
 				if (!data) throw new Error()
 
-				this.whyUsData = data[0] as WhyUsData
+				this.whyUsData = data[0] as PageData
 			} catch (error) {
 				this.errorOnLoadWhyUsData = true
 				console.error("Error loading whyUs data", error)

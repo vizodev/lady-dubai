@@ -2,10 +2,10 @@ import {
 	SUPABASE_TERMS_OF_USE_PAGE_TABLE,
 	TERMS_OF_USE_PAGE_STORE,
 } from "~/constants"
-import { type TermsOfUseData } from "~/models"
+import { type PageData } from "~/models"
 
 interface IState {
-	termsOfUseData: TermsOfUseData | null
+	termsOfUseData: PageData | null
 	loadingTermsOfUseData: boolean
 	errorOnLoadTermsOfUseData: boolean
 }
@@ -31,7 +31,7 @@ export const useTermsOfUsePageStore = defineStore(TERMS_OF_USE_PAGE_STORE, {
 
 				if (!data) throw new Error()
 
-				this.termsOfUseData = data[0] as TermsOfUseData
+				this.termsOfUseData = data[0] as PageData
 			} catch (error) {
 				this.errorOnLoadTermsOfUseData = true
 				console.error("Error loading termsOfUse data", error)

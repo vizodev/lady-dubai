@@ -2,10 +2,10 @@ import {
 	PRIVACY_POLICY_PAGE_STORE,
 	SUPABASE_PRIVACY_POLICY_PAGE_TABLE,
 } from "~/constants"
-import { type PrivacyPolicyData } from "~/models"
+import { type PageData } from "~/models"
 
 interface IState {
-	privacyPolicyData: PrivacyPolicyData | null
+	privacyPolicyData: PageData | null
 	loadingPrivacyPolicyData: boolean
 	errorOnLoadPrivacyPolicyData: boolean
 }
@@ -33,7 +33,7 @@ export const usePrivacyPolicyPageStore = defineStore(
 
 					if (!data) throw new Error()
 
-					this.privacyPolicyData = data[0] as PrivacyPolicyData
+					this.privacyPolicyData = data[0] as PageData
 				} catch (error) {
 					this.errorOnLoadPrivacyPolicyData = true
 					console.error("Error loading privacyPolicy data", error)
