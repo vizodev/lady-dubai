@@ -43,8 +43,6 @@ export const formatTripPackage = (
 
 	return {
 		...data,
-		cancelationPolicy: data.cancelationpolicy[0],
-		disclaimer: data.disclaimer[0],
 		visibility_languages: data.visibility_languages ?? [],
 		flights: (data.flights as any[])
 			.map((i: any) => ({

@@ -72,39 +72,6 @@
 				@on-change="onFlightChange"
 			/>
 		</div>
-		<div class="flex flex-col gap-6 items-start w-full">
-			<div class="flex flex-col">
-				<span
-					class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
-				>
-					{{ t("trip_package_edge_card_cancelation_policy") }}
-				</span>
-				<ul class="m-0 pl-4 w-full list-disc">
-					<li
-						v-for="text in tripPackage.cancelationPolicy.label[locale]"
-						class=""
-					>
-						<span class="font-inter font-medium text-[12px] leading-tight">
-							{{ text }}
-						</span>
-					</li>
-				</ul>
-			</div>
-			<div class="flex flex-col">
-				<span
-					class="uppercase text-[12px] leading-tight text-[#272223] font-bold font-inter"
-				>
-					{{ t("trip_package_edge_card_disclaimer") }}
-				</span>
-				<ul class="m-0 pl-4 w-full list-disc">
-					<li v-for="text in tripPackage.disclaimer.label[locale]" class="">
-						<span class="font-inter font-medium text-[12px] leading-tight">
-							{{ text }}
-						</span>
-					</li>
-				</ul>
-			</div>
-		</div>
 	</div>
 </template>
 

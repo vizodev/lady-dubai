@@ -1,5 +1,5 @@
 import { tripPackageCurrencies } from "../data"
-import type { TextListType, TextType } from "./"
+import type { TextType } from "./"
 
 export type TripPackage = {
 	id: number
@@ -22,12 +22,6 @@ export type TripPackage = {
 	is_custom: boolean
 	visibility_languages: string[]
 	accommodations: Accommodation[]
-	cancelationPolicy: {
-		label: TextListType
-	}
-	disclaimer: {
-		label: TextListType
-	}
 }
 
 export type Price = {

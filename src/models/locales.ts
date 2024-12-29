@@ -17,18 +17,6 @@ export type TextType = {
 	pt: string
 }
 
-export type TextListType = {
-	[key: string]: string[]
-	en: string[]
-	ar: string[]
-	es: string[]
-	fr: string[]
-	he: string[]
-	ru: string[]
-	deu: string[]
-	pt: string[]
-}
-
 export enum LanguageEnum {
 	ENGLISH = "ENGLISH",
 	ARABIC = "عربي",
