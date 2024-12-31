@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="dropdown-content left-0 flex-col gap-6 group-hover:flex">
-					<div class="flex gap-8 items-center">
+					<div class="flex gap-8 items-center cursor-default">
 						<img
 							:key="currentTripPackageSelected?.gallery[0]"
 							:src="currentTripPackageSelected?.gallery[0]"
@@ -52,10 +52,10 @@
 						/>
 
 						<div class="flex flex-col gap-6">
-							<p
+							<NuxtLink
 								v-for="tripPackage of tripPackages"
 								@mouseenter="() => onTripPackageHover(tripPackage)"
-								@click="openTripPackage(tripPackage.slug)"
+								:to="localePath(TRIP_PACKAGE_ROUTE(tripPackage.slug))"
 								class="max-w-72 text-base uppercase text-brown-700 font-medium"
 								:class="{
 									'!text-pink-600 font-bold':
@@ -63,7 +63,7 @@
 								}"
 							>
 								{{ tripPackage.title[locale] }}
-							</p>
+							</NuxtLink>
 						</div>
 					</div>
 				</div>
@@ -82,7 +82,7 @@
 				<div class="dropdown-content left-0 flex-col gap-6 group-hover:flex">
 					<div class="flex h-full gap-8">
 						<div class="flex flex-col gap-4 self-center">
-							<p
+							<NuxtLink
 								v-for="category of filteredCategories"
 								:key="category.id"
 								@mouseenter="() => onAttractionCategorySelect(category)"
@@ -98,18 +98,18 @@
 									v-if="category.id === currentAttractionCategorySelected?.id"
 									class="fi fi-rs-angle-right ml-1"
 								></i>
-							</p>
+							</NuxtLink>
 						</div>
 
 						<div class="border-l-1 border-black"></div>
 
-						<div class="self-center flex items-center">
+						<div class="self-center flex items-center cursor-default">
 							<div class="my-3 flex flex-col gap-4">
-								<p
+								<NuxtLink
 									v-for="attraction of currentAttractions"
 									:key="attraction.id"
 									@mouseenter="() => onAttractionHover(attraction)"
-									@click="openAttraction(attraction.slug)"
+									:to="localePath(ATTRACTION_ROUTE(attraction.slug))"
 									class="font-inter text-base font-medium text-off-black"
 									:class="{
 										'!text-pink-600':
@@ -117,7 +117,7 @@
 									}"
 								>
 									{{ attraction.title[locale] }}
-								</p>
+								</NuxtLink>
 							</div>
 						</div>
 
@@ -148,11 +148,11 @@
 							class="w-50 h-40 object-cover"
 						/>
 
-						<div class="flex flex-col gap-6">
-							<p
+						<div class="flex flex-col gap-6 cursor-default">
+							<NuxtLink
 								v-for="relocationEvent of relocationEvents"
 								@mouseenter="() => onRelocationEventHover(relocationEvent)"
-								@click="openAttraction(relocationEvent.slug)"
+								:to="localePath(ATTRACTION_ROUTE(relocationEvent.slug))"
 								class="max-w-72 text-base uppercase text-brown-700 font-medium"
 								:class="{
 									'!text-pink-600 font-bold':
@@ -160,15 +160,18 @@
 								}"
 							>
 								{{ relocationEvent.title[locale] }}
-							</p>
+							</NuxtLink>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<p @click="openBlog" class="font-medium font-inter uppercase text-center">
+			<NuxtLink
+				:to="localePath(BLOG_ROUTE)"
+				class="font-medium font-inter uppercase text-center"
+			>
 				{{ t("header_travel_blog") }}
-			</p>
+			</NuxtLink>
 
 			<button
 				@click="scrollToId(CONTACT_SECTION)"
@@ -177,12 +180,12 @@
 				{{ t("header_contact_us") }}
 			</button>
 
-			<p
-				@click="openWhyUs"
+			<NuxtLink
+				:to="localePath(WHY_US_ROUTE)"
 				class="font-medium font-inter uppercase text-center"
 			>
 				{{ t("header_why_us") }}
-			</p>
+			</NuxtLink>
 
 			<!-- Currencies dropdown -->
 			<div class="dropdown-box group">
@@ -194,7 +197,9 @@
 					<i class="fi fi-rs-angle-down"></i>
 				</div>
 
-				<div class="dropdown-content flex-col gap-6 group-hover:flex">
+				<div
+					class="dropdown-content flex-col gap-6 cursor-default group-hover:flex"
+				>
 					<p
 						class="text-black uppercase font-inter font-medium text-normal cursor-pointer duration-[.2s] hover:(text-blue-500)"
 						v-for="currency of Object.keys(tripPackageCurrencies)"
@@ -216,7 +221,9 @@
 					<i class="fi fi-rs-angle-down"></i>
 				</div>
 
-				<div class="dropdown-content flex-col gap-6 group-hover:flex">
+				<div
+					class="dropdown-content flex-col gap-6 cursor-default group-hover:flex"
+				>
 					<LanguageFlag
 						v-for="language of availableLanguages ??
 						Object.values(LanguageEnum)"
@@ -258,15 +265,15 @@
 						<transition>
 							<div
 								v-if="showTripPackagesMobileDropdown"
-								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center cursor-default"
 							>
-								<p
+								<NuxtLink
 									v-for="tripPackage of tripPackages"
-									@click="openTripPackage(tripPackage.slug)"
+									:to="localePath(TRIP_PACKAGE_ROUTE(tripPackage.slug))"
 									class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
 								>
 									{{ tripPackage.title[locale] }}
-								</p>
+								</NuxtLink>
 							</div>
 						</transition>
 					</div>
@@ -322,15 +329,15 @@
 											v-if="
 												currentAttractionCategorySelected?.id === category.id
 											"
-											class="flex flex-col gap-1 mt-2 ml-2"
+											class="flex flex-col gap-1 mt-2 ml-2 cursor-default"
 										>
-											<p
+											<NuxtLink
 												v-for="attraction of currentAttractions"
-												@click="openAttraction(attraction.slug)"
+												:to="localePath(ATTRACTION_ROUTE(attraction.slug))"
 												class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
 											>
 												{{ attraction.title[locale] }}
-											</p>
+											</NuxtLink>
 										</div>
 									</transition>
 								</div>
@@ -360,23 +367,26 @@
 						<transition>
 							<div
 								v-if="showRelocationMobileDropdown"
-								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6 items-center cursor-default"
 							>
-								<p
+								<NuxtLink
 									v-for="relocationEvent of relocationEvents"
-									@click="openAttraction(relocationEvent.slug)"
+									:to="localePath(ATTRACTION_ROUTE(relocationEvent.slug))"
 									class="text-base text-brown-700 font-medium cursor-pointer hover:(text-blue-500)"
 								>
 									{{ relocationEvent.title[locale] }}
-								</p>
+								</NuxtLink>
 							</div>
 						</transition>
 					</div>
 
 					<div class="flex gap-3 cursor-pointer">
-						<p @click="openBlog" class="font-medium font-inter uppercase">
+						<NuxtLink
+							:to="localePath(BLOG_ROUTE)"
+							class="font-medium font-inter uppercase"
+						>
 							{{ t("header_travel_blog") }}
-						</p>
+						</NuxtLink>
 
 						<i class="fi fi-sr-share-square"></i>
 					</div>
@@ -393,9 +403,12 @@
 					</div>
 
 					<div class="flex gap-3 cursor-pointer">
-						<p @click="openWhyUs" class="font-medium font-inter uppercase">
+						<NuxtLink
+							:to="localePath(WHY_US_ROUTE)"
+							class="font-medium font-inter uppercase"
+						>
 							{{ t("header_why_us") }}
-						</p>
+						</NuxtLink>
 
 						<i class="fi fi-sr-share-square"></i>
 					</div>
@@ -422,7 +435,7 @@
 						<transition>
 							<div
 								v-if="showCurrenciesMobileDropdown"
-								class="p-6 bg-white rounded-lg flex flex-col gap-6"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6 cursor-default"
 							>
 								<p
 									class="text-black uppercase font-inter font-medium text-normal cursor-pointer duration-[.2s] hover:(text-blue-500)"
@@ -458,7 +471,7 @@
 						<transition>
 							<div
 								v-if="showLanguagesMobileDropdown"
-								class="p-6 bg-white rounded-lg flex flex-col gap-6"
+								class="p-6 bg-white rounded-lg flex flex-col gap-6 cursor-default"
 							>
 								<LanguageFlag
 									v-for="language of availableLanguages ??

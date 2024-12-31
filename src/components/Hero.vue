@@ -90,7 +90,7 @@ import {
 } from "~/constants"
 
 // Locales
-const { t, localeProperties } = useI18n()
+const { t } = useI18n()
 
 // Background
 const backgrounds = reactive<{
