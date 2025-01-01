@@ -392,8 +392,8 @@ const handleFlightLabel = (data: Flight) => {
 	const start = new Date(data.departing_takeoff)
 	const end = new Date(data.returning_takeoff)
 
-	const startMonth = start.toLocaleString("en-us", { month: "short" })
-	const endMonth = end.toLocaleString("en-us", { month: "short" })
+	const startMonth = start.toLocaleString(locale.value, { month: "short" })
+	const endMonth = end.toLocaleString(locale.value, { month: "short" })
 
 	const startDay = start.getDate()
 	const endDay = end.getDate()

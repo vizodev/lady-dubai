@@ -32,10 +32,7 @@ const currentAirport = computed(() => {
 const timeLabel = () => {
 	const date = new Date(props.date)
 
-	return date.toLocaleString("pt-BR", {
-		hour: "numeric",
-		minute: "numeric",
-	})
+	return `${date.getHours()}:${date.getMinutes().toString().padStart(2, "0")}`
 }
 
 // Locales

@@ -41,7 +41,7 @@ const landingAirport = computed(() => {
 const timeLabel = () => {
 	const date = new Date(props.takeOffDate)
 
-	const month = date.toLocaleString("en-us", { month: "short" })
+	const month = date.toLocaleString(locale.value, { month: "short" })
 
 	return `${date.getHours()}:${date.getMinutes()}, ${date.getDate()} ${month} ${date.getFullYear()}`
 }

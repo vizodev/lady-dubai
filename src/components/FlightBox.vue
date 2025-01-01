@@ -9,6 +9,7 @@
 				{{ dateLabel(takeoff) }}
 				<i
 					class="fi fi-ss-plane-alt flex items-center justify-center text-gray-600"
+					:class="{ flip: isRtl() }"
 				></i>
 				{{ dateLabel(landing) }}
 			</p>
@@ -20,7 +21,11 @@
 			<FlightDetails :date="takeoff" :airport-id="takeoffAirportId" />
 
 			<div class="flex flex-col items-center gap-2">
-				<img :src="FLIGHT1_SVG" alt="flight during time icon" />
+				<img
+					:src="FLIGHT1_SVG"
+					alt="flight during time icon"
+					:class="{ flip: isRtl() }"
+				/>
 
 				<p class="text-xs font-normal text-gray-400">
 					Travel Time: {{ flightDurationLabel() }}
@@ -33,7 +38,10 @@
 </template>
 
 <script setup lang="ts">
-import { FLIGHT1_SVG, FLIGHT_ICON_SVG } from "~/constants"
+import { FLIGHT1_SVG, FLIGHT_ICON_SVG } from "~/constants";
+
+// Locales
+const { locale } = useI18n()
 
 // General
 const { takeoff, landing, duration } = defineProps<{
@@ -53,9 +61,16 @@ const flightDurationLabel = () => {
 	return `${hours}h ${minutes}min`
 }
 const dateLabel = (date: Date) => {
-	const month = date.toLocaleString("en-us", { month: "short" })
-	const weekday = date.toLocaleString("en-us", { weekday: "short" })
+	const month = date.toLocaleString(locale.value, { month: "short" })
+	const weekday = date.toLocaleString(locale.value, { weekday: "short" })
 
 	return `${weekday}, ${date.getDate()} ${month}`
 }
 </script>
+
+<style scoped>
+.flip {
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+</style>
