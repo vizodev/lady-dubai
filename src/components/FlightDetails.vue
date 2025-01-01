@@ -2,11 +2,6 @@
 	<div class="flex flex-col font-inter">
 		<p class="text-2xl font-bold mb-3">
 			{{ timeLabel() }}
-			<span
-				v-if="daysFromTakeoff && daysFromTakeoff > 0"
-				class="text-base text-gray-600"
-				>+{{ daysFromTakeoff }}</span
-			>
 		</p>
 
 		<p class="text-base font-medium mb-1">
@@ -23,7 +18,6 @@
 const props = defineProps<{
 	airportId: number
 	date: Date
-	daysFromTakeoff?: number
 }>()
 
 const airportsStore = useAirportsStore()

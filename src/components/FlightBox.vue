@@ -4,7 +4,14 @@
 			<p class="text-base">
 				{{ departingFlight ? "DEPARTING" : "RETURNING" }} FLIGHT
 			</p>
-			<p class="text-2xl">{{ dateLabel() }}</p>
+
+			<p class="text-2xl flex gap-5">
+				{{ dateLabel(takeoff) }}
+				<i
+					class="fi fi-ss-plane-alt flex items-center justify-center text-gray-600"
+				></i>
+				{{ dateLabel(landing) }}
+			</p>
 		</div>
 
 		<div class="flex flex-row items-center gap-8 bg-white py-5 px-7 rounded-lg">
@@ -20,11 +27,7 @@
 				</p>
 			</div>
 
-			<FlightDetails
-				:date="landing"
-				:airport-id="landingAirportId"
-				:days-from-takeoff="daysFromTakeoff()"
-			/>
+			<FlightDetails :date="landing" :airport-id="landingAirportId" />
 		</div>
 	</div>
 </template>
@@ -33,56 +36,23 @@
 import { FLIGHT1_SVG, FLIGHT_ICON_SVG } from "~/constants"
 
 // General
-const { takeoff, landing } = defineProps<{
+const { takeoff, landing, duration } = defineProps<{
 	departingFlight?: boolean
 	takeoff: Date
 	takeoffAirportId: number
 	landing: Date
 	landingAirportId: number
+	duration?: number
 }>()
-
-const daysFromTakeoff = () => {
-	const takeoffDate = new Date(takeoff)
-	const landingDate = new Date(landing)
-
-	const isSameDay =
-		takeoffDate.getFullYear() === landingDate.getFullYear() &&
-		takeoffDate.getMonth() === landingDate.getMonth() &&
-		takeoffDate.getDate() === landingDate.getDate()
-
-	if (isSameDay) return 0
-
-	const differenceInDays = Math.floor(
-		Math.abs(takeoffDate.getTime() - landingDate.getTime()) /
-			(24 * 60 * 60 * 1000)
-	)
-	const differenceInHours = Math.floor(
-		Math.abs(takeoffDate.getTime() - landingDate.getTime()) / (60 * 60 * 1000)
-	)
-
-	return (
-		differenceInDays +
-		(differenceInHours >= 24 && differenceInHours % 24 === 0 ? 0 : 1)
-	)
-}
 
 // Labels
 const flightDurationLabel = () => {
-	const takeoffTime = new Date(takeoff).getTime()
-	const landingTime = new Date(landing).getTime()
-
-	const durationInMinutes = Math.floor(
-		Math.abs(takeoffTime - landingTime) / (60 * 1000)
-	)
-
-	const hours = Math.floor(durationInMinutes / 60)
-	const minutes = durationInMinutes % 60
+	const hours = duration ? Math.floor(duration / 60) : 0
+	const minutes = duration ? duration % 60 : 0
 
 	return `${hours}h ${minutes}min`
 }
-const dateLabel = () => {
-	const date = new Date(takeoff)
-
+const dateLabel = (date: Date) => {
 	const month = date.toLocaleString("en-us", { month: "short" })
 	const weekday = date.toLocaleString("en-us", { weekday: "short" })
 

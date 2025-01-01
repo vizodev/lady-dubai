@@ -51,11 +51,13 @@ export type Flight = {
 
 	price: Price
 
+	departing_duration?: number
 	departing_takeoff: Date
 	departing_takeoff_airport_id: number
 	departing_landing: Date
 	departing_landing_airport_id: number
 
+	returning_duration?: number
 	returning_takeoff: Date
 	returning_takeoff_airport_id: number
 	returning_landing: Date

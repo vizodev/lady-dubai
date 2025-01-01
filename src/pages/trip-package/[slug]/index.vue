@@ -154,6 +154,7 @@
 						:takeoffAirportId="currentFlightDate.departing_takeoff_airport_id"
 						:landing="currentFlightDate.departing_landing"
 						:landingAirportId="currentFlightDate.departing_landing_airport_id"
+						:duration="currentFlightDate.departing_duration"
 					/>
 
 					<FlightBox
@@ -162,6 +163,7 @@
 						:takeoffAirportId="currentFlightDate.returning_takeoff_airport_id"
 						:landing="currentFlightDate.returning_landing"
 						:landingAirportId="currentFlightDate.returning_landing_airport_id"
+						:duration="currentFlightDate.returning_duration"
 					/>
 				</div>
 
