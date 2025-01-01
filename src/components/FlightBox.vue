@@ -2,7 +2,12 @@
 	<div class="flex flex-col gap-3 font-inter">
 		<div class="flex flex-row gap-4 items-center font-bold">
 			<p class="text-base">
-				{{ departingFlight ? "DEPARTING" : "RETURNING" }} FLIGHT
+				{{
+					departingFlight
+						? t("trip_package_flight_departing")
+						: t("trip_package_flight_returning")
+				}}
+				{{ t("trip_package_flight") }}
 			</p>
 
 			<p class="text-2xl flex gap-5">
@@ -38,10 +43,10 @@
 </template>
 
 <script setup lang="ts">
-import { FLIGHT1_SVG, FLIGHT_ICON_SVG } from "~/constants";
+import { FLIGHT1_SVG, FLIGHT_ICON_SVG } from "~/constants"
 
 // Locales
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 
 // General
 const { takeoff, landing, duration } = defineProps<{
