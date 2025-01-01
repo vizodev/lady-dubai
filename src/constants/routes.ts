@@ -7,7 +7,6 @@ export const WHY_US_ROUTE = "/why-us"
 export const PRIVACY_POLICY_ROUTE = "/privacy-policy"
 export const TERMS_OF_USE_ROUTE = "/terms-of-use"
 export const CANCELLATION_POLICY_ROUTE = "/cancellation-policy"
-export const DISCLAIMER_ROUTE = "/disclaimer"
 
 export const BLOG_ROUTE = "/blog"
 export const BLOG_ARTICLE_ROUTE = (slug: string) => `${BLOG_ROUTE}/${slug}`

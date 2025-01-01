@@ -19,7 +19,6 @@ const languagesStore = useLanguagesStore()
 const homePageStore = useHomePageStore()
 const whyUsPageStore = useWhyUsPageStore()
 const cancellationPolicyPageStore = useCancellationPolicyPageStore()
-const disclaimerPageStore = useDisclaimerPageStore()
 const termsOfUsePageStore = useTermsOfUsePageStore()
 const privacyPolicyPageStore = usePrivacyPolicyPageStore()
 const blogPageStore = useBlogPageStore()
@@ -38,7 +37,6 @@ onMounted(async () => {
 		homePageStore.loadHome(),
 		whyUsPageStore.loadWhyUs(),
 		cancellationPolicyPageStore.loadCancellationPolicy(),
-		disclaimerPageStore.loadDisclaimer(),
 		termsOfUsePageStore.loadTermsOfUse(),
 		privacyPolicyPageStore.loadPrivacyPolicy(),
 		blogPageStore.loadBlog(),
