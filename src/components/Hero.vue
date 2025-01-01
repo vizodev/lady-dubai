@@ -82,7 +82,6 @@ import {
 	HERO5_IMAGE,
 	HERO6_IMAGE,
 	HERO7_IMAGE,
-	HERO8_IMAGE,
 	LOGO_SVG,
 	PLANE1_SVG,
 	PLANE2_SVG,
@@ -121,9 +120,6 @@ const backgrounds = reactive<{
 		},
 		{
 			src: HERO7_IMAGE,
-		},
-		{
-			src: HERO8_IMAGE,
 		},
 	],
 	changeBgIntervalTime: 3000,
