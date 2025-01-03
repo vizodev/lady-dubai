@@ -1,16 +1,17 @@
 import { tripPackageCurrencies } from "../data"
-import type { TextType } from "./"
+import type { NumberLocales, TextLocales } from "./"
 
 export type TripPackage = {
 	id: number
 	created_at: Date
 	slug: string
-	title_metadata?: TextType
-	description_metadata?: TextType
-	title: TextType
-	subtitle: TextType
-	headline: TextType
-	description: TextType
+	order?: Partial<NumberLocales>
+	title_metadata?: TextLocales
+	description_metadata?: TextLocales
+	title: TextLocales
+	subtitle: TextLocales
+	headline: TextLocales
+	description: TextLocales
 	downsale_price: Price
 	price: Price
 	gallery: string[]
@@ -34,16 +35,16 @@ export type Accommodation = {
 	id: number
 
 	images: string[]
-	title: TextType
-	subtitle: TextType
-	description: TextType
-	features: TextType[]
+	title: TextLocales
+	subtitle: TextLocales
+	description: TextLocales
+	features: TextLocales[]
 }
 
 export type AccommodationFeature = {
 	id: number
 
-	title: TextType
+	title: TextLocales
 }
 
 export type Flight = {
@@ -82,6 +83,6 @@ export type Language = {
 export type PackageService = {
 	id: number
 
-	label: TextType
+	label: TextLocales
 	icon: string
 }

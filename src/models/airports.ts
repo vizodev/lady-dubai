@@ -1,8 +1,8 @@
-import type { TextType } from "./locales"
+import type { TextLocales } from "./locales"
 
 export type Airport = {
 	id: number
-	title: TextType
-	description: TextType
+	title: TextLocales
+	description: TextLocales
 	locale: string
 }

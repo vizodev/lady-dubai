@@ -5,7 +5,7 @@ export type Translation = {
 	is_ready_to_use: boolean
 }
 
-export type TextType = {
+export type TextLocales = {
 	[key: string]: string
 	en: string
 	ar: string
@@ -15,6 +15,18 @@ export type TextType = {
 	ru: string
 	deu: string
 	pt: string
+}
+
+export type NumberLocales = {
+	[key: string]: number
+	en: number
+	ar: number
+	es: number
+	fr: number
+	he: number
+	ru: number
+	deu: number
+	pt: number
 }
 
 export enum LanguageEnum {

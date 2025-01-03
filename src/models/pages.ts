@@ -1,9 +1,9 @@
-import type { TextType } from "./locales"
+import type { TextLocales } from "./locales"
 
 export type PageData = {
-	title: TextType
+	title: TextLocales
 	banner: string
-	text_html: TextType
-	title_metadata?: TextType
-	description_metadata?: TextType
+	text_html: TextLocales
+	title_metadata?: TextLocales
+	description_metadata?: TextLocales
 }

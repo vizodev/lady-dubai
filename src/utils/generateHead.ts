@@ -1,10 +1,10 @@
-import type { TextType } from "~/models"
+import type { TextLocales } from "~/models"
 
 export const generateHead = (
 	locale: string,
-	title: TextType,
-	titleMetadata?: TextType,
-	descriptionMetadata?: TextType
+	title: TextLocales,
+	titleMetadata?: TextLocales,
+	descriptionMetadata?: TextLocales
 ) => {
 	return {
 		title: title[locale],

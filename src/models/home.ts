@@ -1,7 +1,7 @@
-import type { TextType } from "./locales"
+import type { TextLocales } from "./locales"
 
 export type HomeData = {
-	title: TextType
-	title_metadata?: TextType
-	description_metadata?: TextType
+	title: TextLocales
+	title_metadata?: TextLocales
+	description_metadata?: TextLocales
 }
