@@ -283,26 +283,26 @@
 
 <script setup lang="ts">
 import {
-	API_PAYMENTS,
-	CANCELLATION_POLICY_ROUTE,
-	HOME_ROUTE,
-	LOGO_FOOTER_SVG,
-	PACKAGE_SVG,
-	PRIVACY_POLICY_ROUTE,
-	TERMS_OF_USE_ROUTE,
-	TRIP_PACKAGE_ROUTE,
+API_PAYMENTS,
+CANCELLATION_POLICY_ROUTE,
+HOME_ROUTE,
+LOGO_FOOTER_SVG,
+PACKAGE_SVG,
+PRIVACY_POLICY_ROUTE,
+TERMS_OF_USE_ROUTE,
+TRIP_PACKAGE_ROUTE,
 } from "~/constants"
 import {
-	genders,
-	languageToLocale,
-	localeToLanguage,
-	tripPackageCurrencies,
+genders,
+languageToLocale,
+localeToLanguage,
+tripPackageCurrencies,
 } from "~/data"
 import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
 import {
-	type Flight,
-	type GetPaymentInfoBody,
-	type TripPackage,
+type Flight,
+type GetPaymentInfoBody,
+type TripPackage,
 } from "~/models"
 
 // General
@@ -440,6 +440,9 @@ const onSubmit = async (formData: CheckoutSchemaSubmit) => {
 
 		navigateTo(data.link, {
 			external: true,
+			open: {
+				target: "_blank"
+			}
 		})
 	} catch (error) {
 		console.error(error)
