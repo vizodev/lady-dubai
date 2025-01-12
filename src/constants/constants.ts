@@ -34,7 +34,9 @@ export const SOCIAL_MEDIAS_STORE = "SOCIAL_MEDIAS_STORE"
 export const STRIPE_SECRET_KEY =
 	"sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
 
-export const STRIPE_SUCCESS_URL = WEBSITE_URL
+export const STRIPE_SUCCESS_URL = isDev
+	? "http://localhost:3001/payment-approved"
+	: "https://ladydubai.ae/payment-approved"
 export const STRIPE_CANCEL_URL = WEBSITE_URL
 
 // Countries

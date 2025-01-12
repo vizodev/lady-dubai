@@ -42,6 +42,7 @@ export const PLANE1_SVG = "/svg/plane1.svg"
 export const PLANE2_SVG = "/svg/plane2.svg"
 
 export const LOADING_SVG = "/svg/loading.svg"
+export const CHECK_SVG = "/svg/check.svg"
 export const CLOSE_SVG = "/svg/close.svg"
 export const CROSS_SVG = "/svg/cross.svg"
 export const MENU_SVG = "/svg/menu.svg"
@@ -51,14 +52,10 @@ export const FLIGHT1_SVG = "/svg/flight1.svg"
 // IMAGES
 export const CTA_IMAGE = "/images/cta.webp"
 
-export const BANNER1_IMAGE = "/images/banner1.webp"
-export const BANNER2_IMAGE = "/images/banner2.webp"
-export const BANNER3_IMAGE = "/images/banner3.webp"
-
 export const BLOG_BANNER_IMAGE = "/images/blog-banner.webp"
 
-export const CONTACT1_IMAGE = "/images/contact1.webp"
-export const CONTACT2_IMAGE = "/images/contact2.webp"
+export const PAYMENT_APPROVED_BANNER_IMAGE =
+	"/images/payment-approved-banner.webp"
 
 export const HERO1_IMAGE = "/images/hero1.webp"
 export const HERO2_IMAGE = "/images/hero2.webp"

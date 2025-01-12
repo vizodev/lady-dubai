@@ -1,22 +1,5 @@
 <template>
-	<header
-		class="flex justify-between items-center py-6 mb-10 px-6 md:px-10 lg:px-16 xl:px-[100px] 2xl:px-[200px] 3xl:px-[245px]"
-	>
-		<img
-			:src="LOGO_FOOTER_SVG"
-			alt="Logo"
-			@click="openHome"
-			class="cursor-pointer h-8 md:h-10"
-		/>
-
-		<p class="text-2xl md:text-3xl">{{ t("checkout_checkout") }}</p>
-
-		<i class="fi fi-rr-info flex gap-3 items-center">
-			<p class="text-base md:text-lg not-italic">
-				{{ t("checkout_support") }}
-			</p>
-		</i>
-	</header>
+	<CheckoutHeader />
 
 	<BaseForm
 		:validation-schema="checkoutSchema"
@@ -24,14 +7,7 @@
 		class="mb-32 lg:mb-64 px-10 md:px-14 lg:px-20 xl:px-[140px] 2xl:px-[200px] 3xl:px-[245px]"
 	>
 		<div class="mb-16">
-			<div
-				@click="openTripPackage"
-				class="text-[16px] text-pink-600 flex gap-3 cursor-pointer mb-6 w-max"
-			>
-				<i class="fi fi-ss-angle-double-left"></i>
-
-				<p>{{ t("checkout_return") }}</p>
-			</div>
+			<ReturnText @click="openTripPackage" />
 
 			<div class="flex flex-col gap-16 xl:flex-row xl:gap-6">
 				<div class="flex-[3] flex-grow-[2]">
@@ -283,26 +259,25 @@
 
 <script setup lang="ts">
 import {
-API_PAYMENTS,
-CANCELLATION_POLICY_ROUTE,
-HOME_ROUTE,
-LOGO_FOOTER_SVG,
-PACKAGE_SVG,
-PRIVACY_POLICY_ROUTE,
-TERMS_OF_USE_ROUTE,
-TRIP_PACKAGE_ROUTE,
+	API_PAYMENTS,
+	CANCELLATION_POLICY_ROUTE,
+	HOME_ROUTE,
+	PACKAGE_SVG,
+	PRIVACY_POLICY_ROUTE,
+	TERMS_OF_USE_ROUTE,
+	TRIP_PACKAGE_ROUTE,
 } from "~/constants"
 import {
-genders,
-languageToLocale,
-localeToLanguage,
-tripPackageCurrencies,
+	genders,
+	languageToLocale,
+	localeToLanguage,
+	tripPackageCurrencies,
 } from "~/data"
 import { checkoutSchema, type CheckoutSchemaSubmit } from "~/formSchemas"
 import {
-type Flight,
-type GetPaymentInfoBody,
-type TripPackage,
+	type Flight,
+	type GetPaymentInfoBody,
+	type TripPackage,
 } from "~/models"
 
 // General
@@ -441,8 +416,8 @@ const onSubmit = async (formData: CheckoutSchemaSubmit) => {
 		navigateTo(data.link, {
 			external: true,
 			open: {
-				target: "_blank"
-			}
+				target: "_blank",
+			},
 		})
 	} catch (error) {
 		console.error(error)
