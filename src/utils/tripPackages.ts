@@ -35,10 +35,15 @@ export const getTripPackagePrice = (
 	travellersCount: number,
 	currency: Currency
 ) => {
-	return (
-		(tripPackage.price[currency] + (flight ? flight?.price[currency] : 0)) *
-		travellersCount
-	)
+	return {
+		price:
+			(tripPackage.price[currency] + (flight ? flight?.price[currency] : 0)) *
+			travellersCount,
+		downsalePrice:
+			(tripPackage.downsale_price[currency] +
+				(flight ? flight?.price[currency] : 0)) *
+			travellersCount,
+	}
 }
 
 export const formatTripPackage = (

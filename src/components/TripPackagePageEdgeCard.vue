@@ -22,7 +22,7 @@
 							class="text-brown-700 font-semibold font-roboto-serif text-[20px] sm:text-[24px]"
 						>
 							{{
-								`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage?.downsale_price[currentCurrency]}`
+								`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice.downsalePrice}`
 							}}
 						</span>
 						<div
@@ -43,7 +43,7 @@
 						class="text-pink-500 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] xl:text-[48px] whitespace-nowrap"
 					>
 						{{
-							`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice}`
+							`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice.price}`
 						}}
 					</span>
 					<div class="flex flex-col font-inter">

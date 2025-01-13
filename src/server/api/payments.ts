@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
 					product_data: {
 						name: `Booking \n${body.data.users.map((i) => i.name).join(", ")}`,
 					},
-					unit_amount: amount * 100,
+					unit_amount: amount.price * 100,
 				},
 				quantity: 1,
 			},

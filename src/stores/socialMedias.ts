@@ -34,8 +34,6 @@ export const useSocialMediasStore = defineStore(SOCIAL_MEDIAS_STORE, {
 
 				this.whatsappMedia = whatsappMediaRes.data![0] as WhatsappSocialMedia
 				this.socialMedias = socialMediasRes.data as SocialMedia[]
-
-				console.log(this.whatsappMedia)
 			} catch (error) {
 				this.errorOnLoadSocialMedias = true
 				console.error("Error loading social medias", error)

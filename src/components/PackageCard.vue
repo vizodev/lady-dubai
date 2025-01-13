@@ -93,7 +93,7 @@
 					>
 						<span class="text-brown-700 font-semibold font-roboto-serif">
 							{{
-								`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage.downsale_price[currentCurrency]}`
+								`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice.downsalePrice}`
 							}}
 						</span>
 						<div
@@ -106,7 +106,7 @@
 							class="text-blue-200 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] whitespace-nowrap"
 						>
 							{{
-								`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage.price[currentCurrency]}`
+								`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice.price}`
 							}}
 						</span>
 						<div class="flex flex-col font-inter gap-1">
@@ -148,6 +148,16 @@ const currenciesStore = useCurrenciesStore()
 
 // Currencies
 const { currentCurrency } = storeToRefs(currenciesStore)
+
+// Trip package
+const totalPrice = computed(() => {
+	return getTripPackagePrice(
+		props.tripPackage,
+		props.tripPackage.flights[0],
+		1,
+		currentCurrency.value
+	)
+})
 
 // Gallery scroll
 const bannerScrollList = ref<HTMLElement | null>(null)

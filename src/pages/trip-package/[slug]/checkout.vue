@@ -188,7 +188,7 @@
 
 						<p class="font-roboto-serif text-3xl whitespace-nowrap">
 							{{
-								`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice}`
+								`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice?.price}`
 							}}
 							<span class="font-inter text-lg">{{
 								t(`currency_${currentCurrency}`)
@@ -338,7 +338,7 @@ const loadTripPackage = async () => {
 // Travellers
 const travellersCount = ref(1)
 const totalPrice = computed(() => {
-	if (!currentTripPackage.value) return 0
+	if (!currentTripPackage.value) return
 
 	return getTripPackagePrice(
 		currentTripPackage.value,
