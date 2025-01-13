@@ -4,7 +4,7 @@ const isDev = process.env.NODE_ENV === "development"
 export const ARTICLES_LIMIT_PER_PAGE = 12
 export const WEBSITE_URL = isDev
 	? "http://localhost:3001"
-	: "https://ladydubai.ae/"
+	: "https://ladydubai.ae"
 
 // Sections
 export const CONTACT_SECTION = "contact_section"
@@ -31,12 +31,11 @@ export const ATTRACTIONS_CATEGORIES_STORE = "ATTRACTIONS_CATEGORIES_STORE"
 export const SOCIAL_MEDIAS_STORE = "SOCIAL_MEDIAS_STORE"
 
 // Stripe
-export const STRIPE_SECRET_KEY =
-	"sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
+export const STRIPE_SECRET_KEY = isDev
+	? "sk_test_51PskLCP8VCYaOIWobTPBRKwf6f8eVsDkUWv9u6KwWeUk9MxNmA43mjXb0HoHc5fEpOdrAksAVUYKtwQlF7ESVLjn00rGGsSaWk"
+	: "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"
 
-export const STRIPE_SUCCESS_URL = isDev
-	? "http://localhost:3001/payment-approved"
-	: "https://ladydubai.ae/payment-approved"
+export const STRIPE_SUCCESS_URL = `${WEBSITE_URL}/payment-approved`
 export const STRIPE_CANCEL_URL = WEBSITE_URL
 
 // Countries

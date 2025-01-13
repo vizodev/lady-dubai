@@ -43,7 +43,7 @@
 						class="text-pink-500 font-bold font-roboto-serif text-[28px] sm:text-[32px] md:text-[36px] xl:text-[48px] whitespace-nowrap"
 					>
 						{{
-							`${tripPackageCurrencies[currentCurrency].symbol} ${tripPackage?.price[currentCurrency]}`
+							`${tripPackageCurrencies[currentCurrency].symbol} ${totalPrice}`
 						}}
 					</span>
 					<div class="flex flex-col font-inter">
@@ -98,8 +98,18 @@ const onFlightChange = (data?: Flight) => {
 	emit("onFlightChange", data)
 }
 
+// Trip package
+const totalPrice = computed(() =>
+	getTripPackagePrice(
+		props.tripPackage,
+		props.currentFlight,
+		1,
+		currentCurrency.value
+	)
+)
+
 // Locales
-const { locale, t } = useI18n()
+const { t } = useI18n()
 const localePath = useLocalePath()
 
 // Routes
