@@ -64,7 +64,9 @@ const airportsStore = useAirportsStore()
 
 // Dates
 const onChange = (data: Flight) => {
-	emit("onChange", data !== currentFlight ? data : undefined)
+	if (data === currentFlight) return
+
+	emit("onChange", data)
 }
 const handleFlightLabel = (data: Flight) => {
 	// 18 - 24 Jan 2024 | Same month

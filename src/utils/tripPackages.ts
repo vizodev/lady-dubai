@@ -31,7 +31,9 @@ export const getTripPackagePrice = (
 	noFlight = false
 ) => {
 	const discount = noFlight
-		? tripPackage.discount_flight_price[currency] * travellersCount
+		? tripPackage.discount_flight_price
+			? tripPackage.discount_flight_price[currency] * travellersCount
+			: 0
 		: 0
 
 	return {

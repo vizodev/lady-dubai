@@ -331,6 +331,8 @@ const onAirportChange = (data: string) => {
 const hideCurrentFlight = () => {
 	currentFlightDate.value = undefined
 
+	console.log(currentFlightDate)
+
 	edgeCardEl.value?.$el.scrollIntoView({ behavior: "smooth" })
 }
 
