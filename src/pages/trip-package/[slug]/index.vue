@@ -64,6 +64,7 @@
 				</div>
 
 				<TripPackagePageEdgeCard
+					ref="edgeCard"
 					v-if="currentTripPackage"
 					:trip-package="currentTripPackage"
 					:current-flight="currentFlightDate"
@@ -292,6 +293,9 @@ const loadAttractions = async (id: number) => {
 	attractions.value = await attractionsStore.getAttractionsByTripPackageId(id)
 }
 
+// Edge card
+const edgeCardEl = useTemplateRef("edgeCard")
+
 // Flights
 const currentFlightDate = ref<Flight>()
 const currentAirportId = ref<number>()
@@ -326,6 +330,8 @@ const onAirportChange = (data: string) => {
 }
 const hideCurrentFlight = () => {
 	currentFlightDate.value = undefined
+
+	edgeCardEl.value?.$el.scrollIntoView({ behavior: "smooth" })
 }
 
 // Relative path
