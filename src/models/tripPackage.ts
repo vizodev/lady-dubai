@@ -12,8 +12,9 @@ export type TripPackage = {
 	subtitle: TextLocales
 	headline: TextLocales
 	description: TextLocales
-	downsale_price: Price
 	price: Price
+	downsale_price: Price
+	discount_flight_price: Price
 	gallery: string[]
 	services: PackageService[]
 	guidelanguages: Language[]
@@ -49,8 +50,6 @@ export type AccommodationFeature = {
 
 export type Flight = {
 	id: number
-
-	price: Price
 
 	departing_duration?: number
 	departing_takeoff: Date

@@ -342,9 +342,9 @@ const totalPrice = computed(() => {
 
 	return getTripPackagePrice(
 		currentTripPackage.value,
-		currentFlight.value,
 		travellersCount.value,
-		currentCurrency.value
+		currentCurrency.value,
+		!currentFlight.value
 	)
 })
 

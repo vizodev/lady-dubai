@@ -150,14 +150,9 @@ const currenciesStore = useCurrenciesStore()
 const { currentCurrency } = storeToRefs(currenciesStore)
 
 // Trip package
-const totalPrice = computed(() => {
-	return getTripPackagePrice(
-		props.tripPackage,
-		props.tripPackage.flights[0],
-		1,
-		currentCurrency.value
-	)
-})
+const totalPrice = computed(() =>
+	getTripPackagePrice(props.tripPackage, 1, currentCurrency.value)
+)
 
 // Gallery scroll
 const bannerScrollList = ref<HTMLElement | null>(null)

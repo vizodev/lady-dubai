@@ -102,9 +102,9 @@ const onFlightChange = (data?: Flight) => {
 const totalPrice = computed(() =>
 	getTripPackagePrice(
 		props.tripPackage,
-		props.currentFlight,
 		1,
-		currentCurrency.value
+		currentCurrency.value,
+		!props.currentFlight
 	)
 )
 

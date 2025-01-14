@@ -14,9 +14,9 @@ export default defineEventHandler(async (event) => {
 
 	const amount = getTripPackagePrice(
 		body.tripPackage,
-		body.flight,
 		body.data.users.length,
-		body.currency
+		body.currency,
+		!body.flight
 	)
 	const checkoutSession = await client.checkout.sessions.create({
 		metadata: {
