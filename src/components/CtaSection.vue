@@ -44,6 +44,7 @@
 				</div>
 				<div class="flex flex-col gap-3 items-center lg:items-start">
 					<button
+						@click="openTestimonials"
 						class="bg-pink-600 text-white font-bold font-inter text-sm px-3 py-2 rounded-xl"
 					>
 						{{ t("cta_testemonial_button") }}
@@ -68,8 +69,12 @@
 </template>
 
 <script lang="ts" setup>
-import { CTA_IMAGE, YOUTUBE_ICON1_SVG } from "~/constants"
+import { CTA_IMAGE, TESTIMONIALS_ROUTE, YOUTUBE_ICON1_SVG } from "~/constants"
 
 // Locales
 const { t } = useI18n()
+const localePath = useLocalePath()
+
+// Routes
+const openTestimonials = () => navigateTo(localePath(TESTIMONIALS_ROUTE))
 </script>

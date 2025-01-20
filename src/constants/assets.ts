@@ -48,11 +48,13 @@ export const CROSS_SVG = "/svg/cross.svg"
 export const MENU_SVG = "/svg/menu.svg"
 export const PACKAGE_SVG = "/svg/package.svg"
 export const FLIGHT1_SVG = "/svg/flight1.svg"
+export const LIKE_SVG = "/svg/like.svg"
 
 // IMAGES
 export const CTA_IMAGE = "/images/cta.webp"
 
 export const BLOG_BANNER_IMAGE = "/images/blog-banner.webp"
+export const TESTIMONIALS_BANNER_IMAGE = "/images/testimonials-banner.webp"
 
 export const PAYMENT_APPROVED_BANNER_IMAGE =
 	"/images/payment-approved-banner.webp"

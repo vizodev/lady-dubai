@@ -29,7 +29,7 @@ export const useAirportsStore = defineStore(AIRPORTS_STORE, {
 				this.airports = data as Airport[]
 			} catch (error) {
 				this.errorOnLoadAirports = true
-				console.error("Error loading trip packages", error)
+				console.error("Error loading airports", error)
 			}
 
 			this.loadingAirports = false

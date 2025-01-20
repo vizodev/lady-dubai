@@ -29,6 +29,7 @@ export const BLOG_STORE = "BLOG_STORE"
 export const BLOG_PAGE_STORE = "BLOG_PAGE_STORE"
 export const ATTRACTIONS_CATEGORIES_STORE = "ATTRACTIONS_CATEGORIES_STORE"
 export const SOCIAL_MEDIAS_STORE = "SOCIAL_MEDIAS_STORE"
+export const TESTIMONIALS_STORE = "TESTIMONIALS_STORE"
 
 // Stripe
 export const STRIPE_SECRET_KEY = isDev
@@ -74,6 +75,7 @@ export const SUPABASE_TRIP_PACKAGE_ATTRACTIONS_TABLE =
 	"trip_package_attractions"
 export const SUPABASE_SOCIAL_MEDIAS_TABLE = "social_medias"
 export const SUPABASE_WHATSAPP_TABLE = "whatsapp"
+export const SUPABASE_TESTIMONIALS_TABLE = "testimonials"
 
 export const SUPABASE_ID_FIELD = "id"
 export const SUPABASE_SLUG_FIELD = "slug"
