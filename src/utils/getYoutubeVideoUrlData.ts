@@ -17,6 +17,7 @@ export const getYoutubeVideoUrlData = (url: string) => {
 		{ key: "rel", value: "0" },
 		{ key: "fs", value: "1" },
 		{ key: "modestbranding", value: "1" },
+		{ key: "showinfo", value: "0" },
 	]
 
 	newParams.forEach((i) => {

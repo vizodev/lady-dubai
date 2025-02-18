@@ -1,14 +1,18 @@
 <template>
-	<ScriptYouTubePlayer
-		v-if="isYoutubeVideoUrl && youtubeVideoData"
-		trigger="immediate"
-		:video-id="youtubeVideoData.id"
-		:player-vars="youtubeVideoData.vars"
-		@ready="onReady"
-		@state-change="onStateChange"
-		:width="youtubeWidth"
-		:height="youtubeHeight"
-	/>
+	<div v-if="isYoutubeVideoUrl && youtubeVideoData" class="!h-min">
+		<ScriptYouTubePlayer
+			trigger="immediate"
+			:video-id="youtubeVideoData.id"
+			:player-vars="youtubeVideoData.vars"
+			@ready="onReady"
+			@state-change="onStateChange"
+			:width="youtubeWidth"
+			:height="youtubeHeight"
+		/>
+
+		<div class="absolute top-0 left-0 w-full h-16 bg-black"></div>
+	</div>
+
 	<video v-else autoplay muted class="bg-off-black">
 		<source :src="src" />
 	</video>

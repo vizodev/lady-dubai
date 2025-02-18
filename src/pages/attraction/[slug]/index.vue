@@ -18,7 +18,7 @@
 
 		<div
 			v-if="currentAttraction"
-			class="page-padding pt-[47px] relative z-10 mb-16 z-10"
+			class="page-padding pt-[47px] relative mb-16 z-10"
 		>
 			<RelativePath :relativePath="relativePath" class="mb-8" />
 
