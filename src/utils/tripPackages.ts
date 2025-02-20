@@ -59,11 +59,11 @@ export const formatTripPackage = (
 		flights: (data.flights as any[])
 			.map((i: any) => ({
 				...i,
-				departing_takeoff: new Date(i.departing_takeoff),
-				departing_landing: new Date(i.departing_landing),
+				departing_takeoff: createDateIgnoringTimezone(i.departing_takeoff),
+				departing_landing: createDateIgnoringTimezone(i.departing_landing),
 
-				returning_takeoff: new Date(i.returning_takeoff),
-				returning_landing: new Date(i.returning_landing),
+				returning_takeoff: createDateIgnoringTimezone(i.returning_takeoff),
+				returning_landing: createDateIgnoringTimezone(i.returning_landing),
 			}))
 			.sort(
 				(i1, i2) =>

@@ -30,9 +30,10 @@ const currentAirport = computed(() => {
 
 // Labels
 const timeLabel = () => {
-	const date = new Date(props.date)
-
-	return `${date.getHours()}:${date.getMinutes().toString().padStart(2, "0")}`
+	return `${props.date.getHours()}:${props.date
+		.getMinutes()
+		.toString()
+		.padStart(2, "0")}`
 }
 
 // Locales
