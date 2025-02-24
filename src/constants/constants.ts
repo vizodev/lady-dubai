@@ -1,5 +1,8 @@
 const isDev = process.env.NODE_ENV === "development"
 
+// Google
+export const GOOGLE_ANALYTICS_ID = "G-XYQP1B2FWX"
+
 // General
 export const ARTICLES_LIMIT_PER_PAGE = 12
 export const WEBSITE_URL = isDev

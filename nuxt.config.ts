@@ -1,4 +1,5 @@
 import {
+	GOOGLE_ANALYTICS_ID,
 	SUPABASE_KEY,
 	SUPABASE_REDIRECT,
 	SUPABASE_SERVICE_KEY,
@@ -20,7 +21,12 @@ export default defineNuxtConfig({
 		"@nuxtjs/i18n",
 		"@nuxt/scripts",
 		"nuxt-windicss",
+		"nuxt-gtag",
 	],
+	gtag: {
+		enabled: process.env.NODE_ENV === "production",
+		id: GOOGLE_ANALYTICS_ID,
+	},
 	supabase: {
 		key: SUPABASE_KEY,
 		url: SUPABASE_URL,
