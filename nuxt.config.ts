@@ -43,34 +43,9 @@ export default defineNuxtConfig({
 				file: `${languageToLocale[LanguageEnum.ENGLISH]}.ts`,
 			},
 			{
-				code: languageToLocale[LanguageEnum.ARABIC],
-				file: `${languageToLocale[LanguageEnum.ARABIC]}.ts`,
-				dir: "rtl",
-			},
-			{
-				code: languageToLocale[LanguageEnum.GERMAN],
-				file: `${languageToLocale[LanguageEnum.GERMAN]}.ts`,
-			},
-			{
-				code: languageToLocale[LanguageEnum.SPANISH],
-				file: `${languageToLocale[LanguageEnum.SPANISH]}.ts`,
-			},
-			{
-				code: languageToLocale[LanguageEnum.FRENCH],
-				file: `${languageToLocale[LanguageEnum.FRENCH]}.ts`,
-			},
-			{
 				code: languageToLocale[LanguageEnum.HEBREW],
 				file: `${languageToLocale[LanguageEnum.HEBREW]}.ts`,
 				dir: "rtl",
-			},
-			{
-				code: languageToLocale[LanguageEnum.PORTUGUESE_BR],
-				file: `${languageToLocale[LanguageEnum.PORTUGUESE_BR]}.ts`,
-			},
-			{
-				code: languageToLocale[LanguageEnum.RUSSIAN],
-				file: `${languageToLocale[LanguageEnum.RUSSIAN]}.ts`,
 			},
 		],
 	},
