@@ -49,6 +49,7 @@ export default defineNuxtConfig({
 			},
 		],
 	},
+
 	aos: {
 		// Global settings:
 		disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
