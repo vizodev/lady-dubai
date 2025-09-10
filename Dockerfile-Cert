@@ -1,0 +1,39 @@
+# syntax=docker/dockerfile:1.6
+
+# Base with cert tools and only manifests (better caching)
+FROM node:lts-alpine AS base
+WORKDIR /app
+RUN apk add --no-cache ca-certificates
+COPY package*.json ./
+
+# ---- prod deps (uses your local PEM as a secret; not persisted) ----
+FROM base AS prod-deps
+RUN --mount=type=secret,id=netspark_ca,target=/run/secrets/ca.pem \
+    NODE_EXTRA_CA_CERTS=/run/secrets/ca.pem \
+    npm_config_cafile=/run/secrets/ca.pem \
+    NPM_CONFIG_USERCONFIG=/dev/null \
+    npm ci --omit=dev --ignore-scripts
+
+# ---- full deps for building (also uses the secret) ----
+FROM base AS build-deps
+RUN --mount=type=secret,id=netspark_ca,target=/run/secrets/ca.pem \
+    NODE_EXTRA_CA_CERTS=/run/secrets/ca.pem \
+    npm_config_cafile=/run/secrets/ca.pem \
+    NPM_CONFIG_USERCONFIG=/dev/null \
+    npm ci --ignore-scripts
+
+# ---- build app ----
+FROM node:lts-alpine AS build
+WORKDIR /app
+COPY --from=build-deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
+
+# ---- runtime ----
+FROM node:lts-alpine AS runtime
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=build /app/.output /app/.output
+# Cloud Run sets PORT; Nuxt listens from .output server
+CMD ["node", "./.output/server/index.mjs"]
